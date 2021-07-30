@@ -1,0 +1,96 @@
+#Contenedor-Tabla-Subsidios-So{
+    /* background-color: #242526; */
+    border-radius: 20px 20px 20px 20px;
+    height: 500px;
+}
+
+#Cabecera-Tabla-Subsidios-So{
+    display: flex;
+    height: 100px;
+}
+
+.Th-Tabla-Subsidios-So{
+    /* text-transform: uppercase; */
+    height: 50px;
+    position: relative;
+}
+
+#Total-Cuerpo-Tabla-Subsidios-So{
+    /* background-color: #2d2d2e; */
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* padding-left: 36px; */
+}
+
+.Zona-Cuerpo-Tabla-Subsidios-So{
+    width: 100%;
+    /* background-color: #242526; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E4E6EB;
+}
+
+.Icono-Flecha-Tabla-Subsidios-So{
+    width: 35px;
+    margin-right: 15px;
+    margin-top: -3px;
+    cursor: pointer;
+    border-radius: 100px;
+    padding: 10px;
+}
+
+.Icono-Flecha-Tabla-Subsidios-So:hover{
+    /* background: #3A3B3C; */
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.13);
+}
+
+
+#Btn-Flotante-Descargar-Subsidios-So{
+    background: #565656;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
+#Icono-Flotante-Descargar-Subsidios-So{
+    width: 60px;
+}
+
+thead tr th { 
+    position: sticky;
+    top: 0; 
+    /* background-color: #242526; */
+}
+
+.table-responsive-subsidios-so { 
+    /* height:200px; */
+    overflow:scroll;
+    white-space: nowrap;
+}
+
+.Celda-td-Tabla-Subsidios-So{
+    padding-bottom: 15px;
+    /* border-bottom: 3px solid #1c1e21; */
+}
+
+#Contenedor-Filtros-Tabla-Subsidios-So{
+    margin-bottom: 30px;
+
+    display: flex;
+}
+
+.Btn-Filtro-Mostrar-Todo-Subsidios-So{
+    background: #1876F2;
+    border-radius: 23px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}

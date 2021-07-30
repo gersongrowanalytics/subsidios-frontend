@@ -1,0 +1,75 @@
+#Contenedor-TablaSubsidioPendiente{
+    margin-top: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+    width: 100%;
+    padding: 50px;
+}
+
+#Cabecera-TablaSubsidioPendiente{
+    background: #9A9CE9;
+}
+
+#Titulo-Cabecera-TablaSubsidioPendiente{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    /* text-align: -webkit-right; */
+}
+
+#Total-TablaSubsidioPendiente{
+    background: #E4E6EB;
+    width: 100%;
+    height: 40px;
+}
+
+#Texto-Total-TablaSubsidioPendiente{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6E7A9D;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#Agrupado-TablaSubsidioPendiente{
+    background: #E1EDF9;
+    width: 100%;
+    height: 40px;
+    border-top: 5px solid white;
+    /* border-bottom: 5px solid white; */
+}
+
+#Texto-Agrupado-TablaSubsidioPendiente{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6E7A9D;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#Icono-Agrupado-TablaSubsidioPendiente{
+    position: absolute;
+    left: 15px;
+    color: #6E7A9D;
+}
+
+#Texto-Contenido-TablaSubsidioPendiente{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: #4D4D4D;
+}

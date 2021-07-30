@@ -1,0 +1,8 @@
+#Caja-Menu-Administrador{
+    background-color: red;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+    cursor: pointer;
+}

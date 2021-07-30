@@ -1,0 +1,52 @@
+#Contenedor-Tabla-Home{
+    /* background-color: red; */
+    border-radius: 12px 12px 0px 0px;
+}
+
+#Contenedor-Tabla-Home table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+#Contenedor-Tabla-Home tr.Cabecera-Tabla-Home{
+    /* background-color: #242526; */
+    border-radius: 50px;
+}
+
+.Icono-Area-Tabla-Home{
+    width: 50px;
+    margin-right: 10px;
+}
+
+.Semaforo-Home{
+    width: 21px;
+    height: 10px;
+
+    background: #1EEC41;
+    border-radius: 14px;
+}
+
+.Contenedor-Tarjeta-Porcentaje-Tabla-Home{
+    background: #FFFFFF;
+    border: 1px solid #D7E8FF;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 18px #D8DFE9;
+    border-radius: 8px;
+    height: 54px;
+    display: flex;
+    padding-left: 20px;
+}
+
+.Contenedor-Cabecera-Status-Home{
+    height: 36px;
+    /* background: #FFFFFF; */
+    border-radius: 9px 9px 0px 0px;
+    margin-top: 9px;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}

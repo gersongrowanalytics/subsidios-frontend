@@ -1,0 +1,27 @@
+.Input-Blanco-Negro-Tabla-Campo{
+    width: 131px;
+    height: 27px;
+    border: 1px solid #706C64;
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+.Input-Azul-Tabla-Campo{
+    width: 131px;
+    height: 27px;
+    background: #D7E8FF;
+    border: 1px solid #D7E8FF;
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+.Input-Sin-Estilo-Tabla-Campo{
+    border: 0;
+    width: 115px;
+}

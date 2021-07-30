@@ -1,0 +1,41 @@
+#Btn-Aceptar-Modal-Asignar-Facturas-Confirmacion{
+    background: #004FB8;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    text-align-last: center;
+    width: 84px;
+    height: 24px;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
+.Btn-Cancelar-Modal-Asignar-Facturas-Confirmacion{
+    background: #EDF0FA;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    text-align-last: center;
+    width: 84px;
+    height: 24px;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Contenedor-Modal-Asignar-Facturas-Confirmacion .ant-modal-content{
+    border-radius: 22px;
+}

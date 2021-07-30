@@ -1,0 +1,66 @@
+#Contenedor-ProgresoArchivo-ControlCargaArchivos{
+    width: 100%;
+    height: 125px;
+    /* background-color: red; */
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.13);
+    border-radius: 12px;
+    /* margin-left: 20px; */
+    padding: 10px;
+}
+
+#Titulo-ProgresoArchivo-ControlCargaArchivos{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(24, 118, 242, 0.9);
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#Porcentaje-ProgresoArchivo-ControlCargaArchivos{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #9C9B9B;
+    text-align: -webkit-center;
+}
+
+#Contenedor-Circulo-ProgresoArchivo-ControlCargaArchivos{
+    width: 100%;
+    /* height: 100%; */
+    text-align: -webkit-center;
+}
+
+#Circulo-ProgresoArchivo-ControlCargaArchivos{
+    width: 24px;
+    height: 24px;
+    background: #1876F2;
+    border: 1px solid #1876F2;
+    box-sizing: border-box;
+    border-radius: 50px;
+}
+
+#Subtitulo-ProgresoArchivo-ControlCargaArchivos{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #323233;
+    text-align-last: center;
+}
+
+#Linea-ProgresoArchivo-ControlCargaArchivos{
+    position: absolute;
+    width: 75%;
+    height: 0px;
+    border: 1px solid #1876F2;
+    background:#1876F2;
+    top: 28px;
+    left: 50px;
+    
+}

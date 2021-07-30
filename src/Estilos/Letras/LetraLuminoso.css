@@ -1,0 +1,252 @@
+.CFFFFFF{
+    background-color: #FFFFFF;
+}
+
+.CEDF0FA{
+    background-color: #EDF0FA;
+}
+
+.C004FB8{
+    background-color: #004FB8;
+}
+
+.CFF8023{
+    background-color: #FF8023;
+}
+
+.DFE4F2{
+    background-color: #DFE4F2;
+}
+
+.W600-S13-H17-C1EC0ED{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #1EC0ED;
+}
+
+.Wbold-S13-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
+.Wnormal-S13-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
+.Wbold-S13-H17-CFF8023{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #FF8023;
+}
+
+.W600-S12-H16-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #706C64;
+}
+
+.W600-S13-H17-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #FF3742;
+}
+
+.Wbold-S20-H27-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: #004FB8;
+}
+
+.Wbold-S13-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
+.W600-S13-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
+.W600-S13-H17-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
+.W600-S13-H17-C004FB8-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #004FB8;
+}
+
+.Wbold-S14-H19-CFFFFFF-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
+.Wnormal-S12-H16-CA2B9ED-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #A2B9ED;
+}
+
+.Wbold-S27-H36-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.Wbold-S14-H19-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #004FB8;
+}
+
+.Wbold-S12-H16-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #004FB8;
+}
+
+.Wbold-S13-H17-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.Wnormal-S14-H19-C1EC0ED{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #1EC0ED;
+}
+
+.Wnormal-S13-H17-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: #706C64;
+}
+
+.W600-S12-H16-C1EC0ED{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #1EC0ED;
+}
+
+.W600-S11-H15-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+    color: #706C64;
+}
+
+.W600-S11-H15-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+    color: #FF3742;
+}
+
+.W600-S11-H15-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+    color: #004FB8;
+}
+
+.Wbold-S11-H15-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 15px;
+    color: #706C64;
+}
+
+.checkbox-luminoso span span{
+    border: 2px solid #FF8023 !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.checkbox-luminoso .ant-checkbox-checked span{
+    border: 2px solid #FF8023 !important;
+    background-color: #FF8023 !important;
+}

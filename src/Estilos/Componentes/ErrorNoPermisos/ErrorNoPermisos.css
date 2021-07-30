@@ -1,0 +1,41 @@
+#Titulo-ErrorNoPermisos{
+    color: #595959;
+    font-size: 160px;
+    text-align: center;
+    line-height: 1;
+    font-weight: 500;
+    text-shadow: 10px 6px 8px hsl(0deg 0% 46% / 80%);
+    font-family: "Roboto";
+}
+
+#SubTitulo-ErrorNoPermisos{
+    margin-top: 20px;
+    color: #595959;
+    font-size: 15;
+    text-align: center;
+    line-height: 1;
+    font-weight: 500;
+    text-shadow: 10px 6px 8px hsl(0deg 0% 46% / 80%);
+    font-family: "Roboto";
+}
+
+#Col-Btn-ErrorNoPermisos{
+    TEXT-ALIGN: -WEBKIT-CENTER;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+#Btn-ErrorNoPermisos{
+    background-color: #038FDE;
+    width: 110px;
+    height: 30px;
+    color: #fff;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    font-weight: 500;
+    font-family: "Roboto";
+    border-radius: 20px;
+}

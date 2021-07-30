@@ -1,0 +1,157 @@
+.Btn-Filtro-Filtros-Tabla-Subsidios-So{
+    background: #1876F2;
+    border-radius: 23px;
+    /* width: 215px; */
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    margin-right: 20px;
+}
+
+.Icono-Flecha-Filtro-Tabla-Subsidios-So{
+    width: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    /* height: 10px; */
+}
+
+
+.Contenedor-Resultado-Filtro-Btn-Tabla-Subsidios-So{
+    z-index: 1;
+    top: 32px;
+    width: 215px;
+    height: 156px;
+    position: absolute;
+    background-color: #2D2D2E;
+    border-radius: 8px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    overflow: auto;
+    
+    animation: fadein 0.5s;
+    -webkit-animation: fadein 0.5s; /* Safari and Chrome */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+.Contenedor-Buscador-Filtro-Tabla-Subsidios-So{
+    background: red;
+    position: fixed;
+    width: 180px;
+    z-index: 1;
+    background: #2D2D2E;
+    padding-top: 20px;
+}
+
+.Input-Buscador-Filtro-Tabla-Subsidios-So{
+    z-index: 1;
+    width: 159px;
+    height: 24px;
+    left: 95px;
+    top: 212px;
+
+    border: 1px solid #E4E6EB;
+    box-sizing: border-box;
+    border-radius: 14px;
+    margin-bottom: 10px;
+
+    background: #2D2D2E;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    margin-right: 10px;
+}
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #E4E6EB;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #1876F2;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #E4E6EB;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+

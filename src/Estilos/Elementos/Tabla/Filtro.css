@@ -1,0 +1,169 @@
+.Icono-Flecha-Abajo-Filtro-Elementos{
+    width: 14px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+
+    background-color: gray;
+    border: 0.1px solid #EFEFEF;
+    padding: 1px;
+}
+
+.Contenedor-Filtro-Elementos{
+    position: absolute;
+    width: 200px;
+    height: 350px;
+    background-color: #2D2D2E;
+    top: 60px;
+    left: 0px;
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 0px 1px 5px #ccc;
+}
+
+.Filtro-Buscador-Elementos{
+
+    border: 1px solid #E4E6EB;
+    box-sizing: border-box;
+    border-radius: 14px;
+
+
+    height: 30px;
+    width: 80%;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: absolute;
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Input-Filtro-Buscador-Elementos{
+    border: 0;
+    background-color: transparent;
+    height: 90%;
+    width: 90%;
+}
+
+.Cuerpo-Filtro-Elementos{
+    overflow: auto;
+    margin-top: 50px;
+    /* background-color: tomato; */
+    height: 240px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.ant-checkbox-inner{
+    width: 13px !important;
+    height: 13px !important;
+}
+
+.Pie-Filtro-Elementos{
+    position: absolute;
+    /* background-color: red; */
+    width: 100%;
+    height: 50px;
+    bottom: 50px;
+
+    padding-top: 5px;
+    display: flex;
+    place-content: center;
+}
+
+.Contendor-Bts-Pie-Filtro-Elementos{
+    width: 90%;
+    height: 100%;
+    border-top: 1px solid black;
+}
+
+.Btn-Aceptar-Pie-Filtro-Elementos{
+    cursor: pointer;
+}
+
+.Btn-Cancelar-Pie-Filtro-Elementos{
+    cursor: pointer;
+}
+
+.Contenedor-Filtros-Columnas-Tabla-Elementos{
+    width: 95px;
+    height: 27px;
+    border: 1px solid #FF8023;
+    box-sizing: border-box;
+    border-radius: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Btn-Filtro-Tabla-Elementos{
+
+    background: #FF8023;
+    border-radius: 23px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.Contenedor-Filtro-Btn-Filtro-Tabla-Elementos{
+    position: absolute;
+    z-index: 1;
+
+    background: #FFFFFF;
+    border: 1px solid #D7E8FF;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px #D8DFE9;
+    border-radius: 8px;
+
+    width: 204px;
+    height: 190px;
+    margin-top: 5px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.Filtro-Filtro-Btn-Filtro-Tabla-Elementos{
+    /* background-color: red; */
+    height: 40px;
+    width: 100%;
+}
+
+.Buscar-Filtro-Btn-Filtro-Tabla-Elementos{
+    width: 100%;
+    height: 24px;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.Buscar-Filtro-Btn-Filtro-Tabla-Elementos input{
+    border: 0;
+}
+
+.Buscar-Filtro-Btn-Filtro-Tabla-Elementos input::placeholder {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #A2B9ED;
+}
+
+.Cuerpo-Filtro-Btn-Filtro-Tabla-Elementos{
+    height: 150px;
+    /* background-color: black; */
+    width: 100%;
+    overflow: auto;
+}

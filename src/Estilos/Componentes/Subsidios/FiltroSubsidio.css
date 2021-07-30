@@ -1,0 +1,30 @@
+#Caja-Filtro-Subsidios{
+    background: #1876F2;
+    border-radius: 6px;
+    width: 240px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+#Texto-Filtro-Subsidios{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+#Icono-Filtro-Subsidios{
+    position: absolute;
+    right: 20px;
+    color: white;
+}
+
+/* .ant-switch-handle::before{
+    background-color: #1876F2 !important;
+} */

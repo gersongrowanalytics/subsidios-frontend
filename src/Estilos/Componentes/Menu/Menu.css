@@ -1,0 +1,181 @@
+#Contenedor-Menu{
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    /* position: absolute; */
+    /* background-color: red; */
+}
+
+#Contenedor-Menu-PrimeraParte{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    /* background-color: #1956C5; */
+    bottom: 25vh;
+    animation-name: AnimacionMenuPrimeraParte;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionMenuPrimeraParte{
+    from{ height : 0; }
+    to { height  : 75vh; }
+}
+
+/* OCULTAR */
+#Contenedor-Menu-PrimeraParte-Ocultar{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    /* background-color: #1956C5; */
+    bottom: 25vh;
+    animation-name: AnimacionMenuPrimeraParteOcultar;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionMenuPrimeraParteOcultar{
+    from{ height : 75vh; }
+    to { height  : 0vh; }
+}
+
+/* FIN DE OCULTAR */
+
+
+#Contenedor-Menu-SegundaParte{
+    position: absolute;
+    width: 100%;
+    height: 25vh;
+    /* background-color: #1956C5; */
+    bottom: 0;
+    margin-left: 100%;
+    animation-name: AnimacionMenuSegundaParte;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionMenuSegundaParte{
+    from{ margin-left : 100%; }
+    to { margin-left  : 0%; }
+}
+
+/* OCULTAR */
+#Contenedor-Menu-SegundaParte-Ocultar{
+    position: absolute;
+    width: 100%;
+    height: 25vh;
+    /* background-color: #1956C5; */
+    bottom: 0;
+    margin-left: 100%;
+    animation-name: AnimacionMenuSegundaParteOcultar;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionMenuSegundaParteOcultar{
+    from{ margin-left : 0%; }
+    to { margin-left  : 100%; }
+}
+/* FIN DE OCULTAR */
+
+#Logo-Menu-PrimeraParte{
+    position: absolute;
+    left: -20px;
+    width: 250px;
+    top: 20px;
+}
+
+#Cuerpo-Menu{
+    /* background: red; */
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Contenedor-Cuerpo-Menu{
+    position: relative;
+    text-align-last: center;
+    opacity: 0;
+    animation-name: AnimacionCuerpoMenu;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionCuerpoMenu{
+    from{ opacity: 0; }
+    to { opacity : 10; }
+}
+
+/* OCULTAR */
+#Contenedor-Cuerpo-Menu-Ocultar{
+    position: relative;
+    text-align-last: center;
+    opacity: 0;
+    animation-name: AnimacionCuerpoMenuOcultar;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionCuerpoMenuOcultar{
+    from{ opacity: 10; }
+    to { opacity : 0; }
+}
+/* FIN DE OCULTAR */
+
+#Texto-Cuerpo-Menu{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 32px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#Icono-Equis-Cerrar-Menu{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    cursor: pointer;
+    opacity: 0;
+    animation-name: AnimacionEquisMenu;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionEquisMenu{
+    from{ opacity: 0; }
+    to { opacity : 10; }
+}
+
+/* OCULTAR */
+#Icono-Equis-Cerrar-Menu-Ocultar{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    cursor: pointer;
+    opacity: 0;
+    animation-name: AnimacionEquisMenuOcultar;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes AnimacionEquisMenuOcultar{
+    from{ opacity: 10; }
+    to { opacity : 0; }
+}
+
+/* FIN DE OCULTAR */

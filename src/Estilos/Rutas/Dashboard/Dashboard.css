@@ -1,0 +1,111 @@
+#Titulo-Dashboard{
+    display: flex;
+    text-align: -webkit-center;
+    justify-content: center;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.015em;
+    color: #4D4D4D;
+}
+
+#SubTitulo-Dashboard{
+    display: flex;
+    text-align: -webkit-center;
+    justify-content: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    color: #9C9B9B;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#Contenedor-Tarjetas-Dashboard{
+    display: flex;
+    place-content: center;
+}
+
+#Tarjeta-Dashboard{
+    position: relative;
+    height: 445px;
+    margin: 20px;
+    background: linear-gradient(359.56deg, #4D4D4D 0.59%, rgba(156, 155, 155, 0) 99.84%);
+    border-radius: 25px;
+}
+
+#Video-Dashboard{
+    border-radius: 25px;
+}
+
+#Capa-Video-Dashboard{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background: linear-gradient(359.56deg, #4D4D4D 0.59%, rgba(156, 155, 155, 0) 99.84%);
+    position: absolute;
+}
+
+#PrimeraParte-Tarjeta-Dashboard{
+    width: 100%;
+    height: 55%;
+}
+
+#SegundaParte-Tarjeta-Dashboard{
+    width: 100%;
+    height: 45%;
+    padding-left: 40px;
+    padding-right: 40px;
+    /* padding-bottom: 5px; */
+    padding-top: 20px;
+}
+
+#Row-SegundaParte-Tarjeta-Dashboard{
+    height: 100%;
+}
+
+#Titulo-SegundaParte-Tarjeta-Dashboard{
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 15px;
+    color: #FFFFFF;
+    /* margin-bottom: 10px; */
+}
+
+#SubTitulo-SegundaParte-Tarjeta-Dashboard{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+#Col-Btn-SegundaParte-Tarjeta-Dashboard{
+    text-align: -webkit-center;
+}
+
+#Btn-SegundaParte-Tarjeta-Dashboard{
+    background: #C4C4C4;
+    border-radius: 19px;
+    width: 125px;
+    height: 30px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    color: #FFFFFF;
+}

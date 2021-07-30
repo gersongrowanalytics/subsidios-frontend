@@ -1,0 +1,112 @@
+#Login-Imagen-Preload{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+
+
+#Login-Imagen-Preload-Animacion{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    animation-name: PreloadAnimacion;
+    animation-delay: 0s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes PreloadAnimacion{
+    from{ top   : 0; }
+    to { top   : -120%; }
+}
+
+#Login-Imagen-LogoBlancoNegroPagina{
+    position: absolute;
+    width: 390px;
+    height: 162px;
+    opacity: 0;
+    animation-name: logoPagina;
+    animation-delay: 4s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes logoPagina{
+    from{ opacity   : 0; }
+    to { opacity   : 10; }
+}
+
+#Login-Imagen-LogoBlancoNegroGrow{
+    position: absolute;
+    width: 390px;
+    height: 162px;
+    opacity: 10;
+    animation-name: logoGrow;
+    animation-delay: 4s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes logoGrow{
+    from{ opacity   : 10; }
+    to { opacity   : 0; }
+}
+
+#Login-Capa-Preload{
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 90vh;
+    /* background-color: red; */
+}
+
+#Login-Boton-Desaparecer-Preload{
+    bottom: 3%;
+    position: absolute;
+}
+
+#Login-Capa-Preload{
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Login-Boton-Desaparecer-Preload{
+    bottom: 3%;
+    position: absolute;
+    width: 60px;
+    cursor: pointer;
+
+    /* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
+	transform: translatey(0px);
+	animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		/* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
+		transform: translatey(0px);
+	}
+	50% {
+		/* box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2); */
+		transform: translatey(-40px);
+	}
+	100% {
+		/* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
+		transform: translatey(0px);
+	}
+}

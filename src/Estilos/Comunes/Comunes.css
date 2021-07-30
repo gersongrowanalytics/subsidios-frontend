@@ -1,0 +1,41 @@
+.Fecha-Incio-Seleccionada-Contenedor-Comunes{
+    width: 135px;
+    height: 28px;
+    border: 1px solid rgba(24, 118, 242, 0.5);
+    box-sizing: border-box;
+    border-radius: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+
+.Fecha-Final-Seleccionada-Contenedor-Comunes{
+    width: 135px;
+    height: 28px;
+    border: 1px solid rgba(238, 179, 40, 0.5);
+    box-sizing: border-box;
+    border-radius: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+
+.Icono-Cerrar-Filtros-Fechas-Comunes{
+    width: 19px;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}

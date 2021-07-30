@@ -1,0 +1,19 @@
+.Input-Componente{
+    border-radius: 25px;
+    width: 299px;
+    height: 47px;
+    /* margin-bottom: 20px; */
+    
+    text-align-last: left;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    
+
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+}
+
+input:focus{
+    outline: none;
+}
