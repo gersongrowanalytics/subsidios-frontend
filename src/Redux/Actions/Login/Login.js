@@ -23,7 +23,7 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
 
     await fetch(config.api+'login',
 		{
-			mode:'cors',
+			mode:'no-cors',
 			method: 'POST',
 			body: JSON.stringify(usuario),
 			headers: {
