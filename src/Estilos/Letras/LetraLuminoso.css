@@ -240,6 +240,43 @@
     color: #706C64;
 }
 
+.Wbold-S30-H40-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 40px;
+    color: #004FB8;
+}
+
+.W600-S15-H20-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #004FB8;
+}
+
+.Wnormal-S14-H19-CFF8023-Underline{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: #FF8023;
+}
+
+.Wbold-S18-H24-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
 .checkbox-luminoso span span{
     border: 2px solid #FF8023 !important;
     width: 16px !important;
