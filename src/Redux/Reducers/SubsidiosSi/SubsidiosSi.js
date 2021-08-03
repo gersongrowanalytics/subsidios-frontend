@@ -1,13 +1,15 @@
 import {
     OBTENER_SUBSIDIOS_SI,
     CARGANDO_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
-    OBTENER_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI
+    OBTENER_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
+    CARGANDO_DATA_SUBSIDIOS_SI
 } from "../../../Constantes/SubsidiosSi/SubsidiosSi";
 
 const INIT_STATE = {
     data_subsidiossi : [],
     data_descarga_subsidiossi : [],
     total_soles_subsidiossi : "0",
+    cargando_data_subsidiossi : false,
 
     // NOTAS DE CREDITO
     cargando_notas_creditos_factura_si : false,
@@ -39,6 +41,12 @@ export default (state = INIT_STATE, action) => {
             ...state,
             data_notas_creditos_factura_si : action.payload.datos,
             total_notas_creditos_factura_si : action.payload.total,
+        }
+    }
+    case CARGANDO_DATA_SUBSIDIOS_SI: {
+        return {
+            ...state,
+            cargando_data_subsidiossi : action.payload
         }
     }
 

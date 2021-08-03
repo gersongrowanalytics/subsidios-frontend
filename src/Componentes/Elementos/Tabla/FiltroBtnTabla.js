@@ -3,7 +3,7 @@ import {Checkbox} from 'antd'
 
 const FiltroBtnTabla = (props) => {
 
-    const [mostrarFiltro, setMostrarFiltro] = useState(true)
+    const [mostrarFiltro, setMostrarFiltro] = useState(false)
 
     return (
         <div style={{position:'relative'}}>

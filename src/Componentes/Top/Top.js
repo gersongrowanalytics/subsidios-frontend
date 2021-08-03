@@ -4,8 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {MostrarMenuReducer, CambiarDisenioReducer} from '../../Redux/Actions/Comunes/Comunes'
 import {CerrarSesionReducer} from '../../Redux/Actions/Login/Login'
 import IconoMenu from '../../Assets/Imagenes/Iconos/menu.svg'
+import IconoMenuLight from '../../Assets/Imagenes/Iconos/menuLight.svg'
 import LogoGrowColor from '../../Assets/Imagenes/Logos/LogoGrowBlancoNegro.png'
 import IconoUsuario from '../../Assets/Imagenes/Iconos/iconoUsuario.png'
+import IconoUsuarioLight from '../../Assets/Imagenes/Iconos/iconoUsuarioLight.svg'
+
+import IconoNotificaiones from '../../Assets/Imagenes/Iconos/iconoNotificacion.png'
+import IconoDesplegar from '../../Assets/Imagenes/Iconos/iconoFlechaDesplegable.png'
+import IconoCerrarSesion from '../../Assets/Imagenes/Iconos/cerrarSesion.svg'
 // import IconoMenu from '../../Assets/Imagenes/Iconos/PuntosMenu.PNG'
 import '../../Estilos/Componentes/Top/Top.css'
 import '../../Estilos/Componentes/Top/Top.scss'
@@ -20,11 +26,12 @@ import FiltroFechaTop from './FiltroFechaTop';
 const Top = () => {
 
     const dispatch = useDispatch();
-    const NombreCompleto = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
+    const NombreCompleto = useSelector(({login}) => login.LoginUsuario.pernombre)
     const Nombre = useSelector(({login}) => login.LoginUsuario.pernombre)
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     const [startDate, setStartDate] = useState(new Date());
+    const [mostrarCerrarSesion, setMostrarCerrarSesion] = useState(false);
 
 
     return (
@@ -40,7 +47,12 @@ const Top = () => {
                                 }}
                             >
                                 <img 
-                                    onClick={() => dispatch(MostrarMenuReducer(true))} src={IconoMenu} 
+                                    onClick={() => dispatch(MostrarMenuReducer(true))} 
+                                    src={
+                                        ComunesTipoDisenio == "Light"
+                                        ?IconoMenuLight
+                                        :IconoMenu
+                                    }
                                     id={ComunesTipoDisenio == "Light" ?"Icono-Menu-Top-Luminoso" :"Icono-Menu-Top"}
                                 />
                                 {/* <div id="Icono-Menu-Top">
@@ -122,15 +134,91 @@ const Top = () => {
                         
                         <Col  xl={7} md={12} sm={12} xs={0}>
                             <div id="Top-Usuario">
-                                <div class="dropdown">
-                                    <span id="Top-Nombre-Usuario" className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S14-H19-C004FB8" :"C3A3B3C"}>
-                                        <img src={IconoUsuario} id="Top-Img-Usuario" /> {NombreCompleto}
-                                    </span>
 
-                                    <div class="dropdown-content">
-                                        <a href="#">Perfil</a>
-                                        <a onClick={() => dispatch(CerrarSesionReducer())}>Salir</a>
-                                    </div>
+
+                                <span id="Top-Nombre-Usuario" className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S14-H19-C004FB8" :"C3A3B3C"}>
+                                    <img 
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?IconoUsuarioLight
+                                            :IconoUsuario
+                                        } id="Top-Img-Usuario" /> {NombreCompleto}
+                                </span>
+
+                                <img 
+                                    src={IconoNotificaiones} 
+                                    width={"30px"} 
+                                    style={{
+                                        borderRadius:'50px',
+                                        background:'#EDF0FA',
+                                        padding:'5px',
+                                        marginLeft:'5px',
+                                        cursor:'pointer'
+                                    }}
+                                />
+
+
+                                {/* <img 
+                                    src={IconoDesplegar} 
+                                    width={"30px"} 
+                                    style={{
+                                        marginLeft:'5px',
+                                        cursor:'pointer'
+                                    }}
+                                /> */}
+
+                                <div className="dropdown">
+                                    <span id="" onClick={() => setMostrarCerrarSesion(!mostrarCerrarSesion)} >
+                                        <img src={IconoDesplegar}
+                                            width={"30px"} 
+                                            style={{
+                                                marginLeft:'5px',
+                                                cursor:'pointer'
+                                            }}
+                                        /> 
+                                    </span>
+                                    
+                                    {
+                                        mostrarCerrarSesion == true
+                                        ?<div className="dropdown-content">
+                                            <div className="dropdown-content-Usuario">
+                                                <div
+                                                    style={{
+                                                        alignSelf: "center",
+                                                        paddingLeft:'10px'
+                                                    }}
+                                                >
+                                                    <img 
+                                                        src={
+                                                            ComunesTipoDisenio == "Light"
+                                                            ?IconoUsuarioLight
+                                                            :IconoUsuario
+                                                        } width={"57px"} 
+                                                    />
+                                                </div>
+
+                                                <div
+                                                    style={{
+                                                        alignSelf: "center",
+                                                        paddingLeft:'10px'
+                                                    }}
+                                                >
+                                                    <div className="Wbold-S14-H19-C004FB8">Alejandro Palomino</div>
+                                                    <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div 
+                                                className="dropdown-content-Cerrar" style={{cursor:'pointer'}}
+                                                onClick={() => dispatch(CerrarSesionReducer())} 
+                                            >
+                                                <img src={IconoCerrarSesion} width={"31px"} style={{marginRight:'10px'}} />
+                                                <span
+                                                    className="Wbold-S13-H17-C004FB8">Cerrar Sesión</span>
+                                            </div>
+                                        </div>
+                                        :null
+                                    }
                                 </div>
                             </div>
                         </Col>

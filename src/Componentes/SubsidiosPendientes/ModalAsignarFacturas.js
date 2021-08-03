@@ -3,6 +3,7 @@ import { Modal, Checkbox, Row, Col, Button } from 'antd';
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import '../../Estilos/Componentes/SubsidiosPendientes/ModalAsignarFacturas.css'
+import IconoAgregarNaranja from '../../Assets/Imagenes/Iconos/iconoAgregarNaranja.png'
 
 const ModalAsignarFacturas = (props) => {
 
@@ -46,10 +47,10 @@ const ModalAsignarFacturas = (props) => {
     return (
         <>
             <div 
-                style={{width:'20px', height:'20px', background:'green', cursor:'pointer'}}
+                style={{width:'20px', height:'20px',cursor:'pointer'}}
                 onClick={() => setMostrarModal(!mostrarModal)}
             >
-                
+                <img  width="20px" src={IconoAgregarNaranja} />
             </div>
 
             <Modal

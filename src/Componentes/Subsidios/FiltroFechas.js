@@ -4,6 +4,7 @@ import CerrarAzul from '../../Assets/Imagenes/Iconos/Comunes/cerrarAzul.svg'
 import cerrarNaranja from '../../Assets/Imagenes/Iconos/Comunes/cerrarNaranja.png'
 import {useDispatch, useSelector} from "react-redux";
 import {EliminarFechaReducer} from "../../Redux/Actions/Comunes/Comunes"
+import IconoActualizacion from '../../Assets/Imagenes/Iconos/iconoActualizacion.svg'
 
 const FiltroFechas = (props) => {
     
@@ -23,6 +24,18 @@ const FiltroFechas = (props) => {
         <Row style={{ width:'100%'}}>
             <Col xl={4} xs={24}>
                 {props.titulo}
+            </Col>
+
+            <Col xl={20} 
+                className="W600-S13-H17-C1EC0ED"
+                style={{
+                    textAlign: "-webkit-right",
+                    alignSelf: "center",
+                    paddingRight:'40px'
+                }}
+            >
+                <img src={IconoActualizacion} width={"15px"} style={{marginRight:'5px'}}/>
+                última actualización 2 Agosto 2021
             </Col>
             {/* {
                 ComunesFechaInicio != null

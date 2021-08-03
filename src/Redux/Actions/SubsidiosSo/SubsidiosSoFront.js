@@ -9,7 +9,7 @@ import {
 
 export const DesplegarSubsidiosSoReducer = (posicion) => async (dispatch, getState) => {
 
-    let {data_subsidiosso, data_descarga_subsidiosso} = getState().subsidiosSo
+    let {data_subsidiosso, data_descarga_subsidiosso, total_soles_subsidiosso} = getState().subsidiosSo
 
     data_subsidiosso[posicion]['desplegado'] = !data_subsidiosso[posicion]['desplegado']
 
@@ -17,7 +17,8 @@ export const DesplegarSubsidiosSoReducer = (posicion) => async (dispatch, getSta
         type: OBTENER_SUBSIDIOS_SO,
         payload : {
             data : data_subsidiosso,
-            descarga : data_descarga_subsidiosso
+            descarga : data_descarga_subsidiosso,
+            sumSde: total_soles_subsidiosso
         }
     })
 

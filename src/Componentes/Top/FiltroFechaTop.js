@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import IconoTopCalendario from '../../Assets/Imagenes/Iconos/Top/calendario_azul.svg'
 import IconoTopCalendarioGris from '../../Assets/Imagenes/Iconos/Top/calendario_gris.svg'
 import {useDispatch, useSelector} from "react-redux";
@@ -37,6 +37,14 @@ const FiltroFechaTop = (props) => {
         
     }
 
+    useEffect(() => {
+
+        if(ComunesFechaInicio == null){
+            dispatch(CambiarFechaReducer(startDate, null))
+        }
+
+    },[])
+
     return (
         <DatePicker
             locale="es"
@@ -50,7 +58,7 @@ const FiltroFechaTop = (props) => {
 
                 <div style={{display:'flex', }}>
                     <div style={{paddingRight:'8px', alignSelf: "center"}}>{props.texto}</div>
-                    <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
+                    <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8" style={{cursor:'pointer'}}>
                         {
                             ComunesFechaInicio != null
                             ?

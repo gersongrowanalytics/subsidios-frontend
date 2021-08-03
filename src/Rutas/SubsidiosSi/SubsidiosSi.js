@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from "react-redux";
 import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
 import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
 import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
+import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import { Row, Col } from 'antd'
@@ -27,6 +28,8 @@ import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import ModalNotasCredito from '../../Componentes/Subsidios/ModalNotasCredito'
 import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
+import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop'
+import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -37,7 +40,7 @@ const SubsidiosSi = () => {
     const {
         data_subsidiosso, 
         data_descarga_subsidiosso,
-
+        
 
         solicitantes_filtro_subsidiosso,
         productos_filtro_subsidiosso,
@@ -56,7 +59,8 @@ const SubsidiosSi = () => {
     const {
         data_descarga_subsidiossi, 
         data_subsidiossi,
-        total_soles_subsidiossi
+        total_soles_subsidiossi,
+        cargando_data_subsidiossi
     } = useSelector(({subsidiosSi}) => subsidiosSi);
 
     const {
@@ -110,10 +114,9 @@ const SubsidiosSi = () => {
                         style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
                         className="Wbold-S13-H17-C004FB8"
                     >
-                        <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
-                        <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                            DD/MM/AA
-                        </div>
+                        <FiltroFechaTop 
+                            texto = {"Fecha Inicio"}
+                        /> 
                     </Col>
 
                     <Col 
@@ -121,10 +124,9 @@ const SubsidiosSi = () => {
                         style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
                         className="Wbold-S13-H17-C004FB8"
                     >
-                        <span style={{paddingRight:'15px'}}>Fecha Fin</span>
-                        <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                            DD/MM/AA
-                        </div>
+                        <FiltroFechaTop 
+                            texto = {"Fecha Fin"}
+                        /> 
                     </Col>
 
                     <Col 
@@ -248,7 +250,7 @@ const SubsidiosSi = () => {
                         }}
                         
                     >
-                        <table className="table-responsive-subsidios-so" style={{position:'relative'}}>
+                        <table className="table-responsive-subsidios-so" style={{position:'relative', }}>
                             <thead
                                 className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                             >
@@ -322,7 +324,7 @@ const SubsidiosSi = () => {
                                 <td></td>
                                 <td></td>
                                 <td className="W600-S11-H15-C004FB8">Pago Subsidiado:</td>
-                                <td className="W600-S11-H15-C004FB8">S/{<NumberFormat value={funFomratoDecimal(subsidioSeleccionado.sumsfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}</td>
+                                <td className="W600-S11-H15-C004FB8">S/{<NumberFormat value={funFomratoDecimal(subsidioSeleccionado.sdemontoareconocerreal, 2)} displayType={'text'} thousandSeparator={true} />}</td>
                                 <td></td>
                             </tr>
 
@@ -348,7 +350,7 @@ const SubsidiosSi = () => {
                                 <td></td>
                                 <td></td>
                                 <td className="Wbold-S11-H15-C706C64">Pendiente:</td>
-                                <td className="Wbold-S11-H15-C706C64">S/{<NumberFormat value={funFomratoDecimal(subsidioSeleccionado.sumsfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}</td>
+                                <td className="Wbold-S11-H15-C706C64">S/{<NumberFormat value={funFomratoDecimal(subsidioSeleccionado.sdemontoareconocerreal - subsidioSeleccionado.sumsfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}</td>
                                 <td></td>
                             </tr>
 
@@ -356,9 +358,9 @@ const SubsidiosSi = () => {
                     </div>
                 </div>
             </Modal>
-            <div style={{overflowX:"auto", marginLeft:'40px'}} id="Contenedor-Tabla-Subsidios-So">
+            <div style={{overflowX:"auto", marginLeft:'40px', marginRight:'40px'}} id="Contenedor-Tabla-Subsidios-So">
                 
-                <table className="table-responsive-subsidios-so" style={{position:'relative'}}>
+                <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
                     <thead
                         className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                     >
@@ -376,18 +378,46 @@ const SubsidiosSi = () => {
                             <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Estado</th>
                         </tr>
                     </thead>
-                    <tr>
+                    <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
                         <td 
-                            colSpan="11" id="Total-Cuerpo-Tabla-Subsidios-So"
-                            className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}
+                            id="Total-Cuerpo-Tabla-Subsidios-So"
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Wbold-S13-H17-C004FB8"
+                                :"Wbold-S11-H20-Ce4e6eb"
+                            }
                         >
                             TOTAL
-                            {" "}(S/<NumberFormat value={funFomratoDecimal(total_soles_subsidiossi, 2)} displayType={'text'} thousandSeparator={true} />)
-                            
                         </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td className="Wbold-S13-H17-C004FB8">
+                            S/<NumberFormat value={funFomratoDecimal(total_soles_subsidiossi, 2)} displayType={'text'} thousandSeparator={true} />
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     {
-                        data_subsidiossi.map((zona, posicion) => {
+                        cargando_data_subsidiossi == true
+                        ?<tr 
+                            // style={{width:'100%'}}
+                            style={
+                                ComunesTipoDisenio == "Light"
+                                ?{borderBottom: '1px solid #D7E8FF'}
+                                :{borderBottom: '1px solid #1c1e21'}
+                            }
+                        >
+                            <td colSpan="10" style={{textAlignLast: "center"}}>
+                                <img src={IconoCargando}  />
+                            </td>
+                        </tr>
+
+                        :data_subsidiossi.map((zona, posicion) => {
                             return (
                                 <>
 
@@ -396,6 +426,11 @@ const SubsidiosSi = () => {
                                             ComunesTipoDisenio == "Light"
                                             ?{borderBottom: '1px solid #D7E8FF'}
                                             :{borderBottom: '1px solid #1c1e21'}
+                                        }
+                                        className={
+                                            ComunesTipoDisenio == "Light"
+                                            ?"CFFFFFF Wbold-S13-H17-C004FB8"
+                                            :"Zona-Cuerpo-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                         }
                                     >
                                         <td 
@@ -406,11 +441,10 @@ const SubsidiosSi = () => {
                                                     :{background:'#565656'}
                                                 :{}
                                             }
-                                            colSpan="13" 
                                             className={
                                                 ComunesTipoDisenio == "Light"
-                                                ?"CFFFFFF Wbold-S13-H17-C004FB8"
-                                                :"Zona-Cuerpo-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                                ?"Wbold-S13-H17-C004FB8"
+                                                :"Wbold-S11-H20-Ce4e6eb"
                                             }
                                         >
                                             {
@@ -421,8 +455,17 @@ const SubsidiosSi = () => {
                                                     onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarDerecha} className="Icono-Flecha-Tabla-Subsidios-So" />
                                             }
                                             {zona.clizona}
-                                            {" "}(S/<NumberFormat value={funFomratoDecimal(zona.sumSdeZona, 2)} displayType={'text'} thousandSeparator={true} />)
                                         </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td className="Wbold-S13-H17-C004FB8">
+                                            S/<NumberFormat value={funFomratoDecimal(zona.sumSdeZona, 2)} displayType={'text'} thousandSeparator={true} />
+                                        </td>
+
                                     </tr>
                                     {
                                         zona.desplegado == true
@@ -450,7 +493,9 @@ const SubsidiosSi = () => {
                                                         <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.pronombre}</td>
     
                                                         {/* <td className="Celda-td-Tabla-Subsidios-So W500-S14-H16-Cacafb7">{funFomratoDecimal(dato.sdemontoareconocerreal)}</td> */}
-                                                        <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{<NumberFormat value={funFomratoDecimal(dato.sdemontoareconocerreal, 2)} displayType={'text'} thousandSeparator={true} />}</td>
+                                                        <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>
+                                                            S/{<NumberFormat value={funFomratoDecimal(dato.sdemontoareconocerreal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                        </td>
 
                                                         <td 
                                                             className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C1EC0ED": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}
@@ -515,8 +560,18 @@ const SubsidiosSi = () => {
             <ExcelFile 
                 filename="Subsidios Si"
                 element={
-                    <div id="Btn-Flotante-Descargar-Subsidios-So">
-                        <img src={IconoDescargar} id="Icono-Flotante-Descargar-Subsidios-So" />
+                    <div 
+                        id={
+                            ComunesTipoDisenio == "Light"
+                            ?"Btn-Flotante-Descargar-Subsidios-So-Light"
+                            :"Btn-Flotante-Descargar-Subsidios-So"
+                        }
+                    >
+                        <img src={
+                            ComunesTipoDisenio == "Light"
+                            ?IconoDescargarLight
+                            :IconoDescargar
+                        } id="Icono-Flotante-Descargar-Subsidios-So" />
                     </div>
                 }>
                 <ExcelSheet 
@@ -524,11 +579,6 @@ const SubsidiosSi = () => {
                     name="Subsidios Si"
                 />
             </ExcelFile>
-
-            {/* <ExcelFile>
-                <ExcelSheet dataSet={data_descarga_subsidiosso} name="Organization"/>
-            </ExcelFile>
-            <button onClick={() => console.log(data_descarga_subsidiosso)}>click</button> */}
         </div>
     )
 }

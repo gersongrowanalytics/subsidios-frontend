@@ -12,6 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
 import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
 import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
+import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas';
@@ -19,6 +20,7 @@ import { Row, Col } from 'antd'
 import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
+import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -29,6 +31,7 @@ const SubsidiosSo = () => {
     const {
         data_subsidiosso, 
         data_descarga_subsidiosso,
+        total_soles_subsidiosso,
         cargando_data_subsidiosso,
 
         solicitantes_filtro_subsidiosso,
@@ -101,6 +104,34 @@ const SubsidiosSo = () => {
         }
     ];
     
+    const sumaValores = (ns) => {
+        let acumulado = 0
+        for (let i = 0; i < ns.length; i ++ ){
+            acumulado += ns[i]
+        }
+
+        return acumulado
+    }
+
+    // let sumaValorizadoCantidadBultosTotal = 0
+    // let sumaValorizadoBultosAcordadosTotal = 0
+
+    // if(data_subsidiosso.length > 0){
+    //     valorizadosCantidadBultos    = zona.data.map(x => parseFloat(x.sdecantidadbultosreal))
+    //     sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
+    // }
+
+    const valorizadosCantidadBultosTotal = data_subsidiosso.map(x => {
+        const cantidadBultos = x.data.map(y => parseFloat(y.sdecantidadbultosreal))
+        return sumaValores(cantidadBultos)
+    })
+    const sumaValorizadoCantidadBultosTotal = sumaValores(valorizadosCantidadBultosTotal)
+
+    const valorizadosBultosAcordadosTotal = data_subsidiosso.map(x => {
+        const bultosAcordados = x.data.map(y => y.sdebultosacordados ?parseFloat(y.sdebultosacordados): 0)
+        return sumaValores(bultosAcordados)
+    })
+    const sumaValorizadoBultosAcordadosTotal = sumaValores(valorizadosBultosAcordadosTotal)
 
     return (
         <div style={{paddingBottom:'100px'}}>
@@ -123,10 +154,15 @@ const SubsidiosSo = () => {
                             style={{display:'flex', alignItems: "center",}}
                             className="Wbold-S13-H17-C004FB8"
                         >
-                            <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
+
+                            <FiltroFechaTop 
+                                texto = {"Fecha Inicio"}
+                            />
+
+                            {/* <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
                             <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
                                 DD/MM/AA
-                            </div>
+                            </div> */}
                         </Col>
 
                         <Col 
@@ -134,10 +170,9 @@ const SubsidiosSo = () => {
                             style={{display:'flex', alignItems: "center", }}
                             className="Wbold-S13-H17-C004FB8"
                         >
-                            <span style={{paddingRight:'15px'}}>Fecha Fin</span>
-                            <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                                DD/MM/AA
-                            </div>
+                            <FiltroFechaTop 
+                                texto = {"Fecha Fin"}
+                            />
                         </Col>
                     </Row>
                 </div>
@@ -196,7 +231,7 @@ const SubsidiosSo = () => {
                 </div>
 
                 <div style={{overflowX:"auto"}} id="Contenedor-Tabla-Subsidios-So">
-                    <table className="table-responsive-subsidios-so" style={{boxShadow: "0px 0px 15px #D8DFE9"}}>
+                    <table className="table-responsive-subsidios-so" style={{boxShadow: "0px 0px 15px #D8DFE9", width:'100%'}}>
                         <thead
                             className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                         >
@@ -213,13 +248,34 @@ const SubsidiosSo = () => {
                                 <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Monto a Reconocer S/IGV</th>
                             </tr>
                         </thead>
-                        <tr>
+                        <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
                             <td 
-                                colSpan="10"
+                                // colSpan="10"
                                 id="Total-Cuerpo-Tabla-Subsidios-So" 
                                 className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}
                             >
                                 Grand Total
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            {
+                                <>
+                                    <td className="Wbold-S13-H17-C004FB8">
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                    </td>
+                                    <td className="Wbold-S13-H17-C004FB8">
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                    </td>
+                                </>
+                            }
+
+                            <td className="Wbold-S13-H17-C004FB8">
+                                S/{<NumberFormat value={funFomratoDecimal(total_soles_subsidiosso, 2)} displayType={'text'} thousandSeparator={true} />}
                             </td>
                         </tr>
                         {
@@ -232,11 +288,22 @@ const SubsidiosSo = () => {
                                     :{borderBottom: '1px solid #1c1e21'}
                                 }
                             >
-                                <td colSpan="9" style={{textAlignLast: "center"}}>
+                                <td colSpan="10" style={{textAlignLast: "center"}}>
                                     <img src={IconoCargando}  />
                                 </td>
                             </tr>
                             :data_subsidiosso.map((zona, posicion) => {
+
+                                
+
+                                const valorizadosCantidadBultos = zona.data.map(x => parseFloat(x.sdecantidadbultosreal))
+                                const valorizadosBultosAcordados = zona.data.map(x => x.sdebultosacordados ?parseFloat(x.sdebultosacordados): 0)
+                                const sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
+                                const sumaValorizadoBultosAcordados = sumaValores(valorizadosBultosAcordados)
+
+                                // sumaValorizadoCantidadBultosTotal = sumaValorizadoCantidadBultosTotal + sumaValorizadoCantidadBultos
+                                // sumaValorizadoBultosAcordadosTotal = sumaValorizadoBultosAcordadosTotal + sumaValorizadoBultosAcordados
+
                                 return (
                                     <>
 
@@ -269,6 +336,21 @@ const SubsidiosSo = () => {
                                                     :<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarDerecha} className="Icono-Flecha-Tabla-Subsidios-So" />
                                                 }
                                                 {zona.clizona}
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td className="Wbold-S13-H17-C004FB8">
+                                                {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordados, 2)} displayType={'text'} thousandSeparator={true} />}
+                                            </td>
+                                            <td className="Wbold-S13-H17-C004FB8">
+                                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultos, 2)} displayType={'text'} thousandSeparator={true} />}
+                                            </td>
+                                            <td className="Wbold-S13-H17-C004FB8">
+                                                S/{<NumberFormat value={funFomratoDecimal(zona.sumSdeZona, 2)} displayType={'text'} thousandSeparator={true} />}
                                             </td>
                                         </tr>
                                         {
@@ -328,8 +410,19 @@ const SubsidiosSo = () => {
             <ExcelFile 
                 filename="Subsidios So"
                 element={
-                    <div id="Btn-Flotante-Descargar-Subsidios-So">
-                        <img src={IconoDescargar} id="Icono-Flotante-Descargar-Subsidios-So" />
+                    <div 
+                        id={
+                            ComunesTipoDisenio == "Light"
+                            ?"Btn-Flotante-Descargar-Subsidios-So-Light"
+                            :"Btn-Flotante-Descargar-Subsidios-So"
+                        }
+
+                    >
+                        <img src={
+                            ComunesTipoDisenio == "Light"
+                            ?IconoDescargarLight
+                            :IconoDescargar
+                        } id="Icono-Flotante-Descargar-Subsidios-So" />
                     </div>
                 }>
                 <ExcelSheet 
@@ -337,11 +430,6 @@ const SubsidiosSo = () => {
                     name="Subsidios So"
                 />
             </ExcelFile>
-
-            {/* <ExcelFile>
-                <ExcelSheet dataSet={data_descarga_subsidiosso} name="Organization"/>
-            </ExcelFile>
-            <button onClick={() => console.log(data_descarga_subsidiosso)}>click</button> */}
         </div>
     )
 }

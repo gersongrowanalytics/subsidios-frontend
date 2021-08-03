@@ -138,9 +138,18 @@ const Home = () => {
             "icono" : IconoSacLight,
             "bases": [
                 {
-                    "base"   : "Consolidación de Información SO",
+                    "base"   : "Facturas SI",
                     "estado" : true,
-                    "respon" : "Grow Sistema",
+                    "respon" : "SAC",
+                    "fechaCar" : "26 de Junio del 2021",
+                    "fechaRea" : "24 de Junio del 2021",
+                    "fechaAct" : "24 de Junio del 2021",
+                    "diaRetra" : "0 días"
+                },
+                {
+                    "base"   : "Comprobantes de Pago Sunat",
+                    "estado" : true,
+                    "respon" : "SAC",
                     "fechaCar" : "26 de Junio del 2021",
                     "fechaRea" : "24 de Junio del 2021",
                     "fechaAct" : "24 de Junio del 2021",

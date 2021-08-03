@@ -21,6 +21,8 @@ import ModalAsignarFacturas from './ModalAsignarFacturas';
 import {
     AsignarFacturasSubsidioReducer
 } from '../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientes'
+import IconoEliminarAzul from '../../Assets/Imagenes/Iconos/iconoEliminarAzul.png'
+import IconoAgregarNaranja from '../../Assets/Imagenes/Iconos/iconoAgregarNaranja.png'
 
 const TablaSubsidioPendiente = (props) => {
 
@@ -312,11 +314,11 @@ const TablaSubsidioPendiente = (props) => {
                                                                 :null
                                                             }
                                                     </td>
-                                                    <td 
+                                                    {/* <td 
                                                         className="Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7" style={{display:'flex'}}>
 
-
-                                                    </td>
+                                                            asdasd
+                                                    </td> */}
                                                     <td>
                                                         {/* <div style={{width:'20px', height:'20px', background:'green', cursor:'pointer'}}></div> */}
                                                         <ModalAsignarFacturas
@@ -440,7 +442,7 @@ const TablaSubsidioPendiente = (props) => {
                                                                         S/{<NumberFormat value={funFomratoDecimal(factura.sfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}
                                                                     </div>
                                                                 </td>
-                                                                <td></td>
+                                                                {/* <td></td> */}
                                                                 <td>
                                                                     <div
                                                                         onClick={
@@ -452,7 +454,9 @@ const TablaSubsidioPendiente = (props) => {
                                                                                 setMostrarModalEliminar(!mostrarModalEliminar)
                                                                             }
                                                                         }
-                                                                        style={{width:'20px', height:'20px', background:'red', cursor:'pointer'}}></div>
+                                                                        style={{width:'20px', height:'20px',  cursor:'pointer'}}>
+                                                                            <img src={IconoEliminarAzul}  width="20px"/>
+                                                                        </div>
                                                                 </td>
                                                                 {/* <td>{factura.fsifactura}</td> */}
                                                             </tr>

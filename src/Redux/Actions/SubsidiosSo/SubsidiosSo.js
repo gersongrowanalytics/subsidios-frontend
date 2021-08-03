@@ -48,7 +48,8 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
                 type: OBTENER_SUBSIDIOS_SO,
                 payload : {
                     data : data.datos,
-                    descarga : descargassubsidiosso
+                    descarga : descargassubsidiosso,
+                    sumSde : data.sumSde
                 }
             })
 			

@@ -2,11 +2,17 @@ import config from '../../../config'
 import {
     OBTENER_SUBSIDIOS_SI,
     CARGANDO_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
-    OBTENER_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI
+    OBTENER_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
+    CARGANDO_DATA_SUBSIDIOS_SI
 } from '../../../Constantes/SubsidiosSi/SubsidiosSi'
 import { estadoRequestReducer } from "../EstadoRequest"
 
 export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
+
+    dispatch({
+        type: CARGANDO_DATA_SUBSIDIOS_SI,
+        payload: true
+    })
 
     await fetch(config.api+'modulo/SubsidiosSi/mostrar',
 		{
@@ -46,6 +52,11 @@ export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
     }).catch((error)=> {
         console.log(error)
     });
+
+    dispatch({
+        type: CARGANDO_DATA_SUBSIDIOS_SI,
+        payload: false
+    })
 
 }
 

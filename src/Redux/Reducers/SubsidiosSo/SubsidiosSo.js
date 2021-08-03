@@ -12,6 +12,7 @@ import {
 const INIT_STATE = {
     data_subsidiosso : [],
     data_descarga_subsidiosso : [],
+    total_soles_subsidiosso : "0",
     cargando_data_subsidiosso : false,
 
     solicitantes_filtro_subsidiosso : [],
@@ -35,7 +36,8 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             data_subsidiosso : action.payload.data,
-            data_descarga_subsidiosso : action.payload.descarga
+            data_descarga_subsidiosso : action.payload.descarga,
+            total_soles_subsidiosso : action.payload.sumSde
         }
     }
     case OBTENER_FILTROS_SUBSIDIOS_SO: {

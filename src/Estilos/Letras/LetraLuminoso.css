@@ -277,6 +277,15 @@
     color: #FFFFFF;
 }
 
+.Wnormal-S12-H16-C1EC0ED{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #1EC0ED;
+}
+
 .checkbox-luminoso span span{
     border: 2px solid #FF8023 !important;
     width: 16px !important;
