@@ -78,7 +78,7 @@ const CargaArchivos = () => {
                         <Col xl={3}></Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Subsidios'}
+                                titulo = {'Plantilla de Sub Aprobado'}
                                 url    = {'modulo/cargaArchivos/so/subsidios-no-aprobados'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -96,7 +96,7 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Facturas SO'}
+                                titulo = {'Sell Out Efectivo'}
                                 url    = {'modulo/cargaArchivos/so/so'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -142,7 +142,7 @@ const CargaArchivos = () => {
                         <Col xl={3}></Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                    titulo = {'Facturas SI'}
+                                    titulo = {'Facturas Sell In'}
                                     url    = {'modulo/cargaArchivos/si/facturas'}
                                     CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                     notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -151,22 +151,22 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Operaiones Sunat'}
+                                titulo = {'Operaciones Sunat'}
                                 url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
                             />
                         </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
+                        {/* <Col xl={6} md={6} sm={12} xs={24}> */}
+                            {/* <TarjetaCargaArchivo
                                 titulo = {'Facturas Anuladas'}
                                 url    = {'/'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
+                            /> */}
+                        {/* </Col> */}
                     </Row>
                 </Col>
                 <Col xl={1}>

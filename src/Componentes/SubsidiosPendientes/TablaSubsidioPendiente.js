@@ -104,7 +104,7 @@ const TablaSubsidioPendiente = (props) => {
                 </div>
             </Modal>
 
-            <table className="table-responsive-subsidios-so" style={{position:'relative'}}>
+            <table className="table-responsive-subsidios-so" style={{position:'relative' ,width:'100%'}}>
                 <thead 
                     className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                 >
