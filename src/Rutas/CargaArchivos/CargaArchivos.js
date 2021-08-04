@@ -105,12 +105,6 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={3}></Col><Col xl={3}></Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
-                            {/* <TarjetaCargaArchivo
-                                titulo = {'Añadir Fechas'}
-                                url    = {'modulo/cargaArchivos/fechas'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                            /> */}
                             <TarjetaCargaArchivo
                                 titulo = {'Añadir Productos'}
                                 url    = {'modulo/cargaArchivos/productos'}
@@ -137,18 +131,28 @@ const CargaArchivos = () => {
                             /> */}
 
                             <TarjetaCargaArchivo
-                                titulo = {'Facturas SI'}
-                                url    = {'modulo/cargaArchivos/si/facturas'}
+                                titulo = {'Añadir Fechas'}
+                                url    = {'modulo/cargaArchivos/fechas'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
                             />
+
                         </Col>
                         <Col xl={3}></Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
+                                    titulo = {'Facturas SI'}
+                                    url    = {'modulo/cargaArchivos/si/facturas'}
+                                    CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                    notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                    ComunesTipoDisenio = {ComunesTipoDisenio}
+                                />
+                        </Col>
+                        <Col xl={6} md={6} sm={12} xs={24}>
+                            <TarjetaCargaArchivo
                                 titulo = {'Operaiones Sunat'}
-                                url    = {'/'}
+                                url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}

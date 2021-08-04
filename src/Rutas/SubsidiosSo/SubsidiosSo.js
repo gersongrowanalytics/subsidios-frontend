@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../../Estilos/Rutas/SubsidiosSo/SubsidiosSo.css'
 import {
     ObtenerSubsidiosSoReducer,
@@ -9,8 +9,6 @@ import {
     SeleccionarSolicitanteReducer
 } from '../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {useDispatch, useSelector} from "react-redux";
-import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
-import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
 import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
 import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
 import ReactExport from 'react-data-export';
@@ -21,6 +19,9 @@ import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
+import DataTablaSo from '../../Componentes/SubsidiosSo/DataTablaSo';
+import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
+import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -121,17 +122,98 @@ const SubsidiosSo = () => {
     //     sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
     // }
 
+    const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
+    const [mostrarValidados, setMostrarValidados] = useState(true)
+
     const valorizadosCantidadBultosTotal = data_subsidiosso.map(x => {
-        const cantidadBultos = x.data.map(y => parseFloat(y.sdecantidadbultosreal))
+        const cantidadBultos = x.data.map(
+            y => 
+                y.sdecantidadbultosreal
+                ?mostrarValidados == true
+                    ?y.sdestatus != null
+                        ? mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdecantidadbultosreal) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdecantidadbultosreal) 
+                                :0
+                        :0
+                    :y.sdestatus != null
+                        ?0
+                        :mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdecantidadbultosreal) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdecantidadbultosreal) 
+                                :0
+                :0
+        )
         return sumaValores(cantidadBultos)
     })
+
     const sumaValorizadoCantidadBultosTotal = sumaValores(valorizadosCantidadBultosTotal)
 
     const valorizadosBultosAcordadosTotal = data_subsidiosso.map(x => {
-        const bultosAcordados = x.data.map(y => y.sdebultosacordados ?parseFloat(y.sdebultosacordados): 0)
+        const bultosAcordados = x.data.map(
+            // y => y.sdebultosacordados ?parseFloat(y.sdebultosacordados): 0
+            y => 
+                y.sdebultosacordados
+                ?mostrarValidados == true
+                    ?y.sdestatus != null
+                        ? mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdebultosacordados) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdebultosacordados) 
+                                :0
+                        :0
+                    :y.sdestatus != null
+                        ?0
+                        :mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdebultosacordados) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdebultosacordados) 
+                                :0
+                :0
+        )
         return sumaValores(bultosAcordados)
     })
     const sumaValorizadoBultosAcordadosTotal = sumaValores(valorizadosBultosAcordadosTotal)
+
+    
+    const valorizadosMontoReconcerTotal = data_subsidiosso.map(x => {
+        const montosReconocer = x.data.map(
+            y => 
+                y.sdemontoareconocerreal
+                ?mostrarValidados == true
+                    ?y.sdestatus != null
+                        ? mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdemontoareconocerreal) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdemontoareconocerreal) 
+                                :0
+                        :0
+                    :y.sdestatus != null
+                        ?0
+                        :mostrarAutomaticos == true
+                            ?y.sdesac == 0
+                                ?parseFloat(y.sdemontoareconocerreal) 
+                                :0
+                            :y.sdesac == 1
+                                ?parseFloat(y.sdemontoareconocerreal) 
+                                :0
+                :0
+        )
+        return sumaValores(montosReconocer)
+    })
+    const sumaValorizadoMontosReonocerTotal = sumaValores(valorizadosMontoReconcerTotal)
 
     return (
         <div style={{paddingBottom:'100px'}}>
@@ -179,55 +261,100 @@ const SubsidiosSo = () => {
                 <div id="Contenedor-Filtros-Tabla-Subsidios-So">
                     <Row style={{width:'100%'}}>
                         <Col xl={4} xs={24}>
-                            <BtnFiltroSubSo 
+                            {/* <BtnFiltroSubSo 
                                 texto = {"COD. SOLICITANTES"}
                                 btnSwitch = {true}
                                 tamanio = {"215px"}
                                 data = {solicitantes_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CLIENTES"))}
-                            />
+                            /> */}
                         </Col>
                         <Col xl={4} xs={24}>
-                            <BtnFiltroSubSo 
+                            {/* <BtnFiltroSubSo 
                                 texto = {"COD. PRODUCTO"}
                                 btnSwitch = {true}
                                 tamanio = {"190px"}
                                 data = {productos_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_PRODUCTOS"))}
-                            />
+                            /> */}
                         </Col>
                         <Col xl={3} xs={24}>
-                            <BtnFiltroSubSo 
+                            {/* <BtnFiltroSubSo 
                                 texto = {"CATEGORÍA"}
                                 tamanio = {"125px"}
                                 data = {categorias_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CATEGORIAS"))}
-                            />
+                            /> */}
                         </Col>
                         <Col xl={3} xs={24}>
-                            <BtnFiltroSubSo 
+                            {/* <BtnFiltroSubSo 
                                 texto = {"TERRITORIO"}
                                 tamanio = {"125px"}
                                 data = {territorios_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_TERRITORIO"))}
-                            />
+                            /> */}
                         </Col>
 
-                        <Col xl={4} xs={24}>
-                            <BtnFiltroSubSo 
+                        <Col xl={2} xs={24}>
+                            {/* <BtnFiltroSubSo 
                                 texto = {"ZONA"}
                                 tamanio = {"90px"}
                                 data = {zonas_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_ZONAS"))}
-                            />
+                            /> */}
+                        </Col>
+
+                        <Col xl={2} xs={24}>
+                            <div 
+                                onClick={() => setMostrarAutomaticos(!mostrarAutomaticos)}
+                                className={
+                                    mostrarAutomaticos == true
+                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
+                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
+                                }
+                            >
+                                <span 
+                                    className={
+                                        mostrarAutomaticos == true
+                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
+                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                    }
+                                >
+                                    {
+                                        mostrarAutomaticos == true
+                                        ?"Automaticos"
+                                        :"Manuales"
+                                    }
+                                </span>
+                            </div>
+                        </Col>
+
+                        <Col xl={4} xs={24}>
+                            <div 
+                                onClick={() => setMostrarValidados(!mostrarValidados)}
+                                className={
+                                    mostrarValidados == true
+                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
+                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
+                                }
+                            >
+                                <span 
+                                    className={
+                                        mostrarValidados == true
+                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
+                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                    }
+                                >
+                                    {
+                                        mostrarValidados == true
+                                        ?"Validados"
+                                        :"No Validados"
+                                    }
+                                </span>
+                            </div>
                         </Col>
                     </Row>
-
-                    {/* <div    
-                        onClick={() => dispatch(ObtenerSubsidiosSoReducer())} 
-                        className="Wbold-S14-H19-Ce4e6eb-LH19 Btn-Filtro-Mostrar-Todo-Subsidios-So">
-                        Resueltos
-                    </div> */}
+                    
                 </div>
 
                 <div style={{overflowX:"auto"}} id="Contenedor-Tabla-Subsidios-So">
@@ -266,16 +393,16 @@ const SubsidiosSo = () => {
                             {
                                 <>
                                     <td className="Wbold-S13-H17-C004FB8">
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
                                     <td className="Wbold-S13-H17-C004FB8">
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
                                 </>
                             }
 
                             <td className="Wbold-S13-H17-C004FB8">
-                                S/{<NumberFormat value={funFomratoDecimal(total_soles_subsidiosso, 2)} displayType={'text'} thousandSeparator={true} />}
+                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                             </td>
                         </tr>
                         {
@@ -294,111 +421,98 @@ const SubsidiosSo = () => {
                             </tr>
                             :data_subsidiosso.map((zona, posicion) => {
 
+                                const valorizadosCantidadBultos = zona.data.map(
+                                    x => 
+                                        x.sdecantidadbultosreal
+                                        ?mostrarValidados == true
+                                            ?x.sdestatus != null
+                                                ? mostrarAutomaticos == true
+                                                    ?x.sdesac == 0
+                                                        ?parseFloat(x.sdecantidadbultosreal) 
+                                                        :0
+                                                    :x.sdesac == 1
+                                                        ?parseFloat(x.sdecantidadbultosreal) 
+                                                        :0
+                                                :0
+                                            :x.sdestatus != null
+                                                ?0
+                                                :mostrarAutomaticos == true
+                                                    ?x.sdesac == 0
+                                                        ?parseFloat(x.sdecantidadbultosreal) 
+                                                        :0
+                                                    :x.sdesac == 1
+                                                        ?parseFloat(x.sdecantidadbultosreal) 
+                                                        :0
+                                        :0
+                                    
+                                )
                                 
+                                const valorizadosBultosAcordados = zona.data.map(
+                                    x => 
+                                        x.sdebultosacordados 
+                                        ?mostrarValidados == true
+                                            ?x.sdestatus != null
+                                                ? mostrarAutomaticos == true
+                                                    ?x.sdesac == 0
+                                                        ?parseFloat(x.sdebultosacordados) 
+                                                        :0
+                                                    :x.sdesac == 1
+                                                        ?parseFloat(x.sdebultosacordados) 
+                                                        :0
+                                                :0
+                                            :x.sdestatus != null
+                                                ?0
+                                                :mostrarAutomaticos == true
+                                                    ?x.sdesac == 0
+                                                        ?parseFloat(x.sdebultosacordados) 
+                                                        :0
+                                                    :x.sdesac == 1
+                                                        ?parseFloat(x.sdebultosacordados) 
+                                                        :0
+                                        :0
+                                )
 
-                                const valorizadosCantidadBultos = zona.data.map(x => parseFloat(x.sdecantidadbultosreal))
-                                const valorizadosBultosAcordados = zona.data.map(x => x.sdebultosacordados ?parseFloat(x.sdebultosacordados): 0)
-                                const sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
+                                const valorizadoMontosReconocer = zona.data.map(
+                                    y => 
+                                        y.sdemontoareconocerreal
+                                        ?mostrarValidados == true
+                                            ?y.sdestatus != null
+                                                ? mostrarAutomaticos == true
+                                                    ?y.sdesac == 0
+                                                        ?parseFloat(y.sdemontoareconocerreal) 
+                                                        :0
+                                                    :y.sdesac == 1
+                                                        ?parseFloat(y.sdemontoareconocerreal) 
+                                                        :0
+                                                :0
+                                            :y.sdestatus != null
+                                                ?0
+                                                :mostrarAutomaticos == true
+                                                    ?y.sdesac == 0
+                                                        ?parseFloat(y.sdemontoareconocerreal) 
+                                                        :0
+                                                    :y.sdesac == 1
+                                                        ?parseFloat(y.sdemontoareconocerreal) 
+                                                        :0
+                                        :0
+                                )
+
+                                const sumaValorizadoCantidadBultos  = sumaValores(valorizadosCantidadBultos)
                                 const sumaValorizadoBultosAcordados = sumaValores(valorizadosBultosAcordados)
-
-                                // sumaValorizadoCantidadBultosTotal = sumaValorizadoCantidadBultosTotal + sumaValorizadoCantidadBultos
-                                // sumaValorizadoBultosAcordadosTotal = sumaValorizadoBultosAcordadosTotal + sumaValorizadoBultosAcordados
+                                const sumaValorizadoMontosReonocer  = sumaValores(valorizadoMontosReconocer)
 
                                 return (
-                                    <>
-
-                                        <tr
-                                            style={
-                                                ComunesTipoDisenio == "Light"
-                                                ?{borderBottom: '1px solid #D7E8FF'}
-                                                :{borderBottom: '1px solid #1c1e21'}
-                                            }
-                                        >
-                                            <td 
-                                                // style={zona.desplegado == true?{background:'#565656'}:{}}
-                                                style={
-                                                    zona.desplegado == true
-                                                    ? ComunesTipoDisenio == "Light"
-                                                        ?{background:'white'}
-                                                        :{background:'#565656'}
-                                                    // ?{ ?background:'#565656' :background:'#565656'}
-                                                    :{}
-                                                }
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ?"CFFFFFF Wbold-S13-H17-C004FB8"
-                                                    :"Zona-Cuerpo-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
-                                                }
-                                            >
-                                                {
-                                                    zona.desplegado == true
-                                                    ?<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarAbajo} className="Icono-Flecha-Tabla-Subsidios-So" />
-                                                    :<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarDerecha} className="Icono-Flecha-Tabla-Subsidios-So" />
-                                                }
-                                                {zona.clizona}
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td className="Wbold-S13-H17-C004FB8">
-                                                {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordados, 2)} displayType={'text'} thousandSeparator={true} />}
-                                            </td>
-                                            <td className="Wbold-S13-H17-C004FB8">
-                                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultos, 2)} displayType={'text'} thousandSeparator={true} />}
-                                            </td>
-                                            <td className="Wbold-S13-H17-C004FB8">
-                                                S/{<NumberFormat value={funFomratoDecimal(zona.sumSdeZona, 2)} displayType={'text'} thousandSeparator={true} />}
-                                            </td>
-                                        </tr>
-                                        {
-                                            zona.desplegado == true
-                                            ?
-                                            zona.data.map((dato) => {
-                                                let mostrar = false
-
-                                                if(clienteseleccionado != 0){
-                                                    if(clienteseleccionado == dato.cliid){
-                                                        mostrar = true
-                                                    }
-                                                }else{
-                                                    mostrar = true
-                                                }
-
-                                                if(mostrar == true){
-                                                    return (
-                                                        <tr
-                                                            style={
-                                                                ComunesTipoDisenio == "Light"
-                                                                ?{borderBottom: '1px solid #D7E8FF'}
-                                                                :{borderBottom: '1px solid #1c1e21'}
-                                                            }
-                                                        >
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.clizona}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.clinombre}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesubcliente}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.catnombre}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.prosku}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.pronombre}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdebultosacordados}</td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >
-                                                                {funFomratoDecimal(dato.sdecantidadbultosreal, 2)}
-                                                            </td>
-                                                            <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >
-                                                                S/{<NumberFormat value={funFomratoDecimal(dato.sdemontoareconocerreal, 2)} displayType={'text'} thousandSeparator={true} />}
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                }else{
-                                                    return null
-                                                }
-                                            })
-                                            :null
-                                        }
-                                    </>
+                                    <DataTablaSo 
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        zona = {zona}
+                                        sumaValorizadoBultosAcordados = {sumaValorizadoBultosAcordados}
+                                        sumaValorizadoCantidadBultos = {sumaValorizadoCantidadBultos}
+                                        clienteseleccionado = {clienteseleccionado}
+                                        posicion = {posicion}
+                                        mostrarAutomaticos = {mostrarAutomaticos}
+                                        mostrarValidados = {mostrarValidados}
+                                        sumaValorizadoMontosReonocer = {sumaValorizadoMontosReonocer}
+                                    />
                                 )
                             })
                         }

@@ -30,7 +30,7 @@ const App = () => {
                 <Switch>
 
                     <Route exact path='/login' >
-                        <Redirect to="/sistema" />
+                        <Redirect to="/subsidios-so" />
                     </Route>
 
                     <Route exact path='/sistema' >

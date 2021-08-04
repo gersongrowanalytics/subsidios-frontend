@@ -167,3 +167,19 @@
     width: 100%;
     overflow: auto;
 }
+
+.Contenedor-Filtro-Light-Tabla-Elementos{
+    /* background: #FF8023; */
+    border-radius: 23px;
+    width: 95px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #FF8023;
+}
+
+.Contenedor-Filtro-Light-Tabla-Elementos:hover{
+    box-shadow: 0px 0px 15px #D8DFE9;
+}
