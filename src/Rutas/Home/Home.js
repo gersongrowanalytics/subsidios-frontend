@@ -23,21 +23,21 @@ const Home = () => {
             "icono" : IconoRevenueLight,
             "bases": [
                 {
-                    "base"   : "Subsidios No Aprobados",
+                    "base"   : "Plantilla de Sub Aprobado",
                     "estado" : true,
                     "respon" : "Maria",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "",
+                    "fechaAct" : "",
                     "diaRetra" : "0 días"
                 },
                 {
-                    "base"   : "Facturas SO",
+                    "base"   : "Sell Out Efectivo",
                     "estado" : true,
                     "respon" : "Maria",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "",
+                    "fechaAct" : "",
                     "diaRetra" : "0 días"
                 }
             ]
@@ -47,10 +47,19 @@ const Home = () => {
             "icono" : IconoSacLight,
             "bases": [
                 {
-                    "base"   : "Subsidios Pre-Aprobados",
+                    "base"   : "Plantilla de Sub Aprobado",
                     "estado" : true,
                     "respon" : "Equipo SAC",
-                    "fechaCar" : "26 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "-",
+                    "fechaAct" : "-",
+                    "diaRetra" : "0 días"
+                },
+                {
+                    "base"   : "Plantilla de Sub Data Real",
+                    "estado" : true,
+                    "respon" : "Equipo SAC",
+                    "fechaCar" : "04 de Agosto del 2021",
                     "fechaRea" : "-",
                     "fechaAct" : "-",
                     "diaRetra" : "0 días"
@@ -65,9 +74,9 @@ const Home = () => {
                     "base"   : "Consolidación de Información SO",
                     "estado" : true,
                     "respon" : "Grow Sistema",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "",
+                    "fechaAct" : "",
                     "diaRetra" : "0 días"
                 },
                 // {
@@ -94,45 +103,45 @@ const Home = () => {
     ]
 
     const eventosSi = [
-        {
-            "area" : "Ventas",
-            "icono" : IconoVentasLight,
-            "bases": [
-                {
-                    "base"   : "Subsidios No Aprobados",
-                    "estado" : true,
-                    "respon" : "Maria",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
-                    "diaRetra" : "0 días"
-                },
-                {
-                    "base"   : "Facturas SO",
-                    "estado" : true,
-                    "respon" : "Maria",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
-                    "diaRetra" : "0 días"
-                }
-            ]
-        },
-        {
-            "area" : "Revenue",
-            "icono" : IconoRevenueLight,
-            "bases": [
-                {
-                    "base"   : "Subsidios Pre-Aprobados",
-                    "estado" : true,
-                    "respon" : "Equipo SAC",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "-",
-                    "fechaAct" : "-",
-                    "diaRetra" : "0 días"
-                }
-            ]
-        },
+        // {
+        //     "area" : "Ventas",
+        //     "icono" : IconoVentasLight,
+        //     "bases": [
+        //         {
+        //             "base"   : "Subsidios No Aprobados",
+        //             "estado" : true,
+        //             "respon" : "Maria",
+        //             "fechaCar" : "26 de Junio del 2021",
+        //             "fechaRea" : "24 de Junio del 2021",
+        //             "fechaAct" : "24 de Junio del 2021",
+        //             "diaRetra" : "0 días"
+        //         },
+        //         {
+        //             "base"   : "Facturas SO",
+        //             "estado" : true,
+        //             "respon" : "Maria",
+        //             "fechaCar" : "26 de Junio del 2021",
+        //             "fechaRea" : "24 de Junio del 2021",
+        //             "fechaAct" : "24 de Junio del 2021",
+        //             "diaRetra" : "0 días"
+        //         }
+        //     ]
+        // },
+        // {
+        //     "area" : "Revenue",
+        //     "icono" : IconoRevenueLight,
+        //     "bases": [
+        //         {
+        //             "base"   : "Subsidios Pre-Aprobados",
+        //             "estado" : true,
+        //             "respon" : "Equipo SAC",
+        //             "fechaCar" : "26 de Junio del 2021",
+        //             "fechaRea" : "-",
+        //             "fechaAct" : "-",
+        //             "diaRetra" : "0 días"
+        //         }
+        //     ]
+        // },
         {
             "area" : "SAC",
             "icono" : IconoSacLight,
@@ -141,37 +150,37 @@ const Home = () => {
                     "base"   : "Facturas SI",
                     "estado" : true,
                     "respon" : "SAC",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "",
+                    "fechaAct" : "",
                     "diaRetra" : "0 días"
                 },
                 {
-                    "base"   : "Comprobantes de Pago Sunat",
+                    "base"   : "Operaciones Sunat",
                     "estado" : true,
                     "respon" : "SAC",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
+                    "fechaCar" : "04 de Agosto del 2021",
+                    "fechaRea" : "",
+                    "fechaAct" : "",
                     "diaRetra" : "0 días"
                 },
             ]
         },
-        {
-            "area" : "Sistemas",
-            "icono" : IconoSistemasLight,
-            "bases": [
-                {
-                    "base"   : "Consolidación de Información SO",
-                    "estado" : true,
-                    "respon" : "Grow Sistema",
-                    "fechaCar" : "26 de Junio del 2021",
-                    "fechaRea" : "24 de Junio del 2021",
-                    "fechaAct" : "24 de Junio del 2021",
-                    "diaRetra" : "0 días"
-                },
-            ]
-        },
+        // {
+        //     "area" : "Sistemas",
+        //     "icono" : IconoSistemasLight,
+        //     "bases": [
+        //         {
+        //             "base"   : "Consolidación de Información SO",
+        //             "estado" : true,
+        //             "respon" : "Grow Sistema",
+        //             "fechaCar" : "26 de Junio del 2021",
+        //             "fechaRea" : "24 de Junio del 2021",
+        //             "fechaAct" : "24 de Junio del 2021",
+        //             "diaRetra" : "0 días"
+        //         },
+        //     ]
+        // },
 
     ]
 
@@ -183,21 +192,21 @@ const Home = () => {
                 "icono" : IconoRevenueLight,
                 "bases": [
                     {
-                        "base"   : "Subsidios No Aprobados",
+                        "base"   : "Plantilla de Sub Aprobado",
                         "estado" : true,
                         "respon" : "Maria",
-                        "fechaCar" : "26 de Junio del 2021",
-                        "fechaRea" : "24 de Junio del 2021",
-                        "fechaAct" : "24 de Junio del 2021",
+                        "fechaCar" : "04 de Agosto del 2021",
+                        "fechaRea" : "",
+                        "fechaAct" : "",
                         "diaRetra" : "0 días"
                     },
                     {
-                        "base"   : "Facturas SO",
+                        "base"   : "Sell Out Efectivo",
                         "estado" : true,
                         "respon" : "Maria",
-                        "fechaCar" : "26 de Junio del 2021",
-                        "fechaRea" : "24 de Junio del 2021",
-                        "fechaAct" : "24 de Junio del 2021",
+                        "fechaCar" : "04 de Agosto del 2021",
+                        "fechaRea" : "",
+                        "fechaAct" : "",
                         "diaRetra" : "0 días"
                     }
                 ]
@@ -207,10 +216,19 @@ const Home = () => {
                 "icono" : IconoSacLight,
                 "bases": [
                     {
-                        "base"   : "Subsidios Pre-Aprobados",
+                        "base"   : "Plantilla de Sub Aprobado",
                         "estado" : true,
                         "respon" : "Equipo SAC",
-                        "fechaCar" : "26 de Junio del 2021",
+                        "fechaCar" : "04 de Agosto del 2021",
+                        "fechaRea" : "-",
+                        "fechaAct" : "-",
+                        "diaRetra" : "0 días"
+                    },
+                    {
+                        "base"   : "Plantilla de Sub Data Real",
+                        "estado" : true,
+                        "respon" : "Equipo SAC",
+                        "fechaCar" : "04 de Agosto del 2021",
                         "fechaRea" : "-",
                         "fechaAct" : "-",
                         "diaRetra" : "0 días"
@@ -225,9 +243,9 @@ const Home = () => {
                         "base"   : "Consolidación de Información SO",
                         "estado" : true,
                         "respon" : "Grow Sistema",
-                        "fechaCar" : "26 de Junio del 2021",
-                        "fechaRea" : "24 de Junio del 2021",
-                        "fechaAct" : "24 de Junio del 2021",
+                        "fechaCar" : "04 de Agosto del 2021",
+                        "fechaRea" : "",
+                        "fechaAct" : "",
                         "diaRetra" : "0 días"
                     },
                     // {
@@ -357,7 +375,7 @@ const Home = () => {
                     ?<>
 
 
-                    <Col xl={6} style={{ paddingRight:'10px'}}>
+                    {/* <Col xl={6} style={{ paddingRight:'10px'}}>
                         <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
                             <img 
                                 src={IconoVentasLight}
@@ -368,8 +386,8 @@ const Home = () => {
                                 <div className="Wbold-S20-H27-C004FB8">29%</div>
                             </div>
                         </div>
-                    </Col>
-                    <Col xl={6} style={{paddingLeft:'10px', paddingRight:'10px'}}>
+                    </Col> */}
+                    {/* <Col xl={6} style={{paddingLeft:'10px', paddingRight:'10px'}}>
                         <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
                             <img 
                                 src={IconoRevenueLight}
@@ -380,7 +398,7 @@ const Home = () => {
                                 <div className="Wbold-S20-H27-C004FB8">29%</div>
                             </div>
                         </div>
-                    </Col>
+                    </Col> */}
                     <Col xl={6} style={{paddingLeft:'10px', paddingRight:'10px'}}>
                         <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
                             <img 
@@ -389,11 +407,11 @@ const Home = () => {
 
                             <div style={{paddingLeft:'10px'}}>
                                 <div className="Wnormal-S14-H19-C1EC0ED">SAC</div>
-                                <div className="Wbold-S20-H27-C004FB8">29%</div>
+                                <div className="Wbold-S20-H27-C004FB8">100%</div>
                             </div>
                         </div>
                     </Col>
-                    <Col xl={6} style={{paddingLeft:'10px', }}>
+                    {/* <Col xl={6} style={{paddingLeft:'10px', }}>
                         <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
                             <img 
                                 src={IconoSistemasLight}
@@ -404,7 +422,7 @@ const Home = () => {
                                 <div className="Wbold-S20-H27-C004FB8">29%</div>
                             </div>
                         </div>
-                    </Col>
+                    </Col> */}
 
 
 
@@ -425,7 +443,7 @@ const Home = () => {
 
                                 <div style={{paddingLeft:'10px'}}>
                                     <div className="Wnormal-S14-H19-C1EC0ED">Revenue</div>
-                                    <div className="Wbold-S20-H27-C004FB8">29%</div>
+                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
                                 </div>
                             </div>
                         </Col>
@@ -437,7 +455,7 @@ const Home = () => {
 
                                 <div style={{paddingLeft:'10px'}}>
                                     <div className="Wnormal-S14-H19-C1EC0ED">SAC</div>
-                                    <div className="Wbold-S20-H27-C004FB8">29%</div>
+                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
                                 </div>
                             </div>
                         </Col>
@@ -449,7 +467,7 @@ const Home = () => {
 
                                 <div style={{paddingLeft:'10px'}}>
                                     <div className="Wnormal-S14-H19-C1EC0ED">Grow</div>
-                                    <div className="Wbold-S20-H27-C004FB8">29%</div>
+                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
                                 </div>
                             </div>
                         </Col>
