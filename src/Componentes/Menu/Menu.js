@@ -56,15 +56,15 @@ const Menu = () => {
                         <p className="Wbold-S27-H36-CFFFFFF">Historia de Facturas (Sell In)</p>
                     </Link>
 
-                    <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                    {/* <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
                         <p className="Wbold-S27-H36-CFFFFFF">Dashboard</p>
-                    </Link>
+                    {/* </Link> */}
                     {/* <p className="Wbold-S27-H36-CFFFFFF">Facturas</p> */}
                     
 
-                    <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                    {/* <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
                         <p className="Wbold-S27-H36-CFFFFFF">Administrador</p>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
             <div>
