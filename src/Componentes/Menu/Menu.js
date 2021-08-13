@@ -6,13 +6,15 @@ import LogoPaginaBlancoNegro from '../../Assets/Imagenes/Logos/LogoTheBrainBlanc
 import IconoEquisBlanco from '../../Assets/Imagenes/Iconos/equisblanco.PNG'
 import IconoEquisBlancoLuminoso from '../../Assets/Imagenes/Iconos/IconoEquisBlancoLuminoso.PNG'
 import {Link} from "react-router-dom";
+import {funPermisosObtenidos} from '../../Funciones/funPermiso'
 
 const Menu = () => {
     
     const dispatch = useDispatch();
 
     const {ComunesOcultarMenu, ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
-
+    const {LoginUsuario} = useSelector(({login}) => login);
+    
     return (
         <div id="Contenedor-Menu">
             <div 
@@ -34,37 +36,87 @@ const Menu = () => {
 
             <div id="Cuerpo-Menu">
                 <div id={ ComunesOcultarMenu == true ? "Contenedor-Cuerpo-Menu-Ocultar" : "Contenedor-Cuerpo-Menu"}>
-                    <Link to="/sistema" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Home</p>
-                    </Link>
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.HOME.STATUS",
+                            <Link to="/sistema" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Home</p>
+                            </Link>
+                        )
+                    }
 
-                    <Link to="/carga-archivos" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Upload de Información</p>
-                    </Link>
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.UPLOAD.INFORMACION",
+                            <Link to="/carga-archivos" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Upload de Información</p>
+                            </Link>
+                        )
+                    }
 
-                    <Link to="/subsidios-so" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell Out)</p>
-                    </Link>
-                    <Link to="/subsidios-si" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell In)</p>
-                    </Link>
-                    <Link to="/subsidios-pendientes" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio Pendiente (Sell In)</p>
-                    </Link>
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.SUBSIDIOS.SELL.OUT",
+                            <Link to="/subsidios-so" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell Out)</p>
+                            </Link>
+                        )
+                    }
+
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.SUBSIDIOS.SELL.IN",
+                            <Link to="/subsidios-si" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell In)</p>
+                            </Link>
+                        )
+                    }
+
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.SUBSIDIOS.PENDIENTES.SELL.IN",
+                            <Link to="/subsidios-pendientes" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Subsidio Pendiente (Sell In)</p>
+                            </Link>
+                        )
+                    }
                     
-                    <Link to="/facturas" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Historia de Facturas (Sell In)</p>
-                    </Link>
-
-                    {/* <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
-                        <p className="Wbold-S27-H36-CFFFFFF">Dashboard</p>
-                    {/* </Link> */}
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.HISTORIA.FACTURAS.SELL.IN",
+                            <Link to="/facturas" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF">Historia de Facturas (Sell In)</p>
+                            </Link>
+                        )
+                    }
+                    
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.DASHBOARD",
+                            // {/* <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
+                            <p className="Wbold-S27-H36-CFFFFFF">Dashboard</p>
+                            // {/* </Link> */}
+                        )
+                    }
                     {/* <p className="Wbold-S27-H36-CFFFFFF">Facturas</p> */}
                     
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.ADMINISTRADOR",
+                            // {/* <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
+                            <p className="Wbold-S27-H36-CFFFFFF">Administrador</p>
+                            // {/* </Link> */}
+                        )
+                    }
 
-                    {/* <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
-                        <p className="Wbold-S27-H36-CFFFFFF">Administrador</p>
-                    {/* </Link> */}
                 </div>
             </div>
             <div>
