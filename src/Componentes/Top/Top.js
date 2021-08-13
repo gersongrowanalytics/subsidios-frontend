@@ -63,7 +63,7 @@ const Top = () => {
                                 <img src={IconoNotificacionAlerta} width="80px" />
                             </Col>
                             <Col xl={17} style={{height:'100%', display: "flex", alignItems: "center"}} >
-                                <div className="Wbold-S13-H17-CFFFFFF">Se encontraron Subsidios<br/>pedientes</div>
+                                <div className="Wbold-S13-H17-CFFFFFF">Se encontraron Subsidios<br/>pendientes</div>
                                 <div
                                     style={{
                                         position: "absolute",
