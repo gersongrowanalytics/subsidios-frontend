@@ -31,6 +31,7 @@ const Top = () => {
     const dispatch = useDispatch();
     const NombreCompleto = useSelector(({login}) => login.LoginUsuario.pernombre)
     const Nombre = useSelector(({login}) => login.LoginUsuario.pernombre)
+    const NombreComp = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     const [startDate, setStartDate] = useState(new Date());
@@ -261,7 +262,7 @@ const Top = () => {
                                                         paddingLeft:'10px'
                                                     }}
                                                 >
-                                                    <div className="Wbold-S14-H19-C004FB8">Alejandro Palomino</div>
+                                                    <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
                                                     <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
                                                 </div>
                                             </div>
