@@ -2,7 +2,8 @@ import {
     OBTENER_SUBSIDIOS_PENDIENTES,
     OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
     CARGANDO_ASIGNAR_FACTURAS_SUBSIDIOS_PENDIENTES,
-    CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES
+    CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES,
+    CARGANDO_TABLA_SUBSIDIOS_PENDIENTES
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 
 const INIT_STATE = {
@@ -14,6 +15,8 @@ const INIT_STATE = {
 
     cargando_asignar_facturas_subsidiossipendientes : false,
     cargando_eliminar_facturas_subsidiossipendientes : false,
+
+    cargando_tabla_subsidiospendientes : false
     
 };
 
@@ -26,6 +29,12 @@ export default (state = INIT_STATE, action) => {
             data_subsidiossipendientes : action.payload.data,
             data_descarga_subsidiossipendientes : action.payload.descarga,
             total_soles_subsidiossipendientes   : action.payload.sumSde
+        }
+    }
+    case CARGANDO_TABLA_SUBSIDIOS_PENDIENTES: {
+        return {
+            ...state,
+            cargando_tabla_subsidiospendientes : action.payload
         }
     }
     case OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES: {

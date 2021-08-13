@@ -5,13 +5,14 @@ import TarjetaCargaArchivo from '../../Componentes/CargaArchivos/TarjetaCargaArc
 import NotiCarga from '../../Componentes/CargaArchivos/NotiCarga'
 import {useDispatch, useSelector} from "react-redux";
 import {CargarArchivoReducer} from '../../Redux/Actions/CargaArchivos/CargaArchivos'
-
+import {funPermisosObtenidos} from '../../Funciones/funPermiso'
 const CargaArchivos = () => {
 
     const dispatch = useDispatch();
     const [notificaciones, setNotificaciones] = useState([])
     const {notificaciones_cargaarchivos} = useSelector(({cargaArchivos}) => cargaArchivos);
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
+    const {LoginUsuario} = useSelector(({login}) => login);
 
     const CargarArchivo = async (url, data) => {
         return await dispatch(CargarArchivoReducer(url, data))
@@ -41,7 +42,7 @@ const CargaArchivos = () => {
                                     alignItems: "center"
                                 }}
                             >
-                                <div className="Wbold-S20-H27-C004FB8" style={{paddingLeft:'40px'}}>
+                                <div onClick={() => console.log(LoginUsuario)} className="Wbold-S20-H27-C004FB8" style={{paddingLeft:'40px'}}>
                                     Carga de archivos
                                 </div>
                             </Col>
@@ -76,97 +77,140 @@ const CargaArchivos = () => {
                             marginLeft:'20px'
                         }}
                     >
-                        {/* <Col xl={3}></Col> */}
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Subsidio Aprobado'}
-                                subtitulo = {"(Plantilla)"}
-                                // url    = {'modulo/cargaArchivos/so/subsidios-no-aprobados'}
-                                url    = {'modulo/cargaArchivos/so/subsidios-so-plantilla'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Subsidio Reconocido'}
-                                subtitulo = {"(Plantilla)"}
-                                // url    = {'modulo/cargaArchivos/so/subsidios-sac'}
-                                url    = {'modulo/cargaArchivos/so/subsidios-so-automaticos-manuales'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Sell Out'}
-                                subtitulo = {"(Efectivo)"}
-                                url    = {'modulo/cargaArchivos/so/so'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.SUBSIDIOS.APROBADOS",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Subsidio Aprobado'}
+                                        subtitulo = {"(Plantilla)"}
+                                        // url    = {'modulo/cargaArchivos/so/subsidios-no-aprobados'}
+                                        url    = {'modulo/cargaArchivos/so/subsidios-so-plantilla'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>       
+                            )
+                        }
 
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                    titulo = {'Sell In'}
-                                    subtitulo = {"(Factura Efectiva)"}
-                                    url    = {'modulo/cargaArchivos/si/facturas'}
-                                    CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                    notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                    ComunesTipoDisenio = {ComunesTipoDisenio}
-                                />
-                        </Col>
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.SUBSIDIOS.RECONOCIDO",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Subsidio Reconocido'}
+                                        subtitulo = {"(Plantilla)"}
+                                        // url    = {'modulo/cargaArchivos/so/subsidios-sac'}
+                                        url    = {'modulo/cargaArchivos/so/subsidios-so-automaticos-manuales'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>  
+                            )
+                        }
 
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.SELL.OUT",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Sell Out'}
+                                        subtitulo = {"(Efectivo)"}
+                                        url    = {'modulo/cargaArchivos/so/so'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>       
+                            )
+                        }
+                        
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.FACTURA.EFECTIVA",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Sell In'}
+                                        subtitulo = {"(Factura Efectiva)"}
+                                        url    = {'modulo/cargaArchivos/si/facturas'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>       
+                            )
+                        }
+                        
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.OPERACIONES.SUNAT",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Operaciones Sunat'}
+                                        url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>
+                            )
+                        }
 
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Operaciones Sunat'}
-                                url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.PRODUCTOS",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Maestra de Productos'}
+                                        url    = {'modulo/cargaArchivos/productos'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>
+                            )
+                        }
 
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Maestra de Productos'}
-                                url    = {'modulo/cargaArchivos/productos'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Maestra de Clientes'}
-                                url    = {'modulo/cargaArchivos/clientes'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            {/* <TarjetaCargaArchivo
-                                titulo = {'Clientes SAC'}
-                                url    = {'modulo/cargaArchivos/clientes/sac'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                            /> */}
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.CLIENTES",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Maestra de Clientes'}
+                                        url    = {'modulo/cargaArchivos/clientes'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>  
+                            )
+                        }
 
-                            <TarjetaCargaArchivo
-                                titulo = {'Maestra de Fechas'}
-                                url    = {'modulo/cargaArchivos/fechas'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-
-                        </Col>
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.FECHAS",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Maestra de Fechas'}
+                                        url    = {'modulo/cargaArchivos/fechas'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                    />
+                                </Col>                                
+                            )
+                        }
+                        
                         <Col xl={3}></Col>
                         
                         

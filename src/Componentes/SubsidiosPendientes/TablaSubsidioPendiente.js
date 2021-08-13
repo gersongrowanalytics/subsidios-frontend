@@ -23,6 +23,7 @@ import {
 } from '../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientes'
 import IconoEliminarAzul from '../../Assets/Imagenes/Iconos/iconoEliminarAzul.png'
 import IconoAgregarNaranja from '../../Assets/Imagenes/Iconos/iconoAgregarNaranja.png'
+import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 
 const TablaSubsidioPendiente = (props) => {
 
@@ -32,7 +33,8 @@ const TablaSubsidioPendiente = (props) => {
         data_descarga_subsidiossipendientes,
         total_soles_subsidiossipendientes,
         cargando_eliminar_facturas_subsidiossipendientes,
-        cargando_asignar_facturas_subsidiossipendientes
+        cargando_asignar_facturas_subsidiossipendientes,
+        cargando_tabla_subsidiospendientes
     } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
     const {
@@ -225,7 +227,21 @@ const TablaSubsidioPendiente = (props) => {
                 </tr>
 
                 {
-                    data_subsidiossipendientes.map((zona, posicion) => {
+
+                    cargando_tabla_subsidiospendientes == true
+                    ?<tr 
+                        // style={{width:'100%'}}
+                        style={
+                            ComunesTipoDisenio == "Light"
+                            ?{borderBottom: '1px solid #D7E8FF'}
+                            :{borderBottom: '1px solid #1c1e21'}
+                        }
+                    >
+                        <td colSpan="13" style={{textAlignLast: "center"}}>
+                            <img src={IconoCargando}  />
+                        </td>
+                    </tr>
+                    :data_subsidiossipendientes.map((zona, posicion) => {
                         return (
                             <>
                                 <tr 

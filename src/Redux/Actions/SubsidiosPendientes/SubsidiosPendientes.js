@@ -3,7 +3,8 @@ import {
     OBTENER_SUBSIDIOS_PENDIENTES,
     OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
     CARGANDO_ASIGNAR_FACTURAS_SUBSIDIOS_PENDIENTES,
-    CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES
+    CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES,
+    CARGANDO_TABLA_SUBSIDIOS_PENDIENTES
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 import { estadoRequestReducer } from "../EstadoRequest"
 import { message } from 'antd';
@@ -14,6 +15,11 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
         ComunesFechaInicio,
         ComunesFechaFinal
     } = getState().comunes
+
+    dispatch({
+        type: CARGANDO_TABLA_SUBSIDIOS_PENDIENTES,
+        payload : true
+    })
 
     await fetch(config.api+'modulo/SubsidiosPendientes/mostrar',
 		{
@@ -56,6 +62,11 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
     }).catch((error)=> {
         console.log(error)
     });
+
+    dispatch({
+        type: CARGANDO_TABLA_SUBSIDIOS_PENDIENTES,
+        payload : false
+    })
 
 }
 
