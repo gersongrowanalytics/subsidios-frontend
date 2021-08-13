@@ -102,7 +102,7 @@ const CargaArchivos = () => {
                                 <Col xl={6} md={6} sm={12} xs={24}>
                                     <TarjetaCargaArchivo
                                         titulo = {'Subsidio Reconocido'}
-                                        subtitulo = {"(Plantilla)"}
+                                        subtitulo = {"(Formato enviado por la Distribuidora)"}
                                         // url    = {'modulo/cargaArchivos/so/subsidios-sac'}
                                         url    = {'modulo/cargaArchivos/so/subsidios-so-automaticos-manuales'}
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
