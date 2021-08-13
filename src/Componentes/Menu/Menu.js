@@ -37,27 +37,30 @@ const Menu = () => {
                     <Link to="/sistema" onClick={() => dispatch(MostrarMenuReducer(false))}>
                         <p className="Wbold-S27-H36-CFFFFFF">Home</p>
                     </Link>
+
+                    <Link to="/carga-archivos" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                        <p className="Wbold-S27-H36-CFFFFFF">Upload de Información</p>
+                    </Link>
+
                     <Link to="/subsidios-so" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidios SO</p>
+                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell Out)</p>
                     </Link>
                     <Link to="/subsidios-si" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidios SI</p>
+                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio (Sell In)</p>
                     </Link>
                     <Link to="/subsidios-pendientes" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Subsidios Pendientes</p>
+                        <p className="Wbold-S27-H36-CFFFFFF">Subsidio Pendiente (Sell In)</p>
                     </Link>
                     
                     <Link to="/facturas" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Facturas</p>
+                        <p className="Wbold-S27-H36-CFFFFFF">Historia de Facturas (Sell In)</p>
                     </Link>
 
                     <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}>
                         <p className="Wbold-S27-H36-CFFFFFF">Dashboard</p>
                     </Link>
                     {/* <p className="Wbold-S27-H36-CFFFFFF">Facturas</p> */}
-                    <Link to="/carga-archivos" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                        <p className="Wbold-S27-H36-CFFFFFF">Carga de Archivos</p>
-                    </Link>
+                    
 
                     <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}>
                         <p className="Wbold-S27-H36-CFFFFFF">Administrador</p>

@@ -54,9 +54,15 @@ export const ObtenerFacturasSiReducer = () => async (dispatch, getState) => {
             dispatch(ObtenerFiltrosFacturasReducer(data.datos, "fsisolicitante"))
             dispatch(ObtenerFiltrosFacturasReducer(data.datos, "fsivalorneto"))
 
+            let descargasfacturassi = []
+            descargasfacturassi = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargarFds)
+
             dispatch({
                 type: OBTENER_FACTURAS_SI,
-                payload : data.datos
+                payload : {
+                    facturas : data.datos,
+                    descargar : descargasfacturassi,
+                }
             })
 			
 		}else{
@@ -72,6 +78,17 @@ export const ObtenerFacturasSiReducer = () => async (dispatch, getState) => {
         payload : false
     })
 
+}
+
+export const LimpiarArrayDescargaSubsidiosSoReducer = async (facturassi) => {
+
+    await facturassi[0]['data'].map((dato, posicion) => {
+        facturassi[0]['data'][posicion].map((dat) => {
+        dat.value = dat.value == null ?"" :dat.value
+      })
+    })
+  
+    return facturassi
 }
 
 export const ObtenerReconocimientosFacturasSiReducer = (fdsid) => async (dispatch, getState) => {

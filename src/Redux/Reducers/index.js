@@ -10,7 +10,7 @@ import CargaArchivos from './CargaArchivos/CargaArchivos'
 import Facturas from './Facturas/Facturas'
 import FacturasFront from './Facturas/FacturasFront'
 import SubsidiosPendientes from './SubsidiosPendientes/SubsidiosPendientes'
-// import Home from './Home/Home'
+import Home from './Home/Home'
 
 const createRootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -24,7 +24,7 @@ const createRootReducer = (history) => combineReducers({
   facturas : Facturas,
   facturasFront : FacturasFront,
   subsidiosPendientes : SubsidiosPendientes,
-  // home : Home
+  home : Home
 });
 
 export default createRootReducer

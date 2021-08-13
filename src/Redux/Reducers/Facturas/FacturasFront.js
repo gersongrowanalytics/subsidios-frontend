@@ -8,49 +8,49 @@ const INIT_STATE = {
     data_columnas_facturas_seleccionadas : [
         {
             columna : "fsisolicitante",
-            nombre  : "SOLICITANTE",
+            nombre  : "Solicitante",
             filtro  : [],
             filtrando : false
         },
         {
             columna : "fsidestinatario",
-            nombre : "DESTINATARIO",
+            nombre : "Destinatario",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsiclase",
-            nombre : "CLASE",
+            nombre : "Clase",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsifecha",
-            nombre : "FECHA",
+            nombre : "Fecha",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsifactura",
-            nombre : "FACTURA",
+            nombre : "Factura",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsivalorneto",
-            nombre : "VALOR NETO",
+            nombre : "Valor Neto",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsipedido",
-            nombre : "PEDIDO",
+            nombre : "Pedido",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsipedidooriginal",
-            nombre : "PEDIDO ORIGINAL",
+            nombre : "Pedido Original",
             filtro : [],
             filtrando : false
         },
@@ -65,49 +65,49 @@ const INIT_STATE = {
         },
         {
             columna : "fsisolicitante",
-            nombre  : "SOLICITANTE",
+            nombre  : "Solicitante",
             filtro  : [],
             filtrando : false
         },
         {
             columna : "fsidestinatario",
-            nombre : "DESTINATARIO",
+            nombre : "Destinatario",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsiclase",
-            nombre : "CLASE",
+            nombre : "Clase",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsifecha",
-            nombre : "FECHA",
+            nombre : "Fecha",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsifactura",
-            nombre : "FACTURA",
+            nombre : "Factura",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsivalorneto",
-            nombre : "VALOR NETO",
+            nombre : "Valor Neto",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsipedido",
-            nombre : "PEDIDO",
+            nombre : "Pedido",
             filtro : [],
             filtrando : false
         },
         {
             columna : "fsipedidooriginal",
-            nombre : "PEDIDO ORIGINAL",
+            nombre : "Pedido Original",
             filtro : [],
             filtrando : false
         },

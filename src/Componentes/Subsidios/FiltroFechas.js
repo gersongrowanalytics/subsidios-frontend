@@ -35,7 +35,7 @@ const FiltroFechas = (props) => {
                 }}
             >
                 <img src={IconoActualizacion} width={"15px"} style={{marginRight:'5px'}}/>
-                última actualización 4 Agosto 2021
+                última actualización 12 Agosto 2021
             </Col>
             {/* {
                 ComunesFechaInicio != null

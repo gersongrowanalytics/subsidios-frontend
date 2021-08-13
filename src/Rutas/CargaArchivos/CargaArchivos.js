@@ -61,7 +61,7 @@ const CargaArchivos = () => {
                                         right: "20px"
                                     }}
                                 >
-                                    última actualización 20 Julio 2021
+                                    {/* última actualización 20 Julio 2021 */}
                                 </div>
                             </Col>
                         </Row>
@@ -72,14 +72,17 @@ const CargaArchivos = () => {
                     <Row
                         style={{
                             display: 'flex',
-                            placeContent: 'center'
+                            placeContent: 'center',
+                            marginLeft:'20px'
                         }}
                     >
-                        <Col xl={3}></Col>
+                        {/* <Col xl={3}></Col> */}
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Plantilla de Sub Aprobado'}
-                                url    = {'modulo/cargaArchivos/so/subsidios-no-aprobados'}
+                                titulo = {'Subsidio Aprobado'}
+                                subtitulo = {"(Plantilla)"}
+                                // url    = {'modulo/cargaArchivos/so/subsidios-no-aprobados'}
+                                url    = {'modulo/cargaArchivos/so/subsidios-so-plantilla'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
@@ -87,8 +90,10 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Subsidios SAC'}
-                                url    = {'modulo/cargaArchivos/so/subsidios-sac'}
+                                titulo = {'Subsidio Reconocido'}
+                                subtitulo = {"(Plantilla)"}
+                                // url    = {'modulo/cargaArchivos/so/subsidios-sac'}
+                                url    = {'modulo/cargaArchivos/so/subsidios-so-automaticos-manuales'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
@@ -96,17 +101,40 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Sell Out Efectivo'}
+                                titulo = {'Sell Out'}
+                                subtitulo = {"(Efectivo)"}
                                 url    = {'modulo/cargaArchivos/so/so'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                 ComunesTipoDisenio = {ComunesTipoDisenio}
                             />
                         </Col>
-                        <Col xl={3}></Col><Col xl={3}></Col>
+
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Añadir Productos'}
+                                    titulo = {'Sell In'}
+                                    subtitulo = {"(Factura Efectiva)"}
+                                    url    = {'modulo/cargaArchivos/si/facturas'}
+                                    CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                    notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                    ComunesTipoDisenio = {ComunesTipoDisenio}
+                                />
+                        </Col>
+
+
+                        <Col xl={6} md={6} sm={12} xs={24}>
+                            <TarjetaCargaArchivo
+                                titulo = {'Operaciones Sunat'}
+                                url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
+                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                ComunesTipoDisenio = {ComunesTipoDisenio}
+                            />
+                        </Col>
+
+                        <Col xl={6} md={6} sm={12} xs={24}>
+                            <TarjetaCargaArchivo
+                                titulo = {'Maestra de Productos'}
                                 url    = {'modulo/cargaArchivos/productos'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -115,7 +143,7 @@ const CargaArchivos = () => {
                         </Col>
                         <Col xl={6} md={6} sm={12} xs={24}>
                             <TarjetaCargaArchivo
-                                titulo = {'Añadir Clientes'}
+                                titulo = {'Maestra de Clientes'}
                                 url    = {'modulo/cargaArchivos/clientes'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -131,7 +159,7 @@ const CargaArchivos = () => {
                             /> */}
 
                             <TarjetaCargaArchivo
-                                titulo = {'Añadir Fechas'}
+                                titulo = {'Maestra de Fechas'}
                                 url    = {'modulo/cargaArchivos/fechas'}
                                 CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                 notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -140,24 +168,8 @@ const CargaArchivos = () => {
 
                         </Col>
                         <Col xl={3}></Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                    titulo = {'Facturas Sell In'}
-                                    url    = {'modulo/cargaArchivos/si/facturas'}
-                                    CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                    notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                    ComunesTipoDisenio = {ComunesTipoDisenio}
-                                />
-                        </Col>
-                        <Col xl={6} md={6} sm={12} xs={24}>
-                            <TarjetaCargaArchivo
-                                titulo = {'Operaciones Sunat'}
-                                url    = {'/modulo/cargaArchivos/si/estado-sunat-facturas'}
-                                CargarArchivo = {(url, data) => CargarArchivo(url, data)}
-                                notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
-                                ComunesTipoDisenio = {ComunesTipoDisenio}
-                            />
-                        </Col>
+                        
+                        
                         {/* <Col xl={6} md={6} sm={12} xs={24}> */}
                             {/* <TarjetaCargaArchivo
                                 titulo = {'Facturas Anuladas'}

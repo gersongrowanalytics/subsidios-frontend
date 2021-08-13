@@ -6,6 +6,8 @@ import config from '../../../config'
 import { estadoRequestReducer } from "../EstadoRequest"
 import { CargandoPaginaReducer, CargandoPaginaInicioReducer } from "../Comunes/Comunes"
 
+import {CambiarFechaReducer} from '../Comunes/Comunes'
+
 export const MostrarFormularioReducer = (accion) => {
     return {
         type: MOSTRAR_FORMULARIO_LOGIN,
@@ -49,6 +51,12 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
 				localStorage.setItem('usuusuario', data.datos.usuusuario)
 				localStorage.setItem('pernombre', data.datos.pernombre)
 				localStorage.setItem('tpuprivilegio', data.datos.tpuprivilegio)
+
+
+                let fecha = data.fecha.fecfecha.split("-");
+                var Xmas95 = new Date(fecha[0], fecha[1]-1, fecha[2])
+
+                dispatch(CambiarFechaReducer(Xmas95, null))
 
 				dispatch({
 					type: OBTENER_LOGIN,

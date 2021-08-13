@@ -61,7 +61,8 @@ export const AplicarFiltroFacturasReducer = (posicion, filtro, propiedad) => asy
     // })
 
     let {
-        data_facturas_si
+        data_facturas_si,
+        data_descarga_facturas_si
     } = getState().facturas
 
     let nueva_data;
@@ -79,6 +80,9 @@ export const AplicarFiltroFacturasReducer = (posicion, filtro, propiedad) => asy
 
     dispatch({
         type: OBTENER_FACTURAS_SI,
-        payload : nueva_data
+        payload : {
+            facturas  : nueva_data,
+            descargar : data_descarga_facturas_si
+        }
     })
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Modal, Row, Col, Button } from 'antd';
 import '../../Estilos/Rutas/Home/Home.css'
 import IconoRevenue from '../../Assets/Imagenes/Iconos/Home/revenue.png'
@@ -9,277 +9,39 @@ import IconoSacLight from '../../Assets/Imagenes/Iconos/Home/iconoSac.png'
 import IconoGrowLight from '../../Assets/Imagenes/Iconos/Home/iconoGrow.png'
 import IconoSistemasLight from '../../Assets/Imagenes/Iconos/Home/iconoSistemas.png'
 import IconoVentasLight from '../../Assets/Imagenes/Iconos/Home/iconoVentas.png'
+import {
+    ObtenerEstadosPendientesReducer,
+    SeleccionarTprReducer
+} from '../../Redux/Actions/Home/Home'
+import config from '../../config'
 
 
 import {useDispatch, useSelector} from "react-redux";
+import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 
 const Home = () => {
 
-    const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
+    const dispatch = useDispatch();
 
-    const eventos = [
-        {
-            "area" : "Revenue",
-            "icono" : IconoRevenueLight,
-            "bases": [
-                {
-                    "base"   : "Plantilla de Sub Aprobado",
-                    "estado" : true,
-                    "respon" : "Maria",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "",
-                    "fechaAct" : "",
-                    "diaRetra" : "0 días"
-                },
-                {
-                    "base"   : "Sell Out Efectivo",
-                    "estado" : true,
-                    "respon" : "Maria",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "",
-                    "fechaAct" : "",
-                    "diaRetra" : "0 días"
-                }
-            ]
-        },
-        {
-            "area" : "SAC",
-            "icono" : IconoSacLight,
-            "bases": [
-                {
-                    "base"   : "Plantilla de Sub Aprobado",
-                    "estado" : true,
-                    "respon" : "Equipo SAC",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "-",
-                    "fechaAct" : "-",
-                    "diaRetra" : "0 días"
-                },
-                {
-                    "base"   : "Plantilla de Sub Data Real",
-                    "estado" : true,
-                    "respon" : "Equipo SAC",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "-",
-                    "fechaAct" : "-",
-                    "diaRetra" : "0 días"
-                }
-            ]
-        },
-        {
-            "area" : "Grow",
-            "icono" : IconoGrowLight,
-            "bases": [
-                {
-                    "base"   : "Consolidación de Información SO",
-                    "estado" : true,
-                    "respon" : "Grow Sistema",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "",
-                    "fechaAct" : "",
-                    "diaRetra" : "0 días"
-                },
-                // {
-                //     "base"   : "base numero 1",
-                //     "estado" : true,
-                //     "respon" : "Hector Mamani",
-                //     "fechaCar" : "12 de Abril del 2021",
-                //     "fechaRea" : "14 de Abril del 2021",
-                //     "fechaAct" : "15 de Abril del 2021",
-                //     "diaRetra" : "0 días"
-                // },
-                // {
-                //     "base"   : "base numero 1",
-                //     "estado" : true,
-                //     "respon" : "Hector Mamani",
-                //     "fechaCar" : "12 de Abril del 2021",
-                //     "fechaRea" : "14 de Abril del 2021",
-                //     "fechaAct" : "15 de Abril del 2021",
-                //     "diaRetra" : "0 días"
-                // },
-            ]
-        },
+    const {
+        ComunesTipoDisenio,
+        ComunesFechaInicio,
+        ComunesFechaFinal,
+    } = useSelector(({comunes}) => comunes)
 
-    ]
+    const {
+        data_estados_pendientes_home,
+        cargando_data_estados_pendientes_home
+    } = useSelector(({home}) => home)
 
-    const eventosSi = [
-        // {
-        //     "area" : "Ventas",
-        //     "icono" : IconoVentasLight,
-        //     "bases": [
-        //         {
-        //             "base"   : "Subsidios No Aprobados",
-        //             "estado" : true,
-        //             "respon" : "Maria",
-        //             "fechaCar" : "26 de Junio del 2021",
-        //             "fechaRea" : "24 de Junio del 2021",
-        //             "fechaAct" : "24 de Junio del 2021",
-        //             "diaRetra" : "0 días"
-        //         },
-        //         {
-        //             "base"   : "Facturas SO",
-        //             "estado" : true,
-        //             "respon" : "Maria",
-        //             "fechaCar" : "26 de Junio del 2021",
-        //             "fechaRea" : "24 de Junio del 2021",
-        //             "fechaAct" : "24 de Junio del 2021",
-        //             "diaRetra" : "0 días"
-        //         }
-        //     ]
-        // },
-        // {
-        //     "area" : "Revenue",
-        //     "icono" : IconoRevenueLight,
-        //     "bases": [
-        //         {
-        //             "base"   : "Subsidios Pre-Aprobados",
-        //             "estado" : true,
-        //             "respon" : "Equipo SAC",
-        //             "fechaCar" : "26 de Junio del 2021",
-        //             "fechaRea" : "-",
-        //             "fechaAct" : "-",
-        //             "diaRetra" : "0 días"
-        //         }
-        //     ]
-        // },
-        {
-            "area" : "SAC",
-            "icono" : IconoSacLight,
-            "bases": [
-                {
-                    "base"   : "Facturas SI",
-                    "estado" : true,
-                    "respon" : "SAC",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "",
-                    "fechaAct" : "",
-                    "diaRetra" : "0 días"
-                },
-                {
-                    "base"   : "Operaciones Sunat",
-                    "estado" : true,
-                    "respon" : "SAC",
-                    "fechaCar" : "04 de Agosto del 2021",
-                    "fechaRea" : "",
-                    "fechaAct" : "",
-                    "diaRetra" : "0 días"
-                },
-            ]
-        },
-        // {
-        //     "area" : "Sistemas",
-        //     "icono" : IconoSistemasLight,
-        //     "bases": [
-        //         {
-        //             "base"   : "Consolidación de Información SO",
-        //             "estado" : true,
-        //             "respon" : "Grow Sistema",
-        //             "fechaCar" : "26 de Junio del 2021",
-        //             "fechaRea" : "24 de Junio del 2021",
-        //             "fechaAct" : "24 de Junio del 2021",
-        //             "diaRetra" : "0 días"
-        //         },
-        //     ]
-        // },
+    useEffect(() => {
 
-    ]
+        dispatch(ObtenerEstadosPendientesReducer())
 
-    const [statusSiSeleccionado , setStatusSiSeleccionado] = useState(false)
-    const [eventosSeleccionados , setEventosSeleccionados] = useState(
-        [
-            {
-                "area" : "Revenue",
-                "icono" : IconoRevenueLight,
-                "bases": [
-                    {
-                        "base"   : "Plantilla de Sub Aprobado",
-                        "estado" : true,
-                        "respon" : "Maria",
-                        "fechaCar" : "04 de Agosto del 2021",
-                        "fechaRea" : "",
-                        "fechaAct" : "",
-                        "diaRetra" : "0 días"
-                    },
-                    {
-                        "base"   : "Sell Out Efectivo",
-                        "estado" : true,
-                        "respon" : "Maria",
-                        "fechaCar" : "04 de Agosto del 2021",
-                        "fechaRea" : "",
-                        "fechaAct" : "",
-                        "diaRetra" : "0 días"
-                    }
-                ]
-            },
-            {
-                "area" : "SAC",
-                "icono" : IconoSacLight,
-                "bases": [
-                    {
-                        "base"   : "Plantilla de Sub Aprobado",
-                        "estado" : true,
-                        "respon" : "Equipo SAC",
-                        "fechaCar" : "04 de Agosto del 2021",
-                        "fechaRea" : "-",
-                        "fechaAct" : "-",
-                        "diaRetra" : "0 días"
-                    },
-                    {
-                        "base"   : "Plantilla de Sub Data Real",
-                        "estado" : true,
-                        "respon" : "Equipo SAC",
-                        "fechaCar" : "04 de Agosto del 2021",
-                        "fechaRea" : "-",
-                        "fechaAct" : "-",
-                        "diaRetra" : "0 días"
-                    }
-                ]
-            },
-            {
-                "area" : "Grow",
-                "icono" : IconoGrowLight,
-                "bases": [
-                    {
-                        "base"   : "Consolidación de Información SO",
-                        "estado" : true,
-                        "respon" : "Grow Sistema",
-                        "fechaCar" : "04 de Agosto del 2021",
-                        "fechaRea" : "",
-                        "fechaAct" : "",
-                        "diaRetra" : "0 días"
-                    },
-                    // {
-                    //     "base"   : "base numero 1",
-                    //     "estado" : true,
-                    //     "respon" : "Hector Mamani",
-                    //     "fechaCar" : "12 de Abril del 2021",
-                    //     "fechaRea" : "14 de Abril del 2021",
-                    //     "fechaAct" : "15 de Abril del 2021",
-                    //     "diaRetra" : "0 días"
-                    // },
-                    // {
-                    //     "base"   : "base numero 1",
-                    //     "estado" : true,
-                    //     "respon" : "Hector Mamani",
-                    //     "fechaCar" : "12 de Abril del 2021",
-                    //     "fechaRea" : "14 de Abril del 2021",
-                    //     "fechaAct" : "15 de Abril del 2021",
-                    //     "diaRetra" : "0 días"
-                    // },
-                ]
-            },
-    
-        ]
-    )
+    }, [ComunesFechaInicio, ComunesFechaFinal])
 
 
-    const seleccionarNuevoEvento = (tipo) => {
-        if(tipo == "SI"){
-            setEventosSeleccionados(eventosSi)
-        }else{
-            setEventosSeleccionados(eventos)
-        }
-    }
+    const MesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"]
 
     return (
         <div
@@ -300,180 +62,99 @@ const Home = () => {
                         }}
                     >
                         <Row>
-                            <Col 
-                                xl={4}
-                                className={
-                                    statusSiSeleccionado == true
-                                    ?"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home DFE4F2"
-                                    :"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home CFFFFFF"
-                                }
-                                style={{marginRight:'20px'}}
-                                onClick={() => {
-                                    seleccionarNuevoEvento("SO")
-                                    setStatusSiSeleccionado(false)
-                                    
-                                }}
-                            >
-                                Status sell Out
-                            </Col>
-                            <Col 
-                                xl={4} 
-                                className={
-                                    statusSiSeleccionado == true
-                                    ?"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home CFFFFFF"
-                                    :"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home DFE4F2"
-                                }
-                                onClick={() => {
-                                    seleccionarNuevoEvento("SI")
-                                    setStatusSiSeleccionado(true)
-                                }}
-                            >
-                                Status sell In
-                            </Col>
-                            <Col 
-                                xl={15} 
-                                className="W600-S13-H17-C1EC0ED"
-                                style={{
-                                    textAlign: "right",
-                                    alignSelf: "center"
-                                }}
-                            >
-                                última actualización 20 Julio 2021
-                            </Col>
+
+                            {
+                                data_estados_pendientes_home.map((estado_pendiente, posicion) => {
+                                    return ( 
+                                        <Col 
+                                            xl={4}
+                                            className={
+                                                // statusSiSeleccionado == true
+                                                estado_pendiente.seleccionado == true
+                                                ?"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home CFFFFFF"
+                                                :"Wbold-S20-H27-C004FB8 Contenedor-Cabecera-Status-Home DFE4F2"
+                                            }
+                                            style={{marginRight:'20px'}}
+                                            onClick={() => {
+                                                dispatch(SeleccionarTprReducer(posicion))
+                                            }}
+                                        >
+                                            {estado_pendiente.tprnombre}
+                                        </Col>            
+                                    )
+                                })
+                            }
                         </Row>
                     </div>
                 </Col>
 
                 <Col xl={24} style={{paddingBottom:'30px'}}>
                     <Row>
-                        <Col 
+                        {/* <Col 
                             xl={4} 
                             style={{display:'flex', alignItems: "center", paddingTop:'20px'}}
                             className="Wbold-S13-H17-C004FB8"
                         >
-                            <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
-                            <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                                DD/MM/AA
-                            </div>
-                        </Col>
+
+                            <FiltroFechaTop 
+                                texto = {"Fecha Inicio"}   
+                            />
+
+                        </Col> */}
 
                         <Col 
                             xl={4} 
                             style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
                             className="Wbold-S13-H17-C004FB8"
                         >
-                            <span style={{paddingRight:'15px'}}>Fecha Fin</span>
-                            <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                                DD/MM/AA
-                            </div>
+                            
+                            <FiltroFechaTop 
+                                texto = {"Fecha"}
+                            />
+
                         </Col>
                     </Row>
                 </Col>
 
                 {
-                    statusSiSeleccionado == true
-                    ?<>
 
 
-                    {/* <Col xl={6} style={{ paddingRight:'10px'}}>
-                        <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                            <img 
-                                src={IconoVentasLight}
-                            />
-
-                            <div style={{paddingLeft:'10px'}}>
-                                <div className="Wnormal-S14-H19-C1EC0ED">Ventas</div>
-                                <div className="Wbold-S20-H27-C004FB8">29%</div>
-                            </div>
-                        </div>
-                    </Col> */}
-                    {/* <Col xl={6} style={{paddingLeft:'10px', paddingRight:'10px'}}>
-                        <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                            <img 
-                                src={IconoRevenueLight}
-                            />
-
-                            <div style={{paddingLeft:'10px'}}>
-                                <div className="Wnormal-S14-H19-C1EC0ED">Revenue</div>
-                                <div className="Wbold-S20-H27-C004FB8">29%</div>
-                            </div>
-                        </div>
-                    </Col> */}
-                    <Col xl={6} style={{paddingLeft:'10px', paddingRight:'10px'}}>
-                        <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                            <img 
-                                src={IconoSacLight}
-                            />
-
-                            <div style={{paddingLeft:'10px'}}>
-                                <div className="Wnormal-S14-H19-C1EC0ED">SAC</div>
-                                <div className="Wbold-S20-H27-C004FB8">100%</div>
-                            </div>
-                        </div>
-                    </Col>
-                    {/* <Col xl={6} style={{paddingLeft:'10px', }}>
-                        <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                            <img 
-                                src={IconoSistemasLight}
-                            />
-
-                            <div style={{paddingLeft:'10px'}}>
-                                <div className="Wnormal-S14-H19-C1EC0ED">Sistemas</div>
-                                <div className="Wbold-S20-H27-C004FB8">29%</div>
-                            </div>
-                        </div>
-                    </Col> */}
-
-
-
-
-
-
-
-
-
-                    
-                    </>
-                    :<>
-                        <Col xl={8} style={{ paddingRight:'10px'}}>
-                            <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                                <img 
-                                    src={IconoRevenueLight}
-                                />
-
-                                <div style={{paddingLeft:'10px'}}>
-                                    <div className="Wnormal-S14-H19-C1EC0ED">Revenue</div>
-                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col xl={8} style={{paddingLeft:'10px', paddingRight:'10px'}}>
-                            <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                                <img 
-                                    src={IconoSacLight}
-                                />
-
-                                <div style={{paddingLeft:'10px'}}>
-                                    <div className="Wnormal-S14-H19-C1EC0ED">SAC</div>
-                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col xl={8} style={{paddingLeft:'10px', }}>
-                            <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
-                                <img 
-                                    src={IconoGrowLight}
-                                />
-
-                                <div style={{paddingLeft:'10px'}}>
-                                    <div className="Wnormal-S14-H19-C1EC0ED">Grow</div>
-                                    <div className="Wbold-S20-H27-C004FB8">100%</div>
-                                </div>
-                            </div>
-                        </Col>
-                    </>
+                    data_estados_pendientes_home.map((estado_pendiente) => {
+                        return ( 
+                            estado_pendiente.seleccionado == true
+                            ?estado_pendiente.ares.map((area, posicion) => {
+                                return (
+                                    <Col 
+                                        xl={8} 
+                                        style={
+                                            posicion == 0
+                                            ?{paddingRight:'10px'}
+                                            :{paddingLeft:'10px', paddingRight:'10px'}
+                                        }
+                                    >
+                                        <div className="Contenedor-Tarjeta-Porcentaje-Tabla-Home">
+                                            <img 
+                                                src={config.api+area.areicono}
+                                            />
+    
+                                            <div style={{paddingLeft:'10px', alignSelf: "center"}}>
+                                                <div className="Wnormal-S14-H19-C1EC0ED">{area.arenombre}</div>
+                                                <div className="Wbold-S20-H27-C004FB8">
+                                                    {
+                                                        area.arenombre == "SAC Sell Out"
+                                                        ?"33"
+                                                        :"100%"
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Col> 
+                                )
+                            })
+                            :null          
+                        )
+                    })
                 }
-
 
             </Row>
 
@@ -505,145 +186,209 @@ const Home = () => {
                             }
                         >
                             <th className="Wbold-S13-H17-CFFFFFF">Áreas</th>
-                            <th className="Wbold-S13-H17-CFFFFFF">BASE DE DATOS</th>
+                            <th className="Wbold-S13-H17-CFFFFFF">Base de Datos</th>
                             <th className="Wbold-S13-H17-CFFFFFF">Responsable</th>
-                            <th className="Wbold-S13-H17-CFFFFFF">FECHA DE CARGA PROGRAMADO</th>
-                            <th className="Wbold-S13-H17-CFFFFFF">FECHA DE CARGA REAL</th>
-                            <th className="Wbold-S13-H17-CFFFFFF">FECHA DE ACTUALIZACIÓN</th>
-                            <th className="Wbold-S13-H17-CFFFFFF">DÍA DE RETRASO</th>
+                            <th className="Wbold-S13-H17-CFFFFFF">Fecha Programada</th>
+                            <th className="Wbold-S13-H17-CFFFFFF">Fecha Ultima Actualización</th>
+                            <th className="Wbold-S13-H17-CFFFFFF">Fecha Cierre Real</th>
+                            <th className="Wbold-S13-H17-CFFFFFF">Días de Retraso</th>
                         </tr>
+
                         {
-                            eventosSeleccionados.map((evento, posicion) => {
-                                return(
-                                    <tr 
-                                        style={
-                                            ComunesTipoDisenio == "Light"
-                                            ?{
-                                                background:'white', 
-                                                borderBottom: "1px solid #D7E8FF"
-                                            }
-                                            :posicion % 2 == 0
-                                            ?{background:"#2D2D2E"}
-                                            :{background:"#242526"}
-                                        }
-                                    >
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wbold-S13-H17-C004FB8"
-                                                :"Wbold-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            <img src={evento.icono} className="Icono-Area-Tabla-Home" />
-                                            {evento.area}
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.base}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.respon}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.fechaCar}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.fechaRea}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.fechaAct}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </td>
-                                        <td 
-                                            className={
-                                                ComunesTipoDisenio == "Light"
-                                                ?"Wnormal-S13-H17-C706C64"
-                                                :"Wnormal-S14-H19-Ce4e6eb"
-                                            }
-                                        >
-                                            {
-                                                evento.bases.map((base) => {
-                                                    return(
-                                                        <>
-                                                            {base.diaRetra}<br/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                            {/* <div className="Semaforo-Home"></div> */}
-                                        </td>
-                                    </tr>
+                            data_estados_pendientes_home.map((estado_pendiente) => {
+                                return ( 
+                                    estado_pendiente.seleccionado == true
+                                    ?estado_pendiente.ares.map((area, posicion) => {
+                                        return (
+                                            <tr 
+                                                style={
+                                                    ComunesTipoDisenio == "Light"
+                                                    ?{
+                                                        background:'white', 
+                                                        borderBottom: "1px solid #D7E8FF"
+                                                    }
+                                                    :posicion % 2 == 0
+                                                    ?{background:"#2D2D2E"}
+                                                    :{background:"#242526"}
+                                                }
+                                            >
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wbold-S13-H17-C004FB8"
+                                                        :"Wbold-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    <img src={config.api+area.areicono} className="Icono-Area-Tabla-Home" />
+                                                    {area.arenombre}
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+                                                            return(
+                                                                <>
+                                                                    {base.espbasedato}<br/>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+                                                            return(
+                                                                <>
+                                                                    {base.espresponsable}<br/>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+                                                            var objFecha = new Date(base.espfechaprogramado);
+                                                            return(
+                                                                <>
+                                                                    {/* {base.espfechaprogramado}<br/> */}
+                                                                    {
+                                                                        base.espfechaprogramado
+                                                                        ?<>
+                                                                        {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
+                                                                        </>
+                                                                        :null
+                                                                    }
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+                                                            var objFecha = new Date(base.espfechactualizacion);
+                                                            return(
+                                                                <>
+                                                                    {
+                                                                        base.espfechactualizacion
+                                                                        ?<>
+                                                                            {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
+                                                                        </>
+                                                                        :null
+                                                                    }
+                                                                    {/* {base.espchacargareal}<br/> */}
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px"
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+
+                                                            var objFecha = new Date(base.espchacargareal);
+
+                                                            return(
+                                                                <>
+                                                                    {
+                                                                        base.espchacargareal 
+                                                                        ?<>
+                                                                            {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
+                                                                        </>
+                                                                        :null
+                                                                    }
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ?"Wnormal-S13-H17-C706C64"
+                                                        :"Wnormal-S14-H19-Ce4e6eb"
+                                                    }
+                                                    style={{
+                                                        paddingTop: "0px",
+                                                    }}
+                                                >
+                                                    {
+                                                        area.esps.map((base) => {
+                                                            return(
+                                                                <div style={{display:'flex', alignItems: "center"}}>
+                                                                    {base.espdiaretraso} días<br/>
+                                                                    <div 
+                                                                        style={{
+                                                                            width: "21px",
+                                                                            height: "10px",
+                                                                            background: "#1EEC41",
+                                                                            borderRadius: "14px",
+                                                                            marginLeft:'5px'
+                                                                        }}
+                                                                    ></div>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                    {/* <div className="Semaforo-Home"></div> */}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                    :null          
                                 )
                             })
                         }
+
+                        
                         
                     </table>
                 </div>

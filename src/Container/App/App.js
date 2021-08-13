@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Switch, Route, Redirect} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import Login from '../Login/Login'
-import LogoPaginaColor from '../../Assets/Imagenes/Logos/LogoTheBrainColor.png'
+import LogoPaginaColor from '../../Assets/Imagenes/Logos/logoThanosColor.png'
 // import { ToastProvider } from 'react-toast-notifications';
 import Rutas from '../../Rutas/index'
 import {ValidarUsuarioConectadoReducer} from '../../Redux/Actions/Login/Login'

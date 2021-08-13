@@ -10,4 +10,4 @@ export * from './Facturas/Facturas';
 export * from './Facturas/FacturasFront';
 export * from './SubsidiosPendientes/SubsidiosPendientes';
 export * from './SubsidiosPendientes/SubsidiosPendientesFront';
-// export * from './Home/Home';
+export * from './Home/Home';

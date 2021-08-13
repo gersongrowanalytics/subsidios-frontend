@@ -18,6 +18,10 @@
     background-color: #DFE4F2;
 }
 
+.C40004FB8{
+    background-color: #40004FB8;
+} 
+
 .W600-S13-H17-C1EC0ED{
     font-family: Segoe UI;
     font-style: normal;
@@ -130,11 +134,31 @@
     color: #FFFFFF;
 }
 
+.Wbold-S13-H19-CFFFFFF-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
 .Wbold-S14-H19-C004FB8-L0015{
     font-family: Segoe UI;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #004FB8;
+}
+
+.Wbold-S13-H19-C004FB8-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
     line-height: 19px;
     letter-spacing: -0.015em;
     color: #004FB8;
@@ -168,6 +192,16 @@
     color: #004FB8;
 }
 
+
+.W400-S14-H19-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #004FB8;
+}
+
 .Wbold-S12-H16-C004FB8{
     font-family: Segoe UI;
     font-style: normal;
@@ -184,6 +218,16 @@
     font-size: 13px;
     line-height: 17px;
     color: #FFFFFF;
+}
+
+.Wbold-S13-H17-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #FF3742;
 }
 
 .Wnormal-S14-H19-C1EC0ED{
@@ -294,6 +338,33 @@
     font-size: 12px;
     line-height: 16px;
     color: #1EC0ED;
+}
+
+.W600-S14-H19-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #004FB8;
+}
+
+.Wnormal-S14-H19-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #706C64;
+}
+
+.Wbold-S13-H20-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 20px;
+    color: #FFFFFF;
 }
 
 .checkbox-luminoso span span{

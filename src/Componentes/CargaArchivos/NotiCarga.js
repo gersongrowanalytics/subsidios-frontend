@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import '../../Estilos/Componentes/CargaArchivos/NotiCarga.css'
 import IconoFlechaDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
-import IconoCampanaAzul from '../../Assets/Imagenes/Iconos/CargaArchivos/campana-azul.svg'
+import IconoCampanaAzul from '../../Assets/Imagenes/Iconos/campanaNotificacion.png'
 import IconoCampana from '../../Assets/Imagenes/Iconos/CargaArchivos/campana.svg'
+import IconoCerrarNaranja from '../../Assets/Imagenes/Iconos/cerrarNaranja.png'
+import IconoFlechaIzquierdaNaranja from '../../Assets/Imagenes/Iconos/flechaIzquierdaNaranja.png'
+import IconoMasAzul from '../../Assets/Imagenes/Iconos/masAzul.png'
 
 const NotiCarga = (props) => {
 
@@ -34,14 +37,14 @@ const NotiCarga = (props) => {
         >
             <div id="Contenedor-Titulo-Notificaciones-Carga" style={notificacionesCompleta == true?{justifyContent: "left", marginBottom:'5px'}:{}}>
                 <img 
-                    style={notificacionesCompleta==true?{transform: "rotate(0deg)"}:{}}
+                    // style={notificacionesCompleta==true?{}:{}}
                     onClick={() => setNotificacionesCompleta(!notificacionesCompleta)}
                     id={
                         ComunesTipoDisenio == "Light" 
                         ?"Icono-Flecha-Notificaciones-Carga-Light"
                         :"Icono-Flecha-Notificaciones-Carga" 
                     }
-                    src={IconoFlechaDerecha} 
+                    src={IconoFlechaIzquierdaNaranja} 
                 />
                 <img id="Icono-Campana-Notificaciones-Carga" src={IconoCampanaAzul} />
                 <span 
@@ -57,69 +60,108 @@ const NotiCarga = (props) => {
                 {
                     props.notificaciones_cargaarchivos.map((not, posicion) => {
                         return (
-                            <div className="Notificaciones-Carga" style={notificacionesCompleta == true?{paddingLeft:'35px', paddingRight:'90px'}:{}}>
-                                <div className="W600-S14-H19-Ce4e6eb" style={{paddingBottom:'5px'}}>
+                            not.MENSAJE
+                            ?<div className="Notificaciones-Carga" style={notificacionesCompleta == true?{paddingLeft:'35px', paddingRight:'80px'}:{}}>
+                                <div 
+                                    className={
+                                        ComunesTipoDisenio == "Light" 
+                                        ?"W600-S14-H19-C004FB8"
+                                        :"W600-S14-H19-Ce4e6eb"
+                                    }
+                                    style={{paddingBottom:'5px'}}
+                                >
                                     {/* Notificación {posicion+1} */}
                                     {not.TITULO}
                                 </div>
-                                {
-                                    not.MENSAJE
-                                    ?<div className="Wnormal-S14-H19-Ce4e6eb">
-                                        {not.MENSAJE}<br/>
+                                
+                                <div style={{display:'flex'}}>
+                                    {
+                                        not.MENSAJE
+                                        ?<div 
+                                            className={
+                                                ComunesTipoDisenio == "Light" 
+                                                ?"Wnormal-S14-H19-C706C64"
+                                                :"Wnormal-S14-H19-Ce4e6eb"
+                                            }
 
-                                        {/* FECHA NO REGISTRADA */}
+                                            style={{
+                                                width:'90%',
+                                                paddingRight:'10px'
+                                            }}
+                                        >
 
-                                        {
-                                            not.FECHA_NO_REGISTRADA
-                                            ?<>
-                                                 {"FECHA NO REGISTRADA : "}<br/>
-                                                {not.FECHA_NO_REGISTRADA}
-                                            </>
-                                            :null
-                                        }
+                                            {not.MENSAJE}<br/><br/>
 
-                                        {/* CLIENTES */}
+                                            {
+                                                notificacionesCompleta == true
+                                                ?<>
+                                                    {/* FECHA NO REGISTRADA */}
 
-                                        {
-                                            not.CLIENTES_NO_ENCONTRADOS
-                                            ?<>
-                                                {"CLIENTES_NO_ENCONTRADOS : "}<br/>
-                                                {
-                                                    not.CLIENTES_NO_ENCONTRADOS.map((cliente) => {
-                                                        return (
-                                                            <>
-                                                                {cliente.codigo+" en la linea: "+cliente.linea}<br/>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </>
-                                            :null
-                                        }
-                                        
-                                        {/* PRODUCTOS */}
+                                                    {
+                                                        not.FECHA_NO_REGISTRADA
+                                                        ?<>
+                                                            {"FECHA NO REGISTRADA : "}<br/>
+                                                            {not.FECHA_NO_REGISTRADA}
+                                                        </>
+                                                        :null
+                                                    }
 
-                                        {
-                                            not.PRODUCTOS_NO_ENCONTRADOS
-                                            ?<>
-                                                {"PRODUCTOS_NO_ENCONTRADOS : "}<br/>
-                                                {
-                                                    not.PRODUCTOS_NO_ENCONTRADOS.map((producto) => {
-                                                        return (
-                                                            <>
-                                                                {producto.codigo+" en la linea: "+producto.linea}<br/>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </>
-                                            :null
-                                        }
+                                                    {/* CLIENTES */}
 
+                                                    {
+                                                        not.CLIENTES_NO_ENCONTRADOS.length > 0
+                                                        ?<>
+                                                            {"CLIENTES_NO_ENCONTRADOS : "}<br/>
+                                                            {
+                                                                not.CLIENTES_NO_ENCONTRADOS.map((cliente) => {
+                                                                    return (
+                                                                        <>
+                                                                            {cliente.codigo+" en la linea: "+cliente.linea}<br/>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </>
+                                                        :null
+                                                    }
+                                                    
+                                                    {/* PRODUCTOS */}
+
+                                                    {
+                                                        not.PRODUCTOS_NO_ENCONTRADOS
+                                                        ?<>
+                                                            <b>{"Productos no encontrados: "}</b><br/>
+                                                            {
+                                                                not.PRODUCTOS_NO_ENCONTRADOS.map((producto) => {
+                                                                    return (
+                                                                        <>
+                                                                            <li>{producto.codigo+" en la linea: "+producto.linea}</li>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </>
+                                                        :null
+                                                    }
+                                                </>
+                                                :null
+                                            }
+
+                                        </div>
+                                        :null
+                                    }
+
+                                    <div style={{width:'10%', }}>
+                                        <img style={{cursor:'pointer'}} src={IconoCerrarNaranja} width="20px" />
+                                        <img 
+                                            onClick={() => setNotificacionesCompleta(!notificacionesCompleta)}
+                                            style={{cursor:'pointer', marginLeft:'-1px'}} src={IconoMasAzul} width="25px" 
+                                        />
                                     </div>
-                                    :null
-                                }
+
+                                </div>
                             </div>
+                            :null
                         )
                     })
                 }

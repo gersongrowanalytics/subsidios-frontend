@@ -36,8 +36,9 @@
     height: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid #C4C4C4
+    /* justify-content: center; */
+    border-bottom: 1px solid #C4C4C4;
+    padding-left: 30px;
 }
 
 
@@ -57,8 +58,8 @@
 
 #Icono-Flecha-Notificaciones-Carga-Light{
     width: 40px;
-    transform: rotate(180deg);
-    margin-right: 5px;
+    /* transform: rotate(180deg); */
+    margin-right: -2px;
     cursor: pointer;
     padding: 12px;
     border-radius: 100px;

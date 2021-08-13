@@ -122,6 +122,7 @@ const SubsidiosSo = () => {
     //     sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
     // }
 
+    const [aplicarFiltrosAutomaticoValidado, setAplicarFiltrosAutomaticoValidado] = useState(false)
     const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
     const [mostrarValidados, setMostrarValidados] = useState(true)
 
@@ -129,25 +130,27 @@ const SubsidiosSo = () => {
         const cantidadBultos = x.data.map(
             y => 
                 y.sdecantidadbultosreal
-                ?mostrarValidados == true
-                    ?y.sdestatus != null
-                        ? mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdecantidadbultosreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdecantidadbultosreal) 
-                                :0
-                        :0
-                    :y.sdestatus != null
-                        ?0
-                        :mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdecantidadbultosreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdecantidadbultosreal) 
-                                :0
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    :0
+                    :parseFloat(y.sdecantidadbultosreal) 
                 :0
         )
         return sumaValores(cantidadBultos)
@@ -160,25 +163,27 @@ const SubsidiosSo = () => {
             // y => y.sdebultosacordados ?parseFloat(y.sdebultosacordados): 0
             y => 
                 y.sdebultosacordados
-                ?mostrarValidados == true
-                    ?y.sdestatus != null
-                        ? mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdebultosacordados) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdebultosacordados) 
-                                :0
-                        :0
-                    :y.sdestatus != null
-                        ?0
-                        :mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdebultosacordados) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdebultosacordados) 
-                                :0
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdebultosacordados) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdebultosacordados) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdebultosacordados) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdebultosacordados) 
+                                    :0
+                    :parseFloat(y.sdebultosacordados)
                 :0
         )
         return sumaValores(bultosAcordados)
@@ -190,36 +195,71 @@ const SubsidiosSo = () => {
         const montosReconocer = x.data.map(
             y => 
                 y.sdemontoareconocerreal
-                ?mostrarValidados == true
-                    ?y.sdestatus != null
-                        ? mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                        :0
-                    :y.sdestatus != null
-                        ?0
-                        :mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    :0
+                    :parseFloat(y.sdemontoareconocerreal) 
                 :0
         )
         return sumaValores(montosReconocer)
     })
     const sumaValorizadoMontosReonocerTotal = sumaValores(valorizadosMontoReconcerTotal)
 
+
+    const valorizadosDiferenciasAhorrosSoles = data_subsidiosso.map(x => {
+        const montosReconocer = x.data.map(
+            y => 
+                y.sdemontoareconocerreal
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                    :0
+                    :parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                :0
+        )
+        return sumaValores(montosReconocer)
+    })
+    
+    const sumaValorizadosDiferenciasAhorrosSoles = sumaValores(valorizadosDiferenciasAhorrosSoles)
+
     return (
         <div style={{paddingBottom:'100px'}}>
             <div 
                 className={ComunesTipoDisenio == "Light" ?"CEDF0FA Wbold-S20-H27-C004FB8" :"Wbold-S20-H27-Ce4e6eb"}
-                style={{ paddingTop:'20px', paddingLeft:'40px', paddingBottom:'20px'}}
+                style={{ paddingTop:'10px', paddingLeft:'40px', paddingBottom:'10px'}}
             >
 
                     <FiltroFechas 
@@ -228,7 +268,8 @@ const SubsidiosSo = () => {
 
             </div>
 
-            <div style={{background:'white', padding:'30px 40px 40px 40px'}}>
+            <div style={{background:'white', padding:'15px 40px 40px 40px'}}>
+                {/* el ppading esta en 7px eu */}
                 <div style={{width:'100%', paddingBottom:'20px'}}>
                     <Row>
                         <Col 
@@ -260,53 +301,56 @@ const SubsidiosSo = () => {
                 </div>
                 <div id="Contenedor-Filtros-Tabla-Subsidios-So">
                     <Row style={{width:'100%'}}>
-                        <Col xl={4} xs={24}>
-                            {/* <BtnFiltroSubSo 
+                        {/* <Col xl={4} xs={24}>
+                            <BtnFiltroSubSo 
                                 texto = {"COD. SOLICITANTES"}
                                 btnSwitch = {true}
                                 tamanio = {"215px"}
                                 data = {solicitantes_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CLIENTES"))}
-                            /> */}
+                            />
                         </Col>
                         <Col xl={4} xs={24}>
-                            {/* <BtnFiltroSubSo 
+                            <BtnFiltroSubSo 
                                 texto = {"COD. PRODUCTO"}
                                 btnSwitch = {true}
                                 tamanio = {"190px"}
                                 data = {productos_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_PRODUCTOS"))}
-                            /> */}
+                            />
                         </Col>
                         <Col xl={3} xs={24}>
-                            {/* <BtnFiltroSubSo 
+                            <BtnFiltroSubSo 
                                 texto = {"CATEGORÍA"}
                                 tamanio = {"125px"}
                                 data = {categorias_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CATEGORIAS"))}
-                            /> */}
+                            />
                         </Col>
                         <Col xl={3} xs={24}>
-                            {/* <BtnFiltroSubSo 
+                            <BtnFiltroSubSo 
                                 texto = {"TERRITORIO"}
                                 tamanio = {"125px"}
                                 data = {territorios_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_TERRITORIO"))}
-                            /> */}
+                            />
                         </Col>
 
                         <Col xl={2} xs={24}>
-                            {/* <BtnFiltroSubSo 
+                            <BtnFiltroSubSo 
                                 texto = {"ZONA"}
                                 tamanio = {"90px"}
                                 data = {zonas_filtro_subsidiosso}
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_ZONAS"))}
-                            /> */}
-                        </Col>
+                            />
+                        </Col> */}
 
                         <Col xl={2} xs={24}>
                             <div 
-                                onClick={() => setMostrarAutomaticos(!mostrarAutomaticos)}
+                                onClick={() => {
+                                    setMostrarAutomaticos(!mostrarAutomaticos)   
+                                    setAplicarFiltrosAutomaticoValidado(true)
+                                }}
                                 className={
                                     mostrarAutomaticos == true
                                     ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
@@ -316,14 +360,16 @@ const SubsidiosSo = () => {
                                 <span 
                                     className={
                                         mostrarAutomaticos == true
-                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
-                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                        :"Wbold-S13-H19-C004FB8-L0015"
                                     }
                                 >
                                     {
-                                        mostrarAutomaticos == true
-                                        ?"Automaticos"
-                                        :"Manuales"
+                                        aplicarFiltrosAutomaticoValidado == false
+                                        ?"Estado"
+                                        :mostrarAutomaticos == true
+                                            ?"Automaticos"
+                                            :"Manuales"
                                     }
                                 </span>
                             </div>
@@ -331,7 +377,10 @@ const SubsidiosSo = () => {
 
                         <Col xl={4} xs={24}>
                             <div 
-                                onClick={() => setMostrarValidados(!mostrarValidados)}
+                                onClick={() => {
+                                    setMostrarValidados(!mostrarValidados)
+                                    setAplicarFiltrosAutomaticoValidado(true)
+                                }}
                                 className={
                                     mostrarValidados == true
                                     ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
@@ -341,12 +390,14 @@ const SubsidiosSo = () => {
                                 <span 
                                     className={
                                         mostrarValidados == true
-                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
-                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                        :"Wbold-S13-H19-C004FB8-L0015"
                                     }
                                 >
                                     {
-                                        mostrarValidados == true
+                                        aplicarFiltrosAutomaticoValidado == false
+                                        ?"Estado"
+                                        :mostrarValidados == true
                                         ?"Validados"
                                         :"No Validados"
                                     }
@@ -357,29 +408,102 @@ const SubsidiosSo = () => {
                     
                 </div>
 
-                <div style={{overflowX:"auto"}} id="Contenedor-Tabla-Subsidios-So">
+                <div style={{overflowX:"auto", marginTop:'-10px'}} id="Contenedor-Tabla-Subsidios-So">
                     <table className="table-responsive-subsidios-so" style={{boxShadow: "0px 0px 15px #D8DFE9", width:'100%'}}>
                         <thead
                             className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                         >
                             <tr>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Zona</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Territorio</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cliente</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Sub Cliente</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Categoría</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cod Producto</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Nombre Producto</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Bultos Acordados</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cantidad Bultos Softys</th>
-                                <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Monto a Reconocer S/IGV</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Zona</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Territorio</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Cliente</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Sub Cliente</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                // >Categoría</th>
+                                >Sector</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Cod Producto</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Nombre Producto</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Bultos Acordados</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Cantidad Bultos Softys</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Monto a Reconocer S/IGV</th>
+
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Diferencia de Ahorro S/IGV</th>
                             </tr>
                         </thead>
                         <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
                             <td 
                                 // colSpan="10"
                                 id="Total-Cuerpo-Tabla-Subsidios-So" 
-                                className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}
+                                className={
+                                    ComunesTipoDisenio == "Light" 
+                                    ? "CEDF0FA Wbold-S13-H17-C004FB8" 
+                                    : "C2d2d2e Wbold-S11-H20-Ce4e6eb"
+                                }
                             >
                                 Grand Total
                             </td>
@@ -392,21 +516,24 @@ const SubsidiosSo = () => {
 
                             {
                                 <>
-                                    <td className="Wbold-S13-H17-C004FB8">
+                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                         {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
-                                    <td className="Wbold-S13-H17-C004FB8">
+                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                         {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
                                 </>
                             }
 
-                            <td className="Wbold-S13-H17-C004FB8">
+                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                 S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                            </td>
+                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadosDiferenciasAhorrosSoles, 0)} displayType={'text'} thousandSeparator={true} />}
                             </td>
                         </tr>
                         {
-                            cargando_data_subsidiosso == true
+                            cargando_data_subsidiosso == true && data_subsidiosso.length == 0
                             ?<tr 
                                 // style={{width:'100%'}}
                                 style={
@@ -415,7 +542,7 @@ const SubsidiosSo = () => {
                                     :{borderBottom: '1px solid #1c1e21'}
                                 }
                             >
-                                <td colSpan="10" style={{textAlignLast: "center"}}>
+                                <td colSpan="11" style={{textAlignLast: "center"}}>
                                     <img src={IconoCargando}  />
                                 </td>
                             </tr>
@@ -424,25 +551,27 @@ const SubsidiosSo = () => {
                                 const valorizadosCantidadBultos = zona.data.map(
                                     x => 
                                         x.sdecantidadbultosreal
-                                        ?mostrarValidados == true
-                                            ?x.sdestatus != null
-                                                ? mostrarAutomaticos == true
-                                                    ?x.sdesac == 0
-                                                        ?parseFloat(x.sdecantidadbultosreal) 
-                                                        :0
-                                                    :x.sdesac == 1
-                                                        ?parseFloat(x.sdecantidadbultosreal) 
-                                                        :0
-                                                :0
-                                            :x.sdestatus != null
-                                                ?0
-                                                :mostrarAutomaticos == true
-                                                    ?x.sdesac == 0
-                                                        ?parseFloat(x.sdecantidadbultosreal) 
-                                                        :0
-                                                    :x.sdesac == 1
-                                                        ?parseFloat(x.sdecantidadbultosreal) 
-                                                        :0
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?x.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?x.sdesac == 0
+                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            :0
+                                                        :x.sdesac == 1
+                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            :0
+                                                    :0
+                                                :x.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?x.sdesac == 0
+                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            :0
+                                                        :x.sdesac == 1
+                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            :0
+                                            :parseFloat(x.sdecantidadbultosreal) 
                                         :0
                                     
                                 )
@@ -450,56 +579,88 @@ const SubsidiosSo = () => {
                                 const valorizadosBultosAcordados = zona.data.map(
                                     x => 
                                         x.sdebultosacordados 
-                                        ?mostrarValidados == true
-                                            ?x.sdestatus != null
-                                                ? mostrarAutomaticos == true
-                                                    ?x.sdesac == 0
-                                                        ?parseFloat(x.sdebultosacordados) 
-                                                        :0
-                                                    :x.sdesac == 1
-                                                        ?parseFloat(x.sdebultosacordados) 
-                                                        :0
-                                                :0
-                                            :x.sdestatus != null
-                                                ?0
-                                                :mostrarAutomaticos == true
-                                                    ?x.sdesac == 0
-                                                        ?parseFloat(x.sdebultosacordados) 
-                                                        :0
-                                                    :x.sdesac == 1
-                                                        ?parseFloat(x.sdebultosacordados) 
-                                                        :0
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?x.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?x.sdesac == 0
+                                                            ?parseFloat(x.sdebultosacordados) 
+                                                            :0
+                                                        :x.sdesac == 1
+                                                            ?parseFloat(x.sdebultosacordados) 
+                                                            :0
+                                                    :0
+                                                :x.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?x.sdesac == 0
+                                                            ?parseFloat(x.sdebultosacordados)
+                                                            :0
+                                                        :x.sdesac == 1
+                                                            ?parseFloat(x.sdebultosacordados)
+                                                            :0
+                                            :parseFloat(x.sdebultosacordados)
                                         :0
                                 )
 
                                 const valorizadoMontosReconocer = zona.data.map(
                                     y => 
                                         y.sdemontoareconocerreal
-                                        ?mostrarValidados == true
-                                            ?y.sdestatus != null
-                                                ? mostrarAutomaticos == true
-                                                    ?y.sdesac == 0
-                                                        ?parseFloat(y.sdemontoareconocerreal) 
-                                                        :0
-                                                    :y.sdesac == 1
-                                                        ?parseFloat(y.sdemontoareconocerreal) 
-                                                        :0
-                                                :0
-                                            :y.sdestatus != null
-                                                ?0
-                                                :mostrarAutomaticos == true
-                                                    ?y.sdesac == 0
-                                                        ?parseFloat(y.sdemontoareconocerreal) 
-                                                        :0
-                                                    :y.sdesac == 1
-                                                        ?parseFloat(y.sdemontoareconocerreal) 
-                                                        :0
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?y.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            :0
+                                                    :0
+                                                :y.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            :0
+                                            :parseFloat(y.sdemontoareconocerreal) 
+                                        :0
+                                )
+
+                                const valorizadoDiferenciaAhorroSoles = zona.data.map(
+                                    y => 
+                                        y.sdemontoareconocerreal
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?y.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoareconocerreal ) 
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoareconocerreal ) 
+                                                            :0
+                                                    :0
+                                                :y.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                                            :0
+                                            :parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
                                         :0
                                 )
 
                                 const sumaValorizadoCantidadBultos  = sumaValores(valorizadosCantidadBultos)
                                 const sumaValorizadoBultosAcordados = sumaValores(valorizadosBultosAcordados)
                                 const sumaValorizadoMontosReonocer  = sumaValores(valorizadoMontosReconocer)
+                                const sumaValorizadoDiferenciaAhorroSoles  = sumaValores(valorizadoDiferenciaAhorroSoles)
 
                                 return (
                                     <DataTablaSo 
@@ -512,6 +673,7 @@ const SubsidiosSo = () => {
                                         mostrarAutomaticos = {mostrarAutomaticos}
                                         mostrarValidados = {mostrarValidados}
                                         sumaValorizadoMontosReonocer = {sumaValorizadoMontosReonocer}
+                                        sumaValorizadoDiferenciaAhorroSoles = {sumaValorizadoDiferenciaAhorroSoles}
                                     />
                                 )
                             })

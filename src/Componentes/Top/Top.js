@@ -8,6 +8,8 @@ import IconoMenuLight from '../../Assets/Imagenes/Iconos/menuLight.svg'
 import LogoGrowColor from '../../Assets/Imagenes/Logos/LogoGrowBlancoNegro.png'
 import IconoUsuario from '../../Assets/Imagenes/Iconos/iconoUsuario.png'
 import IconoUsuarioLight from '../../Assets/Imagenes/Iconos/iconoUsuarioLight.svg'
+import IconoNotificacionAlerta from '../../Assets/Imagenes/Iconos/Top/notificacionAlerta.png'
+import IconoCerrarRojo from '../../Assets/Imagenes/Iconos/Top/cerrarRojo.png'
 
 import IconoNotificaiones from '../../Assets/Imagenes/Iconos/iconoNotificacion.png'
 import IconoDesplegar from '../../Assets/Imagenes/Iconos/iconoFlechaDesplegable.png'
@@ -22,6 +24,7 @@ import IconoTopNotificacionGris from '../../Assets/Imagenes/Iconos/Top/notificac
 import IconoTopCalendario from '../../Assets/Imagenes/Iconos/Top/calendario_azul.svg'
 import IconoTopCalendarioGris from '../../Assets/Imagenes/Iconos/Top/calendario_gris.svg'
 import FiltroFechaTop from './FiltroFechaTop';
+import {Link} from "react-router-dom";
 
 const Top = () => {
 
@@ -31,13 +34,68 @@ const Top = () => {
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     const [startDate, setStartDate] = useState(new Date());
+
+    const [ocultarNotificacionAlerta, setOcultarNotificacionAlerta] = useState(true);
+
     const [mostrarCerrarSesion, setMostrarCerrarSesion] = useState(false);
 
 
     return (
         <div>
-            <div id="Barra-Top" className={ComunesTipoDisenio == "Light" ? "CFFFFFF" : "C1c1e21"}>
-                <div id="Top-Contenedor">
+            <div 
+                id="Barra-Top" className={ComunesTipoDisenio == "Light" ? "CFFFFFF" : "C1c1e21"}
+                style={{
+                    display: "flex",
+                    placeContent: "center"
+                }}
+                // onClick={() => setOcultarNotificacionAlerta(true)}
+            >
+
+                {
+                    ocultarNotificacionAlerta == true
+                    ?<div 
+                        id="Contenedor-Alerta-Subsidios-Pendientes-Top"
+                    >
+
+                        <Row style={{width:'100%', height: "92px"}}>
+                            <Col xl={7} style={{paddingLeft:'10px', alignSelf: "center"}} >
+                                <img src={IconoNotificacionAlerta} width="80px" />
+                            </Col>
+                            <Col xl={17} style={{height:'100%', display: "flex", alignItems: "center"}} >
+                                <div className="Wbold-S13-H17-CFFFFFF">Se encontraron Subsidios<br/>pedientes</div>
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "10px",
+                                        right: "10px"
+                                    }}
+                                >
+
+                                    <Link to="/subsidios-pendientes">
+                                        <div id="Btn-Solucionar-Alerta-Subsidios-Pendientes-Top" className="Wbold-S13-H17-CFFFFFF">
+                                            Solucionar
+                                        </div>
+                                    </Link>
+                                </div>
+                            </Col>
+                            <img 
+                                onClick={() => setOcultarNotificacionAlerta(!ocultarNotificacionAlerta)}
+                                src={IconoCerrarRojo} width={"35px"}
+                                style={{
+                                    position:'absolute',
+                                    right:'0px',
+                                    top:'0',
+                                    cursor:'pointer',
+                                    zIndex: '1'
+                                }}
+                            />
+                        </Row>
+
+                    </div>
+                    :null
+                }
+
+                <div id="Top-Contenedor" style={{width:'100%'}}>
                     <Row>
                         <Col  xl={5} md={12} sm={12} xs={12} id="" >
                             <div
@@ -147,7 +205,7 @@ const Top = () => {
 
                                 <img 
                                     src={IconoNotificaiones} 
-                                    width={"30px"} 
+                                    width={"35px"} 
                                     style={{
                                         borderRadius:'50px',
                                         background:'#EDF0FA',
@@ -170,7 +228,7 @@ const Top = () => {
                                 <div className="dropdown">
                                     <span id="" onClick={() => setMostrarCerrarSesion(!mostrarCerrarSesion)} >
                                         <img src={IconoDesplegar}
-                                            width={"30px"} 
+                                            width={"35px"} 
                                             style={{
                                                 marginLeft:'5px',
                                                 cursor:'pointer'
@@ -230,10 +288,10 @@ const Top = () => {
                                         <img src={IconoUsuario} id="Top-Img-Usuario" /> {Nombre}
                                     </span>
 
-                                    <div class="dropdown-content">
+                                    {/* <div class="dropdown-content">
                                         <a href="#">Perfil</a>
                                         <a onClick={() => dispatch(CerrarSesionReducer())}>Salir</a>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 {/* <img onClick={() => dispatch(MostrarMenuReducer(true))} src={IconoMenu} id="Top-Img-Menu"/> */}
                             </div>

@@ -14,11 +14,28 @@ export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
         payload: true
     })
 
+    dispatch({
+        type: OBTENER_SUBSIDIOS_SI,
+        payload : {
+            data : [],
+            descarga : [],
+            sumSde : "0"
+        }
+    })
+
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal
+    } = getState().comunes
+
     await fetch(config.api+'modulo/SubsidiosSi/mostrar',
 		{
 			mode:'cors',
 			method: 'POST',
-			body: JSON.stringify({}),
+			body: JSON.stringify({
+                fechaInicio : ComunesFechaInicio,
+                fechaFinal  : ComunesFechaFinal,
+            }),
 			headers: {
 				'Accept' : 'application/json',
 				'Content-type' : 'application/json'

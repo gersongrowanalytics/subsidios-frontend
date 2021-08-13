@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import '../../Estilos/Rutas/SubsidiosPendientes/SubsidiosPendientes.css'
 import '../../Estilos/Elementos/Fecha/Fecha.css'
 import FiltroBtnTabla from '../../Componentes/Elementos/Tabla/FiltroBtnTabla';
+import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas';
+import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 
 const SubsidiosPendientes = () => {
 
@@ -45,12 +47,21 @@ const SubsidiosPendientes = () => {
     return (
         <Row>
             <Col 
-                xl={24} className="CEDF0FA" style={{paddingTop:'20px'}}
+                xl={24} className="CEDF0FA" style={{paddingTop:'10px', paddingBottom:'10px'}}
             >
-                <Row>
+                <div 
+                    className={ComunesTipoDisenio == "Light" ?"CEDF0FA Wbold-S20-H27-C004FB8" :"Wbold-S20-H27-Ce4e6eb"}
+                    style={{ paddingTop:'1px', paddingLeft:'40px', paddingBottom:'1px'}}
+                >
+                    <FiltroFechas 
+                        titulo = {"Subsidios Pendientes"}
+                    />
+                </div>
+
+                {/* <Row>
                     <Col 
                         xl={12} md={12} sm={12} xs={12} className="Wbold-S20-H27-C004FB8" 
-                        style={{paddingLeft:'40px', paddingRight:'20px', paddingBottom:'20px'}}
+                        style={{paddingLeft:'40px', paddingRight:'20px'}}
                     >
                         Subsidios Pendientes
                     </Col>
@@ -63,36 +74,43 @@ const SubsidiosPendientes = () => {
                     >
                         última actualización 20 Julio 2021
                     </Col>
-                </Row>
+                </Row> */}
             </Col>
 
             <Col 
                 xl={4} 
-                style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
+                style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'10px'}}
                 className="Wbold-S13-H17-C004FB8"
             >
-                <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
+
+                <FiltroFechaTop 
+                    texto = {"Fecha Inicio"}
+                />
+                {/* <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
                 <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
                     DD/MM/AA
-                </div>
+                </div> */}
             </Col>
 
             <Col 
                 xl={4} 
-                style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
+                style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'10px'}}
                 className="Wbold-S13-H17-C004FB8"
             >
-                <span style={{paddingRight:'15px'}}>Fecha Fin</span>
+                <FiltroFechaTop 
+                    texto = {"Fecha Fin"}
+                />
+                {/* <span style={{paddingRight:'15px'}}>Fecha Fin</span>
                 <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
                     DD/MM/AA
-                </div>
+                </div> */}
             </Col>
 
             <Col 
                 xl={16}
                 style={{
                     width: '100%',
-                    paddingTop:'20px',
+                    paddingTop:'10px',
                     textAlign: "-webkit-right",
                     paddingRight:'40px'
                 }}

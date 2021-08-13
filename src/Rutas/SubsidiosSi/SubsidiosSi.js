@@ -100,26 +100,28 @@ const SubsidiosSi = () => {
         const montosReconocer = x.data.map(
             y => 
                 y.sdemontoareconocerreal
-                ?mostrarValidados == true
-                    ?y.sdestatus != null
-                        ? mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                        :0
-                    :y.sdestatus != null
-                        ?0
-                        :mostrarAutomaticos == true
-                            ?y.sdesac == 0
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
-                            :y.sdesac == 1
-                                ?parseFloat(y.sdemontoareconocerreal) 
-                                :0
+                ?parseFloat(y.sdemontoareconocerreal) 
                 :0
+                // ?mostrarValidados == true
+                //     ?y.sdestatus != null
+                //         ? mostrarAutomaticos == true
+                //             ?y.sdesac == 0
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //             :y.sdesac == 1
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //         :0
+                //     :y.sdestatus != null
+                //         ?0
+                //         :mostrarAutomaticos == true
+                //             ?y.sdesac == 0
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //             :y.sdesac == 1
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                // :0
         )
         return sumaValores(montosReconocer)
     })
@@ -149,10 +151,10 @@ const SubsidiosSi = () => {
             </div>
 
             <div style={{marginBottom:'20px'}}>
-                <Row>
+                <Row style={{ paddingTop:'15px'}}>
                     <Col 
                         xl={4} 
-                        style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
+                        style={{display:'flex', alignItems: "center", paddingLeft:'40px',}}
                         className="Wbold-S13-H17-C004FB8"
                     >
                         <FiltroFechaTop 
@@ -162,7 +164,7 @@ const SubsidiosSi = () => {
 
                     <Col 
                         xl={4} 
-                        style={{display:'flex', alignItems: "center", paddingLeft:'40px', paddingTop:'20px'}}
+                        style={{display:'flex', alignItems: "center", paddingLeft:'40px',}}
                         className="Wbold-S13-H17-C004FB8"
                     >
                         <FiltroFechaTop 
@@ -174,7 +176,6 @@ const SubsidiosSi = () => {
                         xl={16}
                         style={{
                             width: '100%',
-                            paddingTop:'20px',
                             textAlign: "-webkit-right",
                             paddingRight:'40px'
                         }}
@@ -188,48 +189,48 @@ const SubsidiosSi = () => {
             
             <div id="Contenedor-Filtros-Tabla-Subsidios-So" style={{paddingLeft:'40px'}}>
                 <Row style={{width:'100%'}}>
-                    <Col xl={4} xs={24}>
-                        {/* <BtnFiltroSubSo 
+                    {/* <Col xl={4} xs={24}>
+                        <BtnFiltroSubSo 
                             texto = {"COD. SOLICITANTES"}
                             btnSwitch = {true}
                             tamanio = {"215px"}
                             data = {solicitantes_filtro_subsidiosso}
                             seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CLIENTES"))}
-                        /> */}
+                        />
                     </Col>
                     <Col xl={4} xs={24}>
-                        {/* <BtnFiltroSubSo 
+                        <BtnFiltroSubSo 
                             texto = {"COD. PRODUCTO"}
                             btnSwitch = {true}
                             tamanio = {"190px"}
                             data = {productos_filtro_subsidiosso}
                             seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_PRODUCTOS"))}
-                        /> */}
+                        />
                     </Col>
                     <Col xl={3} xs={24}>
-                        {/* <BtnFiltroSubSo 
+                        <BtnFiltroSubSo 
                             texto = {"CATEGORÍA"}
                             tamanio = {"125px"}
                             data = {categorias_filtro_subsidiosso}
                             seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_CATEGORIAS"))}
-                        /> */}
+                        />
                     </Col>
                     <Col xl={3} xs={24}>
-                        {/* <BtnFiltroSubSo 
+                        <BtnFiltroSubSo 
                             texto = {"TERRITORIO"}
                             tamanio = {"125px"}
                             data = {territorios_filtro_subsidiosso}
                             seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_TERRITORIO"))}
-                        /> */}
+                        />
                     </Col>
                     <Col xl={2} xs={24}>
-                        {/* <BtnFiltroSubSo 
+                        <BtnFiltroSubSo 
                             texto = {"ZONA"}
                             tamanio = {"90px"}
                             data = {zonas_filtro_subsidiosso}
                             seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_ZONAS"))}
-                        /> */}
-                    </Col>
+                        />
+                    </Col> */}
 
                     <Col xl={2} xs={24}>
                             <div 
@@ -243,8 +244,8 @@ const SubsidiosSi = () => {
                                 <span 
                                     className={
                                         mostrarAutomaticos == true
-                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
-                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                        :"Wbold-S13-H19-C004FB8-L0015"
                                     }
                                 >
                                     {
@@ -268,8 +269,8 @@ const SubsidiosSi = () => {
                                 <span 
                                     className={
                                         mostrarValidados == true
-                                        ?"Wbold-S14-H19-CFFFFFF-L0015"
-                                        :"Wbold-S14-H19-C004FB8-L0015"
+                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                        :"Wbold-S13-H19-C004FB8-L0015"
                                     }
                                 >
                                     {
@@ -454,24 +455,79 @@ const SubsidiosSi = () => {
                 </div>
             </Modal>
             
-            <div style={{overflowX:"auto", marginLeft:'40px', marginRight:'40px'}} id="Contenedor-Tabla-Subsidios-So">
+            <div style={{overflowX:"auto", marginLeft:'40px', marginRight:'40px', marginTop:'-10px'}} id="Contenedor-Tabla-Subsidios-So">
                 
                 <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
                     <thead
                         className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                     >
                         <tr>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Zona</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Territorio</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cliente</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Sub Cliente</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Categoría</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cod Producto</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Nombre Producto</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Sub Objetivo</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Factura Impactar</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Fecha</th>
-                            <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Estado</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Zona</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Territorio</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Cliente</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Sub Cliente</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Sector</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Cod Producto</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Nombre Producto</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Sub Objetivo</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Factura Impactar</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Fecha</th>
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Estado</th>
                         </tr>
                     </thead>
                     <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
@@ -491,7 +547,7 @@ const SubsidiosSi = () => {
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td className="Wbold-S13-H17-C004FB8">
+                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                             S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />
                         </td>
                         <td></td>
@@ -499,7 +555,7 @@ const SubsidiosSi = () => {
                         <td></td>
                     </tr>
                     {
-                        cargando_data_subsidiossi == true
+                        cargando_data_subsidiossi == true && data_subsidiossi.length  == 0
                         ?<tr 
                             // style={{width:'100%'}}
                             style={
@@ -518,26 +574,28 @@ const SubsidiosSi = () => {
                             const valorizadoObjetivo = zona.data.map(
                                 y => 
                                     y.sdemontoareconocerreal
-                                    ?mostrarValidados == true
-                                        ?y.sdestatus != null
-                                            ? mostrarAutomaticos == true
-                                                ?y.sdesac == 0
-                                                    ?parseFloat(y.sdemontoareconocerreal) 
-                                                    :0
-                                                :y.sdesac == 1
-                                                    ?parseFloat(y.sdemontoareconocerreal) 
-                                                    :0
-                                            :0
-                                        :y.sdestatus != null
-                                            ?0
-                                            :mostrarAutomaticos == true
-                                                ?y.sdesac == 0
-                                                    ?parseFloat(y.sdemontoareconocerreal) 
-                                                    :0
-                                                :y.sdesac == 1
-                                                    ?parseFloat(y.sdemontoareconocerreal) 
-                                                    :0
+                                    ?parseFloat(y.sdemontoareconocerreal) 
                                     :0
+                                    // ?mostrarValidados == true
+                                    //     ?y.sdestatus != null
+                                    //         ? mostrarAutomaticos == true
+                                    //             ?y.sdesac == 0
+                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                    //                 :0
+                                    //             :y.sdesac == 1
+                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                    //                 :0
+                                    //         :0
+                                    //     :y.sdestatus != null
+                                    //         ?0
+                                    //         :mostrarAutomaticos == true
+                                    //             ?y.sdesac == 0
+                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                    //                 :0
+                                    //             :y.sdesac == 1
+                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                    //                 :0
+                                    // :0
                             )
 
                             const sumaValorizadoObjetivo  = sumaValores(valorizadoObjetivo)

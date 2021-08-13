@@ -8,6 +8,7 @@ import {
 const INIT_STATE = {
     data_facturas_si : [],
     cargando_facturas_si : false,
+    data_descarga_facturas_si : [],
 
     // RECONOCIMIENTO
     cargando_reconocimiento_factura_si : false,
@@ -20,7 +21,8 @@ export default (state = INIT_STATE, action) => {
     case OBTENER_FACTURAS_SI: {
         return {
             ...state,
-            data_facturas_si : action.payload
+            data_facturas_si : action.payload.facturas,
+            data_descarga_facturas_si : action.payload.descargar
         }
     }
     case CARGANDO_FACTURAS_SI: {

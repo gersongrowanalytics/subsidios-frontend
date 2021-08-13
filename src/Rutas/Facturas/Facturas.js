@@ -4,6 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {ObtenerFacturasSiReducer} from '../../Redux/Actions/Facturas/Facturas'
 import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas'
 import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
+import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
+import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
+
 import '../../Estilos/Rutas/Facturas/Facturas.css'
 import FiltroTabla from '../../Componentes/Elementos/Tabla/FiltroTabla';
 import ModalNotasCredito from '../../Componentes/Subsidios/ModalNotasCredito';
@@ -11,6 +14,10 @@ import ModalReconocimientos from '../../Componentes/Facturas/ModalReconocimiento
 import NumberFormat from 'react-number-format';
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
+import ReactExport from 'react-data-export';
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 const Facturas = () => {
     const dispatch = useDispatch();
@@ -23,11 +30,11 @@ const Facturas = () => {
         ComunesFechaInicio,
         ComunesFechaFinal,
         ComunesTipoDisenio
-    } = useSelector(({comunes}) => comunes);
-
+    } = useSelector(({comunes}) => comunes);    
     const {
         data_facturas_si,
-        cargando_facturas_si
+        cargando_facturas_si,
+        data_descarga_facturas_si
     } = useSelector(({facturas}) => facturas);
 
     useEffect(() => {
@@ -247,7 +254,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >SOLICITANTE:</div>
+                                >Solicitante:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -263,7 +270,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >DESTINATARIO:</div>
+                                >Destinatario:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -280,7 +287,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >CLASE:</div>
+                                >Clase:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -296,7 +303,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >FECHA:</div>
+                                >Fecha:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -313,7 +320,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >FACTURA:</div>
+                                >Factura:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -329,7 +336,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >VALOR:</div>
+                                >Valor:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -346,7 +353,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >PEDIDO:</div>
+                                >Pedido:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -362,7 +369,7 @@ const Facturas = () => {
                                         ?"Titulo-Factura-Seleccionada-Facturas Wbold-S13-H17-C004FB8"
                                         :"Titulo-Factura-Seleccionada-Facturas Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >P.ORIG:</div>
+                                >P.Orig:</div>
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light"
@@ -374,7 +381,7 @@ const Facturas = () => {
                         </Row>
 
 
-                        <table className="table-responsive-subsidios-so" style={{position:'relative'}}>
+                        <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
                             <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
                                 <tr>
                                     <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Material</th>
@@ -449,6 +456,30 @@ const Facturas = () => {
                     
                 </Col>
             </Row>
+
+            <ExcelFile 
+                filename="Facturas SI"
+                element={
+                    <div 
+                        id={
+                            ComunesTipoDisenio == "Light"
+                            ?"Btn-Flotante-Descargar-Subsidios-So-Light"
+                            :"Btn-Flotante-Descargar-Subsidios-So"
+                        }
+                    >
+                        <img src={
+                            ComunesTipoDisenio == "Light"
+                            ?IconoDescargarLight
+                            :IconoDescargar
+                        } id="Icono-Flotante-Descargar-Subsidios-So" />
+                    </div>
+                }>
+                <ExcelSheet 
+                    dataSet={data_descarga_facturas_si} 
+                    name="Facturas SI"
+                />
+            </ExcelFile>
+
         </div>
     )
 }

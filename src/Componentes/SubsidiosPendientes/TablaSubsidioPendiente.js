@@ -35,9 +35,14 @@ const TablaSubsidioPendiente = (props) => {
         cargando_asignar_facturas_subsidiossipendientes
     } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal,
+    } = useSelector(({comunes}) => comunes);
+
     useEffect(() => {
         dispatch(ObtenerSubsidiosPendientesReducer())
-    }, []);
+    }, [ComunesFechaInicio, ComunesFechaFinal]);
 
     const ComunesTipoDisenio = props.ComunesTipoDisenio
 
@@ -46,7 +51,7 @@ const TablaSubsidioPendiente = (props) => {
 
     return (
         <div 
-            style={{overflowX:"auto", marginTop:'30px', boxShadow: "0px 0px 15px #D8DFE9", height:'500px'}} 
+            style={{overflowX:"auto", marginTop:'15px', boxShadow: "0px 0px 15px #D8DFE9", height:'500px'}} 
             id="Contenedor-Tabla-Subsidios-So"
             
         >       
@@ -109,20 +114,104 @@ const TablaSubsidioPendiente = (props) => {
                     className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                 >
                     <tr>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Zona</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Territorio</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cliente</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Sub Cliente </th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">RUC Sub Cliente</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Categoría</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Cod Producto</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Nombre Producto</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Sub Objetivo</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Fac Impactar</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Fecha</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Diferencia Ahorro</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Estado</th>
-                        <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"></th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Zona</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Territorio</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Cliente</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Sub Cliente </th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >RUC Sub Cliente</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Sector</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Cod Producto</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Nombre Producto</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Sub Objetivo</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Fac Impactar</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Fecha</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Diferencia Ahorro</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        >Estado</th>
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
+                        ></th>
                     </tr>
                 </thead>
                 <tr>
@@ -254,7 +343,7 @@ const TablaSubsidioPendiente = (props) => {
                                                             ? "Wbold-S13-H17-C004FB8"
                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                         }>
-                                                            {dato.catnombre}
+                                                            {dato.sdesector}
                                                     </td>
 
                                                     <td 
@@ -399,7 +488,7 @@ const TablaSubsidioPendiente = (props) => {
                                                                         ? "W600-S12-H16-C706C64"
                                                                         : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                     }>
-                                                                        {dato.catnombre}
+                                                                        {dato.sdesector}
                                                                 </td>
 
                                                                 <td 

@@ -40,7 +40,7 @@ const FiltroFechaTop = (props) => {
     useEffect(() => {
 
         if(ComunesFechaInicio == null){
-            dispatch(CambiarFechaReducer(startDate, null))
+            // dispatch(CambiarFechaReducer(startDate, null))
         }
 
     },[])

@@ -10,11 +10,19 @@ import { message } from 'antd';
 
 export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState) => {
 
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal
+    } = getState().comunes
+
     await fetch(config.api+'modulo/SubsidiosPendientes/mostrar',
 		{
 			mode:'cors',
 			method: 'POST',
-			body: JSON.stringify({}),
+			body: JSON.stringify({
+                fechaInicio : ComunesFechaInicio,
+                fechaFinal  : ComunesFechaFinal,
+            }),
 			headers: {
 				'Accept' : 'application/json',
 				'Content-type' : 'application/json'
