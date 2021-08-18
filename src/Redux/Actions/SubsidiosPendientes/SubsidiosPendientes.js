@@ -4,7 +4,8 @@ import {
     OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
     CARGANDO_ASIGNAR_FACTURAS_SUBSIDIOS_PENDIENTES,
     CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES,
-    CARGANDO_TABLA_SUBSIDIOS_PENDIENTES
+    CARGANDO_TABLA_SUBSIDIOS_PENDIENTES,
+    CARGANDO_TABLA_FACTURAS_ASIGNAR
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 import { estadoRequestReducer } from "../EstadoRequest"
 import { message } from 'antd';
@@ -83,6 +84,24 @@ export const LimpiarArrayDescargaSubsidiosPendientesReducer = async (subsidiosso
 
 export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, sdecodigodestinatario) => async (dispatch, getState) => {
 
+    let {
+        data_subsidiossipendientes,
+    } = getState().subsidiosPendientes
+    
+    if(data_subsidiossipendientes[posicion]['data'][posicionData]['facturasasignar']){
+        if(data_subsidiossipendientes[posicion]['data'][posicionData]['facturasasignar'].length < 0){
+            dispatch({
+                type: CARGANDO_TABLA_FACTURAS_ASIGNAR,
+                payload : true
+            })
+        }
+    }else{
+        dispatch({
+            type: CARGANDO_TABLA_FACTURAS_ASIGNAR,
+            payload : true
+        })
+    }
+
     await fetch(config.api+'modulo/SubsidiosPendientes/mostrar/facturas',
 		{
 			mode:'cors',
@@ -104,11 +123,6 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
 
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
-            
-
-            let {
-                data_subsidiossipendientes,
-            } = getState().subsidiosPendientes
 
             data_subsidiossipendientes[posicion]['data'][posicionData]['facturasasignar'] = data.datos
 
@@ -123,6 +137,11 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
     }).catch((error)=> {
         console.log(error)
     });
+
+    dispatch({
+        type: CARGANDO_TABLA_FACTURAS_ASIGNAR,
+        payload : false
+    })
 
 }
 

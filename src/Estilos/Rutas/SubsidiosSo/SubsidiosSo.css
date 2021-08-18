@@ -108,3 +108,19 @@ thead tr th {
     padding-right: 10px;
     cursor: pointer;
 }
+
+.Tabla-SubsidiosSi thead th {
+    position: sticky;
+}
+  
+.Tabla-SubsidiosSi tbody th {
+    position: sticky;
+}
+
+.Tabla-SubsidiosSo thead th {
+    position: sticky;
+}
+  
+.Tabla-SubsidiosSo tbody th {
+    position: sticky;
+}

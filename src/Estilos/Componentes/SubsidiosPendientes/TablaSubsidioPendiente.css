@@ -73,3 +73,12 @@
     line-height: 16px;
     color: #4D4D4D;
 }
+
+
+.Tabla-Subsidios-Pendientes thead th {
+    position: sticky;
+}
+  
+.Tabla-Subsidios-Pendientes tbody th {
+    position: sticky;
+}

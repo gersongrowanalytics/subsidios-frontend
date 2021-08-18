@@ -173,13 +173,13 @@ const Facturas = () => {
             <Row style={{width:'100%'}}>
                 <Col xl={16}>
                     <div style={{overflowX:"auto", marginLeft:'40px', boxShadow: "0px 0px 15px #D8DFE9"}} id="Contenedor-Tabla-Subsidios-So"  onScroll={onScroll}>
-                        <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
+                        <table className="table-responsive-subsidios-so Tabla-Historico-Facturas" style={{position:'relative', width:'100%'}}>
                             <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
                                 <tr>
                                     {
                                         data_columnas_facturas.map((columnas, posicion) => {
                                             return (
-                                                <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">
+                                                <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">
                                                     {
                                                         columnas.nombre
                                                     }
@@ -195,38 +195,42 @@ const Facturas = () => {
                                 </tr>
                             </thead>
 
-                            {
-                                cargando_facturas_si == true
-                                ?<tr style={{width:'100%'}}>
-                                    <td colSpan="9" style={{textAlignLast: "center"}}>
-                                        <img src={IconoCargando}  />
-                                    </td>
-                                </tr>
-                                :data_facturas_si.map((factura, posicion) => {
-                                    return(
-                                        <>
-                                            {
-                                                <tr 
-                                                    style={{cursor:'pointer'}}
-                                                    onClick={() => {
-                                                        setFacturaSeleccionada(factura)
-                                                    }}
-                                                >
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{posicion+1}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsisolicitante}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsidestinatario}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsiclase}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsifecha}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsifactura}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsivalorneto}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsipedido}</td>
-                                                    <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{factura.fsipedidooriginal}</td>
-                                                </tr>
-                                            }
-                                        </>
-                                    )
-                                })
-                            }
+                            <tbody>
+                                {
+                                    cargando_facturas_si == true
+                                    ?<tr style={{width:'100%'}}>
+                                        <td colSpan="9" style={{textAlignLast: "center"}}>
+                                            <img src={IconoCargando}  />
+                                        </td>
+                                    </tr>
+                                    :data_facturas_si.map((factura, posicion) => {
+                                        return(
+                                            <>
+                                                {
+                                                    <tr 
+                                                        style={{cursor:'pointer'}}
+                                                        onClick={() => {
+                                                            setFacturaSeleccionada(factura)
+                                                        }}
+                                                    >
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{posicion+1}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsisolicitante}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsidestinatario}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsiclase}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsifecha}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsifactura}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">
+                                                            S/{<NumberFormat value={funFomratoDecimal(factura.fsivalorneto, 0)} displayType={'text'} thousandSeparator={true} />}
+                                                        </td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsipedido}</td>
+                                                        <td className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C706C64">{factura.fsipedidooriginal}</td>
+                                                    </tr>
+                                                }
+                                            </>
+                                        )
+                                    })
+                                }
+                            </tbody>
                             
                             <tr>
                             </tr>
@@ -381,15 +385,18 @@ const Facturas = () => {
                         </Row>
 
 
-                        <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
+                        <table 
+                            className="table-responsive-subsidios-so Tabla-Detalle-Factura-Historico-Facturas" 
+                            style={{position:'relative', width:'100%'}}
+                        >
                             <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
                                 <tr>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Material</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Valorizado</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Saldo</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Reconocido</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">30%</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Nota Credito</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Material</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Valorizado</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Saldo</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Reconocido</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">30%</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Nota Credito</th>
                                     {/* <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Pedido Original</th> */}
                                 </tr>
                             </thead>

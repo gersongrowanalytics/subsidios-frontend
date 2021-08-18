@@ -7,3 +7,19 @@
     width: 100%;
     text-align: -webkit-right;
 }
+
+.Tabla-Historico-Facturas thead th {
+    position: sticky;
+}
+  
+.Tabla-Historico-Facturas tbody th {
+    position: sticky;
+}
+
+.Tabla-Detalle-Factura-Historico-Facturas thead th {
+    position: sticky;
+}
+  
+.Tabla-Detalle-Factura-Historico-Facturas tbody th {
+    position: sticky;
+}

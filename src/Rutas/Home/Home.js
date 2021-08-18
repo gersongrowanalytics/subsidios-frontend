@@ -140,10 +140,15 @@ const Home = () => {
                                             <div style={{paddingLeft:'10px', alignSelf: "center"}}>
                                                 <div className="Wnormal-S14-H19-C1EC0ED">{area.arenombre}</div>
                                                 <div className="Wbold-S20-H27-C004FB8">
-                                                    {
+                                                    {/* {
                                                         area.arenombre == "SAC Sell Out"
                                                         ?"33"
                                                         :"100%"
+                                                    } */}
+                                                    {
+                                                        area.arenombre == "SAC Sell Out"
+                                                        ?area.areporcentaje
+                                                        :<>{area.areporcentaje+"%"}</>
                                                     }
                                                 </div>
                                             </div>
@@ -286,7 +291,7 @@ const Home = () => {
                                                                         ?<>
                                                                         {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
                                                                         </>
-                                                                        :null
+                                                                        :"-"
                                                                     }
                                                                 </>
                                                             )
@@ -313,7 +318,7 @@ const Home = () => {
                                                                         ?<>
                                                                             {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
                                                                         </>
-                                                                        :null
+                                                                        :"-"
                                                                     }
                                                                     {/* {base.espchacargareal}<br/> */}
                                                                 </>
@@ -343,7 +348,7 @@ const Home = () => {
                                                                         ?<>
                                                                             {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
                                                                         </>
-                                                                        :null
+                                                                        :"-"
                                                                     }
                                                                 </>
                                                             )
@@ -363,17 +368,30 @@ const Home = () => {
                                                     {
                                                         area.esps.map((base) => {
                                                             return(
-                                                                <div style={{display:'flex', alignItems: "center"}}>
-                                                                    {base.espdiaretraso} días<br/>
-                                                                    <div 
-                                                                        style={{
-                                                                            width: "21px",
-                                                                            height: "10px",
-                                                                            background: "#1EEC41",
-                                                                            borderRadius: "14px",
-                                                                            marginLeft:'5px'
-                                                                        }}
-                                                                    ></div>
+                                                                <div style={{display:'flex', alignItems: "center", position:'relative'}}>
+                                                                    <div style={{width:'50%'}}>
+                                                                        {base.espdiaretraso} días
+                                                                    </div>
+                                                                    <div style={{width:'50%'}}>
+                                                                        <div 
+                                                                            style={
+                                                                                base.espdiaretraso <= 0
+                                                                                ?{
+                                                                                    width: "21px",
+                                                                                    height: "10px",
+                                                                                    background: "#1EEC41",
+                                                                                    borderRadius: "14px",
+                                                                                    
+                                                                                }
+                                                                                :{
+                                                                                    width: "21px",
+                                                                                    height: "10px",
+                                                                                    background: "red",
+                                                                                    borderRadius: "14px",
+                                                                                }
+                                                                            }
+                                                                        ></div>
+                                                                    </div>
                                                                 </div>
                                                             )
                                                         })

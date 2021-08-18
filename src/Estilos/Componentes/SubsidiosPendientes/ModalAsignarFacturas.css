@@ -39,3 +39,11 @@
 .Contenedor-Modal-Asignar-Facturas-Confirmacion .ant-modal-content{
     border-radius: 22px;
 }
+
+.Tabla-Modal-Asignar-Facturas-SubsidiosPendientes thead th {
+    position: sticky;
+}
+  
+.Tabla-Modal-Asignar-Facturas-SubsidiosPendientes tbody th {
+    position: sticky;
+}

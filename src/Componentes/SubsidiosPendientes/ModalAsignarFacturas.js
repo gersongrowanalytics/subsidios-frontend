@@ -12,6 +12,7 @@ const ModalAsignarFacturas = (props) => {
     const [objetivo, setObjetivo] = useState("");
 
     const ComunesTipoDisenio = props.ComunesTipoDisenio
+    const cargandoTabla = props.cargando_tabla_facturas_asignar_subsidiospendientes
 
     useEffect(() => {
 
@@ -143,14 +144,14 @@ const ModalAsignarFacturas = (props) => {
                         id="Contenedor-Tabla-Subsidios-So"
                         
                     >       
-                        <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
+                        <table className="table-responsive-subsidios-so Tabla-Modal-Asignar-Facturas-SubsidiosPendientes" style={{position:'relative', width:'100%'}}>
                             <thead 
                                 className={ComunesTipoDisenio == "Light" ? "" : "C242526"}
                             >
                                 <tr>
                                     <th 
                                         style={{borderRadius: "23px 0px 0px 23px"}}
-                                        className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Elegir</th>
+                                        className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8" style={{zIndex:'1'}} >Elegir</th>
                                     <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Fecha</th>
                                     <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Factura SI</th>
                                     <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Cod Producto </th>
@@ -164,121 +165,137 @@ const ModalAsignarFacturas = (props) => {
                                 </tr>
                             </thead>
                             
-                            {
-                                props.facturas.map((factura, posicionFactura) => {
-                                    return (
-                                        <tr
-                                            style={
-                                                ComunesTipoDisenio == "Light"
-                                                ?{borderBottom: '1px solid #D7E8FF'}
-                                                :{borderBottom: '1px solid #1c1e21'}
-                                            }
-                                        >
-                                            <td
-                                                style={{textAlign: "-webkit-center"}}
+                            <tbody>
+                                {
+                                    cargandoTabla == true
+                                    ?<tr 
+                                        // style={{width:'100%'}}
+                                        style={
+                                            ComunesTipoDisenio == "Light"
+                                            ?{borderBottom: '1px solid #D7E8FF'}
+                                            :{borderBottom: '1px solid #1c1e21'}
+                                        }
+                                    >
+                                        <td colSpan="9" style={{textAlignLast: "center"}}>
+                                            <img src={props.IconoCargando}  />
+                                        </td>
+                                    </tr>
+
+                                    :props.facturas.map((factura, posicionFactura) => {
+                                        return (
+                                            <tr
+                                                style={
+                                                    ComunesTipoDisenio == "Light"
+                                                    ?{borderBottom: '1px solid #D7E8FF'}
+                                                    :{borderBottom: '1px solid #1c1e21'}
+                                                }
                                             >
-                                                <Checkbox 
-                                                    checked={factura.seleccionado}
-                                                    className="checkbox-luminoso" onChange={()=>{}}></Checkbox>
-                                            </td>
-                                            
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    {factura.fecfecha}
-                                            </td>
-
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    {factura.fsifactura}
-                                            </td>
-
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    {factura.prosku}
-                                            </td>
-
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    {factura.pronombre}
-                                            </td>
-
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    S/{<NumberFormat value={funFomratoDecimal(factura.fdsvalorneto, 2)} displayType={'text'} thousandSeparator={true} />}
-                                            </td>
-                                            <td 
-                                                className={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ? "W600-S12-H16-C706C64"
-                                                    : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
-                                                }>
-                                                    S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />}
-                                            </td>
-
-                                            <td>
-                                                <div 
-                                                    className={
-                                                        parseFloat(factura.fdssaldo) < parseFloat(factura.impacto)
-                                                        ?"Input-Blanco-Negro-Tabla-Campo W600-S13-H17-CFF3742"
-                                                        :"Input-Blanco-Negro-Tabla-Campo W600-S12-H16-C706C64"
-                                                    }
-                                                    style={
-                                                        parseFloat(factura.fdssaldo) < parseFloat(factura.impacto)
-                                                        ?{border: "1px solid #FF3742", textAlignLast: "center"}
-                                                        :{textAlignLast: "center"}
-                                                    }
+                                                <td
+                                                    style={{textAlign: "-webkit-center"}}
                                                 >
-                                                    <input 
-                                                        className="Input-Sin-Estilo-Tabla-Campo"
-                                                        type='number'
-                                                        onChange={
-                                                            async (e) => {
-                                                                // setObjetivo(objetivo - e.target.value)
-                                                                await props.CambiarImpactoFacturaAsignada(posicionFactura, e.target.value)
-                                                                calcularNuevoObjetivo()
-                                                            }
+                                                    <Checkbox 
+                                                        checked={factura.seleccionado}
+                                                        className="checkbox-luminoso" onChange={()=>{}}></Checkbox>
+                                                </td>
+                                                
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        {factura.fecfecha}
+                                                </td>
+
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        {factura.fsifactura}
+                                                </td>
+
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        {factura.prosku}
+                                                </td>
+
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        {factura.pronombre}
+                                                </td>
+
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        S/{<NumberFormat value={funFomratoDecimal(factura.fdsvalorneto, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                </td>
+                                                <td 
+                                                    className={
+                                                        ComunesTipoDisenio == "Light"
+                                                        ? "W600-S12-H16-C706C64"
+                                                        : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                    }>
+                                                        S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                </td>
+
+                                                <td>
+                                                    <div 
+                                                        className={
+                                                            parseFloat(factura.fdssaldo) < parseFloat(factura.impacto)
+                                                            ?"Input-Blanco-Negro-Tabla-Campo W600-S13-H17-CFF3742"
+                                                            :"Input-Blanco-Negro-Tabla-Campo W600-S12-H16-C706C64"
                                                         }
-                                                        value={factura.impacto}
-                                                    />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="Input-Azul-Tabla-Campo W600-S12-H16-C706C64">
-                                                    {
-                                                        factura.impacto
-                                                        ?<>
-                                                            S/<NumberFormat value={funFomratoDecimal(parseFloat(factura.fdssaldo) - parseFloat(factura.impacto), 2)} displayType={'text'} thousandSeparator={true} />
-                                                        </>
-                                                        :<>
-                                                            S/<NumberFormat value={funFomratoDecimal(parseFloat(factura.fdssaldo), 2)} displayType={'text'} thousandSeparator={true} />
-                                                        </>
-                                                    }
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                                        style={
+                                                            parseFloat(factura.fdssaldo) < parseFloat(factura.impacto)
+                                                            ?{border: "1px solid #FF3742", textAlignLast: "center"}
+                                                            :{textAlignLast: "center"}
+                                                        }
+                                                    >
+                                                        <input 
+                                                            className="Input-Sin-Estilo-Tabla-Campo"
+                                                            type='number'
+                                                            onChange={
+                                                                async (e) => {
+                                                                    // setObjetivo(objetivo - e.target.value)
+                                                                    await props.CambiarImpactoFacturaAsignada(posicionFactura, e.target.value)
+                                                                    calcularNuevoObjetivo()
+                                                                }
+                                                            }
+                                                            value={factura.impacto}
+                                                        />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="Input-Azul-Tabla-Campo W600-S12-H16-C706C64">
+                                                        {
+                                                            factura.impacto
+                                                            ?<>
+                                                                S/<NumberFormat value={funFomratoDecimal(parseFloat(factura.fdssaldo) - parseFloat(factura.impacto), 2)} displayType={'text'} thousandSeparator={true} />
+                                                            </>
+                                                            :<>
+                                                                S/<NumberFormat value={funFomratoDecimal(parseFloat(factura.fdssaldo), 2)} displayType={'text'} thousandSeparator={true} />
+                                                            </>
+                                                        }
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
 
                             
                         </table>

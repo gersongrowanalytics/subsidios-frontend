@@ -18,11 +18,10 @@ const DataTablaSi = (props) => {
     const mostrarValidados = props.mostrarValidados
     const mostrarAutomaticos = props.mostrarAutomaticos
     const sumaValorizadoObjetivo = props.sumaValorizadoObjetivo
+    const sumaValorizadosValorizado = props.sumaValorizadosValorizado
     
     return (
 
-        
-        
         <>
             <tr
                 style={
@@ -67,6 +66,10 @@ const DataTablaSi = (props) => {
                 <td></td>
                 <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                     S/<NumberFormat value={funFomratoDecimal(sumaValorizadoObjetivo, 0)} displayType={'text'} thousandSeparator={true} />
+                </td>
+                
+                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                    S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizado, 0)} displayType={'text'} thousandSeparator={true} />
                 </td>
 
             </tr>
@@ -131,6 +134,10 @@ const DataTablaSi = (props) => {
                                 {/* <td className="Celda-td-Tabla-Subsidios-So W500-S14-H16-Cacafb7">{funFomratoDecimal(dato.sdemontoareconocerreal)}</td> */}
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                     S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                </td>
+
+                                <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                                    S/{<NumberFormat value={dato.sumsfsvalorizado ?funFomratoDecimal(dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                 </td>
 
                                 <td 

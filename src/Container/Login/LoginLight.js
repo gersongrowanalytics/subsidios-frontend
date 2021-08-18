@@ -61,7 +61,8 @@ const LoginLight = () => {
                         >
                             <div>
                                 <div className="Wbold-S30-H40-C004FB8">¡Bienvenido!</div>
-                                <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Correo electrónico Softys</div>
+                                {/* <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Correo electrónico Softys</div> */}
+                                <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Usuario</div>
                                 <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex'}}>
                                     <img src={IconoCorreo} width={"15px"} height={"15px"} style={{marginRight:'10px'}}/>
 
@@ -74,7 +75,8 @@ const LoginLight = () => {
                                     </Form.Item>  
                                     
                                 </div>
-                                <div style={{marginTop:'20px'}} className="W600-S15-H20-C004FB8">Clave de Subsidios</div>
+                                {/* <div style={{marginTop:'20px'}} className="W600-S15-H20-C004FB8">Clave de Subsidios</div> */}
+                                <div style={{marginTop:'20px'}} className="W600-S15-H20-C004FB8">Contraseña</div>
                                 <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex'}}>
                                     <img src={IconoCandado} width={"15px"} height={"15px"} style={{marginRight:'10px'}}/>
                                     <Form.Item

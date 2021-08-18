@@ -128,6 +128,38 @@ const SubsidiosSi = () => {
 
     const sumaValorizadoMontosReonocerTotal = sumaValores(valorizadosMontoReconcerTotal)
 
+    const valorizadosValorizadoTotal = data_subsidiossi.map(x => {
+        const valorizadoTotal = x.data.map(
+            y => 
+                y.sumsfsvalorizado
+                ?parseFloat(y.sumsfsvalorizado) 
+                :0
+                // ?mostrarValidados == true
+                //     ?y.sdestatus != null
+                //         ? mostrarAutomaticos == true
+                //             ?y.sdesac == 0
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //             :y.sdesac == 1
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //         :0
+                //     :y.sdestatus != null
+                //         ?0
+                //         :mostrarAutomaticos == true
+                //             ?y.sdesac == 0
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                //             :y.sdesac == 1
+                //                 ?parseFloat(y.sdemontoareconocerreal) 
+                //                 :0
+                // :0
+        )
+        return sumaValores(valorizadoTotal)
+    })
+
+    const sumaValorizadosValorizadoTotal = sumaValores(valorizadosValorizadoTotal)
+
     return (
         <div style={{paddingBottom:'100px'}}>
             <div 
@@ -342,7 +374,9 @@ const SubsidiosSi = () => {
                         }}
                         
                     >
-                        <table className="table-responsive-subsidios-so" style={{position:'relative', }}>
+                        <table 
+                            className="table-responsive-subsidios-so" 
+                            style={{position:'relative', }}>
                             <thead
                                 className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                             >
@@ -455,166 +489,217 @@ const SubsidiosSi = () => {
                 </div>
             </Modal>
             
-            <div style={{overflowX:"auto", marginLeft:'40px', marginRight:'40px', marginTop:'-10px'}} id="Contenedor-Tabla-Subsidios-So">
+            <div 
+                style={{
+                    overflowX:"auto", marginLeft:'40px', marginRight:'40px', marginTop:'-10px',
+                    boxShadow: "0px 0px 15px #D8DFE9", 
+                }} 
+                id="Contenedor-Tabla-Subsidios-So"
+            >
                 
-                <table className="table-responsive-subsidios-so" style={{position:'relative', width:'100%'}}>
+                <table className="table-responsive-subsidios-so Tabla-SubsidiosSi" style={{position:'relative', width:'100%'}}>
                     <thead
                         className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                     >
                         <tr>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Zona</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Territorio</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Cliente</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Sub Cliente</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Sector</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Cod Producto</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Nombre Producto</th>
+
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
-                            >Sub Objetivo</th>
+                            >Monto a Reconocer S/IGV</th>
+
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >Valorizado S/IGV</th>
+
+
+
+                            <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Factura Impactar</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Fecha</th>
                             <th className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Estado</th>
                         </tr>
                     </thead>
-                    <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
-                        <td 
-                            id="Total-Cuerpo-Tabla-Subsidios-So"
-                            className={
-                                ComunesTipoDisenio == "Light"
-                                ?"Wbold-S13-H17-C004FB8"
-                                :"Wbold-S11-H20-Ce4e6eb"
-                            }
-                        >
-                            Grand Total	
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                            S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    {
-                        cargando_data_subsidiossi == true && data_subsidiossi.length  == 0
-                        ?<tr 
-                            // style={{width:'100%'}}
-                            style={
-                                ComunesTipoDisenio == "Light"
-                                ?{borderBottom: '1px solid #D7E8FF'}
-                                :{borderBottom: '1px solid #1c1e21'}
-                            }
-                        >
-                            <td colSpan="10" style={{textAlignLast: "center"}}>
-                                <img src={IconoCargando}  />
+                    <tbody>
+                        <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
+                            <td 
+                                id="Total-Cuerpo-Tabla-Subsidios-So"
+                                className={
+                                    ComunesTipoDisenio == "Light"
+                                    ?"Wbold-S13-H17-C004FB8"
+                                    :"Wbold-S11-H20-Ce4e6eb"
+                                }
+                            >
+                                Grand Total	
                             </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />
+                            </td>
+                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizadoTotal, 0)} displayType={'text'} thousandSeparator={true} />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
+                        {
+                            cargando_data_subsidiossi == true && data_subsidiossi.length  == 0
+                            ?<tr 
+                                // style={{width:'100%'}}
+                                style={
+                                    ComunesTipoDisenio == "Light"
+                                    ?{borderBottom: '1px solid #D7E8FF'}
+                                    :{borderBottom: '1px solid #1c1e21'}
+                                }
+                            >
+                                <td colSpan="11" style={{textAlignLast: "center"}}>
+                                    <img src={IconoCargando}  />
+                                </td>
+                            </tr>
 
-                        :data_subsidiossi.map((zona, posicion) => {
+                            :data_subsidiossi.map((zona, posicion) => {
 
-                            const valorizadoObjetivo = zona.data.map(
-                                y => 
-                                    y.sdemontoareconocerreal
-                                    ?parseFloat(y.sdemontoareconocerreal) 
-                                    :0
-                                    // ?mostrarValidados == true
-                                    //     ?y.sdestatus != null
-                                    //         ? mostrarAutomaticos == true
-                                    //             ?y.sdesac == 0
-                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
-                                    //                 :0
-                                    //             :y.sdesac == 1
-                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
-                                    //                 :0
-                                    //         :0
-                                    //     :y.sdestatus != null
-                                    //         ?0
-                                    //         :mostrarAutomaticos == true
-                                    //             ?y.sdesac == 0
-                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
-                                    //                 :0
-                                    //             :y.sdesac == 1
-                                    //                 ?parseFloat(y.sdemontoareconocerreal) 
-                                    //                 :0
-                                    // :0
-                            )
+                                const valorizadoObjetivo = zona.data.map(
+                                    y => 
+                                        y.sdemontoareconocerreal
+                                        ?parseFloat(y.sdemontoareconocerreal) 
+                                        :0
+                                        // ?mostrarValidados == true
+                                        //     ?y.sdestatus != null
+                                        //         ? mostrarAutomaticos == true
+                                        //             ?y.sdesac == 0
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //             :y.sdesac == 1
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //         :0
+                                        //     :y.sdestatus != null
+                                        //         ?0
+                                        //         :mostrarAutomaticos == true
+                                        //             ?y.sdesac == 0
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //             :y.sdesac == 1
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        // :0
+                                )
 
-                            const sumaValorizadoObjetivo  = sumaValores(valorizadoObjetivo)
+                                const sumaValorizadoObjetivo  = sumaValores(valorizadoObjetivo)
+                                
+                                const valorizadosValorizado = zona.data.map(
+                                    y => 
+                                        y.sumsfsvalorizado
+                                        ?parseFloat(y.sumsfsvalorizado) 
+                                        :0
+                                        // ?mostrarValidados == true
+                                        //     ?y.sdestatus != null
+                                        //         ? mostrarAutomaticos == true
+                                        //             ?y.sdesac == 0
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //             :y.sdesac == 1
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //         :0
+                                        //     :y.sdestatus != null
+                                        //         ?0
+                                        //         :mostrarAutomaticos == true
+                                        //             ?y.sdesac == 0
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        //             :y.sdesac == 1
+                                        //                 ?parseFloat(y.sdemontoareconocerreal) 
+                                        //                 :0
+                                        // :0
+                                )
 
+                                const sumaValorizadosValorizado  = sumaValores(valorizadosValorizado)
 
-                            return (
-                                <DataTablaSi 
-                                    seleccionarFacturas = {(dato) => seleccionarFacturas(dato)}
-                                    ComunesTipoDisenio = {ComunesTipoDisenio}
-                                    zona = {zona}
-                                    clienteseleccionado = {clienteseleccionado}
-                                    posicion = {posicion}
-                                    mostrarValidados = {mostrarValidados}
-                                    mostrarAutomaticos = {mostrarAutomaticos}
-                                    sumaValorizadoObjetivo = {sumaValorizadoObjetivo}
-                                />
-                            )
-                        })
-                    }
+                                return (
+                                    <DataTablaSi 
+                                        seleccionarFacturas = {(dato) => seleccionarFacturas(dato)}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        zona = {zona}
+                                        clienteseleccionado = {clienteseleccionado}
+                                        posicion = {posicion}
+                                        mostrarValidados = {mostrarValidados}
+                                        mostrarAutomaticos = {mostrarAutomaticos}
+                                        sumaValorizadoObjetivo = {sumaValorizadoObjetivo}
+                                        sumaValorizadosValorizado = {sumaValorizadosValorizado}
+                                    />
+                                )
+                            })
+                        }
+                    </tbody>
                 </table>
             </div>
 

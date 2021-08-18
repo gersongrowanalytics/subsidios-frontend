@@ -52,7 +52,8 @@ const SubsidiosSo = () => {
     const {
         ComunesFechaInicio,
         ComunesFechaFinal,
-        ComunesTipoDisenio
+        ComunesTipoDisenio,
+        ComunesMostrarMenu
     } = useSelector(({comunes}) => comunes);
 
     useEffect(() => {
@@ -408,8 +409,15 @@ const SubsidiosSo = () => {
                     
                 </div>
 
-                <div style={{overflowX:"auto", marginTop:'-10px'}} id="Contenedor-Tabla-Subsidios-So">
-                    <table className="table-responsive-subsidios-so" style={{boxShadow: "0px 0px 15px #D8DFE9", width:'100%'}}>
+                <div 
+                    style={{
+                        overflowX:"auto", marginTop:'-10px',
+                        boxShadow: "0px 0px 15px #D8DFE9", 
+                    }} id="Contenedor-Tabla-Subsidios-So">
+                    <table 
+                        className="table-responsive-subsidios-so Tabla-SubsidiosSo" 
+                        style={{width:'100%'}}
+                    >
                         <thead
                             className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                         >
@@ -417,35 +425,36 @@ const SubsidiosSo = () => {
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Zona</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Territorio</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
+                                    style={ComunesMostrarMenu == true ?{}:{zIndex:'1'}}
                                 >Cliente</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Sub Cliente</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 // >Categoría</th>
@@ -453,35 +462,35 @@ const SubsidiosSo = () => {
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Cod Producto</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Nombre Producto</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Bultos Acordados</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Cantidad Bultos Softys</th>
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Monto a Reconocer S/IGV</th>
@@ -489,7 +498,7 @@ const SubsidiosSo = () => {
                                 <th 
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                 >Diferencia de Ahorro S/IGV</th>
