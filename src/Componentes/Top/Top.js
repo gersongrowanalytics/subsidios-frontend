@@ -32,6 +32,9 @@ const Top = () => {
     const NombreCompleto = useSelector(({login}) => login.LoginUsuario.pernombre)
     const Nombre = useSelector(({login}) => login.LoginUsuario.pernombre)
     const NombreComp = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
+    const subpendientes = useSelector(({login}) => login.subpendientes)
+
+
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     const [startDate, setStartDate] = useState(new Date());
@@ -53,7 +56,7 @@ const Top = () => {
             >
 
                 {
-                    ocultarNotificacionAlerta == true
+                    subpendientes == true
                     ?<div 
                         id="Contenedor-Alerta-Subsidios-Pendientes-Top"
                     >

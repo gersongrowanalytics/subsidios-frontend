@@ -8,6 +8,7 @@ const INIT_STATE = {
     cargando     : false,
     LoginUsuid   : localStorage.getItem('usuid'),
     LoginUsuario : {},
+    subpendientes : false
 };
 
 
@@ -23,7 +24,8 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             LoginUsuid   : action.payload.usuid,
-            LoginUsuario : action.payload.usuario
+            LoginUsuario : action.payload.usuario,
+            subpendientes: action.payload.subpendientes
         }
     }
     default:
