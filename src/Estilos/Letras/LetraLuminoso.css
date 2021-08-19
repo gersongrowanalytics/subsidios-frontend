@@ -377,3 +377,7 @@
     border: 2px solid #FF8023 !important;
     background-color: #FF8023 !important;
 }
+
+.react-datepicker-popper{
+    z-index: 100;
+}
