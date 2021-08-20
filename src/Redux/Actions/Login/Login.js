@@ -63,7 +63,8 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
 					payload: {
                         usuid   : data.datos.usuid,
                         usuario : data.datos,
-                        subpendientes : data.subsidiospendientes
+                        subpendientes : data.subsidiospendientes,
+                        fechaActualizacion : data.fechaActualizacion,
                     }
 				});
 

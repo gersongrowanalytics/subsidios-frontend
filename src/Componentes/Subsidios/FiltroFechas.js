@@ -10,15 +10,7 @@ const FiltroFechas = (props) => {
     
     const dispatch = useDispatch();
 
-    const {
-        ComunesFechaInicio,
-        ComunesFechaFinal,
-
-        ComunesAnioTxtIncio,
-        ComunesMesTxtInicio,
-        ComunesAnioTxtFinal,
-        ComunesMesTxtFinal,
-    } = useSelector(({comunes}) => comunes)
+    const fechaActualizacion = useSelector(({login}) => login.fechaActualizacion)
 
     return (
         <Row style={{ width:'100%'}}>
@@ -35,7 +27,7 @@ const FiltroFechas = (props) => {
                 }}
             >
                 <img src={IconoActualizacion} width={"15px"} style={{marginRight:'5px'}}/>
-                última actualización 19 Agosto 2021
+                última actualización {fechaActualizacion}
             </Col>
             {/* {
                 ComunesFechaInicio != null
