@@ -557,11 +557,11 @@ const Home = () => {
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Base de Datos</th>
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Responsable</th>
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Usuario</th>
-                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Fecha Programada</th>
-                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Fecha Última Actualización</th>
-                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Fecha Cierre Real</th>
+                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">DeadLine</th>
+                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">DeadLine Actualizado</th>
+                            {/* <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Fecha Cierre Real</th> */}
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Días de Retraso</th>
-                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Estatus</th>
+                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Status</th>
                         </tr>
 
                         {
@@ -692,7 +692,7 @@ const Home = () => {
                                                                     {
                                                                         base.espfechaprogramado
                                                                         ?<>
-                                                                        {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
+                                                                        {objFecha.getDate()+1}/{objFecha.getMonth()}/{objFecha.getFullYear()}<br/>
                                                                         </>
                                                                         :<>-<br/></>
                                                                     }
@@ -720,7 +720,7 @@ const Home = () => {
                                                                     {
                                                                         base.espfechactualizacion
                                                                         ?<>
-                                                                            {objFecha.getDate()+1} de {MesesNombres[objFecha.getMonth()]} del {objFecha.getFullYear()}<br/>
+                                                                            {objFecha.getDate()+1}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
                                                                         </>
                                                                         :<>-<br/></>
                                                                     }
@@ -730,7 +730,7 @@ const Home = () => {
                                                         })
                                                     }
                                                 </td>
-                                                <td 
+                                                {/* <td 
                                                     className={
                                                         ComunesTipoDisenio == "Light"
                                                         ?"Wnormal-S13-H17-C706C64"
@@ -759,7 +759,7 @@ const Home = () => {
                                                             )
                                                         })
                                                     }
-                                                </td>
+                                                </td> */}
                                                 <td 
                                                     className={
                                                         ComunesTipoDisenio == "Light"
