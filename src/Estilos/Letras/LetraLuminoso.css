@@ -20,7 +20,15 @@
 
 .C40004FB8{
     background-color: #40004FB8;
-} 
+}
+
+.COFF3742{
+    color: #FF3742;
+}
+
+.CO1EEC41{
+    color: #1EEC41;
+}
 
 .W600-S13-H17-C1EC0ED{
     font-family: Segoe UI;
@@ -29,6 +37,24 @@
     font-size: 13px;
     line-height: 17px;
     color: #1EC0ED;
+}
+
+.Wbold-S17-H20-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    color: #004FB8;
+}
+
+.Wbold-S15-H20-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 20px;
+    color: #004FB8;
 }
 
 .Wbold-S13-H17-C004FB8{
@@ -181,6 +207,28 @@
     font-size: 27px;
     line-height: 36px;
     color: #FFFFFF;
+}
+
+.Wbold-S27-H36-CFFFFFF-SinFondo{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+}
+
+.Wbold-S27-H36-CFFFFFF-SinFondo:hover{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #FFFFFF;
+
 }
 
 .Wbold-S14-H19-C004FB8{
@@ -365,6 +413,61 @@
     font-size: 13px;
     line-height: 20px;
     color: #FFFFFF;
+}
+
+.Wnormal-S11-H15-C706C64-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 15px;
+    letter-spacing: -0.015em;
+    color: #706C64;
+}
+
+.Wnormal-S13-H17-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: #FF3742;
+}
+
+.Wnormal-S13-H17-C1EC0ED{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: #1EC0ED;
+}
+
+.Wnormal-S13-H17-C1EEC41{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: #1EEC41;
+}
+
+.Wbold-S13-H17-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #FF3742;
+}
+
+.Wbold-S13-H17-C1EEC41{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #1EEC41;
 }
 
 .checkbox-luminoso span span{

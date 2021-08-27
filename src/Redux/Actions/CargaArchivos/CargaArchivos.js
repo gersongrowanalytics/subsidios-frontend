@@ -37,9 +37,11 @@ export const CargarArchivoReducer = (url, data) => async(dispatch, getState) => 
 
 export const ObtenerNotificacionesReducer = (notificacion) => async (dispatch, getState) => {
 
-    notificacion["TITULO"] = "Notificación 2"
+    
 
     let notificaciones_cargaarchivos = getState().cargaArchivos.notificaciones_cargaarchivos
+    notificacion["TITULO"] = "Notificación "+notificaciones_cargaarchivos.length+1
+
 
     notificaciones_cargaarchivos.unshift(notificacion)
 

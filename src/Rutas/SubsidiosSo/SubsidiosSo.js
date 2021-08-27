@@ -14,7 +14,7 @@ import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas';
-import { Row, Col } from 'antd'
+import { Row, Col, Modal, Checkbox } from 'antd'
 import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
@@ -22,6 +22,7 @@ import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 import DataTablaSo from '../../Componentes/SubsidiosSo/DataTablaSo';
 import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
 import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
+import FiltroTablaIluminado from '../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -256,6 +257,8 @@ const SubsidiosSo = () => {
     
     const sumaValorizadosDiferenciasAhorrosSoles = sumaValores(valorizadosDiferenciasAhorrosSoles)
 
+    const [mostrarModalFiltrosColumnas , setMostrarModalFiltrosColumnas] = useState(false)
+
     return (
         <div style={{paddingBottom:'100px'}}>
             <div 
@@ -283,10 +286,6 @@ const SubsidiosSo = () => {
                                 texto = {"Fecha Inicio"}
                             />
 
-                            {/* <span style={{paddingRight:'15px'}}>Fecha Inicio</span>
-                            <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8">
-                                DD/MM/AA
-                            </div> */}
                         </Col>
 
                         <Col 
@@ -298,8 +297,96 @@ const SubsidiosSo = () => {
                                 texto = {"Fecha Fin"}
                             />
                         </Col>
+
+                        <Col 
+                            xl={16}
+                            style={{
+                                width: '100%',
+                                textAlign: "-webkit-right",
+                                paddingRight:'40px'
+                            }}
+                        >
+                            <div 
+                                className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFF8023"
+                                style={{
+                                    cursor:'pointer'
+                                }}
+                                onClick={() => setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas)}
+                            >
+                                Filtros
+                            </div>
+                        </Col>
                     </Row>
                 </div>
+
+                <Modal 
+                    title={null} 
+                    visible={mostrarModalFiltrosColumnas} 
+                    footer={null}
+                    centered
+                    width="567px"
+                    height= "407px"
+                    bodyStyle={{
+                        boxShadow: "0px 0px 15px #D8DFE9",
+                        borderRadius: "8px"
+                    }}
+                    closeIcon={<img onClick={() =>setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas) } src={null}/>}
+                    onCancel={() =>setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas) }
+                >
+                    <div
+                        className="Wbold-S14-H19-C004FB8-L0015" 
+                        style={{textAlign: "-webkit-center", marginBottom:'20px'}}>Filtros de Columnas</div>
+
+                    <Row>
+                        <Col xl={11}>
+                            <div
+                                className="Columnas-Mostradas-Filtro-Columnas"
+                            >
+                                <div className="Cabecera-Columnas-Mostradas-Filtro-Columnas">
+                                    <div className="Wbold-S14-H19-C004FB8-L0015">Columnas Mostradas</div>
+                                    <div className="Wnormal-S11-H15-C706C64-L0015">Lista de columnas</div>
+                                </div>
+                                <div style={{overflow:'auto', width:'100%', height:'215px', marginTop:'10px', paddingLeft:'10px'}}>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Zona</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Categoría</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Sub Cliente</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">RUC Sub Cliente</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Categoría</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Cod Producto</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Nombre Producto</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">N° Factura</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Sub Objetivo</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Sub Segmento</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Territorio</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                    <Checkbox><span className="W600-S13-H17-C004FB8">Otros</span></Checkbox><br/>
+                                </div>
+
+                            </div>
+                        </Col>
+                        <Col xl={2} 
+                            style={{
+                                alignSelf: "center",
+                                textAlign: "-webkit-center"
+                            }}
+                        >
+                            <div className="Flecha-Medio-Filtro-Columnas"></div>
+                            <div className="Flecha-Medio-Filtro-Columnas"></div>
+                        </Col>
+                        <Col xl={11}>
+                            <div className="Filtros-Tabla-Filtro-Columnas">
+
+                            </div>
+                        </Col>
+                    </Row>
+                </Modal>
+
                 <div id="Contenedor-Filtros-Tabla-Subsidios-So">
                     <Row style={{width:'100%'}}>
                         {/* <Col xl={4} xs={24}>
@@ -345,6 +432,18 @@ const SubsidiosSo = () => {
                                 seleccionar = {(estado, id) => dispatch(SeleccionarSolicitanteReducer(estado, id, "FILTRAR_ZONAS"))}
                             />
                         </Col> */}
+
+                        <Col 
+                            xl={2} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            <FiltroTablaIluminado 
+                            
+                            />
+                        </Col>
 
                         <Col xl={2} xs={24}>
                             <div 

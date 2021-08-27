@@ -5,6 +5,8 @@ import IconoCandado from '../../Assets/Imagenes/Login/iconoCandado.png'
 import IconoCorreo from '../../Assets/Imagenes/Login/iconoCorreo.png'
 import { LoginReducer } from "../../Redux/Actions/Login/Login"
 import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
+import config from "../../config"
 
 const LoginLight = () => {
 
@@ -60,7 +62,12 @@ const LoginLight = () => {
                             }}
                         >
                             <div>
-                                <div className="Wbold-S30-H40-C004FB8">¡Bienvenido!</div>
+                                <div
+                                    onClick={() => {
+                                        
+                                        console.log(window.location.href.split(config.urlFrontend))
+                                    }} 
+                                    className="Wbold-S30-H40-C004FB8">¡Bienvenido!</div>
                                 {/* <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Correo electrónico Softys</div> */}
                                 <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Usuario</div>
                                 <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex'}}>
@@ -71,7 +78,7 @@ const LoginLight = () => {
                                         name={"usuario"}
                                         style={{height:"0px", marginTop:'-10px'}}
                                     >
-                                        <input style={{border:'0'}} />
+                                        <input style={{border:'0'}} autoComplete={"off"}/>
                                     </Form.Item>  
                                     
                                 </div>
@@ -88,12 +95,15 @@ const LoginLight = () => {
                                     </Form.Item>  
                                     
                                 </div>
-                                <div 
-                                    style={{
-                                        marginTop:'30px',
-                                        cursor:'pointer'
-                                    }}
-                                    className="Wnormal-S14-H19-CFF8023-Underline">¿Olvidaste o bloqueaste tu contraseña?</div>
+                                <Link to="/recuperar-contrasenia">
+                                    <div 
+                                        style={{
+                                            marginTop:'30px',
+                                            cursor:'pointer'
+                                        }}
+                                        className="Wnormal-S14-H19-CFF8023-Underline">¿Olvidaste o bloqueaste tu contraseña?</div>
+
+                                </Link>
                                 <Button 
                                     htmlType="submit"
                                     loading={cargandoLogin}

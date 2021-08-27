@@ -6,8 +6,11 @@ import LogoPaginaColor from '../../Assets/Imagenes/Logos/logoThanosColor.png'
 // import { ToastProvider } from 'react-toast-notifications';
 import Rutas from '../../Rutas/index'
 import {ValidarUsuarioConectadoReducer} from '../../Redux/Actions/Login/Login'
+import RecuperarCOntrasenia from '../Login/RecuperarContrasenia'
+import CambiarContrasenia from '../Login/CambiarContrasenia'
 import '../../Estilos/Letras/Letras.css'
 import '../../Estilos/Letras/LetraLuminoso.css'
+import config from '../../config'
 
 function App() {
 
@@ -26,15 +29,17 @@ function App() {
 
 
     return (
-        <div style={{position:'relative'}}>
+        <div style={{position:'relative', width:'100%', height:'100%'}}>
             {/* <ToastProvider> */}
                 <div style={{position:'absolute', width:'100%', height:'100vh'}}>
-                    <div style={{position:'relative'}}>
+                    <div style={{position:'relative', width:'100%', height:'100%'}}>
                         
                         {
                             LoginUsuid != null
                             ?<Rutas />
                             :<Switch>
+                                <Route exact path='/cambiar-contrasenia/' component={CambiarContrasenia}/>
+                                <Route exact path='/recuperar-contrasenia' component={RecuperarCOntrasenia}/>
                                 <Route exact path='/login' component={Login}/>
                             </Switch>
                         }
@@ -42,7 +47,9 @@ function App() {
                         {
                             LoginUsuid != null
                             ?null
-                            :<Redirect to="/login" />
+                            :window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia')
+                                ?null 
+                                :<Redirect to="/login" />
                         }
 
                         

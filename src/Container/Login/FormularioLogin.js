@@ -10,6 +10,7 @@ import Input from '../../Componentes/Elementos/Input/Input';
 import InputPassword from '../../Componentes/Elementos/Input/InputPassword';
 import BanderasPaises from '../../Componentes/Login/BanderasPaises';
 import GrowLogoLogin from '../../Assets/Imagenes/Login/Banderas/growlogo.png'
+import {Link} from "react-router-dom";
 
 const FormularioLogin = () => {
     const dispatch = useDispatch();
@@ -63,9 +64,12 @@ const FormularioLogin = () => {
                     <Input name="usuario" className="W600-S16-H21-C4d4d4d" />
 
                     <InputPassword name="contrasenia" className="W600-S16-H21-C4d4d4d" />
-                    <p 
-                        style={{textAlignLast: "left", marginTop:'10px', marginBottom:'20px'}}
-                        className="Wbold-S18-H24-Cwhite">¿Olvidaste tu contraseña?</p>
+
+                    <Link to="/recuperar-contrasenia">
+                        <p 
+                            style={{textAlignLast: "left", marginTop:'10px', marginBottom:'20px'}}
+                            className="Wbold-S18-H24-Cwhite">¿Olvidastezxcxz tu contraseña?</p>
+                    </Link>
 
                     <Button 
                         htmlType="submit"

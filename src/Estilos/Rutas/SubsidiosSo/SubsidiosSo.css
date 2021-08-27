@@ -11,7 +11,7 @@
 
 .Th-Tabla-Subsidios-So{
     /* text-transform: uppercase; */
-    height: 50px;
+    height: 10px;
     position: relative;
 }
 
@@ -123,4 +123,44 @@ thead tr th {
   
 .Tabla-SubsidiosSo tbody th {
     position: sticky;
+}
+
+
+.Columnas-Mostradas-Filtro-Columnas{
+    width: 229px;
+    height: 285px;
+    background: #FFFFFF;
+    border: 1px solid #D7E8FF;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.Filtros-Tabla-Filtro-Columnas{
+    width: 229px;
+    height: 285px;
+    background: #FFFFFF;
+    border: 1px solid #D7E8FF;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.Flecha-Medio-Filtro-Columnas{
+    width: 17px;
+    height: 17px;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.Cabecera-Columnas-Mostradas-Filtro-Columnas{
+    border-bottom: 1px solid #D7E8FF;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.ant-modal-content{
+    border-radius: 25px !important;
 }

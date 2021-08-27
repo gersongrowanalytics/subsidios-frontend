@@ -42,7 +42,10 @@ export const ObtenerEstadosPendientesReducer = () => async (dispatch, getState) 
 
             dispatch({
                 type: OBTENER_ESTADOS_PENDIENTES_HOME,
-                payload : data.datos
+                payload : {
+                    status : data.datos,
+                    statusdistribuidoras : data.espsDistribuidoras
+                }
             })
 			
 		}else{
