@@ -94,7 +94,10 @@ const Home = () => {
                             //     marginBottom:'10px'
                             // }}
                             className="Tabla-SubsidiosSo" 
-                            style={{width:'100%', overflow:'auto'}}
+                            style={{
+                                width:'100%', overflow:'auto',
+                                // whiteSpace: "nowrap"
+                            }}
                         >
                             <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
                                 <tr 
@@ -111,10 +114,11 @@ const Home = () => {
                                     <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Sucursal</th>
                                     <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Responsable</th>
                                     <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Usuario</th>
+                                    <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Aplicativo</th>
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Fecha programada</th> */}
                                     <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine</th>
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Fecha ultima actualización</th> */}
-                                    <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine Actualizado</th>
+                                    <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine <br/>Actualizado</th>
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Fecha cierre real</th> */}
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine Cierre</th> */}
                                     <th style={{textAlignLast: "center", zIndex:'1'}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Días de Retraso</th>
@@ -205,7 +209,7 @@ const Home = () => {
                                                 }}
                                             >
                                                 <>
-                                                    {dato.clisuchml}<br/>
+                                                    {dato.clisuchml}
                                                 </>
                                             </td>
 
@@ -253,6 +257,26 @@ const Home = () => {
                                                 }}
                                             >
                                                 <>
+                                                    {
+                                                        dato.cliclientesac == "1"
+                                                        ?"Manual"
+                                                        :"Automatico"
+                                                    }<br/>
+                                                </>
+                                            </td>
+
+                                            <td 
+                                                className={
+                                                    ComunesTipoDisenio == "Light"
+                                                    ?"Wnormal-S13-H17-C706C64"
+                                                    :"Wnormal-S14-H19-Ce4e6eb"
+                                                }
+                                                style={{
+                                                    paddingTop: "0px",
+                                                    textAlign: "-webkit-center"
+                                                }}
+                                            >
+                                                <>
                                                     {/* {
                                                         dato.espfechaprogramado
                                                         ?<>
@@ -263,7 +287,7 @@ const Home = () => {
                                                     {
                                                         dato.espfechaprogramado
                                                         ?<>
-                                                        {objFechaProgramado.getDate()+1} / {objFechaProgramado.getMonth()+1} / {objFechaProgramado.getFullYear()}<br/>
+                                                        {objFechaProgramado.getDate()+1}/{objFechaProgramado.getMonth()+1}/{objFechaProgramado.getFullYear()}<br/>
                                                         </>
                                                         :<>-</>
                                                     }
@@ -292,7 +316,7 @@ const Home = () => {
                                                     {
                                                         dato.espfechactualizacion
                                                         ?<>
-                                                        {objFechaActualizacion.getDate()+1} / {objFechaActualizacion.getMonth()+1} / {objFechaActualizacion.getFullYear()}<br/>
+                                                        {objFechaActualizacion.getDate()+1}/{objFechaActualizacion.getMonth()+1}/{objFechaActualizacion.getFullYear()}<br/>
                                                         </>
                                                         :<>-</>
                                                     }
@@ -336,16 +360,16 @@ const Home = () => {
                                                 <>
                                                     <div style={{display:'flex', alignItems: "center", position:'relative'}}>
                                                         <div 
-                                                            style={{width:'50%'}} 
+                                                            style={{width:'70%', display:'flex'}} 
                                                             className={
                                                                 dato.espdiaretraso <= 0
                                                                 ?"Wnormal-S13-H17-C1EEC41"
                                                                 :"Wnormal-S13-H17-CFF3742"
                                                             }
                                                         >
-                                                            {dato.espdiaretraso} días
+                                                            {dato.espdiaretraso+" días"}
                                                         </div>
-                                                        <div style={{width:'50%'}}>
+                                                        <div style={{width:'30%', marginLeft:'2px'}}>
                                                             <div 
                                                                 style={
                                                                     dato.espdiaretraso <= 0
