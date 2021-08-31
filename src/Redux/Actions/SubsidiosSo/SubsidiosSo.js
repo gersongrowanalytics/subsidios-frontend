@@ -18,6 +18,20 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
         ComunesFechaFinal
     } = getState().comunes
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/subsidiosSo/mostrar',
 		{
 			mode:'cors',
@@ -26,10 +40,7 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
                 fechaInicio : ComunesFechaInicio,
                 fechaFinal  : ComunesFechaFinal,
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -80,15 +91,27 @@ export const LimpiarArrayDescargaSubsidiosSoReducer = async (subsidiosso) => {
 }
 
 export const ObtenerFiltrosReducer = () => async (dispatch, getState) => {
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/subsidiosSo/mostrar-filtros',
 		{
 			mode:'cors',
 			method: 'POST',
 			body: JSON.stringify({}),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {

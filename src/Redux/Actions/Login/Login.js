@@ -23,15 +23,26 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
     // dispatch(CargandoPaginaReducer(true))
     // dispatch(CargandoPaginaInicioReducer(true))
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'login',
 		{
 			mode:'cors',
 			method: 'POST',
 			body: JSON.stringify(usuario),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {

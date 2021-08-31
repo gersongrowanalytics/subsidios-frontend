@@ -20,6 +20,20 @@ export const ObtenerFacturasSiReducer = () => async (dispatch, getState) => {
         ComunesFechaFinal
     } = getState().comunes
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/facturas/mostrar',
 		{
 			mode:'cors',
@@ -28,10 +42,7 @@ export const ObtenerFacturasSiReducer = () => async (dispatch, getState) => {
                 fechaInicio : ComunesFechaInicio,
                 fechaFinal  : ComunesFechaFinal,
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -97,6 +108,20 @@ export const ObtenerReconocimientosFacturasSiReducer = (fdsid) => async (dispatc
         type : CARGANDO_RECONOCIMIENTOS_FACTURA_SI_FACTURAS_SI,
         payload : true
     })
+    
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
 
     await fetch(config.api+'modulo/facturas/mostrar/reconocimiento',
 		{
@@ -105,10 +130,7 @@ export const ObtenerReconocimientosFacturasSiReducer = (fdsid) => async (dispatc
 			body: JSON.stringify({
                 "fdsid" : fdsid,
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {

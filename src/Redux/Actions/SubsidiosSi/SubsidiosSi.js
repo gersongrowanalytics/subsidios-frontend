@@ -28,6 +28,20 @@ export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
         ComunesFechaFinal
     } = getState().comunes
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/SubsidiosSi/mostrar',
 		{
 			mode:'cors',
@@ -36,10 +50,7 @@ export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
                 fechaInicio : ComunesFechaInicio,
                 fechaFinal  : ComunesFechaFinal,
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -95,6 +106,20 @@ export const ObtenerNotasCreditoFacturaSiReducer = (pedidooriginal, proid) => as
         payload : true
     })
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/SubsidiosSi/mostrar/notascreditos',
 		{
 			mode:'cors',
@@ -103,10 +128,7 @@ export const ObtenerNotasCreditoFacturaSiReducer = (pedidooriginal, proid) => as
                 "pedidoOriginal" : pedidooriginal,
                 "proid" : proid
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {

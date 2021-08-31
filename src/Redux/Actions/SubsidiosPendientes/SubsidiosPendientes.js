@@ -22,6 +22,20 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
         payload : true
     })
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/SubsidiosPendientes/mostrar',
 		{
 			mode:'cors',
@@ -30,10 +44,7 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
                 fechaInicio : ComunesFechaInicio,
                 fechaFinal  : ComunesFechaFinal,
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -102,6 +113,20 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
         })
     }
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/SubsidiosPendientes/mostrar/facturas',
 		{
 			mode:'cors',
@@ -109,10 +134,7 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
 			body: JSON.stringify({
                 'sdecodigodestinatario' : sdecodigodestinatario
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -158,6 +180,20 @@ export const AsignarFacturasSubsidioReducer = (sdeid, sdemontoareconocerreal, fa
     // console.log(sdemontoareconocerreal)
     // console.log(facturas)
 
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
     await fetch(config.api+'modulo/SubsidiosPendientes/asignar-facturas',
 		{
 			mode:'cors',
@@ -167,10 +203,7 @@ export const AsignarFacturasSubsidioReducer = (sdeid, sdemontoareconocerreal, fa
                 "sdemontoareconocerreal" : sdemontoareconocerreal,
                 "facturas" : facturas
             }),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {
@@ -216,17 +249,28 @@ export const EliminarFacturaAsignadaReducer = (dataFacturaEliminar) => async (di
         payload : true
     })
 
-    console.log(dataFacturaEliminar)
+    // console.log(dataFacturaEliminar)
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
 
     await fetch(config.api+'modulo/SubsidiosPendientes/eliminar-facturas',
 		{
 			mode:'cors',
 			method: 'POST',
 			body: JSON.stringify(dataFacturaEliminar),
-			headers: {
-				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
-			}
+			headers: headerFetch
       	}
     )
     .then( async res => {

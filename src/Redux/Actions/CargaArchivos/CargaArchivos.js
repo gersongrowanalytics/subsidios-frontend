@@ -9,14 +9,23 @@ export const CargarArchivoReducer = (url, data) => async(dispatch, getState) => 
 
     let respuesta = false
 
-    await axios.post(url, data,{
-        mode:'cors',
-        headers: {
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'multipart/form-data',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
             'Accept' : 'application/json',
             'content-type': 'multipart/form-data',
-            // 'api_token': localStorage.getItem('usutoken'),
-            // 'api-token': localStorage.getItem('usutoken'),
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
         }
+    }
+
+    await axios.post(url, data,{
+        mode:'cors',
+        headers: headerFetch
     })
     .then(rpta => {
         let datos = rpta.data
