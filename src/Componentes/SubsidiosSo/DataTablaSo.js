@@ -24,6 +24,8 @@ const DataTablaSo = (props) => {
     const mostrarValidados = props.mostrarValidados
     const sumaValorizadoMontosReonocer = props.sumaValorizadoMontosReonocer
     const sumaValorizadoDiferenciaAhorroSoles = props.sumaValorizadoDiferenciaAhorroSoles
+    const sumaValorizadoReconocimientoDT = props.sumaValorizadoReconocimientoDT
+    const sumaCantidadBultosDT = props.sumaCantidadBultosDT
 
     return (
         <>
@@ -61,11 +63,18 @@ const DataTablaSo = (props) => {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                     {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordados, 0)} displayType={'text'} thousandSeparator={true} />}
                 </td>
                 <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                    {<NumberFormat value={funFomratoDecimal(sumaCantidadBultosDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                </td>
+                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                     {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultos, 0)} displayType={'text'} thousandSeparator={true} />}
+                </td>
+                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                    {<NumberFormat value={funFomratoDecimal(sumaValorizadoReconocimientoDT, 0)} displayType={'text'} thousandSeparator={true} />}
                 </td>
                 <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                     S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocer, 0)} displayType={'text'} thousandSeparator={true} />}
@@ -140,6 +149,7 @@ const DataTablaSo = (props) => {
                                         {dato.clinombre}
                                     </div>
                                 </td>
+                                <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.clisuchml}</td>
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesubcliente}</td>
                                 {/* <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.catnombre}</td> */}
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesector}</td>
@@ -148,9 +158,19 @@ const DataTablaSo = (props) => {
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                     {<NumberFormat value={dato.sdebultosacordados ?funFomratoDecimal(dato.sdebultosacordados, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                 </td>
+
+                                {/*  */}
+                                <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                                    {<NumberFormat value={dato.sdecantidadbultos ?funFomratoDecimal(dato.sdecantidadbultos, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                </td>
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                     {<NumberFormat value={dato.sdecantidadbultosreal ?funFomratoDecimal(dato.sdecantidadbultosreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                 </td>
+                                <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                                    {<NumberFormat value={dato.sdemontoareconocer ?funFomratoDecimal(dato.sdemontoareconocer, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                </td>
+                                {/*  */}
+                                
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                     S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                 </td>

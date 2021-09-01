@@ -257,6 +257,71 @@ const SubsidiosSo = () => {
     
     const sumaValorizadosDiferenciasAhorrosSoles = sumaValores(valorizadosDiferenciasAhorrosSoles)
 
+
+    // 
+    const valorizadosMontoReconcerTotalDT = data_subsidiosso.map(x => {
+        const montosReconocer = x.data.map(
+            y => 
+                y.sdemontoareconocer
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocer) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocer) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdemontoareconocer) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdemontoareconocer) 
+                                    :0
+                    :parseFloat(y.sdemontoareconocer) 
+                :0
+        )
+        return sumaValores(montosReconocer)
+    })
+    const sumaValorizadoMontosReonocerTotalDT = sumaValores(valorizadosMontoReconcerTotalDT)
+
+    const valorizadosCantidadBultosTotalDT = data_subsidiosso.map(x => {
+        const cantidadBultos = x.data.map(
+            y => 
+                y.sdecantidadbultos
+                ?aplicarFiltrosAutomaticoValidado == true
+                    ?mostrarValidados == true
+                        ?y.sdestatus != null
+                            ? mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdecantidadbultos) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdecantidadbultos) 
+                                    :0
+                            :0
+                        :y.sdestatus != null
+                            ?0
+                            :mostrarAutomaticos == true
+                                ?y.sdesac == 0
+                                    ?parseFloat(y.sdecantidadbultos) 
+                                    :0
+                                :y.sdesac == 1
+                                    ?parseFloat(y.sdecantidadbultos) 
+                                    :0
+                    :parseFloat(y.sdecantidadbultos) 
+                :0
+        )
+        return sumaValores(cantidadBultos)
+    })
+
+    const sumaValorizadoCantidadBultosTotalDT = sumaValores(valorizadosCantidadBultosTotalDT)
+
     const [mostrarModalFiltrosColumnas , setMostrarModalFiltrosColumnas] = useState(false)
 
     return (
@@ -549,6 +614,14 @@ const SubsidiosSo = () => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
+                                    style={ComunesMostrarMenu == true ?{}:{zIndex:'1'}}
+                                >Sucursal</th>
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
                                 >Sub Cliente</th>
                                 <th 
                                     className={
@@ -578,21 +651,9 @@ const SubsidiosSo = () => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >Bultos Acordados</th>
-                                <th 
-                                    className={
-                                        ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
-                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
-                                    }
-                                >Cantidad Bultos Softys</th>
-                                <th 
-                                    className={
-                                        ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
-                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
-                                    }
-                                >Monto a Reconocer S/IGV</th>
+                                >Bultos<br/>(Acordados)</th>
+
+                                {/*  */}
 
                                 <th 
                                     className={
@@ -600,7 +661,42 @@ const SubsidiosSo = () => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
-                                >Diferencia de Ahorro S/IGV</th>
+                                >Bultos<br/>(Distribuidor)</th>
+
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Bultos<br/>(SAC/APP)</th>
+
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Reconocimiento S/<br/>(Distribuidor)</th>
+
+                                {/*  */}
+
+                                
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Reconocimiento S/<br/>(SAC/APP)</th>
+
+                                <th 
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >Dif. Ahorro S/.</th>
                             </tr>
                         </thead>
                         <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
@@ -621,6 +717,7 @@ const SubsidiosSo = () => {
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
 
                             {
                                 <>
@@ -628,7 +725,13 @@ const SubsidiosSo = () => {
                                         {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
                                     <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                                    </td>
+                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                         {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                    </td>
+                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
                                     </td>
                                 </>
                             }
@@ -765,10 +868,68 @@ const SubsidiosSo = () => {
                                         :0
                                 )
 
+                                // 
+
+                                const cantidadBultosDT = zona.data.map(
+                                    y => 
+                                        y.sdecantidadbultos
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?y.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdecantidadbultos ) 
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdecantidadbultos ) 
+                                                            :0
+                                                    :0
+                                                :y.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdecantidadbultos)
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdecantidadbultos)
+                                                            :0
+                                            :parseFloat(y.sdecantidadbultos)
+                                        :0
+                                )
+
+                                const valorizadoReconocimientoDT = zona.data.map(
+                                    y => 
+                                        y.sdemontoareconocer
+                                        ?aplicarFiltrosAutomaticoValidado == true
+                                            ?mostrarValidados == true
+                                                ?y.sdestatus != null
+                                                    ? mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdemontoareconocer ) 
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdemontoareconocer ) 
+                                                            :0
+                                                    :0
+                                                :y.sdestatus != null
+                                                    ?0
+                                                    :mostrarAutomaticos == true
+                                                        ?y.sdesac == 0
+                                                            ?parseFloat(y.sdemontoareconocer)
+                                                            :0
+                                                        :y.sdesac == 1
+                                                            ?parseFloat(y.sdemontoareconocer)
+                                                            :0
+                                            :parseFloat(y.sdemontoareconocer)
+                                        :0
+                                )
+
                                 const sumaValorizadoCantidadBultos  = sumaValores(valorizadosCantidadBultos)
                                 const sumaValorizadoBultosAcordados = sumaValores(valorizadosBultosAcordados)
                                 const sumaValorizadoMontosReonocer  = sumaValores(valorizadoMontosReconocer)
                                 const sumaValorizadoDiferenciaAhorroSoles  = sumaValores(valorizadoDiferenciaAhorroSoles)
+                                const sumaCantidadBultosDT  = sumaValores(cantidadBultosDT)
+                                const sumaValorizadoReconocimientoDT  = sumaValores(valorizadoReconocimientoDT)
 
                                 return (
                                     <DataTablaSo 
@@ -782,6 +943,8 @@ const SubsidiosSo = () => {
                                         mostrarValidados = {mostrarValidados}
                                         sumaValorizadoMontosReonocer = {sumaValorizadoMontosReonocer}
                                         sumaValorizadoDiferenciaAhorroSoles = {sumaValorizadoDiferenciaAhorroSoles}
+                                        sumaValorizadoReconocimientoDT = {sumaValorizadoReconocimientoDT}
+                                        sumaCantidadBultosDT = {sumaCantidadBultosDT}
                                     />
                                 )
                             })

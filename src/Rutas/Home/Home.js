@@ -716,7 +716,7 @@ const Home = () => {
                                                                     {
                                                                         base.espfechaprogramado
                                                                         ?<>
-                                                                        {objFecha.getDate()+1}/{objFecha.getMonth()}/{objFecha.getFullYear()}<br/>
+                                                                        {objFecha.getDate()+1}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
                                                                         </>
                                                                         :<>-<br/></>
                                                                     }
