@@ -670,6 +670,11 @@ const Home = () => {
                                                             )
                                                         })
                                                     }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
+                                                    }
                                                 </td>
 
                                                 
@@ -688,10 +693,19 @@ const Home = () => {
                                                         area.esps.map((base) => {
                                                             return(
                                                                 <>
-                                                                    {base.pernombrecompleto}<br/>
+                                                                    {
+                                                                        base.espfechactualizacion == null
+                                                                        ?"-"
+                                                                        :base.pernombrecompleto
+                                                                    }<br/>
                                                                 </>
                                                             )
                                                         })
+                                                    }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
                                                     }
                                                 </td>
                                                 
@@ -724,6 +738,11 @@ const Home = () => {
                                                             )
                                                         })
                                                     }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
+                                                    }
                                                 </td>
                                                 <td 
                                                     className={
@@ -752,6 +771,11 @@ const Home = () => {
                                                                 </>
                                                             )
                                                         })
+                                                    }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
                                                     }
                                                 </td>
                                                 {/* <td 
@@ -833,6 +857,11 @@ const Home = () => {
                                                             )
                                                         })
                                                     }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
+                                                    }
                                                 </td>
 
                                                 
@@ -861,6 +890,11 @@ const Home = () => {
                                                                 </div>
                                                             )
                                                         })
+                                                    }
+                                                    {
+                                                        posicion == 2
+                                                        ?<div style={{color:'white', marginTop:'-3px'}}>-</div>
+                                                        :null
                                                     }
                                                 </td>
                                             </tr>
