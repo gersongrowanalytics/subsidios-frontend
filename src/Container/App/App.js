@@ -23,7 +23,8 @@ function App() {
     useEffect(async () => {
 
         await dispatch(ValidarUsuarioConectadoReducer())
-        
+        console.log(window.location.href)
+        console.log(window.location.href.split(config.urlFrontend)[1])
     }, [LoginUsuid]);
 
 
@@ -46,8 +47,10 @@ function App() {
                         
                         {
                             LoginUsuid != null
-                            ?null
-                            :window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia')
+                            ?window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia') || window.location.href.split(config.urlFrontend)[1] == "/"
+                                ?<Redirect to="/sistema" />
+                                :null
+                            :window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia') || window.location.href.split(config.urlFrontend).length == 1
                                 ?null 
                                 :<Redirect to="/login" />
                         }

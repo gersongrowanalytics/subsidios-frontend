@@ -134,7 +134,9 @@ const Home = () => {
                                     var objFechaCargaReal = new Date(dato.espchacargareal);
 
                                     return(
-                                        <tr 
+                                        dato.zonnombre == null
+                                        ?null
+                                        :<tr 
                                             style={
                                                 ComunesTipoDisenio == "Light"
                                                 ?{
@@ -147,7 +149,7 @@ const Home = () => {
                                             }
                                         >
                                             <td>
-                                                {posicion+1}
+                                                {posicion}
                                             </td>
                                             <td 
                                                 className={
@@ -582,7 +584,7 @@ const Home = () => {
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Responsable</th>
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Usuario</th>
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">DeadLine</th>
-                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">DeadLine Actualizado</th>
+                            <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">DeadLine <br/>Actualizado</th>
                             {/* <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Fecha Cierre Real</th> */}
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Días de Retraso</th>
                             <th style={{textAlignLast: "center"}} className="Wbold-S13-H17-CFFFFFF">Status</th>
@@ -757,13 +759,25 @@ const Home = () => {
                                                 >
                                                     {
                                                         area.esps.map((base) => {
+                                                            
                                                             var objFecha = new Date(base.espfechactualizacion);
+                                                            var fecAct = []
+                                                            let diaU = 0
+                                                            if(base.espfechactualizacion){
+                                                                fecAct = base.espfechactualizacion.split("-")
+                                                                diaU = objFecha.getDate()+1
+                                                                if(fecAct[2] == "01"){
+                                                                    objFecha = new Date(fecAct[0]+"-"+fecAct[1]+"-1");
+                                                                    diaU = 1
+                                                                }
+                                                            }
+
                                                             return(
                                                                 <>
                                                                     {
                                                                         base.espfechactualizacion
                                                                         ?<>
-                                                                            {objFecha.getDate()+1}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
+                                                                            {diaU}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
                                                                         </>
                                                                         :<>-<br/></>
                                                                     }
