@@ -5,5 +5,5 @@ export default {
     // urlFrontend: 'http://localhost:3000',
     urlFrontend: 'https://subsidios-thanos.softys-leadcorporate.com',
     basename: '/',
-    produccion: false,
+    produccion: true,
 };
