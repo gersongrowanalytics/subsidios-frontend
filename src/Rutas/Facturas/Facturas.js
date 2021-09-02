@@ -179,7 +179,11 @@ const Facturas = () => {
                                     {
                                         data_columnas_facturas.map((columnas, posicion) => {
                                             return (
-                                                <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">
+                                                <th 
+                                                    style={{
+                                                        textAlignLast: "center"
+                                                    }}
+                                                    className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">
                                                     {
                                                         columnas.nombre
                                                     }
@@ -242,7 +246,7 @@ const Facturas = () => {
 
                     <div 
                         style={{
-                            overflowX:"auto",
+                            // overflowX:"auto",
                             boxShadow: "0px 0px 15px #D8DFE9",
                             border: "1px solid #D7E8FF",
                             boxSizing: "border-box"
@@ -384,81 +388,86 @@ const Facturas = () => {
                             </Col>
                         </Row>
 
-
-                        <table 
-                            className="table-responsive-subsidios-so Tabla-Detalle-Factura-Historico-Facturas" 
-                            style={{position:'relative', width:'100%'}}
+                        <div
+                            style={{overflowX:"auto",}}
                         >
-                            <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
-                                <tr>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Material</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Valorizado</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Saldo</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Reconocido</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">30%</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Nota Credito</th>
-                                    {/* <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Pedido Original</th> */}
-                                </tr>
-                            </thead>
-                            {
-                                facturaSeleccionada.fds
-                                ?facturaSeleccionada.fds.map((detalle) => {
-                                    return (
-                                        <tr>
-                                            <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{detalle.fdsmaterial}</td>
-                                            <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
-                                                S/<NumberFormat value={funFomratoDecimal(detalle.fdsvalorneto, 2)} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
-                                                S/<NumberFormat value={funFomratoDecimal(detalle.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td 
-                                                className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C1EC0ED"
-                                                style={{cursor:'pointer'}}
-                                                onClick={() => {
-                                                    
-                                                    setFdsIdDetalleSeleccionado(detalle.fdsid)
-                                                    setMostrarModalReconocimiento(!mostrarModalReconocimiento)
-                                                }}
-                                            >
-                                                <u>S/<NumberFormat value={funFomratoDecimal(detalle.fdsreconocer, 2)} displayType={'text'} thousandSeparator={true} /></u>
-                                            </td>
-                                            <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
-                                                S/<NumberFormat value={funFomratoDecimal(detalle.fdstreintaporciento, 2)} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td 
-                                                className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C1EC0ED"
-                                                style={{cursor:'pointer'}}
-                                                onClick={() => {
-                                                    // console.log(detalle)
-                                                    setProIdDetalleSeleccionado(detalle.proid)
-                                                    setMostrarModalNotasCredito(!mostrarModalNotasCredito)
-                                                }}
-                                            >
-                                                <u>S/<NumberFormat value={funFomratoDecimal(detalle.fdsnotacredito, 2)} displayType={'text'} thousandSeparator={true} /></u>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                                :null
-                            }
+                            <table 
+                                className="table-responsive-subsidios-so Tabla-Detalle-Factura-Historico-Facturas" 
+                                style={{position:'relative', width:'100%'}}
+                            >
+                                <thead className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}>
+                                    <tr>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Material</th>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Valorizado</th>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Saldo</th>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Reconocido</th>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">30%</th>
+                                        <th className="Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF C004FB8">Nota Credito</th>
+                                        {/* <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb">Pedido Original</th> */}
+                                    </tr>
+                                </thead>
+                                {
+                                    facturaSeleccionada.fds
+                                    ?facturaSeleccionada.fds.map((detalle) => {
+                                        return (
+                                            <tr>
+                                                <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">{detalle.fdsmaterial}</td>
+                                                <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
+                                                    S/<NumberFormat value={funFomratoDecimal(detalle.fdsvalorneto, 2)} displayType={'text'} thousandSeparator={true} />
+                                                </td>
+                                                <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
+                                                    S/<NumberFormat value={funFomratoDecimal(detalle.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />
+                                                </td>
+                                                <td 
+                                                    className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C1EC0ED"
+                                                    style={{cursor:'pointer'}}
+                                                    onClick={() => {
+                                                        
+                                                        setFdsIdDetalleSeleccionado(detalle.fdsid)
+                                                        setMostrarModalReconocimiento(!mostrarModalReconocimiento)
+                                                    }}
+                                                >
+                                                    <u>S/<NumberFormat value={funFomratoDecimal(detalle.fdsreconocer, 2)} displayType={'text'} thousandSeparator={true} /></u>
+                                                </td>
+                                                <td className="Celda-td-Tabla-Subsidios-So Wbold-S11-H15-C706C64">
+                                                    S/<NumberFormat value={funFomratoDecimal(detalle.fdstreintaporciento, 2)} displayType={'text'} thousandSeparator={true} />
+                                                </td>
+                                                <td 
+                                                    className="Celda-td-Tabla-Subsidios-So W600-S12-H16-C1EC0ED"
+                                                    style={{cursor:'pointer'}}
+                                                    onClick={() => {
+                                                        // console.log(detalle)
+                                                        setProIdDetalleSeleccionado(detalle.proid)
+                                                        setMostrarModalNotasCredito(!mostrarModalNotasCredito)
+                                                    }}
+                                                >
+                                                    <u>S/<NumberFormat value={funFomratoDecimal(detalle.fdsnotacredito, 2)} displayType={'text'} thousandSeparator={true} /></u>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                    :null
+                                }
 
-                            {/* <tr>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr> */}
-                        </table>
+                                {/* <tr>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr> */}
+                            </table>
+                    
+                        </div>
+                        
                     </div>
                     
                 </Col>

@@ -60,19 +60,19 @@ const RecuperarContrasenia = () => {
                                 </div>
 
                                 <div  style={{marginTop:'30px'}} className="W600-S15-H20-C004FB8">Correo electrónico</div>
-                                <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex'}}>
+                                <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex', width:'100%'}}>
                                     <img src={IconoCorreo} width={"15px"} height={"15px"} style={{marginRight:'10px'}}/>
 
                                     <Form.Item
                                         initialValue=""
                                         name={"usuario"}
-                                        style={{height:"0px", marginTop:'-10px'}}
+                                        style={{height:"0px", marginTop:'-10px', width:'100%'}}
                                     >
-                                        <input style={{border:'0'}} autoComplete={"off"} />
+                                        <input style={{border:'0', width:'100%'}} autoComplete={"off"} />
                                     </Form.Item>  
                                     
                                 </div>
-                                <Link to="/recuperar-contrasenia">
+                                <Link to="/login">
                                     <div 
                                         style={{
                                             marginTop:'30px',

@@ -121,7 +121,7 @@ const Home = () => {
                                     <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine <br/>Actualizado</th>
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Fecha cierre real</th> */}
                                     {/* <th style={{textAlignLast: "center"}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">DeadLine Cierre</th> */}
-                                    <th style={{textAlignLast: "center", zIndex:'1'}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Días de Retraso</th>
+                                    <th style={{textAlignLast: "center", zIndex:'1'}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Días de <br/>Retraso</th>
                                     <th style={{textAlignLast: "center", zIndex:'1'}} className="C004FB8 Th-Tabla-Subsidios-So Wbold-S13-H17-CFFFFFF">Status</th>
                                 </tr>
                             </thead>
@@ -148,7 +148,17 @@ const Home = () => {
                                                 :{background:"#242526"}
                                             }
                                         >
-                                            <td>
+                                            <td
+                                                style={{
+                                                    paddingTop: "0px",
+                                                    textAlign: "-webkit-center"
+                                                }}
+                                                className={
+                                                    ComunesTipoDisenio == "Light"
+                                                    ?"Wnormal-S13-H17-C706C64"
+                                                    :"Wnormal-S14-H19-Ce4e6eb"
+                                                }
+                                            >
                                                 {posicion}
                                             </td>
                                             <td 

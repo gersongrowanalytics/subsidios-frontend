@@ -121,7 +121,13 @@ const DataTablaSi = (props) => {
 
                     if(mostrar == true){
                         return (
-                            <tr>
+                            <tr
+                                style={
+                                    ComunesTipoDisenio == "Light"
+                                    ?{borderBottom: '1px solid #D7E8FF'}
+                                    :{borderBottom: '1px solid #1c1e21'}
+                                }
+                            >
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{}</td>
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdeterritorio}</td>
                                 <td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.clinombre}</td>

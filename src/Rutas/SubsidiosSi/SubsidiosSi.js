@@ -347,7 +347,7 @@ const SubsidiosSi = () => {
                 onOk={() => {setMostrarModalFacturas(false)}} 
                 onCancel={() => {setMostrarModalFacturas(false)}}
                 footer={null}
-                width={"90%"}
+                width={"80%"}
                 centered
                 closeIcon={<img src={IconoCerrar} width='27px'/>}
             >
@@ -357,10 +357,10 @@ const SubsidiosSi = () => {
                         textAlign: "-webkit-center"
                     }}
                 >
-                    <div style={{marginBottom:'10px'}} className="Wbold-S13-H17-C004FB8" >
+                    <div style={{marginBottom:'20px'}} className="Wbold-S13-H17-C004FB8" >
                         
                         LISTA DE FACTURAS ASIGNADAS<br/>
-                        PERIODO: MAYO 2021
+                        PERIODO: JULIO 2021
                         
                     </div>
 
@@ -371,25 +371,60 @@ const SubsidiosSi = () => {
                             overflowX:"auto",
                             borderRadius: "20px 20px 20px 20px",
                             width:'auto'
-                        }}
-                        
+                        }}                        
                     >
                         <table 
-                            className="table-responsive-subsidios-so" 
-                            style={{position:'relative', }}>
+                            className="table-responsive-subsidios-so Tabla-SubsidiosSi" 
+                            style={{position:'relative', width:'100%' }}>
                             <thead
                                 className={ComunesTipoDisenio == "Light" ? "C004FB8" : "C242526"}
                             >
                                 <tr>
-                                    <th className="Wbold-S13-H17-CFFFFFF">N° Fila</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Factura SI</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Fecha de Reconocimiento</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Valor Neto</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Notas Credito</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">30% del Valor Neto</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Saldo Disponible</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Reconocimiento</th>
-                                    <th className="Wbold-S13-H17-CFFFFFF">Saldo Final</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>N° Fila</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Factura SI</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Fecha de Reconocimiento</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Valor Neto</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Notas Credito</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>30% del Valor Neto</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Saldo Disponible</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Reconocimiento</th>
+                                    <th className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }>Saldo Final</th>
 
                                     {/* <th>Valorizado</th> */}
                                     
@@ -469,7 +504,7 @@ const SubsidiosSi = () => {
                                 </td>
                                 <td></td>
                             </tr>
-
+                            <div style={{marginBottom:'5px'}}></div>
 
                             <tr 
                                 style={{borderTop: "1px solid #D7E8FF"}}>
@@ -486,6 +521,7 @@ const SubsidiosSi = () => {
 
                         </table>
                     </div>
+                    <div style={{marginBottom:'5px'}}></div>
                 </div>
             </Modal>
             
@@ -508,72 +544,96 @@ const SubsidiosSi = () => {
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Zona</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Territorio</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Cliente</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Sub Cliente</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Sector</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Cod Producto</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Nombre Producto</th>
 
-                            <th className={
+                            <th
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
-                            >Monto a Reconocer S/IGV</th>
+                            // >Monto a Reconocer S/IGV</th>
+                            >Bultos<br/>(SAC/APP)</th>
 
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
-                            >Valorizado S/IGV</th>
+                            // >Valorizado S/IGV</th>
+                            >Reconocimiento S/<br/>(SAC/APP)</th>
 
 
 
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Factura Impactar</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             >Fecha</th>
-                            <th className={
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"

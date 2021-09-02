@@ -594,6 +594,7 @@ const SubsidiosSo = () => {
                                     }
                                 >Zona</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -601,6 +602,7 @@ const SubsidiosSo = () => {
                                     }
                                 >Territorio</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -609,6 +611,7 @@ const SubsidiosSo = () => {
                                     style={ComunesMostrarMenu == true ?{}:{zIndex:'1'}}
                                 >Cliente</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -617,6 +620,7 @@ const SubsidiosSo = () => {
                                     style={ComunesMostrarMenu == true ?{}:{zIndex:'1'}}
                                 >Sucursal</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -624,6 +628,7 @@ const SubsidiosSo = () => {
                                     }
                                 >Sub Cliente</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -632,6 +637,7 @@ const SubsidiosSo = () => {
                                 // >Categoría</th>
                                 >Sector</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -639,6 +645,7 @@ const SubsidiosSo = () => {
                                     }
                                 >Cod Producto</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -646,6 +653,7 @@ const SubsidiosSo = () => {
                                     }
                                 >Nombre Producto</th>
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -656,6 +664,7 @@ const SubsidiosSo = () => {
                                 {/*  */}
 
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -664,6 +673,7 @@ const SubsidiosSo = () => {
                                 >Bultos<br/>(Distribuidor)</th>
 
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -672,6 +682,7 @@ const SubsidiosSo = () => {
                                 >Bultos<br/>(SAC/APP)</th>
 
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -683,6 +694,7 @@ const SubsidiosSo = () => {
 
                                 
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -691,6 +703,7 @@ const SubsidiosSo = () => {
                                 >Reconocimiento S/<br/>(SAC/APP)</th>
 
                                 <th 
+                                    style={{textAlignLast: "center"}}
                                     className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
@@ -753,7 +766,7 @@ const SubsidiosSo = () => {
                                     :{borderBottom: '1px solid #1c1e21'}
                                 }
                             >
-                                <td colSpan="11" style={{textAlignLast: "center"}}>
+                                <td colSpan="13" style={{textAlignLast: "center"}}>
                                     <img src={IconoCargando}  />
                                 </td>
                             </tr>

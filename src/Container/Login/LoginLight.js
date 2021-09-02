@@ -7,6 +7,7 @@ import { LoginReducer } from "../../Redux/Actions/Login/Login"
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import config from "../../config"
+import '../../Estilos/Login/LoginLight.css'
 
 const LoginLight = () => {
 
@@ -118,6 +119,7 @@ const LoginLight = () => {
                                         width:'100%',
                                         marginTop:'30px'
                                     }}
+                                    className="Btn-Iniciar-sesion-login-light"
                                 ><span className="Wbold-S18-H24-CFFFFFF">Iniciar Sesión</span></Button>
                             </div>
                         </div>

@@ -1,0 +1,2 @@
+(this["webpackJsonpcontador-factura-frontend"]=this["webpackJsonpcontador-factura-frontend"]||[]).push([[3],{673:function(t,o,e){"use strict";e.r(o);e(1);var r=e(0);o.default=function(){return Object(r.jsx)("div",{children:Object(r.jsx)("video",{width:"100%",height:"100%",autoPlay:!0,preload:!0,loop:!0,children:"Your browser does not support the video tag."})})}}}]);
+//# sourceMappingURL=3.94d47eae.chunk.js.map
