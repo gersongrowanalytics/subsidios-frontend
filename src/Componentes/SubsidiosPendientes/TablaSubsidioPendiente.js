@@ -228,6 +228,14 @@ const TablaSubsidioPendiente = (props) => {
                                 ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                 :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                             }
+                        >Sucursal</th> 
+                        {/* OJOOOOO */}
+                        <th 
+                            className={
+                                ComunesTipoDisenio == "Light"
+                                ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                            }
                         >Sub Cliente </th>
                         <th 
                             className={
@@ -263,14 +271,14 @@ const TablaSubsidioPendiente = (props) => {
                                 ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                 :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                             }
-                        >Monto a Reconocer S/IGV</th>
+                        >Reconocimiento S/<br/>(SAC/APP)</th>
                         <th 
                             className={
                                 ComunesTipoDisenio == "Light"
                                 ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                 :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                             }
-                        >Fac Impactar</th>
+                        >Factura<br/>Impactar</th>
                         <th 
                             className={
                                 ComunesTipoDisenio == "Light"
@@ -284,7 +292,7 @@ const TablaSubsidioPendiente = (props) => {
                                 ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                 :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                             }
-                        >Valorizado Subsidiado</th>
+                        >Valorizado<br/>Subsidiado</th>
                         <th 
                             className={
                                 ComunesTipoDisenio == "Light"
@@ -309,6 +317,7 @@ const TablaSubsidioPendiente = (props) => {
                         >
                             Grand Total
                         </td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -450,6 +459,7 @@ const TablaSubsidioPendiente = (props) => {
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                         <td
                                             style={
                                                 zona.desplegado == true
@@ -545,6 +555,14 @@ const TablaSubsidioPendiente = (props) => {
                                                                 : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                             }>
                                                                 {dato.clinombre}
+                                                        </td>
+                                                        <td 
+                                                            className={
+                                                                ComunesTipoDisenio == "Light"
+                                                                ? "Wbold-S13-H17-C004FB8"
+                                                                : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                            }>
+                                                                {dato.clisuchml}
                                                         </td>
                                                         <td 
                                                             className={

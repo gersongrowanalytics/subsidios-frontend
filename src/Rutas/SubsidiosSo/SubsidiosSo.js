@@ -712,50 +712,54 @@ const SubsidiosSo = () => {
                                 >Dif. Ahorro S/.</th>
                             </tr>
                         </thead>
-                        <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
-                            <td 
-                                // colSpan="10"
-                                id="Total-Cuerpo-Tabla-Subsidios-So" 
-                                className={
-                                    ComunesTipoDisenio == "Light" 
-                                    ? "CEDF0FA Wbold-S13-H17-C004FB8" 
-                                    : "C2d2d2e Wbold-S11-H20-Ce4e6eb"
+                        {
+                            cargando_data_subsidiosso == true && data_subsidiosso.length == 0
+                            ?null
+                            :<tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
+                                <td 
+                                    // colSpan="10"
+                                    id="Total-Cuerpo-Tabla-Subsidios-So" 
+                                    className={
+                                        ComunesTipoDisenio == "Light" 
+                                        ? "CEDF0FA Wbold-S13-H17-C004FB8" 
+                                        : "C2d2d2e Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >
+                                    Grand Total
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                                {
+                                    <>
+                                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                            {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                        </td>
+                                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                            {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                                        </td>
+                                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                            {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                        </td>
+                                        <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                            {<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                                        </td>
+                                    </>
                                 }
-                            >
-                                Grand Total
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
 
-                            {
-                                <>
-                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoBultosAcordadosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
-                                    </td>
-                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
-                                    </td>
-                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoCantidadBultosTotal, 0)} displayType={'text'} thousandSeparator={true} />}
-                                    </td>
-                                    <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
-                                    </td>
-                                </>
-                            }
-
-                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />}
-                            </td>
-                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                S/{<NumberFormat value={funFomratoDecimal(sumaValorizadosDiferenciasAhorrosSoles, 0)} displayType={'text'} thousandSeparator={true} />}
-                            </td>
-                        </tr>
+                                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                    S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                </td>
+                                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                    S/{<NumberFormat value={funFomratoDecimal(sumaValorizadosDiferenciasAhorrosSoles, 0)} displayType={'text'} thousandSeparator={true} />}
+                                </td>
+                            </tr>
+                        }
                         {
                             cargando_data_subsidiosso == true && data_subsidiosso.length == 0
                             ?<tr 

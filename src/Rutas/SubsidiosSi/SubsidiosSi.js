@@ -567,6 +567,14 @@ const SubsidiosSi = () => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
+                            >Sucursal</th>
+                            <th 
+                                style={{textAlignLast: "center"}}
+                                className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                }
                             >Sub Cliente</th>
                             <th 
                                 style={{textAlignLast: "center"}}
@@ -601,7 +609,7 @@ const SubsidiosSi = () => {
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
                             // >Monto a Reconocer S/IGV</th>
-                            >Bultos<br/>(SAC/APP)</th>
+                            >Reconocimiento S/<br/>(Distribuidor)</th>
 
                             <th 
                                 style={{textAlignLast: "center"}}
@@ -622,7 +630,7 @@ const SubsidiosSi = () => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                 }
-                            >Factura Impactar</th>
+                            >Factura<br/>Impactar</th>
                             <th 
                                 style={{textAlignLast: "center"}}
                                 className={
@@ -642,33 +650,39 @@ const SubsidiosSi = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
-                            <td 
-                                id="Total-Cuerpo-Tabla-Subsidios-So"
-                                className={
-                                    ComunesTipoDisenio == "Light"
-                                    ?"Wbold-S13-H17-C004FB8"
-                                    :"Wbold-S11-H20-Ce4e6eb"
-                                }
-                            >
-                                Grand Total	
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />
-                            </td>
-                            <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizadoTotal, 0)} displayType={'text'} thousandSeparator={true} />
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+
+                        {
+                            cargando_data_subsidiossi == true && data_subsidiossi.length  == 0
+                            ?null
+                            :<tr className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S13-H17-C004FB8" : "C2d2d2e Wbold-S11-H20-Ce4e6eb"}>
+                                <td 
+                                    id="Total-Cuerpo-Tabla-Subsidios-So"
+                                    className={
+                                        ComunesTipoDisenio == "Light"
+                                        ?"Wbold-S13-H17-C004FB8"
+                                        :"Wbold-S11-H20-Ce4e6eb"
+                                    }
+                                >
+                                    Grand Total	
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                    S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal, 0)} displayType={'text'} thousandSeparator={true} />
+                                </td>
+                                <td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                    S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizadoTotal, 0)} displayType={'text'} thousandSeparator={true} />
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
                         {
                             cargando_data_subsidiossi == true && data_subsidiossi.length  == 0
                             ?<tr 
@@ -679,7 +693,7 @@ const SubsidiosSi = () => {
                                     :{borderBottom: '1px solid #1c1e21'}
                                 }
                             >
-                                <td colSpan="11" style={{textAlignLast: "center"}}>
+                                <td colSpan="13" style={{textAlignLast: "center"}}>
                                     <img src={IconoCargando}  />
                                 </td>
                             </tr>

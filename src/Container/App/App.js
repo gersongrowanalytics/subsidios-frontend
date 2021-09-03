@@ -72,7 +72,8 @@ function App() {
                         position:'absolute',
                         display:'flex',
                         alignItems: 'center',
-                        placeContent: 'center'
+                        placeContent: 'center',
+                        zIndex:'10000'
                     }}
                 >
                     <img src={LogoPaginaColor} width={'450px'} />
