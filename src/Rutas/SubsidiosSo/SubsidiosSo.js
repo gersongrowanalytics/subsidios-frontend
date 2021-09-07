@@ -127,6 +127,7 @@ const SubsidiosSo = () => {
     const [aplicarFiltrosAutomaticoValidado, setAplicarFiltrosAutomaticoValidado] = useState(false)
     const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
     const [mostrarValidados, setMostrarValidados] = useState(true)
+    const [contadorEstadoAutomaticoManual, setContadorEstadoAutomaticoManual] = useState(0)
 
     const valorizadosCantidadBultosTotal = data_subsidiosso.map(x => {
         const cantidadBultos = x.data.map(
@@ -514,17 +515,29 @@ const SubsidiosSo = () => {
                             <div 
                                 onClick={() => {
                                     setMostrarAutomaticos(!mostrarAutomaticos)   
-                                    setAplicarFiltrosAutomaticoValidado(true)
+                                    if(contadorEstadoAutomaticoManual == 0){
+                                        setAplicarFiltrosAutomaticoValidado(true)
+                                        setContadorEstadoAutomaticoManual(1)
+                                    }else if(contadorEstadoAutomaticoManual == 1){
+                                        setContadorEstadoAutomaticoManual(2)
+                                    }else if(contadorEstadoAutomaticoManual == 2){
+                                        setContadorEstadoAutomaticoManual(0)
+                                        setAplicarFiltrosAutomaticoValidado(false)
+                                    }
                                 }}
                                 className={
-                                    mostrarAutomaticos == true
+                                    aplicarFiltrosAutomaticoValidado == false
                                     ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
+                                    :mostrarAutomaticos == true
+                                        ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
+                                        :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
                                 }
                             >
                                 <span 
                                     className={
-                                        mostrarAutomaticos == true
+                                        aplicarFiltrosAutomaticoValidado == false
+                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                        :mostrarAutomaticos == true
                                         ?"Wbold-S13-H19-CFFFFFF-L0015"
                                         :"Wbold-S13-H19-C004FB8-L0015"
                                     }
@@ -544,19 +557,32 @@ const SubsidiosSo = () => {
                             <div 
                                 onClick={() => {
                                     setMostrarValidados(!mostrarValidados)
-                                    setAplicarFiltrosAutomaticoValidado(true)
+                                    // setAplicarFiltrosAutomaticoValidado(true)
+                                    if(contadorEstadoAutomaticoManual == 0){
+                                        setAplicarFiltrosAutomaticoValidado(true)
+                                        setContadorEstadoAutomaticoManual(1)
+                                    }else if(contadorEstadoAutomaticoManual == 1){
+                                        setContadorEstadoAutomaticoManual(2)
+                                    }else if(contadorEstadoAutomaticoManual == 2){
+                                        setContadorEstadoAutomaticoManual(0)
+                                        setAplicarFiltrosAutomaticoValidado(false)
+                                    }
                                 }}
                                 className={
-                                    mostrarValidados == true
+                                    aplicarFiltrosAutomaticoValidado == false
                                     ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
+                                    :mostrarValidados == true
+                                        ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
+                                        :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
                                 }
                             >
                                 <span 
                                     className={
-                                        mostrarValidados == true
+                                        aplicarFiltrosAutomaticoValidado == false
                                         ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :"Wbold-S13-H19-C004FB8-L0015"
+                                        :mostrarValidados == true
+                                            ?"Wbold-S13-H19-CFFFFFF-L0015"
+                                            :"Wbold-S13-H19-C004FB8-L0015"
                                     }
                                 >
                                     {

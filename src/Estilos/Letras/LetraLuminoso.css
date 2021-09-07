@@ -23,7 +23,7 @@
 }
 
 .COFF3742{
-    color: #FF3742;
+    color: #FF3742 !important;
 }
 
 .CO1EEC41{
@@ -190,6 +190,15 @@
     color: #004FB8;
 }
 
+.Wnormal-S15-H20-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #004FB8;
+}
+
 .Wnormal-S12-H16-CA2B9ED-L0015{
     font-family: Segoe UI;
     font-style: normal;
@@ -240,6 +249,23 @@
     color: #004FB8;
 }
 
+.Wbold-S14-H19-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FF3742;
+}
+
+.W600-S12-H16-CFF3742{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF3742;
+}
 
 .W400-S14-H19-C004FB8{
     font-family: Segoe UI;
@@ -285,6 +311,15 @@
     font-size: 14px;
     line-height: 19px;
     color: #1EC0ED;
+}
+
+.Wnormal-S14-H19-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #004FB8;
 }
 
 .Wnormal-S13-H17-C706C64{
@@ -484,3 +519,4 @@
 .react-datepicker-popper{
     z-index: 100;
 }
+

@@ -65,7 +65,9 @@ const NotiCarga = (props) => {
                                 <div 
                                     className={
                                         ComunesTipoDisenio == "Light" 
-                                        ?"W600-S14-H19-C004FB8"
+                                        ?not.RESPUESTA == true
+                                            ?"W600-S14-H19-C004FB8 "
+                                            :"W600-S14-H19-C004FB8 COFF3742"
                                         :"W600-S14-H19-Ce4e6eb"
                                     }
                                     style={{paddingBottom:'5px'}}
@@ -80,7 +82,9 @@ const NotiCarga = (props) => {
                                         ?<div 
                                             className={
                                                 ComunesTipoDisenio == "Light" 
-                                                ?"Wnormal-S14-H19-C706C64"
+                                                ?not.RESPUESTA == true
+                                                    ?"Wnormal-S14-H19-C706C64"
+                                                    :"Wnormal-S14-H19-C706C64 COFF3742"
                                                 :"Wnormal-S14-H19-Ce4e6eb"
                                             }
 
@@ -128,7 +132,7 @@ const NotiCarga = (props) => {
                                                     {/* PRODUCTOS */}
 
                                                     {
-                                                        not.PRODUCTOS_NO_ENCONTRADOS
+                                                        not.PRODUCTOS_NO_ENCONTRADOS.length > 0
                                                         ?<>
                                                             <b>{"Productos no encontrados: "}</b><br/>
                                                             {
@@ -152,7 +156,11 @@ const NotiCarga = (props) => {
                                     }
 
                                     <div style={{width:'10%', }}>
-                                        <img style={{cursor:'pointer'}} src={IconoCerrarNaranja} width="20px" />
+                                        <img 
+                                            style={{cursor:'pointer'}} 
+                                            src={IconoCerrarNaranja} width="20px" 
+                                            onClick={() => props.EliminarNotificacionReducer(posicion)}
+                                        />
                                         <img 
                                             onClick={() => setNotificacionesCompleta(!notificacionesCompleta)}
                                             style={{cursor:'pointer', marginLeft:'-1px'}} src={IconoMasAzul} width="25px" 
@@ -166,12 +174,16 @@ const NotiCarga = (props) => {
                     })
                 }
             </div>
-            {/* <div id="Contenedor-Cuerpo-Sin-Notificaciones-Carga">
-                <img id="Icono-Campana-Sin-Notificaciones-Carga" src={IconoCampana} /><br/>
-                <span className="Wnormal-S14-H19-Cacafb7">
-                    No hay notificaciones recientes
-                </span>
-            </div> */}
+            {
+                props.notificaciones_cargaarchivos.length > 0
+                ?null
+                :<div id="Contenedor-Cuerpo-Sin-Notificaciones-Carga">
+                    <img id="Icono-Campana-Sin-Notificaciones-Carga" src={IconoCampana} /><br/>
+                    <span className="Wnormal-S14-H19-Cacafb7">
+                        No hay notificaciones recientes
+                    </span>
+                </div>
+            }
         </div>
     )
 }

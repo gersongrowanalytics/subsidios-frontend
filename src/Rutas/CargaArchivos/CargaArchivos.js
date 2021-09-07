@@ -4,8 +4,10 @@ import CardCargarArchivo from '../../Componentes/CargaArchivos/CardCargaArchivo'
 import TarjetaCargaArchivo from '../../Componentes/CargaArchivos/TarjetaCargaArchivo'
 import NotiCarga from '../../Componentes/CargaArchivos/NotiCarga'
 import {useDispatch, useSelector} from "react-redux";
-import {CargarArchivoReducer} from '../../Redux/Actions/CargaArchivos/CargaArchivos'
+import {CargarArchivoReducer, EliminarNotificacionReducer} from '../../Redux/Actions/CargaArchivos/CargaArchivos'
 import {funPermisosObtenidos} from '../../Funciones/funPermiso'
+import config from '../../config'
+
 const CargaArchivos = () => {
 
     const dispatch = useDispatch();
@@ -125,6 +127,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Sell%20Out%20Efectivo.xlsx"}
                                     />
                                 </Col>       
                             )
@@ -142,6 +145,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Sell%20In%20(fectura%20efectiva).xlsx"}
                                     />
                                 </Col>       
                             )
@@ -202,10 +206,11 @@ const CargaArchivos = () => {
                                 <Col xl={6} md={6} sm={12} xs={24}>
                                     <TarjetaCargaArchivo
                                         titulo = {'Maestra de Fechas'}
-                                        url    = {'modulo/cargaArchivos/fechas'}
+                                        url    = {'modulo/cargaArchivos/asdasd'}
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
                                     />
                                 </Col>                                
                             )
@@ -230,6 +235,7 @@ const CargaArchivos = () => {
                         notificaciones = {notificaciones}
                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                        EliminarNotificacionReducer = {(posicion) => dispatch(EliminarNotificacionReducer(posicion))}
                     />
                 </Col>
             </Row>

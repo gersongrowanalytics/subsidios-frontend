@@ -49,7 +49,8 @@ export const ObtenerNotificacionesReducer = (notificacion) => async (dispatch, g
     
 
     let notificaciones_cargaarchivos = getState().cargaArchivos.notificaciones_cargaarchivos
-    notificacion["TITULO"] = "Notificación "+notificaciones_cargaarchivos.length+1
+    let numeroNoti = notificaciones_cargaarchivos.length+1
+    notificacion["TITULO"] = "Notificación "+numeroNoti
 
 
     notificaciones_cargaarchivos.unshift(notificacion)
@@ -59,5 +60,16 @@ export const ObtenerNotificacionesReducer = (notificacion) => async (dispatch, g
         payload : notificaciones_cargaarchivos
     })
 
+}
+
+export const EliminarNotificacionReducer = (posicion) => (dispatch, getState) => {
+    
+    let notificaciones_cargaarchivos = getState().cargaArchivos.notificaciones_cargaarchivos
+    notificaciones_cargaarchivos.splice(posicion,1)
+    dispatch({
+        type: OBTENER_NOTIFICACIONES_CARGA_ARCHIVOS,
+        payload : notificaciones_cargaarchivos
+    })
+    
 }
 

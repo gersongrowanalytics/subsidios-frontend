@@ -1,20 +1,40 @@
 import React, {useState} from 'react'
-import {Form, Button, Row, Col} from "antd";
+import {Form, Button, Row, Col, Modal, message} from "antd";
 import VideoIniciarSesion from '../../Assets/Videos/Login/IniciarSesion.webm';
 import IconoCandado from '../../Assets/Imagenes/Login/iconoCandado.png'
 import IconoCorreo from '../../Assets/Imagenes/Login/iconoCorreo.png'
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {
+    RecuperarContraseniaReducer
+} from '../../Redux/Actions/Login/Login'
+import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
+import '../../Estilos/Login/RecuperarContrasenia.css'
 
 const RecuperarContrasenia = () => {
 
     const dispatch = useDispatch();
 
     const onFinish = async values =>  {
-        
+        // console.log(values)
+        if(values.correo.length > 0){
+            setCorreoInput(values)
+            setCargandoBtnSiguiente(true)
+            let recuperar = await dispatch(RecuperarContraseniaReducer(values))
+            if(recuperar.respuesta === true){
+                setMostrarModalRecuperacion(true)
+            }else{
+                message.error(recuperar.mensaje);
+            }
+            setCargandoBtnSiguiente(false)
+        }else{
+            message.error("Es necesario colocar un correo");
+        }
     };
 
-    const [cargandoLogin, setCargandoLogin] = useState(false)
+    const [cargandoBtnSiguiente, setCargandoBtnSiguiente] = useState(false)
+    const [mostrarModalRecuperacion, setMostrarModalRecuperacion] = useState(false)
+    const [correoInput, setCorreoInput] = useState({})
 
     return (
         <div style={{width:'100%', height:'100%'}}>
@@ -65,7 +85,7 @@ const RecuperarContrasenia = () => {
 
                                     <Form.Item
                                         initialValue=""
-                                        name={"usuario"}
+                                        name={"correo"}
                                         style={{height:"0px", marginTop:'-10px', width:'100%'}}
                                     >
                                         <input style={{border:'0', width:'100%'}} autoComplete={"off"} />
@@ -83,7 +103,7 @@ const RecuperarContrasenia = () => {
                                 </Link>
                                 <Button 
                                     htmlType="submit"
-                                    loading={cargandoLogin}
+                                    loading={cargandoBtnSiguiente}
                                     style={{
                                         height: "47px",
                                         background: "#FF8023",
@@ -101,6 +121,56 @@ const RecuperarContrasenia = () => {
                     </Form>
                 </Col>
             </Row>
+            
+            <Modal 
+                title={null} 
+                visible={mostrarModalRecuperacion} 
+                onOk={() => setMostrarModalRecuperacion(!mostrarModalRecuperacion)} 
+                onCancel={() => setMostrarModalRecuperacion(!mostrarModalRecuperacion)}
+                footer={null}
+                centered={true}
+                closeIcon={
+                <img 
+                    src={IconoCerrar} 
+                    width='27px' 
+                    style={{marginRight:'20px', marginTop:'-20px'}} 
+                    onClick={() => setMostrarModalRecuperacion(!mostrarModalRecuperacion)}
+                />} 
+            >
+                
+                <div className="Wbold-S14-H19-C004FB8-L0015">Su solicitud fue enviada a su correo con éxito</div>
+                <div className="Wnormal-S14-H19-C004FB8" style={{display:'flex'}}>
+                    Si no has recibido el email de confirmación, puedes 
+                    <div 
+                        className="Wbold-S14-H19-C004FB8-L0015" 
+                        style={{paddingLeft:'5px', textDecoration:'underline', cursor:'pointer' }}
+                        onClick={
+                            () => {
+                                onFinish(correoInput)
+                                message.success("El correo fue reenviado");
+                            }
+                        }
+                    > reenviarlo.</div>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop:'15px'
+                    }}
+                >
+                    <Button 
+                        htmlType="submit"
+                        loading={cargandoBtnSiguiente}
+                        id="Btn-Listo-Recuperar-Contrasenia"
+                        className="Wbold-S14-H19-CFFFFFF-L0015"
+                        onClick={() => setMostrarModalRecuperacion(!mostrarModalRecuperacion)} 
+                    ><span className="Wbold-S14-H19-CFFFFFF-L0015">Listo</span></Button>
+                    {/* <div
+                        onClick={() => setMostrarModalRecuperacion(!mostrarModalRecuperacion)} 
+                        id="Btn-Listo-Recuperar-Contrasenia" className="Wbold-S14-H19-CFFFFFF-L0015">Listo</div> */}
+                </div>
+            </Modal>
             
         </div>
     )

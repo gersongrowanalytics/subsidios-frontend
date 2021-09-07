@@ -5,12 +5,13 @@ import Login from '../Login/Login'
 import LogoPaginaColor from '../../Assets/Imagenes/Logos/logoThanosColor.png'
 // import { ToastProvider } from 'react-toast-notifications';
 import Rutas from '../../Rutas/index'
-import {ValidarUsuarioConectadoReducer} from '../../Redux/Actions/Login/Login'
+import {ValidarUsuarioConectadoReducer, CerrarSesionReducer} from '../../Redux/Actions/Login/Login'
 import RecuperarCOntrasenia from '../Login/RecuperarContrasenia'
 import CambiarContrasenia from '../Login/CambiarContrasenia'
 import '../../Estilos/Letras/Letras.css'
 import '../../Estilos/Letras/LetraLuminoso.css'
 import config from '../../config'
+import TimeLogout from './TimeLogout';
 
 function App() {
 
@@ -23,14 +24,19 @@ function App() {
     useEffect(async () => {
 
         await dispatch(ValidarUsuarioConectadoReducer())
-        console.log(window.location.href)
-        console.log(window.location.href.split(config.urlFrontend)[1])
+        // console.log("------------------Link:")
+        // console.log(window.location.href)
+        // console.log(window.location.href.split(config.urlFrontend)[1])
     }, [LoginUsuid]);
 
 
 
     return (
         <div style={{position:'relative', width:'100%', height:'100%'}}>
+            <TimeLogout 
+                CerrarSesionReducer = {() => dispatch(CerrarSesionReducer())}
+                // CerrarSesionReducer = {() => alert('logout')}
+            />
             {/* <ToastProvider> */}
                 <div style={{position:'absolute', width:'100%', height:'100vh'}}>
                     <div style={{position:'relative', width:'100%', height:'100%'}}>
@@ -39,8 +45,14 @@ function App() {
                             LoginUsuid != null
                             ?<Rutas />
                             :<Switch>
-                                <Route exact path='/cambiar-contrasenia/' component={CambiarContrasenia}/>
+                                {/* <Route exact path='/cambiar-contrasenia/' component={CambiarContrasenia}/> */}
+                                {
+                                    window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia')
+                                    ?<Route exact path={window.location.href.split(config.urlFrontend)[1]} component={CambiarContrasenia}/>
+                                    :null
+                                }
                                 <Route exact path='/recuperar-contrasenia' component={RecuperarCOntrasenia}/>
+
                                 <Route exact path='/login' component={Login}/>
                             </Switch>
                         }

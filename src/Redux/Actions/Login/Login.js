@@ -160,3 +160,127 @@ export const ValidarUsuarioConectadoReducer = () => async (dispatch, getState) =
 
 
 }
+
+export const RecuperarContraseniaReducer = (usuario) => async (dispatch, getState) => {
+    
+    let respuesta = false
+    let mensaje = ""
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+'enviar-correo',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify(usuario),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(data => {
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            respuesta = data.respuesta
+            mensaje = data.mensaje
+			if(data.respuesta === true){
+				
+
+
+			}else{
+				
+			}
+            
+		}else{
+            respuesta = false
+            mensaje = "Lo sentimos, recuperar contraseña corrupto"
+
+        }
+    }).catch((error)=> {
+        respuesta = false
+        mensaje = error
+        console.log(error)
+    });
+
+    return {
+        respuesta : respuesta,
+        mensaje : mensaje
+    }
+}
+
+export const CambiarContraseniaReducer = (usuario) => async (dispatch, getState) => {
+    let respuesta = false
+    let mensaje = ""
+    let correo = ""
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+'cambiar-contrasenia',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify(usuario),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(data => {
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            respuesta = data.respuesta
+            correo = data.correo
+            mensaje = data.mensaje
+			if(data.respuesta === true){
+				
+
+
+			}else{
+				
+			}
+            
+		}else{
+            respuesta = false
+            mensaje = "Lo sentimos, el cambio de contraseña ha expirado"
+
+        }
+    }).catch((error)=> {
+        respuesta = false
+        mensaje = error
+        console.log(error)
+    });
+
+    return {
+        respuesta : respuesta,
+        mensaje : mensaje,
+        correo : correo
+    }
+}

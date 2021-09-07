@@ -8,6 +8,10 @@ import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import config from "../../config"
 import '../../Estilos/Login/LoginLight.css'
+import {
+    EyeOutlined,
+    EyeInvisibleOutlined
+} from '@ant-design/icons';
 
 const LoginLight = () => {
 
@@ -27,6 +31,7 @@ const LoginLight = () => {
 
     const [mostrarVideo, setMostrarVideo] = useState(false)
     const [cargandoLogin, setCargandoLogin] = useState(false)
+    const [mostrarContrasenia, setMostrarContrasenia] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
@@ -85,16 +90,24 @@ const LoginLight = () => {
                                 </div>
                                 {/* <div style={{marginTop:'20px'}} className="W600-S15-H20-C004FB8">Clave de Subsidios</div> */}
                                 <div style={{marginTop:'20px'}} className="W600-S15-H20-C004FB8">Contraseña</div>
-                                <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex'}}>
+                                <div style={{borderBottom:'1px solid #004FB8', paddingBottom:'7px', marginTop:'10px', display:'flex', position:'relative'}}>
                                     <img src={IconoCandado} width={"15px"} height={"15px"} style={{marginRight:'10px'}}/>
                                     <Form.Item
                                         initialValue=""
                                         name={"contrasenia"}
                                         style={{height:"0px", marginTop:'-10px'}}
                                     >
-                                        <input style={{border:'0'}} type="password"/>
+                                        <input style={{border:'0'}} type={mostrarContrasenia == true ? "text" :"password"}/>
                                     </Form.Item>  
-                                    
+                                    {/* <img 
+                                        src={IconoCandado} width={"15px"} height={"15px"}
+                                        style={{position:'absolute', right:'5px'}}
+                                    /> */}
+                                    {
+                                        mostrarContrasenia == true
+                                        ?<EyeInvisibleOutlined style={{position:'absolute', right:'5px', color:'#004FB8'}} onClick={() => setMostrarContrasenia(false)} />
+                                        :<EyeOutlined style={{position:'absolute', right:'5px', color:'#004FB8'}} onClick={() => setMostrarContrasenia(true)} />
+                                    }
                                 </div>
                                 <Link to="/recuperar-contrasenia">
                                     <div 
