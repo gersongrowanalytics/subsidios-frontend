@@ -697,7 +697,7 @@ export const Table = (props) => {
                                     AgrupacionesColumnas_Subsidios_SO.map((agrupacion, posicion) => {
                                         return(
                                             <>
-                                                <div className="Etiqueta-Filtro-Columnas W600-S11-H15-CFFFFFF">
+                                                <div className="Etiqueta-Filtro-Columnas W600-S11-H15-CFFFFFF" style={{marginBottom:'2px'}}>
                                                     {
                                                         agrupacion.seleccionado == true
                                                         ?<CaretDownOutlined 
@@ -748,13 +748,13 @@ export const Table = (props) => {
                                 <div className="Wbold-S14-H19-C004FB8-L0015">Columnas a Mostrar</div>
                                 <div className="Wnormal-S11-H15-C706C64-L0015">Seleccionar las columnas que desea mostrar</div>
                             </div>
-                            <div style={{overflow:'auto', width:'100%', height:'215px', marginTop:'10px', paddingLeft:'10px'}}>
+                            <div style={{overflow:'auto', width:'100%', height:'215px', marginTop:'10px', }}>
                                 
                                 {
                                     AgrupacionesColumnas_Subsidios_SO.map((agrupacion, posicion) => {
                                         return(
                                             <>
-                                                <div className="Etiqueta-Filtro-Columnas W600-S11-H15-CFFFFFF">
+                                                <div className="Etiqueta-Filtro-Columnas W600-S12-H15-CFFFFFF" style={{marginBottom:'2px'}}>
                                                     {
                                                         agrupacion.seleccionado == true
                                                         ?<CaretDownOutlined 
@@ -773,7 +773,7 @@ export const Table = (props) => {
                                                         ?<div key={column.id} style={{paddingLeft:'10px'}}>
                                                             <Checkbox  {...column.getToggleHiddenProps()}>
                                                             {/* <Checkbox > */}
-                                                                <span className="W600-S13-H17-C004FB8">{column.Homologado}</span>
+                                                                <span className="W400-S13-H17-C004FB8">{column.Homologado}</span>
                                                             </Checkbox>
                                                         </div>
                                                         :null
