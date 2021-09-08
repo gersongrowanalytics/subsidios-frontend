@@ -155,6 +155,14 @@ export const AplicarFiltrosSubsidiosSoReducer = () => async(dispatch, getState) 
     const clinombreFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clinombre
     const clisuchmlFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clisuchml
     const proskuFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.prosku
+    const sdesacFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.sdesac
+    const sdevalidadoFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.sdevalidado
+    const sdesectorFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.sdesector
+    const clizonaFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clizona
+    const catnombreFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.catnombre
+    const propresentacionFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.propresentacion
+    const clicodigoshiptoFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clicodigoshipto
+    const pronombreFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.pronombre
     
     // console.log(sdeterritorioFiltrados)
 
@@ -191,6 +199,54 @@ export const AplicarFiltrosSubsidiosSoReducer = () => async(dispatch, getState) 
 
             proskuFiltrados.map((campo) => {
                 if(data.prosku == campo ){
+                    agregar = false
+                }
+            })
+
+            sdesacFiltrados.map((campo) => {
+                if(data.sdesac == campo ){
+                    agregar = false
+                }
+            })
+
+            sdevalidadoFiltrados.map((campo) => {
+                if(data.sdevalidado == campo ){
+                    agregar = false
+                }
+            })
+
+            sdesectorFiltrados.map((campo) => {
+                if(data.sdesector == campo ){
+                    agregar = false
+                }
+            })
+
+            clizonaFiltrados.map((campo) => {
+                if(data.clizona == campo ){
+                    agregar = false
+                }
+            })
+
+            catnombreFiltrados.map((campo) => {
+                if(data.catnombre == campo ){
+                    agregar = false
+                }
+            })
+
+            propresentacionFiltrados.map((campo) => {
+                if(data.propresentacion == campo ){
+                    agregar = false
+                }
+            })
+
+            clicodigoshiptoFiltrados.map((campo) => {
+                if(data.clicodigoshipto == campo ){
+                    agregar = false
+                }
+            })
+
+            pronombreFiltrados.map((campo) => {
+                if(data.pronombre == campo ){
                     agregar = false
                 }
             })

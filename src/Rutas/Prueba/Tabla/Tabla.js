@@ -607,10 +607,11 @@ export const Table = (props) => {
                                                                 className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} 
                                                                 style={{position:'relative'}}
                                                             >
-                                                                <div style={{color:'white'}}>{dato.clinombre}</div>
-                                                                <div style={{position:'absolute', top:'5px'}}>
+                                                                <div >{dato.clinombre}</div>
+                                                                {/* <div style={{color:'white'}}>{dato.clinombre}</div> */}
+                                                                {/* <div style={{position:'absolute', top:'5px'}}>
                                                                     {dato.clinombre}
-                                                                </div>
+                                                                </div> */}
                                                             </td>
                                                             :cell.column.id == "clisuchml"
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.clisuchml}</td>
@@ -673,14 +674,13 @@ export const Table = (props) => {
                 width="620px"
                 height= "407px"
                 bodyStyle={{
-                    boxShadow: "0px 0px 15px #D8DFE9",
                     borderRadius: "8px"
                 }}
                 closeIcon={<img onClick={() =>setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas) } src={null}/>}
                 onCancel={() =>setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas) }
             >
                 <div
-                    className="Wbold-S14-H19-C004FB8-L0015" 
+                    className="Wbold-S16-H19-C004FB8-L0015" 
                     style={{textAlign: "-webkit-center", marginBottom:'20px'}}>Filtros de Columnas</div>
 
                 <Row>

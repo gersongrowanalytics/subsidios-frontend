@@ -75,6 +75,15 @@
     color: #004FB8;
 }
 
+.Wnormal-S12-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
 .Wbold-S13-H17-CFF8023{
     font-family: Segoe UI;
     font-style: normal;
@@ -130,6 +139,15 @@
     color: #004FB8;
 }
 
+.W400-S13-H17-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
 .W600-S13-H17-CFFFFFF{
     font-family: Segoe UI;
     font-style: normal;
@@ -175,6 +193,16 @@
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #004FB8;
+}
+
+.Wbold-S16-H19-C004FB8-L0015{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.015em;
     color: #004FB8;

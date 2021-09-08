@@ -26,6 +26,7 @@ import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.s
 import FiltroTablaIluminado from '../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
 import { Table } from './Tabla/Tabla';
 import data_mock from './Tabla/MOCK_DATA.json'
+import IconoFiltroTablaSapBlanco from '../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -90,6 +91,8 @@ const Prueba = () => {
     const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
     const [mostrarValidados, setMostrarValidados] = useState(true)
     const [contadorEstadoAutomaticoManual, setContadorEstadoAutomaticoManual] = useState(0)
+    const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
+    const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
 
     const valorizadosCantidadBultosTotal = data_subsidiosso.map(x => {
         const cantidadBultos = x.data.map(
@@ -320,15 +323,16 @@ const Prueba = () => {
 
                         <Col 
                             xl={4} 
-                            style={{display:'flex', alignItems: "center", }}
+                            style={{display:'flex', alignItems: "center" }}
                             className="Wbold-S13-H17-C004FB8"
                         >
                             <FiltroFechaTop 
                                 texto = {"Fecha Fin"}
                             />
                         </Col>
+                        <Col xl={6}></Col>
 
-                        <Col
+                        {/* <Col
                             style={{display:'flex', alignItems: "center", }}
                             className="Wbold-S13-H17-C004FB8" 
                             xl={6}
@@ -419,18 +423,18 @@ const Prueba = () => {
                             
                             
 
-                        </Col>
+                        </Col> */}
 
                         <Col 
                             xl={10}
                             style={{
                                 width: '100%',
                                 textAlign: "-webkit-right",
-                                paddingRight:'40px'
+                                // paddingRight:'40px'
                             }}
                         >
                             <div 
-                                className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFF8023"
+                                className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFFFFFF"
                                 style={{
                                     cursor:'pointer'
                                 }}
@@ -440,6 +444,8 @@ const Prueba = () => {
                                 }}
                             >
                                 Filtros
+
+                                <img className="Icono-Filtros-Tabla-Sap-Blanco" src={IconoFiltroTablaSapBlanco} /> 
                             </div>
                         </Col>
                     </Row>
@@ -457,9 +463,49 @@ const Prueba = () => {
                         >
                             <FiltroTablaIluminado 
                                 data_subsidiosso_real = {data_subsidiosso_real}
+                                campo = {"clizona"}
+                                titulo = {"Zona"}
+                            />
+                        </Col>
+                        {/* <Col xl={1}></Col> */}
+                        <Col 
+                            xl={2} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            <FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"sdeterritorio"}
                                 titulo = {"Territorio"}
                             />
+                        </Col>
+
+                        <Col 
+                            xl={4} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            {
+                                mostrarNombreCliente == true
+                                ?<FiltroTablaIluminado 
+                                    data_subsidiosso_real = {data_subsidiosso_real}
+                                    campo = {"clinombre"}
+                                    titulo = {"Nombre Cliente"}
+                                    tieneSwitch = {true}
+                                    accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                />
+                                :<FiltroTablaIluminado 
+                                    data_subsidiosso_real = {data_subsidiosso_real}
+                                    campo = {"clicodigoshipto"}
+                                    titulo = {"Codigo Cliente"}
+                                    tieneSwitch = {true}
+                                    accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                />
+                            }
                         </Col>
 
                         <Col 
@@ -471,12 +517,12 @@ const Prueba = () => {
                         >
                             <FiltroTablaIluminado 
                                 data_subsidiosso_real = {data_subsidiosso_real}
-                                campo = {"clinombre"}
-                                titulo = {"Cliente"}
+                                campo = {"catnombre"}
+                                titulo = {"Categoría"}
                             />
                         </Col>
 
-                        <Col 
+                        {/* <Col 
                             xl={2} 
                             style={{
                                 paddingLeft:'5px', paddingRight:'5px',
@@ -488,6 +534,62 @@ const Prueba = () => {
                                 campo = {"clisuchml"}
                                 titulo = {"Sucursal"}
                             />
+                        </Col> */}
+
+                        <Col 
+                            xl={2} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            <FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiosso_real}
+                                campo = {"sdesector"}
+                                titulo = {"Sector"}
+                            />
+                        </Col>
+
+                        <Col 
+                            xl={3} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            <FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiosso_real}
+                                campo = {"propresentacion"}
+                                titulo = {"Presentación"}
+                            />
+                        </Col>
+
+                        {/* <Col xl={2}></Col> */}
+
+                        <Col 
+                            xl={4} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            {
+                                mostrarCodigoProducto == true
+                                ?<FiltroTablaIluminado 
+                                    data_subsidiosso_real = {data_subsidiosso_real}
+                                    campo = {"prosku"}
+                                    titulo = {"Cod. Producto"}
+                                    tieneSwitch = {true}
+                                    accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                />
+                                :<FiltroTablaIluminado 
+                                    data_subsidiosso_real = {data_subsidiosso_real}
+                                    campo = {"pronombre"}
+                                    titulo = {"Nombre Producto"}
+                                    tieneSwitch = {true}
+                                    accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                />
+                            }
                         </Col>
 
                         <Col 
@@ -499,8 +601,24 @@ const Prueba = () => {
                         >
                             <FiltroTablaIluminado 
                                 data_subsidiosso_real = {data_subsidiosso_real}
-                                campo = {"prosku"}
-                                titulo = {"Cod Producto"}
+                                campo = {"sdevalidado"}
+                                titulo = {"Validación"}
+                                esValidacion = {true}
+                            />
+                        </Col>
+
+                        <Col 
+                            xl={3} 
+                            style={{
+                                paddingLeft:'5px', paddingRight:'5px',
+                                position:'relative'
+                            }}
+                        >
+                            <FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiosso_real}
+                                campo = {"sdesac"}
+                                titulo = {"Conexión"}
+                                esConexion = {true}
                             />
                         </Col>
 

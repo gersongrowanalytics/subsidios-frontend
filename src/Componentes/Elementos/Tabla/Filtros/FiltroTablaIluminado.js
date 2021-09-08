@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { Checkbox } from 'antd';
+import { Checkbox, Switch  } from 'antd';
 import {CambiarCheckFiltroSoReducer} from '../../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import {useDispatch, useSelector} from "react-redux";
 import '../../../../Estilos/Elementos/Tabla/FiltroTablaIluminado.css'
+import IconoFlechaAbajoFiltro from '../../../../Assets/Imagenes/Iconos/Comunes/flechaAbajoFiltro.png'
 
 const FiltroTablaIluminado = (props) => {
     const dispatch = useDispatch();
@@ -12,6 +13,12 @@ const FiltroTablaIluminado = (props) => {
 
     const data_subsidiosso_real = props.data_subsidiosso_real
     const campo = props.campo
+    const esValidacion = props.esValidacion
+    const esConexion = props.esConexion
+    const tieneSwitch = props.tieneSwitch
+    const accionSwitch = props.accionSwitch
+    
+    // const campo = props.campo
 
     useEffect(() => {
         setTxtBuscar("")
@@ -83,7 +90,19 @@ const FiltroTablaIluminado = (props) => {
                                 await dispatch(CambiarCheckFiltroSoReducer(campo, nuevaData[campo], e.target.checked))
                                 // setMostrarFiltro(true)
                             }}
-                        ><span className="W600-S13-H17-C004FB8">{nuevaData[campo]}</span></Checkbox><br/>
+                        ><span className="W400-S13-H17-C004FB8">
+                            {
+                                esValidacion == true
+                                ?nuevaData[campo] == "NOVALIDADOS"
+                                    ?"No Validado"
+                                    :"Validado"
+                                :esConexion == true
+                                    ?nuevaData[campo] == 1
+                                        ?"Manual"
+                                        :"Automatico"
+                                    :nuevaData[campo]
+                            }
+                        </span></Checkbox><br/>
                     </>
                 )
             })
@@ -152,17 +171,29 @@ const FiltroTablaIluminado = (props) => {
             <div className="Wbold-S13-H17-CFFFFFF" 
                 style={{
                     width:'100%',
-                    height: '33px',
+                    height: '25px',
                     background:'#FF8023',
                     borderRadius: '23px',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'left',
+                    paddingLeft:'15px',
                     cursor:'pointer'
                 }}
-                onClick={() => setMostrarFiltro(!mostrarFiltro)}
+                // onClick={() => setMostrarFiltro(!mostrarFiltro)}
             >
+                {
+                    tieneSwitch == true
+                    ?<div style={{marginRight:'8px'}}>
+                        <Switch 
+                            onChange={() => accionSwitch()}
+                            className="Switch-Filtro-Tabla-Iluminada" size="small" defaultChecked 
+                        />
+                    </div>
+                    :null
+                }
                 {props.titulo}
+                <img onClick={() => setMostrarFiltro(!mostrarFiltro)} src={IconoFlechaAbajoFiltro} className="Icono-Flecha-Filtro-Tabla-Iluminado" />
             </div>
 
             {
@@ -214,7 +245,7 @@ const FiltroTablaIluminado = (props) => {
                         <span className="W600-S13-H17-C004FB8">Seleccionar todo</span>
                     </Checkbox><br/> */}
 
-                    <div style={{overflow:'auto', width:'100%', height:'125px'}}>
+                    <div style={{overflow:'auto', width:'100%', height:'150px'}}>
                         {
                             obtenerCampos()
                         }

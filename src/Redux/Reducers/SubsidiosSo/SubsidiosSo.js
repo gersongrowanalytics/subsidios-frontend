@@ -29,10 +29,18 @@ const INIT_STATE = {
     zonaseleccionado: 0,
 
     filtrosTablaSubsidiosSo : {
+        "clizona" : [],
         "sdeterritorio" : [],
         "clinombre" : [],
         "clisuchml" : [],
         "prosku" : [],
+        "sdesac" : [],
+        "sdevalidado" : [],
+        "sdesector" : [],
+        "catnombre" : [],
+        "propresentacion" : [],
+        "clicodigoshipto" : [],
+        "pronombre" : []
         
     },
 
@@ -52,7 +60,7 @@ const INIT_STATE = {
           seleccionado: true,
           cabeceraAgrupacion: "otros"
         },
-      ]
+    ]
 
 };
 

@@ -3,7 +3,7 @@ import IconoTopCalendario from '../../Assets/Imagenes/Iconos/Top/calendario_azul
 import IconoTopCalendarioGris from '../../Assets/Imagenes/Iconos/Top/calendario_gris.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {CambiarFechaReducer} from '../../Redux/Actions/Comunes/Comunes'
-
+import IconoCalendario from '../../Assets/Imagenes/Iconos/Comunes/calendario.png'
 // IMPORTAR DATE PICKER
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from  "react-datepicker";
@@ -57,8 +57,9 @@ const FiltroFechaTop = (props) => {
             customInput={
 
                 <div style={{display:'flex', }}>
+                    <img src={IconoCalendario} width="25px" style={{marginRight:'5px'}} />
                     <div style={{paddingRight:'8px', alignSelf: "center"}}>{props.texto}</div>
-                    <div className="Contenedor-Filtro-Fecha Wnormal-S13-H17-C004FB8" style={{cursor:'pointer'}}>
+                    <div className="Contenedor-Filtro-Fecha Wnormal-S12-H17-C004FB8" style={{cursor:'pointer'}}>
                         {
                             ComunesFechaInicio != null
                             ?
