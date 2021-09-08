@@ -10,6 +10,7 @@ import {
 } from "../../../Constantes/SubsidiosSo/SubsidiosSo";
 
 const INIT_STATE = {
+    data_subsidiosso_real : [],
     data_subsidiosso : [],
     data_descarga_subsidiosso : [],
     total_soles_subsidiosso : "0",
@@ -25,7 +26,33 @@ const INIT_STATE = {
     productoseleccionado : 0,
     categoriaseleccionado: 0,
     territorioseleccionado: 0,
-    zonaseleccionado: 0
+    zonaseleccionado: 0,
+
+    filtrosTablaSubsidiosSo : {
+        "sdeterritorio" : [],
+        "clinombre" : [],
+        "clisuchml" : [],
+        "prosku" : [],
+        
+    },
+
+    AgrupacionesColumnas_Subsidios_SO: [
+        {
+          agrupacion: "Cliente Sell In",
+          seleccionado: true,
+          cabeceraAgrupacion: "ClienteSI"
+        },
+        {
+          agrupacion: "Materiales",
+          seleccionado: true,
+          cabeceraAgrupacion: "Materiales"
+        },
+        {
+          agrupacion: "Otros",
+          seleccionado: true,
+          cabeceraAgrupacion: "otros"
+        },
+      ]
 
 };
 
@@ -35,9 +62,16 @@ export default (state = INIT_STATE, action) => {
     case OBTENER_SUBSIDIOS_SO: {
         return {
             ...state,
+            data_subsidiosso_real : action.payload.datareal,
             data_subsidiosso : action.payload.data,
             data_descarga_subsidiosso : action.payload.descarga,
             total_soles_subsidiosso : action.payload.sumSde
+        }
+    }
+    case "CAMBIAR_DATA_SUBSIDIOS_SO":{
+        return {
+            ...state,
+            data_subsidiosso : action.payload
         }
     }
     case OBTENER_FILTROS_SUBSIDIOS_SO: {
@@ -89,6 +123,12 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             cargando_data_subsidiosso : action.payload
+        }
+    }
+    case "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_SO": {
+        return{
+            ...state,
+            AgrupacionesColumnas_Subsidios_SO : action.payload
         }
     }
     default:

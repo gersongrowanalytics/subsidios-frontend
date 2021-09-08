@@ -53,12 +53,14 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
             let descargassubsidiosso = []
+            let nuevaData = {...data}
             descargassubsidiosso = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargarSde)
 
             dispatch({
                 type: OBTENER_SUBSIDIOS_SO,
                 payload : {
-                    data : data.datos,
+                    data : nuevaData.datos,
+                    datareal : data.datos,
                     descarga : descargassubsidiosso,
                     sumSde : data.sumSde
                 }
@@ -144,4 +146,158 @@ export const ObtenerFiltrosReducer = () => async (dispatch, getState) => {
     }).catch((error)=> {
         
     });
+}
+
+export const AplicarFiltrosSubsidiosSoReducer = () => async(dispatch, getState) => {
+
+    const data_subsidiosso_real = getState().subsidiosSo.data_subsidiosso_real
+    const sdeterritorioFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.sdeterritorio
+    const clinombreFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clinombre
+    const clisuchmlFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.clisuchml
+    const proskuFiltrados = getState().subsidiosSo.filtrosTablaSubsidiosSo.prosku
+    
+    // console.log(sdeterritorioFiltrados)
+
+    let datasubsidiosreal = await {  ...data_subsidiosso_real }
+    let nuevoarray = []
+    // console.log(datasubsidiosreal)
+    // console.log(datasubsidiosreal[0])
+    await data_subsidiosso_real.map(async(zona, pos) => {
+        
+        nuevoarray[pos] = { ...zona }
+        // nuevoarray[pos]['data'] = []
+        let arrZon = []
+        await zona.data.map((data) => {
+
+            let agregar = true
+
+            sdeterritorioFiltrados.map((territorio) => {
+                if(data.sdeterritorio == territorio ){
+                    agregar = false
+                }
+            })
+
+            clinombreFiltrados.map((campo) => {
+                if(data.clinombre == campo ){
+                    agregar = false
+                }
+            })
+
+            clisuchmlFiltrados.map((campo) => {
+                if(data.clisuchml == campo ){
+                    agregar = false
+                }
+            })
+
+            proskuFiltrados.map((campo) => {
+                if(data.prosku == campo ){
+                    agregar = false
+                }
+            })
+
+            if(agregar == true){
+                arrZon.push({...data})
+            }
+        })
+        // console.log(arrZon)
+        nuevoarray[pos]['desplegado'] = false
+        nuevoarray[pos]['data'] = arrZon
+    })
+    
+    // console.log(nuevoarray)
+    dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: nuevoarray
+    })
+}
+
+export const CambiarCheckFiltroSoReducer = (campo, valor, check, borrarTodo = false, noseleccionados = []) => async(dispatch, getState) => {
+
+    const filtrosTablaSubsidiosSo = getState().subsidiosSo.filtrosTablaSubsidiosSo
+    const data_subsidiosso_real = getState().subsidiosSo.data_subsidiosso_real
+
+    if(borrarTodo == true){
+        filtrosTablaSubsidiosSo[campo] = []
+        await data_subsidiosso_real.map((zona) => {
+
+            zona.data.map((data) => {
+    
+                data["check"] = true
+    
+            })
+    
+        })
+
+        await data_subsidiosso_real.map((zona) => {
+
+            zona.data.map((data) => {
+                
+                noseleccionados.map((noselect) => {
+                    if(data[campo] == noselect){
+                        data["check"] = false
+                    }
+                })
+            })
+    
+        })
+
+        filtrosTablaSubsidiosSo[campo] = noseleccionados
+
+    }else{
+        await data_subsidiosso_real.map((zona) => {
+
+            zona.data.map((data) => {
+    
+                if(data[campo] == valor){
+                    data["check"] = check
+                }
+    
+            })
+    
+        })
+        
+        if(check == true){
+            filtrosTablaSubsidiosSo[campo].map((val, pos) => {
+                if(val == valor ){
+                    filtrosTablaSubsidiosSo[campo].splice(pos,1)
+                }
+            })
+        }else{
+            filtrosTablaSubsidiosSo[campo].push(valor)
+        }
+    }
+
+    dispatch(AplicarFiltrosSubsidiosSoReducer())
+}
+
+export const CambiarCheckVariosFiltroReducer = (campo, valor) => (dispatch, getState) => {
+    // const data_subsidiosso_real = getState().subsidiosSo.data_subsidiosso_real
+    
+    // await data_subsidiosso_real.map((zona) => {
+
+    //     zona.data.map((data) => {
+
+    //         if(data[campo] == valor){
+    //             data["check"] = true
+    //         }else{
+    //             data["check"] = false
+    //         }
+
+    //     })
+
+    // })
+
+    // const filtrosTablaSubsidiosSo = getState().subsidiosSo.filtrosTablaSubsidiosSo
+    
+    // if(check.target.checked == true){
+    //     filtrosTablaSubsidiosSo[campo].map((val, pos) => {
+    //         if(val == valor ){
+    //             filtrosTablaSubsidiosSo[campo].splice(pos,1)
+    //         }
+    //     })
+    // }else{
+    //     filtrosTablaSubsidiosSo[campo].push(valor)
+    // }
+
+    // dispatch(AplicarFiltrosSubsidiosSoReducer())
 }

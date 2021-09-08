@@ -1,0 +1,38 @@
+.Contenedor-Btns-Filtro-Iluminado{
+    display: flex;
+    /* background-color: red; */
+    width: 100%;
+    height: 50px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+
+.Btn-Aceptar-Filtro-Iluminado{
+    width: 64px;
+    height: 24px;
+    background: #004FB8;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+
+    cursor: pointer;
+    display: flex;
+    padding-top: 1px;
+    justify-content: center;
+}
+
+.Btn-Cancelar-Filtro-Iluminado{
+    width: 67px;
+    height: 24px;
+
+    background: #EDF0FA;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+
+    cursor: pointer;
+    display: flex;
+    padding-top: 1px;
+    justify-content: center;
+    margin-left: 10px;
+}

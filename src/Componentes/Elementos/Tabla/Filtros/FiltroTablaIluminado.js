@@ -1,9 +1,151 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Checkbox } from 'antd';
+import {CambiarCheckFiltroSoReducer} from '../../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
+import {useDispatch, useSelector} from "react-redux";
+import '../../../../Estilos/Elementos/Tabla/FiltroTablaIluminado.css'
 
-const FiltroTablaIluminado = () => {
-
+const FiltroTablaIluminado = (props) => {
+    const dispatch = useDispatch();
+    const [txtBuscar, setTxtBuscar] = useState("")
     const [mostrarFiltro, setMostrarFiltro] = useState(false)
+    const [seleccionarTodo, setSeleccionarTodo] = useState(true)
+
+    const data_subsidiosso_real = props.data_subsidiosso_real
+    const campo = props.campo
+
+    useEffect(() => {
+        setTxtBuscar("")
+        // validarTodoSeleccionado()
+
+
+
+    },[])
+
+    const obtenerCampos = () => {
+        
+        let nuevoA = []
+
+        data_subsidiosso_real.map((zona) => {
+            zona.data.map((data) => {
+                if(txtBuscar.length > 0){
+
+                    if(nuevoA.length == 0){
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            nuevoA.push(data)
+                        }
+                    }else{
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            let encontro = false
+                            nuevoA.map((ndta) => {
+                                if(ndta[campo] == data[campo]){
+                                    encontro = true
+                                }
+                            })
+        
+                            if(encontro == false){
+                                nuevoA.push(data)
+                            }
+                        }
+                    }
+
+                }else{
+                    if(nuevoA.length == 0){
+                        nuevoA.push(data)
+                    }else{
+                        let encontro = false
+                        nuevoA.map((ndta) => {
+                            if(ndta[campo] == data[campo]){
+                                encontro = true
+                            }
+                        })
+    
+                        if(encontro == false){
+                            nuevoA.push(data)
+                        }
+                    }
+                }
+            })
+        })
+
+        return (
+            nuevoA.map((nuevaData) => {
+                return(
+                    <>
+                        <Checkbox
+                            checked={
+                                nuevaData.check == undefined 
+                                ? true
+                                : nuevaData.check
+                            }
+                            // onChange={() => console.log(nuevaData.check)}
+                            onChange={async(e) => {
+                                // setMostrarFiltro(false)
+                                await dispatch(CambiarCheckFiltroSoReducer(campo, nuevaData[campo], e.target.checked))
+                                // setMostrarFiltro(true)
+                            }}
+                        ><span className="W600-S13-H17-C004FB8">{nuevaData[campo]}</span></Checkbox><br/>
+                    </>
+                )
+            })
+        )
+    }
+
+    const aplicarFiltroTxt = async () => {
+        
+        let nuevoA = []
+        let noseleccionados = []
+
+        await data_subsidiosso_real.map((zona) => {
+            zona.data.map((data, pos) => {
+                if(txtBuscar.length > 0){
+
+                    if(nuevoA.length == 0){
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            nuevoA.push(data)
+                        }else{
+                            noseleccionados.push(data[campo])
+                            // dispatch(CambiarCheckFiltroSoReducer(campo, data[campo], false))
+                        }
+                    }else{
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            let encontro = false
+                            nuevoA.map((ndta) => {
+                                if(ndta[campo] == data[campo]){
+                                    encontro = true
+                                }
+                            })
+        
+                            if(encontro == false){
+                                nuevoA.push(data)
+                            }
+                        }else{
+                            // dispatch(CambiarCheckFiltroSoReducer(campo, data[campo], false))
+                            noseleccionados.push(data[campo])
+                        }
+                    }
+
+                }else{
+                    
+                }
+            })
+        })
+
+        dispatch(CambiarCheckFiltroSoReducer(campo, "", true, true, noseleccionados))
+
+        setMostrarFiltro(false)
+    }
+
+    const validarTodoSeleccionado = () => {
+        let todoSeleccionado = true
+        data_subsidiosso_real.map((zona) => {
+            zona.data.map((data) => {
+                if(data.check == false){
+                    todoSeleccionado = false
+                }
+            })
+        })
+        setSeleccionarTodo(todoSeleccionado)
+    }
 
     return (
         <>
@@ -20,7 +162,7 @@ const FiltroTablaIluminado = () => {
                 }}
                 onClick={() => setMostrarFiltro(!mostrarFiltro)}
             >
-                Categoría
+                {props.titulo}
             </div>
 
             {
@@ -29,14 +171,14 @@ const FiltroTablaIluminado = () => {
                     style={{
                         marginTop:'5px',
                         width: '204px',
-                        height: '190px',
+                        height: '250px',
                         background: '#FFFFFF',
                         border: '1px solid #D7E8FF',
                         boxSizing: 'border-box',
                         boxShadow: '0px 0px 15px #D8DFE9',
                         borderRadius: '8px',
                         position: 'absolute',
-                        zIndex:'1',
+                        zIndex:'100',
                         paddingLeft:'18px',
                         paddingRight:'18px',
                         paddingTop:'13px',
@@ -57,27 +199,39 @@ const FiltroTablaIluminado = () => {
                         }}
                         className="Wnormal-S12-H16-CA2B9ED-L0015"
                     >
-                        <input placeholder="Buscar" style={{border:'0'}}  />
+                        <input 
+                            onChange={(e) => {
+                                setTxtBuscar(e.target.value)
+                                validarTodoSeleccionado()
+                            }}
+                            placeholder="Buscar" style={{border:'0'}}  
+                        />
                     </div>
 
-                    <Checkbox><span className="W600-S13-H17-C004FB8">Seleccionar todo</span></Checkbox><br/>
+                    {/* <Checkbox
+                        checked={seleccionarTodo}
+                    >
+                        <span className="W600-S13-H17-C004FB8">Seleccionar todo</span>
+                    </Checkbox><br/> */}
 
-                    <div style={{overflow:'auto', width:'100%', height:'115px'}}>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
-                        <Checkbox><span className="W600-S13-H17-C004FB8">000-000000899</span></Checkbox><br/>
+                    <div style={{overflow:'auto', width:'100%', height:'125px'}}>
+                        {
+                            obtenerCampos()
+                        }
                     </div>
 
-                    {/* <Checkbox>000-000000899</Checkbox> */}
+                    <div className="Contenedor-Btns-Filtro-Iluminado">
+                        <div
+                            onClick={() => aplicarFiltroTxt()} 
+                            className="Btn-Aceptar-Filtro-Iluminado W600-S13-H17-CFFFFFF">
+                            Aceptar
+                        </div>
+                        <div
+                            onClick={() => setMostrarFiltro(false)} 
+                            className="Btn-Cancelar-Filtro-Iluminado">
+                            <span className="W600-S13-H17-C004FB8-L0015">Cancelar</span>
+                        </div>
+                    </div>
 
                 </div>
 

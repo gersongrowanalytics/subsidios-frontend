@@ -7,20 +7,28 @@ import {
     SELECCIONAR_ZONA_FILTRO_SUBSIDIOS_SO
 } from '../../../Constantes/SubsidiosSo/SubsidiosSo'
 
-export const DesplegarSubsidiosSoReducer = (posicion) => async (dispatch, getState) => {
+export const DesplegarSubsidiosSoReducer = (posicion, ocultartodo = false) => async (dispatch, getState) => {
 
     let {data_subsidiosso, data_descarga_subsidiosso, total_soles_subsidiosso} = getState().subsidiosSo
 
-    data_subsidiosso[posicion]['desplegado'] = !data_subsidiosso[posicion]['desplegado']
+    if(ocultartodo == true){
+        data_subsidiosso.map(data => data.desplegado = false)
+    }else{
+        data_subsidiosso[posicion]['desplegado'] = !data_subsidiosso[posicion]['desplegado']
+    }
 
     dispatch({
-        type: OBTENER_SUBSIDIOS_SO,
-        payload : {
-            data : data_subsidiosso,
-            descarga : data_descarga_subsidiosso,
-            sumSde: total_soles_subsidiosso
-        }
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
     })
+    // dispatch({
+    //     type: OBTENER_SUBSIDIOS_SO,
+    //     payload : {
+    //         data : data_subsidiosso,
+    //         descarga : data_descarga_subsidiosso,
+    //         sumSde: total_soles_subsidiosso
+    //     }
+    // })
 
 }
 
@@ -56,4 +64,14 @@ export const SeleccionarSolicitanteReducer = (estado, id, tipo) => (dispatch, ge
             payload : id
         })
     }
+}
+
+export const DesplegarFiltroColumnaReducer = (posicion) => (dispatch, getState) => {
+    
+    let {AgrupacionesColumnas_Subsidios_SO} = getState().subsidiosSo
+    AgrupacionesColumnas_Subsidios_SO[posicion]['seleccionado'] = !AgrupacionesColumnas_Subsidios_SO[posicion]['seleccionado']
+    dispatch({
+        type: "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_SO",
+        payload: AgrupacionesColumnas_Subsidios_SO
+    })
 }

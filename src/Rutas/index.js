@@ -11,6 +11,8 @@ import Controles from "./Controles/ControlCargasArchivos/ControlCargasArchivos";
 import Subsidios from "./Subsidios/Subsidios"
 import SubsidiosSo from "./SubsidiosSo/SubsidiosSo"
 import SubsidiosSi from "./SubsidiosSi/SubsidiosSi"
+import SubsidiosSiTb from "./SubsidiosSi/SubsidiosSiTbDinamica/SubsidiosSiTb"
+import Prueba from "./Prueba/Prueba"
 import Facturas from "./Facturas/Facturas"
 import Top from '../Componentes/Top/Top'
 import Menu from '../Componentes/Menu/Menu'
@@ -77,7 +79,15 @@ const App = () => {
                     <Route exact path='/subsidios-si' >
                         <SubsidiosSi/>
                     </Route>
+
+                    <Route exact path='/subsidios-si-tb' >
+                        <SubsidiosSiTb/>
+                    </Route>
                     
+                    <Route exact path='/prueba' >
+                        <Prueba/>
+                    </Route>
+
                 </Switch>
             </div>    
             <Top />

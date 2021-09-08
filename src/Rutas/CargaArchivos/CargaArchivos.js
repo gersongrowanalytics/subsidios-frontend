@@ -162,6 +162,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Operaciones%20Sunat.xlsx"}
                                     />
                                 </Col>
                             )
