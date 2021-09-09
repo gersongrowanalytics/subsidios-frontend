@@ -62,7 +62,8 @@ const App = () => {
                     </Route>
 
                     <Route exact path='/subsidios-pendientes' >
-                        <SubsidiosPendientes/>
+                        {/* <SubsidiosPendientes/> */}
+                        <SubPendientesTbDinamica/>
                     </Route>
 
                     <Route exact path='/facturas' >
