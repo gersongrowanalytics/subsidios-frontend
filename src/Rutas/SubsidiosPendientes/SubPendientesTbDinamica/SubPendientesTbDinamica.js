@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Row, Col} from 'antd'
 import FiltroSubsidioPendiente from '../../../Componentes/SubsidiosPendientes/FiltroSubsidioPendiente'
 import TablaSubsidioPendiente from '../../../Componentes/SubsidiosPendientes/TablaSubsidioPendiente'
@@ -10,18 +10,41 @@ import FiltroFechas from '../../../Componentes/Subsidios/FiltroFechas';
 import FiltroFechaTop from '../../../Componentes/Top/FiltroFechaTop';
 import IconoFiltroTablaSapBlanco from "../../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png"
 import FiltroTablaIluminado from '../../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
+import TbSubPendientes from './Tabla/TbSubPendientes';
+import {
+    ObtenerSubsidiosPendientesReducer,
+} from '../../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientes'
 
 const SubPendientesTbDinamica = () => {
+    
+    const dispatch = useDispatch();
 
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
     const [mostrarModalFiltrosColumnas , setMostrarModalFiltrosColumnas] = useState(false)
 
     const {
         data_subsidiossipendientes_real,
+        data_subsidiossipendientes,
+        data_descarga_subsidiossipendientes,
+        total_soles_subsidiossipendientes,
+        cargando_eliminar_facturas_subsidiossipendientes,
+        cargando_asignar_facturas_subsidiossipendientes,
+        cargando_tabla_subsidiospendientes,
+        cargando_tabla_facturas_asignar_subsidiospendientes,
+        AgrupacionesColumnas_Subsidios_Pendientes
     } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
     const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
     const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
+
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal,
+    } = useSelector(({comunes}) => comunes);
+
+    useEffect(() => {
+        dispatch(ObtenerSubsidiosPendientesReducer())
+    }, [ComunesFechaInicio, ComunesFechaFinal]);
 
     return (
         <Row>
@@ -271,9 +294,28 @@ const SubPendientesTbDinamica = () => {
             >
                 <Row>
                     <Col xl={24} md={24} sm={24} xs={24}>
-                        <TablaSubsidioPendiente 
+                        {
+                            data_subsidiossipendientes.length > 0
+                            ?<TbSubPendientes 
+                                ComunesTipoDisenio = {ComunesTipoDisenio}
+                                data_subsidiossipendientes_real = {data_subsidiossipendientes_real}
+                                data_subsidiossipendientes = {data_subsidiossipendientes}
+                                MOCK_DATA = {data_subsidiossipendientes}
+                                data_descarga_subsidiossipendientes = {data_descarga_subsidiossipendientes}
+                                total_soles_subsidiossipendientes = {total_soles_subsidiossipendientes}
+                                cargando_eliminar_facturas_subsidiossipendientes = {cargando_eliminar_facturas_subsidiossipendientes}
+                                cargando_asignar_facturas_subsidiossipendientes = {cargando_asignar_facturas_subsidiossipendientes}
+                                cargando_tabla_subsidiospendientes = {cargando_tabla_subsidiospendientes}
+                                cargando_tabla_facturas_asignar_subsidiospendientes = {cargando_tabla_facturas_asignar_subsidiospendientes}
+                                mostrarModalFiltrosColumnas = {mostrarModalFiltrosColumnas}
+                                setMostrarModalFiltrosColumnas = {(s) => setMostrarModalFiltrosColumnas(s)}
+                                AgrupacionesColumnas_Subsidios_Pendientes = {AgrupacionesColumnas_Subsidios_Pendientes}
+                            />
+                            :null
+                        }
+                        {/* <TablaSubsidioPendiente 
                             ComunesTipoDisenio = {ComunesTipoDisenio}
-                        />
+                        /> */}
                     </Col>
                 </Row>
             </Col>

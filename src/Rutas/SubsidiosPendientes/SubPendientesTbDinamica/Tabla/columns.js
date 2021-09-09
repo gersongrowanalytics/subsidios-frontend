@@ -60,31 +60,31 @@ export const COLUMNS_SUBPENDIENTES = [
   {
     Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
     Homologado: <>Reconocimiento S/(SAC/APP))</>,
-    accessor: '',
+    accessor: 'reconocimientosacapp',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Factura<br/>Impactar</>,
     Homologado: <>Factura Impactar</>,
-    accessor: '',
+    accessor: 'facturaimpactar',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Fecha</>,
     Homologado: <>Fecha</>,
-    accessor: '',
+    accessor: 'fechafactura',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Valorizado Subsidiado</>,
     Homologado: <>Valorizado<br/>Subsidiado</>,
-    accessor: '',
+    accessor: 'valorizadosubsidiado',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Estado</>,
     Homologado: <>Estado</>,
-    accessor: 'sdependiente',
+    accessor: 'estadoSubPendientes',
     cabeceraAgrupacion: 'metricas'
   },
 ]
