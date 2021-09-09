@@ -134,6 +134,8 @@ const SubsidiosSiTb = () => {
     const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
     const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
 
+    const MesesNombres = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"]
+
     return (
         <div style={{paddingBottom:'100px'}}>
             <div 
@@ -409,10 +411,15 @@ const SubsidiosSiTb = () => {
                         textAlign: "-webkit-center"
                     }}
                 >
-                    <div style={{marginBottom:'20px'}} className="Wbold-S13-H17-C004FB8" >
+                    <div style={{marginBottom:'20px'}} className="Wbold-S13-H17-C004FB8" onclick={() => console.log(ComunesFechaInicio)}>
                         
                         LISTA DE FACTURAS ASIGNADAS<br/>
-                        PERIODO: JULIO 2021
+                        PERIODO: {
+                            ComunesFechaInicio
+                            ?MesesNombres[ComunesFechaInicio.getMonth()]
+                            :""
+                            
+                        } 2021
                         
                     </div>
 
