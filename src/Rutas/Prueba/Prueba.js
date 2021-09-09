@@ -27,6 +27,7 @@ import FiltroTablaIluminado from '../../Componentes/Elementos/Tabla/Filtros/Filt
 import { Table } from './Tabla/Tabla';
 import data_mock from './Tabla/MOCK_DATA.json'
 import IconoFiltroTablaSapBlanco from '../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -465,6 +466,7 @@ const Prueba = () => {
                                 data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"clizona"}
                                 titulo = {"Zona"}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
                         {/* <Col xl={1}></Col> */}
@@ -479,6 +481,7 @@ const Prueba = () => {
                                 data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"sdeterritorio"}
                                 titulo = {"Territorio"}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
 
@@ -497,6 +500,7 @@ const Prueba = () => {
                                     titulo = {"Nombre Cliente"}
                                     tieneSwitch = {true}
                                     accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                    pertenenciaFiltros = {"SUBSO"}
                                 />
                                 :<FiltroTablaIluminado 
                                     data_subsidiosso_real = {data_subsidiosso_real}
@@ -504,6 +508,7 @@ const Prueba = () => {
                                     titulo = {"Codigo Cliente"}
                                     tieneSwitch = {true}
                                     accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                    pertenenciaFiltros = {"SUBSO"}
                                 />
                             }
                         </Col>
@@ -519,22 +524,9 @@ const Prueba = () => {
                                 data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"catnombre"}
                                 titulo = {"Categoría"}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
-
-                        {/* <Col 
-                            xl={2} 
-                            style={{
-                                paddingLeft:'5px', paddingRight:'5px',
-                                position:'relative'
-                            }}
-                        >
-                            <FiltroTablaIluminado 
-                                data_subsidiosso_real = {data_subsidiosso_real}
-                                campo = {"clisuchml"}
-                                titulo = {"Sucursal"}
-                            />
-                        </Col> */}
 
                         <Col 
                             xl={2} 
@@ -547,6 +539,7 @@ const Prueba = () => {
                                 data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"sdesector"}
                                 titulo = {"Sector"}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
 
@@ -561,6 +554,7 @@ const Prueba = () => {
                                 data_subsidiosso_real = {data_subsidiosso_real}
                                 campo = {"propresentacion"}
                                 titulo = {"Presentación"}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
 
@@ -581,6 +575,7 @@ const Prueba = () => {
                                     titulo = {"Cod. Producto"}
                                     tieneSwitch = {true}
                                     accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                    pertenenciaFiltros = {"SUBSO"}
                                 />
                                 :<FiltroTablaIluminado 
                                     data_subsidiosso_real = {data_subsidiosso_real}
@@ -588,6 +583,7 @@ const Prueba = () => {
                                     titulo = {"Nombre Producto"}
                                     tieneSwitch = {true}
                                     accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                    pertenenciaFiltros = {"SUBSO"}
                                 />
                             }
                         </Col>
@@ -604,6 +600,7 @@ const Prueba = () => {
                                 campo = {"sdevalidado"}
                                 titulo = {"Validación"}
                                 esValidacion = {true}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
 
@@ -619,6 +616,7 @@ const Prueba = () => {
                                 campo = {"sdesac"}
                                 titulo = {"Conexión"}
                                 esConexion = {true}
+                                pertenenciaFiltros = {"SUBSO"}
                             />
                         </Col>
 
@@ -740,7 +738,7 @@ const Prueba = () => {
                         setMostrarModalFiltrosColumnas = {(s) => setMostrarModalFiltrosColumnas(s)}
                         AgrupacionesColumnas_Subsidios_SO = {AgrupacionesColumnas_Subsidios_SO}
                     />
-                    :null
+                    :<IconoCargandoSITb />
                 }
                 
             </div>
@@ -773,5 +771,34 @@ const Prueba = () => {
         </div>
     )
 }
+
+class IconoCargandoSITb extends React.Component {
+    constructor(props) {
+      super(props);
+      this.player = React.createRef();
+    }
+  
+    doSomething() {
+      this.player.current.play(); // make use of the player and call methods
+    }
+  
+    render() {
+      return (
+        <Player
+          onEvent={event => {
+            if (event === 'load') this.doSomething(); // check event type and do something
+          }}
+          ref={this.player}
+          autoplay={false}
+          loop={true}
+          controls={true}
+          src="https://assets6.lottiefiles.com/private_files/lf30_ip9sj61c.json"
+          style={{ height: '300px', width: '300px' }}
+        ></Player>
+      );
+    }
+  }
+
+
 
 export default Prueba

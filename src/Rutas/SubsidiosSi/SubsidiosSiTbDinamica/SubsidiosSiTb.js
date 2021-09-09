@@ -27,6 +27,12 @@ import FiltroFechaTop from '../../../Componentes/Top/FiltroFechaTop'
 import IconoCargando from '../../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import DataTablaSi from '../../../Componentes/Subsidios/DataTablaSi'
 import TbSubSi from './Tabla/TbSubSi'
+import {
+    DesplegarSubsidiosSoReducer
+} from '../../../Redux/Actions/SubsidiosSi/SubsidiosSiFront'
+import IconoFiltroTablaSapBlanco from "../../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png"
+import FiltroTablaIluminado from '../../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -57,7 +63,9 @@ const SubsidiosSiTb = () => {
         data_descarga_subsidiossi, 
         data_subsidiossi,
         total_soles_subsidiossi,
-        cargando_data_subsidiossi
+        cargando_data_subsidiossi,
+        AgrupacionesColumnas_Subsidios_SI,
+        data_subsidiossi_real
     } = useSelector(({subsidiosSi}) => subsidiosSi);
 
     const {
@@ -121,6 +129,11 @@ const SubsidiosSiTb = () => {
 
     const sumaValorizadosValorizadoTotal = sumaValores(valorizadosValorizadoTotal)
 
+    const [mostrarModalFiltrosColumnas , setMostrarModalFiltrosColumnas] = useState(false)
+
+    const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
+    const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
+
     return (
         <div style={{paddingBottom:'100px'}}>
             <div 
@@ -173,64 +186,191 @@ const SubsidiosSiTb = () => {
                             paddingRight:'40px'
                         }}
                     >
-                        <div className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFF8023">
+                        <div 
+                            className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFFFFFF"
+                            style={{
+                                cursor:'pointer'
+                            }}
+                            onClick={() => {
+                                setMostrarModalFiltrosColumnas(!mostrarModalFiltrosColumnas)
+                                dispatch(DesplegarSubsidiosSoReducer(0, true))
+                            }}
+                        >
                             Filtros
+                            <img className="Icono-Filtros-Tabla-Sap-Blanco" src={IconoFiltroTablaSapBlanco} /> 
                         </div>
                     </Col>
                 </Row>
             </div>
             
-            <div id="Contenedor-Filtros-Tabla-Subsidios-So" style={{paddingLeft:'40px'}}>
+            <div id="Contenedor-Filtros-Tabla-Subsidios-So" style={{paddingLeft:'40px', paddingRight:'40px'}}>
                 <Row style={{width:'100%'}}>
-                    <Col xl={2} xs={24}>
-                            <div 
-                                onClick={() => setMostrarAutomaticos(!mostrarAutomaticos)}
-                                className={
-                                    mostrarAutomaticos == true
-                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
-                                }
-                            >
-                                <span 
-                                    className={
-                                        mostrarAutomaticos == true
-                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :"Wbold-S13-H19-C004FB8-L0015"
-                                    }
-                                >
-                                    {
-                                        mostrarAutomaticos == true
-                                        ?"Automaticos"
-                                        :"Manuales"
-                                    }
-                                </span>
-                            </div>
-                        </Col>
 
-                        <Col xl={4} xs={24}>
-                            <div 
-                                onClick={() => setMostrarValidados(!mostrarValidados)}
-                                className={
-                                    mostrarValidados == true
-                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
-                                }
-                            >
-                                <span 
-                                    className={
-                                        mostrarValidados == true
-                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :"Wbold-S13-H19-C004FB8-L0015"
-                                    }
-                                >
-                                    {
-                                        mostrarValidados == true
-                                        ?"Validados"
-                                        :"No Validados"
-                                    }
-                                </span>
-                            </div>
-                        </Col>
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"clizona"}
+                            titulo = {"Zona"}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"sdeterritorio"}
+                            titulo = {"Territorio"}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={4} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        {
+                            mostrarNombreCliente == true
+                            ?<FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiossi_real}
+                                campo = {"clinombre"}
+                                titulo = {"Nombre Cliente"}
+                                tieneSwitch = {true}
+                                accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                pertenenciaFiltros = {"SUBSI"}
+                            />
+                            :<FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiossi_real}
+                                campo = {"clicodigoshipto"}
+                                titulo = {"Codigo Cliente"}
+                                tieneSwitch = {true}
+                                accionSwitch = { () => setMostrarNombreCliente(!mostrarNombreCliente)}
+                                pertenenciaFiltros = {"SUBSI"}
+                            />
+                        }
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"catnombre"}
+                            titulo = {"Categoría"}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"sdesector"}
+                            titulo = {"Sector"}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={3} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"propresentacion"}
+                            titulo = {"Presentación"}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    {/* <Col xl={2}></Col> */}
+
+                    <Col 
+                        xl={4} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        {
+                            mostrarCodigoProducto == true
+                            ?<FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiossi_real}
+                                campo = {"prosku"}
+                                titulo = {"Cod. Producto"}
+                                tieneSwitch = {true}
+                                accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                pertenenciaFiltros = {"SUBSI"}
+                            />
+                            :<FiltroTablaIluminado 
+                                data_subsidiosso_real = {data_subsidiossi_real}
+                                campo = {"pronombre"}
+                                titulo = {"Nombre Producto"}
+                                tieneSwitch = {true}
+                                accionSwitch = { () => setMostrarCodigoProducto(!mostrarCodigoProducto)}
+                                pertenenciaFiltros = {"SUBSI"}
+                            />
+                        }
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"sdevalidado"}
+                            titulo = {"Validación"}
+                            esValidacion = {true}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={3} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_subsidiossi_real}
+                            campo = {"sdesac"}
+                            titulo = {"Conexión"}
+                            esConexion = {true}
+                            pertenenciaFiltros = {"SUBSI"}
+                        />
+                    </Col>
+
                 </Row>
 
                 
@@ -441,8 +581,12 @@ const SubsidiosSiTb = () => {
                     clienteseleccionado = {clienteseleccionado}
                     mostrarValidados = {mostrarValidados}
                     mostrarAutomaticos = {mostrarAutomaticos}
+                    mostrarModalFiltrosColumnas = {mostrarModalFiltrosColumnas}
+                    setMostrarModalFiltrosColumnas = {(s) => setMostrarModalFiltrosColumnas(s)}
+                    AgrupacionesColumnas_Subsidios_SI = {AgrupacionesColumnas_Subsidios_SI}
+                    seleccionarFacturas = {(d) => seleccionarFacturas(d)}
                 />
-                :null
+                :<IconoCargandoSITb />
             }
 
             <ExcelFile 
@@ -470,5 +614,33 @@ const SubsidiosSiTb = () => {
         </div>
     )
 }
+
+
+class IconoCargandoSITb extends React.Component {
+    constructor(props) {
+      super(props);
+      this.player = React.createRef();
+    }
+  
+    doSomething() {
+      this.player.current.play(); // make use of the player and call methods
+    }
+  
+    render() {
+      return (
+        <Player
+          onEvent={event => {
+            if (event === 'load') this.doSomething(); // check event type and do something
+          }}
+          ref={this.player}
+          autoplay={false}
+          loop={true}
+          controls={true}
+          src="https://assets6.lottiefiles.com/private_files/lf30_ip9sj61c.json"
+          style={{ height: '300px', width: '300px' }}
+        ></Player>
+      );
+    }
+  }
 
 export default SubsidiosSiTb

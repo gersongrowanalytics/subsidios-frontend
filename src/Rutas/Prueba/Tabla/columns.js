@@ -58,37 +58,37 @@ export const COLUMNS_SUBSO = [
     Header: <>Bultos<br/>(Acordados)</>,
     Homologado: <>Bultos (Acordados)</>,
     accessor: 'sdebultosacordados',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Bultos<br/>(Distribuidor)</>,
     Homologado: <>Bultos (Distribuidor)</>,
     accessor: 'sdecantidadbultos',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Bultos<br/>(SAC/APP)</>,
     Homologado: <>Bultos (SAC/APP)</>,
     accessor: 'sdecantidadbultosreal',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Reconocimiento<br/>S/(Distribuidor)</>,
     Homologado: <>Reconocimiento S/(Distribuidor)</>,
     accessor: 'sdemontoareconocer',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Reconocimiento<br/>S/(SAC/APP)</>,
     Homologado: <>Reconocimiento S/(SAC/APP)</>,
     accessor: 'sdemontoareconocerreal',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: 'Dif. Ahorro S/.',
     Homologado: 'Dif. Ahorro S/.',
     accessor: 'diferencia',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
 ]
 

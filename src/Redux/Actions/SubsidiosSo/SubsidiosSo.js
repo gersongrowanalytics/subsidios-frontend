@@ -267,10 +267,15 @@ export const AplicarFiltrosSubsidiosSoReducer = () => async(dispatch, getState) 
     })
 }
 
-export const CambiarCheckFiltroSoReducer = (campo, valor, check, borrarTodo = false, noseleccionados = []) => async(dispatch, getState) => {
+export const CambiarCheckFiltroSoReducer = (
+    campo, valor, check, borrarTodo = false, noseleccionados = []
+) => async(dispatch, getState) => {
 
-    const filtrosTablaSubsidiosSo = getState().subsidiosSo.filtrosTablaSubsidiosSo
-    const data_subsidiosso_real = getState().subsidiosSo.data_subsidiosso_real
+    let filtrosTablaSubsidiosSo = await getState().subsidiosSo.filtrosTablaSubsidiosSo
+    let data_subsidiosso_real =  await getState().subsidiosSo.data_subsidiosso_real
+
+    // console.log(filtrosTablaSubsidiosSo)
+    // console.log(data_subsidiosso_real)
 
     if(borrarTodo == true){
         filtrosTablaSubsidiosSo[campo] = []

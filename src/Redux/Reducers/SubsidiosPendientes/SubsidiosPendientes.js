@@ -8,6 +8,7 @@ import {
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 
 const INIT_STATE = {
+    data_subsidiossipendientes_real : [],
     data_subsidiossipendientes : [],
     data_descarga_subsidiossipendientes : [],
     total_soles_subsidiossipendientes : "0",
@@ -19,8 +20,41 @@ const INIT_STATE = {
 
     cargando_tabla_subsidiospendientes : false,
 
-    cargando_tabla_facturas_asignar_subsidiospendientes: false
+    cargando_tabla_facturas_asignar_subsidiospendientes: false,
     
+    filtrosTablaSubsidiosPendientes : {
+        "clizona" : [],
+        "sdeterritorio" : [],
+        "clinombre" : [],
+        "clisuchml" : [],
+        "prosku" : [],
+        "sdesac" : [],
+        "sdevalidado" : [],
+        "sdesector" : [],
+        "catnombre" : [],
+        "propresentacion" : [],
+        "clicodigoshipto" : [],
+        "pronombre" : []
+    },
+
+    AgrupacionesColumnas_Subsidios_Pendientes: [
+        {
+          agrupacion: "Cliente Sell In",
+          seleccionado: true,
+          cabeceraAgrupacion: "ClienteSI"
+        },
+        {
+          agrupacion: "Materiales",
+          seleccionado: true,
+          cabeceraAgrupacion: "Materiales"
+        },
+        {
+          agrupacion: "Metricas",
+          seleccionado: true,
+          cabeceraAgrupacion: "metricas"
+        },
+    ]
+
 };
 
 
@@ -29,6 +63,7 @@ export default (state = INIT_STATE, action) => {
     case OBTENER_SUBSIDIOS_PENDIENTES: {
         return {
             ...state,
+            data_subsidiossipendientes_real : action.payload.datareal,
             data_subsidiossipendientes : action.payload.data,
             data_descarga_subsidiossipendientes : action.payload.descarga,
             total_soles_subsidiossipendientes   : action.payload.sumSde
@@ -64,6 +99,21 @@ export default (state = INIT_STATE, action) => {
             cargando_tabla_facturas_asignar_subsidiospendientes : action.payload
         }
     }
+
+    case "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA":{
+        return {
+            ...state,
+            data_subsidiossipendientes : action.payload
+        }
+    }
+
+    case "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_PENDIENTES":{
+        return{
+            ...state,
+            AgrupacionesColumnas_Subsidios_Pendientes : action.payload
+        }
+    }
+
     default:
       return state;
   }

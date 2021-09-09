@@ -53,30 +53,30 @@ export const COLUMNS_SUBSI = [
     Header: <>Reconocimiento S/<br/>(Distribuidor)</>,
     Homologado: <>Reconocimiento S/(Distribuidor)</>,
     accessor: 'sdemontoareconocerreal',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
     Homologado: <>Reconocimiento S/(SAC/APP))</>,
     accessor: 'sumsfsvalorizado',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Factura<br/>Impactar</>,
     Homologado: <>Factura Impactar</>,
     accessor: 'facturas',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Fecha</>,
     Homologado: <>Fecha</>,
     accessor: 'fecfecha',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Estado</>,
     Homologado: <>Estado</>,
     accessor: 'sdependiente',
-    cabeceraAgrupacion: 'otros'
+    cabeceraAgrupacion: 'metricas'
   },
 ]

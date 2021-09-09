@@ -157,9 +157,9 @@ const Facturas = () => {
                             paddingRight:'40px'
                         }}
                     >
-                        <div className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFF8023">
+                        {/* <div className="Contenedor-Filtros-Columnas-Tabla-Elementos Wbold-S13-H17-CFF8023">
                             Filtros
-                        </div>
+                        </div> */}
                     </Col>
                 </Row>
             </div>
@@ -187,11 +187,11 @@ const Facturas = () => {
                                                     {
                                                         columnas.nombre
                                                     }
-                                                    <FiltroTabla 
+                                                    {/* <FiltroTabla 
                                                         posicion = {posicion}
                                                         filtro = {columnas.filtro}
                                                         columna = {columnas.columna}
-                                                    />
+                                                    /> */}
                                                 </th>
                                             )
                                         })

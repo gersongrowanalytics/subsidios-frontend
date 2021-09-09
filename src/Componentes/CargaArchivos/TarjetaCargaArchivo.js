@@ -298,7 +298,7 @@ class TarjetaCargaArchivo extends Component {
                     
                 </div>
                 <a
-                    style={{display: "none"}}
+                    // style={{display: "none"}}
                     download={"Plantilla "+this.props.titulo}
                     href={this.props.descargarPlantilla}
                 >

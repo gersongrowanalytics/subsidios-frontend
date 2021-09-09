@@ -56,13 +56,16 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
         // console.log(data)
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
+            
+            let nuevaData = {...data}
             let descargassubsidiossipendientes = []
             // descargassubsidiossipendientes = await LimpiarArrayDescargaSubsidiosPendientesReducer(data.descargarSde)
 
             dispatch({
                 type: OBTENER_SUBSIDIOS_PENDIENTES,
                 payload : {
-                    data     : data.datos,
+                    data : nuevaData.datos,
+                    datareal : data.datos,
                     descarga : descargassubsidiossipendientes,
                     sumSde   : data.sumSde
                 }

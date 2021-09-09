@@ -56,9 +56,9 @@ const INIT_STATE = {
           cabeceraAgrupacion: "Materiales"
         },
         {
-          agrupacion: "Otros",
+          agrupacion: "Metricas",
           seleccionado: true,
-          cabeceraAgrupacion: "otros"
+          cabeceraAgrupacion: "metricas"
         },
     ]
 

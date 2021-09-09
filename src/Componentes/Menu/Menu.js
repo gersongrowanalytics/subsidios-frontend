@@ -122,6 +122,7 @@ const Menu = () => {
             <div>
                 <img 
                     onClick={() => dispatch(MostrarMenuReducer(false))}
+                    style={{zIndex:'2'}}
                     id={ ComunesOcultarMenu == true ? "Icono-Equis-Cerrar-Menu-Ocultar" : "Icono-Equis-Cerrar-Menu"} 
                     src={ ComunesTipoDisenio == "Light" ?IconoEquisBlancoLuminoso :IconoEquisBlanco} 
                     className="CFF8023"

@@ -737,6 +737,14 @@ const TablaSubsidioPendiente = (props) => {
                                                                             ? "W600-S12-H16-C706C64"
                                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                         }>
+                                                                            {dato.clisuchml}
+                                                                    </td>
+                                                                    <td 
+                                                                        className={
+                                                                            ComunesTipoDisenio == "Light"
+                                                                            ? "W600-S12-H16-C706C64"
+                                                                            : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                                        }>
                                                                             {dato.sdesubcliente}
                                                                     </td>
                                                                     <td 

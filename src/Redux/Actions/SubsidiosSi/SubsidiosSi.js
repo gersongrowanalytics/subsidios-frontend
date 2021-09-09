@@ -63,12 +63,14 @@ export const ObtenerSubsidiosSiReducer = () => async (dispatch, getState) => {
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
             let descargassubsidiossi = []
+            let nuevaData = {...data}
             descargassubsidiossi = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargarSde)
 
             dispatch({
                 type: OBTENER_SUBSIDIOS_SI,
                 payload : {
-                    data : data.datos,
+                    data : nuevaData.datos,
+                    datareal : data.datos,
                     descarga : descargassubsidiossi,
                     sumSde : data.sumSde
                 }

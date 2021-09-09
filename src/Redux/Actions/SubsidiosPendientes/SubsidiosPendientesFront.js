@@ -3,7 +3,7 @@ import {
     OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 
-export const DesplegarSubsidiosPendientesReducer = (posicion) => async (dispatch, getState) => {
+export const DesplegarSubsidiosPendientesReducer = (posicion, ocultartodo = false) => async (dispatch, getState) => {
 
     let {
         data_subsidiossipendientes, 
@@ -11,15 +11,15 @@ export const DesplegarSubsidiosPendientesReducer = (posicion) => async (dispatch
         total_soles_subsidiossipendientes
     } = getState().subsidiosPendientes
 
-    data_subsidiossipendientes[posicion]['desplegado'] = !data_subsidiossipendientes[posicion]['desplegado']
+    if(ocultartodo == true){
+        data_subsidiossipendientes.map(data => data.desplegado = false)
+    }else{
+        data_subsidiossipendientes[posicion]['desplegado'] = !data_subsidiossipendientes[posicion]['desplegado']
+    }
 
     dispatch({
-        type: OBTENER_SUBSIDIOS_PENDIENTES,
-        payload : {
-            data     : data_subsidiossipendientes,
-            descarga : data_descarga_subsidiossipendientes,
-            sumSde   : total_soles_subsidiossipendientes
-        }
+        type: "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA",
+        payload : data_subsidiossipendientes
     })
 }
 
@@ -78,3 +78,189 @@ export const CambiarImpactoFacturaAsignadaReducer = (
     return true
 }
 
+export const DesplegarFiltroColumnaReducer = (posicion) => (dispatch, getState) => {
+    
+    let {AgrupacionesColumnas_Subsidios_Pendientes} = getState().subsidiosPendientes
+    AgrupacionesColumnas_Subsidios_Pendientes[posicion]['seleccionado'] = !AgrupacionesColumnas_Subsidios_Pendientes[posicion]['seleccionado']
+    dispatch({
+        type: "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_PENDIENTES",
+        payload: AgrupacionesColumnas_Subsidios_Pendientes
+    })
+}
+
+export const CambiarCheckFiltroSubPendientesReducer = (
+    campo, valor, check, borrarTodo = false, noseleccionados = []
+) => async(dispatch, getState) => {
+
+    const filtrosTablaSubsidiosPendientes = await getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes
+    const data_subsidiossipendientes_real =  await getState().subsidiosPendientes.data_subsidiossipendientes_real
+
+    if(borrarTodo == true){
+        filtrosTablaSubsidiosPendientes[campo] = []
+        await data_subsidiossipendientes_real.map((zona) => {
+
+            zona.data.map((data) => {
+    
+                data["check"] = true
+    
+            })
+    
+        })
+
+        await data_subsidiossipendientes_real.map((zona) => {
+
+            zona.data.map((data) => {
+                
+                noseleccionados.map((noselect) => {
+                    if(data[campo] == noselect){
+                        data["check"] = false
+                    }
+                })
+            })
+    
+        })
+
+        filtrosTablaSubsidiosPendientes[campo] = noseleccionados
+
+    }else{
+        await data_subsidiossipendientes_real.map((zona) => {
+
+            zona.data.map((data) => {
+    
+                if(data[campo] == valor){
+                    data["check"] = check
+                }
+    
+            })
+    
+        })
+        
+        if(check == true){
+            filtrosTablaSubsidiosPendientes[campo].map((val, pos) => {
+                if(val == valor ){
+                    filtrosTablaSubsidiosPendientes[campo].splice(pos,1)
+                }
+            })
+        }else{
+            filtrosTablaSubsidiosPendientes[campo].push(valor)
+        }
+    }
+
+    dispatch(AplicarFiltrosSubsidiosPendientesReducer())
+}
+
+export const AplicarFiltrosSubsidiosPendientesReducer = () => async(dispatch, getState) => {
+
+    const data_subsidiossipendientes_real = getState().subsidiosPendientes.data_subsidiossipendientes_real
+    const sdeterritorioFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.sdeterritorio
+    const clinombreFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.clinombre
+    const clisuchmlFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.clisuchml
+    const proskuFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.prosku
+    const sdesacFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.sdesac
+    const sdevalidadoFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.sdevalidado
+    const sdesectorFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.sdesector
+    const clizonaFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.clizona
+    const catnombreFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.catnombre
+    const propresentacionFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.propresentacion
+    const clicodigoshiptoFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.clicodigoshipto
+    const pronombreFiltrados = getState().subsidiosPendientes.filtrosTablaSubsidiosPendientes.pronombre
+    
+    let datasubsidiosreal = await {  ...data_subsidiossipendientes_real }
+    let nuevoarray = []
+    
+    await data_subsidiossipendientes_real.map(async(zona, pos) => {
+        
+        nuevoarray[pos] = { ...zona }
+        // nuevoarray[pos]['data'] = []
+        let arrZon = []
+        await zona.data.map((data) => {
+
+            let agregar = true
+
+            sdeterritorioFiltrados.map((territorio) => {
+                if(data.sdeterritorio == territorio ){
+                    agregar = false
+                }
+            })
+
+            clinombreFiltrados.map((campo) => {
+                if(data.clinombre == campo ){
+                    agregar = false
+                }
+            })
+
+            clisuchmlFiltrados.map((campo) => {
+                if(data.clisuchml == campo ){
+                    agregar = false
+                }
+            })
+
+            proskuFiltrados.map((campo) => {
+                if(data.prosku == campo ){
+                    agregar = false
+                }
+            })
+
+            sdesacFiltrados.map((campo) => {
+                if(data.sdesac == campo ){
+                    agregar = false
+                }
+            })
+
+            sdevalidadoFiltrados.map((campo) => {
+                if(data.sdevalidado == campo ){
+                    agregar = false
+                }
+            })
+
+            sdesectorFiltrados.map((campo) => {
+                if(data.sdesector == campo ){
+                    agregar = false
+                }
+            })
+
+            clizonaFiltrados.map((campo) => {
+                if(data.clizona == campo ){
+                    agregar = false
+                }
+            })
+
+            catnombreFiltrados.map((campo) => {
+                if(data.catnombre == campo ){
+                    agregar = false
+                }
+            })
+
+            propresentacionFiltrados.map((campo) => {
+                if(data.propresentacion == campo ){
+                    agregar = false
+                }
+            })
+
+            clicodigoshiptoFiltrados.map((campo) => {
+                if(data.clicodigoshipto == campo ){
+                    agregar = false
+                }
+            })
+
+            pronombreFiltrados.map((campo) => {
+                if(data.pronombre == campo ){
+                    agregar = false
+                }
+            })
+
+            if(agregar == true){
+                arrZon.push({...data})
+            }
+        })
+        // console.log(arrZon)
+        nuevoarray[pos]['desplegado'] = false
+        nuevoarray[pos]['data'] = arrZon
+    })
+    
+    // console.log(nuevoarray)
+    dispatch({
+        type: "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA",
+        payload: nuevoarray
+    })
+}

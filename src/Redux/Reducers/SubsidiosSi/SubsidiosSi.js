@@ -7,6 +7,7 @@ import {
 
 const INIT_STATE = {
     data_subsidiossi : [],
+    data_subsidiossi_real : [],
     data_descarga_subsidiossi : [],
     total_soles_subsidiossi : "0",
     cargando_data_subsidiossi : false,
@@ -14,7 +15,42 @@ const INIT_STATE = {
     // NOTAS DE CREDITO
     cargando_notas_creditos_factura_si : false,
     data_notas_creditos_factura_si : [],
-    total_notas_creditos_factura_si : "0"
+    total_notas_creditos_factura_si : "0",
+
+
+
+    filtrosTablaSubsidiosSi : {
+        "clizona" : [],
+        "sdeterritorio" : [],
+        "clinombre" : [],
+        "clisuchml" : [],
+        "prosku" : [],
+        "sdesac" : [],
+        "sdevalidado" : [],
+        "sdesector" : [],
+        "catnombre" : [],
+        "propresentacion" : [],
+        "clicodigoshipto" : [],
+        "pronombre" : []
+    },
+
+    AgrupacionesColumnas_Subsidios_SI: [
+        {
+          agrupacion: "Cliente Sell In",
+          seleccionado: true,
+          cabeceraAgrupacion: "ClienteSI"
+        },
+        {
+          agrupacion: "Materiales",
+          seleccionado: true,
+          cabeceraAgrupacion: "Materiales"
+        },
+        {
+          agrupacion: "Metricas",
+          seleccionado: true,
+          cabeceraAgrupacion: "metricas"
+        },
+    ]
 };
 
 
@@ -23,12 +59,18 @@ export default (state = INIT_STATE, action) => {
     case OBTENER_SUBSIDIOS_SI: {
         return {
             ...state,
+            data_subsidiossi_real : action.payload.datareal,
             data_subsidiossi : action.payload.data,
             data_descarga_subsidiossi : action.payload.descarga,
             total_soles_subsidiossi : action.payload.sumSde
         }
     }
-
+    case "CAMBIAR_DATA_SUBSIDIOS_SI":{
+        return {
+            ...state,
+            data_subsidiossi : action.payload
+        }
+    }
     case CARGANDO_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI: {
         return {
             ...state,
@@ -47,6 +89,19 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             cargando_data_subsidiossi : action.payload
+        }
+    }
+    case "OBTENER_SUBSIDIOS_SI_ONLY_DATA":{
+        return {
+            ...state,
+            data_subsidiossi : action.payload
+        }
+    }
+
+    case "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_SI":{
+        return{
+            ...state,
+            AgrupacionesColumnas_Subsidios_SI : action.payload
         }
     }
 

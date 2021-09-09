@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Checkbox, Switch  } from 'antd';
 import {CambiarCheckFiltroSoReducer} from '../../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
+import {CambiarCheckFiltroSiReducer} from '../../../../Redux/Actions/SubsidiosSi/SubsidiosSiFront'
+import {CambiarCheckFiltroSubPendientesReducer} from '../../../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientesFront'
 import {useDispatch, useSelector} from "react-redux";
 import '../../../../Estilos/Elementos/Tabla/FiltroTablaIluminado.css'
 import IconoFlechaAbajoFiltro from '../../../../Assets/Imagenes/Iconos/Comunes/flechaAbajoFiltro.png'
@@ -17,6 +19,8 @@ const FiltroTablaIluminado = (props) => {
     const esConexion = props.esConexion
     const tieneSwitch = props.tieneSwitch
     const accionSwitch = props.accionSwitch
+
+    const pertenenciaFiltros = props.pertenenciaFiltros
     
     // const campo = props.campo
 
@@ -84,10 +88,21 @@ const FiltroTablaIluminado = (props) => {
                                 ? true
                                 : nuevaData.check
                             }
-                            // onChange={() => console.log(nuevaData.check)}
                             onChange={async(e) => {
                                 // setMostrarFiltro(false)
-                                await dispatch(CambiarCheckFiltroSoReducer(campo, nuevaData[campo], e.target.checked))
+                                if(pertenenciaFiltros == "SUBSO"){ //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                                    await dispatch(CambiarCheckFiltroSoReducer(
+                                        campo, nuevaData[campo], e.target.checked,
+                                    ))
+                                }else if(pertenenciaFiltros == "SUBSI"){
+                                    await dispatch(CambiarCheckFiltroSiReducer(
+                                        campo, nuevaData[campo], e.target.checked,
+                                    ))
+                                }else if(pertenenciaFiltros == "SUBPENDIENTES"){
+                                    await dispatch(CambiarCheckFiltroSubPendientesReducer(
+                                        campo, nuevaData[campo], e.target.checked,
+                                    ))
+                                }
                                 // setMostrarFiltro(true)
                             }}
                         ><span className="W400-S13-H17-C004FB8">
@@ -123,7 +138,6 @@ const FiltroTablaIluminado = (props) => {
                             nuevoA.push(data)
                         }else{
                             noseleccionados.push(data[campo])
-                            // dispatch(CambiarCheckFiltroSoReducer(campo, data[campo], false))
                         }
                     }else{
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
@@ -138,7 +152,6 @@ const FiltroTablaIluminado = (props) => {
                                 nuevoA.push(data)
                             }
                         }else{
-                            // dispatch(CambiarCheckFiltroSoReducer(campo, data[campo], false))
                             noseleccionados.push(data[campo])
                         }
                     }
@@ -149,7 +162,28 @@ const FiltroTablaIluminado = (props) => {
             })
         })
 
-        dispatch(CambiarCheckFiltroSoReducer(campo, "", true, true, noseleccionados))
+        if(pertenenciaFiltros == "SUBSO"){
+            dispatch(
+                CambiarCheckFiltroSoReducer(
+                    campo, "", true, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if(pertenenciaFiltros == "SUBSI"){
+            dispatch(
+                CambiarCheckFiltroSiReducer(
+                    campo, "", true, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if(pertenenciaFiltros == "SUBPENDIENTES"){
+            dispatch(
+                CambiarCheckFiltroSubPendientesReducer(
+                    campo, "", true, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }
 
         setMostrarFiltro(false)
     }
@@ -244,7 +278,7 @@ const FiltroTablaIluminado = (props) => {
                     >
                         <span className="W600-S13-H17-C004FB8">Seleccionar todo</span>
                     </Checkbox><br/> */}
-
+{/* 004FB8 222 224 237 */}
                     <div style={{overflow:'auto', width:'100%', height:'150px'}}>
                         {
                             obtenerCampos()

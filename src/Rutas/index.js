@@ -12,6 +12,7 @@ import Subsidios from "./Subsidios/Subsidios"
 import SubsidiosSo from "./SubsidiosSo/SubsidiosSo"
 import SubsidiosSi from "./SubsidiosSi/SubsidiosSi"
 import SubsidiosSiTb from "./SubsidiosSi/SubsidiosSiTbDinamica/SubsidiosSiTb"
+import SubPendientesTbDinamica from './SubsidiosPendientes/SubPendientesTbDinamica/SubPendientesTbDinamica'
 import Prueba from "./Prueba/Prueba"
 import Facturas from "./Facturas/Facturas"
 import Top from '../Componentes/Top/Top'
@@ -73,15 +74,21 @@ const App = () => {
                     </Route>
 
                     <Route exact path='/subsidios-so' >
-                        <SubsidiosSo/>
+                        {/* <SubsidiosSo/> */}
+                        <Prueba/>
                     </Route>
 
                     <Route exact path='/subsidios-si' >
-                        <SubsidiosSi/>
+                        {/* <SubsidiosSi/> */}
+                        <SubsidiosSiTb/>
                     </Route>
 
                     <Route exact path='/subsidios-si-tb' >
                         <SubsidiosSiTb/>
+                    </Route>
+
+                    <Route exact path='/subsidios-pendientes-tb' >
+                        <SubPendientesTbDinamica/>
                     </Route>
                     
                     <Route exact path='/prueba' >

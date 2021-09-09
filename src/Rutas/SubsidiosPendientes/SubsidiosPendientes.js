@@ -11,37 +11,6 @@ import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 
 const SubsidiosPendientes = () => {
 
-    let filtrosSubsidiosPendientes = [
-        {
-            "Filtro" : "AÑO",
-            "Switch" : false
-        },
-        {
-            "Filtro" : "COD. SOLICITANTE",
-            "Switch" : true
-        },
-        {
-            "Filtro" : "ZONA",
-            "Switch" : false
-        },
-        {
-            "Filtro" : "CATEGORÍA",
-            "Switch" : false
-        },
-        {
-            "Filtro" : "MES",
-            "Switch" : false
-        },
-        {
-            "Filtro" : "COD. PRODUCTO",
-            "Switch" : true
-        },
-        {
-            "Filtro" : "TERRITORIO",
-            "Switch" : false
-        }
-    ]
-
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     return (
@@ -57,24 +26,6 @@ const SubsidiosPendientes = () => {
                         titulo = {"Subsidios Pendientes"}
                     />
                 </div>
-
-                {/* <Row>
-                    <Col 
-                        xl={12} md={12} sm={12} xs={12} className="Wbold-S20-H27-C004FB8" 
-                        style={{paddingLeft:'40px', paddingRight:'20px'}}
-                    >
-                        Subsidios Pendientes
-                    </Col>
-                    <Col 
-                        xl={12} md={12} sm={12} xs={12} className="W600-S13-H17-C1EC0ED"
-                        style={{
-                            textAlign: "right",
-                            paddingRight: "40px"
-                        }}
-                    >
-                        última actualización 20 Julio 2021
-                    </Col>
-                </Row> */}
             </Col>
 
             <Col 
