@@ -797,7 +797,7 @@ class IconoCargandoSITb extends React.Component {
         ></Player>
       );
     }
-  }
+}
 
 
 

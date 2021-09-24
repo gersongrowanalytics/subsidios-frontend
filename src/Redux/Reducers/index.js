@@ -11,6 +11,10 @@ import Facturas from './Facturas/Facturas'
 import FacturasFront from './Facturas/FacturasFront'
 import SubsidiosPendientes from './SubsidiosPendientes/SubsidiosPendientes'
 import Home from './Home/Home'
+import TiposUsuarios from './Administrador/TiposUsuarios/TiposUsuarios'
+import Usuarios from './Administrador/Usuarios/Usuarios'
+import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
+import Perfil from './Perfil/Perfil'
 
 const createRootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -24,7 +28,11 @@ const createRootReducer = (history) => combineReducers({
   facturas : Facturas,
   facturasFront : FacturasFront,
   subsidiosPendientes : SubsidiosPendientes,
-  home : Home
+  home : Home,
+  tiposUsuarios : TiposUsuarios,
+  usuarios : Usuarios,
+  perfil : Perfil,
+  controlArchivos : ControlArchivos,
 });
 
 export default createRootReducer

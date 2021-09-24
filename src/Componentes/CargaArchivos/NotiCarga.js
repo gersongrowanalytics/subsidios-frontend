@@ -46,7 +46,7 @@ const NotiCarga = (props) => {
                     }
                     src={IconoFlechaIzquierdaNaranja} 
                 />
-                <img id="Icono-Campana-Notificaciones-Carga" src={IconoCampanaAzul} />
+                <img onClick={() => console.log(props.notificaciones_cargaarchivos)}  id="Icono-Campana-Notificaciones-Carga" src={IconoCampanaAzul} />
                 <span 
                     className={
                         ComunesTipoDisenio == "Light" 
@@ -76,7 +76,7 @@ const NotiCarga = (props) => {
                                     {not.TITULO}
                                 </div>
                                 
-                                <div style={{display:'flex'}}>
+                                <div style={{display:'flex'}} onClick={() => console.log(not.PRODUCTOS_NO_ENCONTRADOS.length)}>
                                     {
                                         not.MENSAJE
                                         ?<div 
@@ -113,7 +113,8 @@ const NotiCarga = (props) => {
                                                     {/* CLIENTES */}
 
                                                     {
-                                                        not.CLIENTES_NO_ENCONTRADOS.length > 0
+                                                        not.CLIENTES_NO_ENCONTRADOS
+                                                        ?not.CLIENTES_NO_ENCONTRADOS.length > 0
                                                         ?<>
                                                             {"CLIENTES_NO_ENCONTRADOS : "}<br/>
                                                             {
@@ -127,12 +128,14 @@ const NotiCarga = (props) => {
                                                             }
                                                         </>
                                                         :null
+                                                        :null
                                                     }
                                                     
                                                     {/* PRODUCTOS */}
 
                                                     {
-                                                        not.PRODUCTOS_NO_ENCONTRADOS.length > 0
+                                                        not.PRODUCTOS_NO_ENCONTRADOS
+                                                        ?not.PRODUCTOS_NO_ENCONTRADOS.length > 0
                                                         ?<>
                                                             <b>{"Productos no encontrados: "}</b><br/>
                                                             {
@@ -145,6 +148,27 @@ const NotiCarga = (props) => {
                                                                 })
                                                             }
                                                         </>
+                                                        :null
+                                                        :null
+                                                    }
+
+                                                    {/* SUBSIDIOS_NO_ENCONTRADOS */}
+                                                    {
+                                                        not.SUBSIDIOS_NO_ENCONTRADOS
+                                                        ?not.SUBSIDIOS_NO_ENCONTRADOS.length > 0
+                                                        ?<>
+                                                            <b>{"Subsidios no encontrados: "}</b><br/>
+                                                            {
+                                                                not.SUBSIDIOS_NO_ENCONTRADOS.map((subsidio) => {
+                                                                    return (
+                                                                        <>
+                                                                            <li>{subsidio.codigo+" en la linea: "+subsidio.linea}</li>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </>
+                                                        :null
                                                         :null
                                                     }
                                                 </>

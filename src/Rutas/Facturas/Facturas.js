@@ -15,6 +15,7 @@ import NumberFormat from 'react-number-format';
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
 import ReactExport from 'react-data-export';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -204,7 +205,13 @@ const Facturas = () => {
                                     cargando_facturas_si == true
                                     ?<tr style={{width:'100%'}}>
                                         <td colSpan="9" style={{textAlignLast: "center"}}>
-                                            <img src={IconoCargando}  />
+                                            {/* <img src={IconoCargando}  /> */}
+                                            <IconoCargandoSITb />
+                                            <div 
+                                                className="Wnormal-S14-H19-CFF8023"
+                                            >
+                                                Se esta generando la información de SI, a un nivel de profundidad, en unos<br/>segundos se estara mostrando la información gracias por su compresión
+                                            </div>
                                         </td>
                                     </tr>
                                     :data_facturas_si.map((factura, posicion) => {
@@ -498,6 +505,33 @@ const Facturas = () => {
 
         </div>
     )
+}
+
+class IconoCargandoSITb extends React.Component {
+    constructor(props) {
+      super(props);
+      this.player = React.createRef();
+    }
+  
+    doSomething() {
+      this.player.current.play(); // make use of the player and call methods
+    }
+  
+    render() {
+      return (
+        <Player
+          onEvent={event => {
+            if (event === 'load') this.doSomething(); // check event type and do something
+          }}
+          ref={this.player}
+          autoplay={false}
+          loop={true}
+          controls={true}
+          src="https://assets6.lottiefiles.com/private_files/lf30_ip9sj61c.json"
+          style={{ height: '300px', width: '300px' }}
+        ></Player>
+      );
+    }
 }
 
 export default Facturas

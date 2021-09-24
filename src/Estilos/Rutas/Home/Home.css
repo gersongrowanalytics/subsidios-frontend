@@ -50,3 +50,12 @@
 
     cursor: pointer;
 }
+
+.Input-Editar-Home{
+    border: 0;
+    background-color: #EDF0FA;
+    /* width: 200px; */
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

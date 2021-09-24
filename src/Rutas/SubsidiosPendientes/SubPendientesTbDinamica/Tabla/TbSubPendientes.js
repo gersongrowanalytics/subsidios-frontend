@@ -562,7 +562,7 @@ const TbSubPendientes = (props) => {
 
                                             {
                                                 dato.desplegado == true
-                                                ?dato.facturas.map((factura) => {
+                                                ?dato.facturas.map((factura, posicionFacturaAsignada) => {
                                                     return (
                                                         <tr
                                                             {...row.getRowProps()}
@@ -648,6 +648,11 @@ const TbSubPendientes = (props) => {
                                                                     </td>
                                                                     :cell.column.id == "reconocimientosacapp"
                                                                     ?<td 
+                                                                        style={
+                                                                            dato.facturas.length == posicionFacturaAsignada+1
+                                                                            ?{color:'red'}
+                                                                            :{}
+                                                                        }
                                                                         className={
                                                                             ComunesTipoDisenio == "Light"
                                                                             ? "W600-S12-H16-C706C64"

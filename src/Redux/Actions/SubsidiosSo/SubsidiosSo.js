@@ -255,12 +255,11 @@ export const AplicarFiltrosSubsidiosSoReducer = () => async(dispatch, getState) 
                 arrZon.push({...data})
             }
         })
-        // console.log(arrZon)
+        
         nuevoarray[pos]['desplegado'] = false
         nuevoarray[pos]['data'] = arrZon
     })
     
-    // console.log(nuevoarray)
     dispatch({
         type: "CAMBIAR_DATA_SUBSIDIOS_SO",
         payload: nuevoarray
@@ -283,7 +282,7 @@ export const CambiarCheckFiltroSoReducer = (
 
             zona.data.map((data) => {
     
-                data["check"] = true
+                data["check"] = check
     
             })
     

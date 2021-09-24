@@ -11,10 +11,13 @@ const FiltroFechas = (props) => {
     const dispatch = useDispatch();
 
     const fechaActualizacion = useSelector(({login}) => login.fechaActualizacion)
+    const {
+        ComunesTipoDisenio
+    } = useSelector(({comunes}) => comunes);
 
     return (
         <Row style={{ width:'100%'}}>
-            <Col xl={4} xs={24}>
+            <Col xl={4} xs={24} className={ComunesTipoDisenio == "Light" ?"Wbold-S20-H27-C004FB8" :"Wbold-S20-H27-Ce4e6eb"}>
                 {props.titulo}
             </Col>
 

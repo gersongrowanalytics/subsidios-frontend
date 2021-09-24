@@ -13,6 +13,9 @@ import SubsidiosSo from "./SubsidiosSo/SubsidiosSo"
 import SubsidiosSi from "./SubsidiosSi/SubsidiosSi"
 import SubsidiosSiTb from "./SubsidiosSi/SubsidiosSiTbDinamica/SubsidiosSiTb"
 import SubPendientesTbDinamica from './SubsidiosPendientes/SubPendientesTbDinamica/SubPendientesTbDinamica'
+import Usuarios from './Administrador/Usuarios/Usuarios'
+import TiposUsuarios from './Administrador/TiposUsuarios/TiposUsuarios'
+import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
 import Prueba from "./Prueba/Prueba"
 import Facturas from "./Facturas/Facturas"
 import Top from '../Componentes/Top/Top'
@@ -94,6 +97,38 @@ const App = () => {
                     
                     <Route exact path='/prueba' >
                         <Prueba/>
+                    </Route>
+
+                    <Route exact path='/administrador/tipos-usuarios' >
+                        <Administrador
+                            contenido = {<TiposUsuarios/>}
+                            titulo = {"Administrador"}
+                            moduloseleccionado = {"TPU"}
+                        />
+                    </Route>
+
+                    <Route exact path='/administrador/usuarios' >
+                        <Administrador
+                            contenido = {<Usuarios/>}
+                            titulo = {"Administrador"}
+                            moduloseleccionado = {"USU"}
+                        />
+                    </Route>
+
+                    <Route exact path='/administrador/permisos' >
+                        <Administrador
+                            contenido = {<Usuarios/>}
+                            titulo = {"Administrador"}
+                            moduloseleccionado = {"PEM"}
+                        />
+                    </Route>
+
+                    <Route exact path='/administrador/control-archivos' >
+                        <Administrador
+                            contenido = {<ControlArchivos/>}
+                            titulo = {"Administrador"}
+                            moduloseleccionado = {"CAR"}
+                        />
                     </Route>
 
                 </Switch>

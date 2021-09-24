@@ -22,6 +22,20 @@
     justify-content: center;
 }
 
+.Btn-Aceptar-Bloqueado-Filtro-Iluminado{
+    width: 64px;
+    height: 24px;
+    background: gray;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    border-radius: 14px;
+
+    cursor: not-allowed;
+    display: flex;
+    padding-top: 1px;
+    justify-content: center;
+}
+
 .Btn-Cancelar-Filtro-Iluminado{
     width: 67px;
     height: 24px;
@@ -47,4 +61,14 @@
 
 .Switch-Filtro-Tabla-Iluminada{
     background-color: white !important;
+}
+
+.Checkbox-Filtros-Tablas-Iluminado .ant-checkbox-inner{
+    border: 1px solid #FF8023 !important; 
+}
+
+
+.Checkbox-Filtros-Tablas-Iluminado .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #FF8023 !important;
+    border-color: #FF8023 !important;
 }

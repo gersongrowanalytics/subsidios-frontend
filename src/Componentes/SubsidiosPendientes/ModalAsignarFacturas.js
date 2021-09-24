@@ -4,12 +4,21 @@ import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import '../../Estilos/Componentes/SubsidiosPendientes/ModalAsignarFacturas.css'
 import IconoAgregarNaranja from '../../Assets/Imagenes/Iconos/iconoAgregarNaranja.png'
+import ModalNotasCredito from '../../Componentes/Subsidios/ModalNotasCredito'
+import ModalReconocimientos from '../../Componentes/Facturas/ModalReconocimientos'
 
 const ModalAsignarFacturas = (props) => {
 
     const [mostrarModal, setMostrarModal] = useState(false);
     const [mostrarModalConfirmacion, setMostrarModalConfirmacion] = useState(false);
     const [objetivo, setObjetivo] = useState("");
+    const [mostrarModalNotasCredito, setMostrarModalNotasCredito] = useState(false)
+    const [pedidoOriginalSeleccionado, setPedidoOriginalSeleccionado] = useState("")
+    const [proidSeleccionado, setProidSeleccionado] = useState(0)
+    
+    // RECONOCER
+    const [fdsIdDetalleSeleccionado, setFdsIdDetalleSeleccionado] = useState("0")
+    const [mostrarModalReconocimiento, setMostrarModalReconocimiento] = useState(false)
 
     const ComunesTipoDisenio = props.ComunesTipoDisenio
     const cargandoTabla = props.cargando_tabla_facturas_asignar_subsidiospendientes
@@ -126,7 +135,7 @@ const ModalAsignarFacturas = (props) => {
                         }}
                     >
                         <div className="" >
-                            Sub. Objetivo
+                            Saldo Pendiente
                         </div>
                         <div
                             style={{
@@ -151,17 +160,20 @@ const ModalAsignarFacturas = (props) => {
                                 <tr>
                                     <th 
                                         style={{borderRadius: "23px 0px 0px 23px"}}
-                                        className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8" style={{zIndex:'1'}} >Elegir</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Fecha</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Factura SI</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Cod Producto </th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Descripción</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Valor Neto</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Saldo Disponible</th>
-                                    <th className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Impacto</th>
+                                        className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8" style={{zIndex:'1'}} >Elegir</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Fecha<br/>Factura</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Factura SI</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Cod Producto </th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Descripción</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Valor Neto</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Notas Credito</th>
+                                    {/* <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Reconocido</th> */}
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Liquidación S/<br/>(APP))</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Saldo<br/>Disponible</th>
+                                    <th className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Impacto</th>
                                     <th 
-                                        style={{borderRadius: "0px 23px 23px 0px"}}
-                                        className="Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb C004FB8">Nuevo Saldo</th>
+                                        style={{borderRadius: "0px 23px 0px 0px"}}
+                                        className="Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8">Nuevo Saldo</th>
                                 </tr>
                             </thead>
                             
@@ -176,7 +188,7 @@ const ModalAsignarFacturas = (props) => {
                                             :{borderBottom: '1px solid #1c1e21'}
                                         }
                                     >
-                                        <td colSpan="9" style={{textAlignLast: "center"}}>
+                                        <td colSpan="11" style={{textAlignLast: "center"}}>
                                             <img src={props.IconoCargando}  />
                                         </td>
                                     </tr>
@@ -242,6 +254,30 @@ const ModalAsignarFacturas = (props) => {
                                                     }>
                                                         S/{<NumberFormat value={funFomratoDecimal(factura.fdsvalorneto, 2)} displayType={'text'} thousandSeparator={true} />}
                                                 </td>
+                                                <td 
+                                                    className="W600-S12-H16-C1EC0ED"
+                                                    onClick={() => {
+                                                        setProidSeleccionado(factura.proid)
+                                                        setPedidoOriginalSeleccionado(factura.fsipedido)
+                                                        setMostrarModalNotasCredito(!mostrarModalNotasCredito)
+                                                    }}
+                                                    style={{cursor:'pointer'}}
+                                                >
+                                                    <u>S/{<NumberFormat value={funFomratoDecimal(factura.fdsnotacredito, 2)} displayType={'text'} thousandSeparator={true} />}</u>
+                                                </td>
+
+                                                
+                                                <td 
+                                                    className="W600-S12-H16-C1EC0ED"
+                                                    onClick={() => {
+                                                        setFdsIdDetalleSeleccionado(factura.fdsid)
+                                                        setMostrarModalReconocimiento(!mostrarModalReconocimiento)
+                                                    }}
+                                                    style={{cursor:'pointer'}}
+                                                >
+                                                    <u>S/{<NumberFormat value={funFomratoDecimal(factura.fdsreconocer, 2)} displayType={'text'} thousandSeparator={true} />}</u>
+                                                </td>
+
                                                 <td 
                                                     className={
                                                         ComunesTipoDisenio == "Light"
@@ -325,6 +361,30 @@ const ModalAsignarFacturas = (props) => {
                     <div style={{height:'30px'}}></div>
                 </div>
             </Modal>
+
+            {
+                mostrarModalNotasCredito == true
+                ?<ModalNotasCredito 
+                    setMostrarModalNotasCredito = {() => setMostrarModalNotasCredito(!mostrarModalNotasCredito)}
+                    mostrarModalNotasCredito = {mostrarModalNotasCredito}
+                    pedidooriginal = {pedidoOriginalSeleccionado}
+                    proid = {proidSeleccionado}
+                    ComunesTipoDisenio = {ComunesTipoDisenio}
+                />
+                :null
+            }
+
+            {
+                mostrarModalReconocimiento
+                ?<ModalReconocimientos 
+                    setMostrarModal = {() => setMostrarModalReconocimiento(!mostrarModalReconocimiento)}
+                    mostrarModal = {mostrarModalReconocimiento}
+                    fdsid = {fdsIdDetalleSeleccionado}
+                    ComunesTipoDisenio = {ComunesTipoDisenio}
+
+                />
+                :null
+            }
         </>
     )
 }

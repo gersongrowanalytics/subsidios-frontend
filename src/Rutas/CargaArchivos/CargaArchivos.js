@@ -92,6 +92,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Subsidios%20Aprobados_P.xlsx"}
                                     />
                                 </Col>       
                             )
@@ -110,6 +111,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Subsidios%20Reconocidos_P.xlsx"}
                                     />
                                 </Col>  
                             )
@@ -127,7 +129,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
-                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Sell%20Out%20Efectivo.xlsx"}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Sell%20Out%20Efectivo_P.xlsx"}
                                     />
                                 </Col>       
                             )
@@ -162,7 +164,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
-                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Operaciones%20Sunat.xlsx"}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Operaciones%20Sunat_P.xlsx"}
                                     />
                                 </Col>
                             )
@@ -179,6 +181,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        
                                     />
                                 </Col>
                             )
@@ -195,6 +198,7 @@ const CargaArchivos = () => {
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = {config.api+"Sistema/Modulos/CargaArchivos/Plantillas/Maestra%20Clientes_P.xlsx"}
                                     />
                                 </Col>  
                             )

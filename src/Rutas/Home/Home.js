@@ -17,6 +17,13 @@ import config from '../../config'
 import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
 import {useDispatch, useSelector} from "react-redux";
 import FiltroFechaTop from '../../Componentes/Top/FiltroFechaTop';
+import ReactExport from 'react-data-export';
+// import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
+import IconoEditarLight from '../../Assets/Imagenes/Iconos/Home/editar.png'
+import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 const Home = () => {
 
@@ -44,6 +51,7 @@ const Home = () => {
     const MesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"]
 
     const [mostrarModalSellOutDetalle, setMostrarModalSellOutDetalle] = useState(false)
+    const [editandoCampos, setEditandoCampos] = useState(false)
 
     return (
         <div
@@ -159,7 +167,7 @@ const Home = () => {
                                                     :"Wnormal-S14-H19-Ce4e6eb"
                                                 }
                                             >
-                                                {posicion}
+                                                {posicion+1}
                                             </td>
                                             <td 
                                                 className={
@@ -738,11 +746,26 @@ const Home = () => {
                                                             var objFecha = new Date(base.espfechaprogramado);
                                                             return(
                                                                 <>
-                                                                    {/* {base.espfechaprogramado}<br/> */}
                                                                     {
                                                                         base.espfechaprogramado
                                                                         ?<>
-                                                                        {objFecha.getDate()+1}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
+                                                                            {
+                                                                                editandoCampos == true
+                                                                                ?<>
+                                                                                    <input 
+                                                                                        // placeholder="10/11/2021"
+                                                                                        value={objFecha.getFullYear()+"-"+objFecha.getMonth()+1+"-"+objFecha.getDate()+1}
+                                                                                        onChange={(e) => {
+                                                                                            console.log(e.target)
+                                                                                            console.log(e.target.value)
+                                                                                        }}
+                                                                                        type="date"
+                                                                                        className="Input-Editar-Home" /><br/>
+                                                                                </>
+                                                                                :<>
+                                                                                    {objFecha.getDate()+1}/{objFecha.getMonth()+1}/{objFecha.getFullYear()}<br/>
+                                                                                </>
+                                                                            }
                                                                         </>
                                                                         :<>-<br/></>
                                                                     }
@@ -935,6 +958,21 @@ const Home = () => {
                     </table>
                 </div>
             </div>
+
+            {/* <div 
+                id={
+                    ComunesTipoDisenio == "Light"
+                    ?"Btn-Flotante-Descargar-Subsidios-So-Light"
+                    :"Btn-Flotante-Descargar-Subsidios-So"
+                }
+                onClick={() => setEditandoCampos(!editandoCampos)}
+            >
+                <img src={
+                    ComunesTipoDisenio == "Light"
+                    ?IconoEditarLight
+                    :IconoDescargar
+                } id="Icono-Flotante-Descargar-Subsidios-So" />
+            </div> */}
         </div>
     )
 }

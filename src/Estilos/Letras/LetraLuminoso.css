@@ -313,6 +313,15 @@
     color: #004FB8;
 }
 
+.Wbold-S12-H16-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
 .Wbold-S13-H17-CFFFFFF{
     font-family: Segoe UI;
     font-style: normal;
@@ -441,6 +450,15 @@
     color: #004FB8;
 }
 
+.Wnormal-S14-H19-CFF8023{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FF8023;
+}
+
 .Wnormal-S14-H19-CFF8023-Underline{
     font-family: Segoe UI;
     font-style: normal;
@@ -476,6 +494,15 @@
     font-size: 14px;
     line-height: 19px;
     color: #004FB8;
+}
+
+.W600-S14-H19-CFFFFFF{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
 }
 
 .Wnormal-S14-H19-C706C64{
@@ -551,6 +578,15 @@
     color: #1EEC41;
 }
 
+.W600-S13-H17-C706C64{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #706C64;
+}
+
 .checkbox-luminoso span span{
     border: 2px solid #FF8023 !important;
     width: 16px !important;
@@ -566,3 +602,20 @@
     z-index: 100;
 }
 
+.Wbold-s13-17-C004fb8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    color: #004FB8;
+}
+
+.W600-S13-H17-C1876F2{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #1876F2;
+}

@@ -50,14 +50,14 @@ export const COLUMNS_SUBSI = [
     cabeceraAgrupacion: 'Materiales'
   },
   {
-    Header: <>Reconocimiento S/<br/>(Distribuidor)</>,
-    Homologado: <>Reconocimiento S/(Distribuidor)</>,
+    Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
+    Homologado: <>Reconocimiento S/(SAC/APP))</>,
     accessor: 'sdemontoareconocerreal',
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
-    Homologado: <>Reconocimiento S/(SAC/APP))</>,
+    Header: <>Liquidación S/<br/>(APP))</>,
+    Homologado: <>Liquidación S/(APP))</>,
     accessor: 'sumsfsvalorizado',
     cabeceraAgrupacion: 'metricas'
   },

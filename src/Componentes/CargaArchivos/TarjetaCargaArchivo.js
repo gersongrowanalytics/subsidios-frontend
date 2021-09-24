@@ -179,6 +179,7 @@ class TarjetaCargaArchivo extends Component {
                                 className="Btn-Subir-Otro-Tarjeta-CargaArchivo">
                                 <span className="Wbold-S12-H16-C004FB8">Subir otro</span>
                             </div>
+
                         </>
                         :<>
                             <div id="PrimeraParte-Contenedor-Tarjeta-TarjetaCargaArchivo" style={{paddingTop:'5px'}}>
@@ -289,6 +290,21 @@ class TarjetaCargaArchivo extends Component {
                                         >
                                             Enviar
                                         </div>
+
+                                        {/* <div
+                                            style={
+                                                this.state.subioArchivo == true
+                                                ?{}
+                                                :{}
+                                            }  
+                                            className={
+                                                this.props.ComunesTipoDisenio == "Light"
+                                                ?"Btn-Tarjeta-CargaArchivos-Hover-Light Wbold-S12-H16-CFFFFFF"
+                                                :""
+                                            }
+                                        >
+                                            
+                                        </div> */}
                                     </div>
                                 }
                                 </div>

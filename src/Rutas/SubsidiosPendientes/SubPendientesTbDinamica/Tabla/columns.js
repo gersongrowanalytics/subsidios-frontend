@@ -70,14 +70,14 @@ export const COLUMNS_SUBPENDIENTES = [
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Fecha</>,
-    Homologado: <>Fecha</>,
+    Header: <>Fecha<br/>Factura</>,
+    Homologado: <>Fecha Factura</>,
     accessor: 'fechafactura',
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Valorizado Subsidiado</>,
-    Homologado: <>Valorizado<br/>Subsidiado</>,
+    Header: <>Liquidación S/<br/>(APP))</>,
+    Homologado: <>Liquidación S/(APP))</>,
     accessor: 'valorizadosubsidiado',
     cabeceraAgrupacion: 'metricas'
   },

@@ -6,12 +6,15 @@ import {CambiarCheckFiltroSubPendientesReducer} from '../../../../Redux/Actions/
 import {useDispatch, useSelector} from "react-redux";
 import '../../../../Estilos/Elementos/Tabla/FiltroTablaIluminado.css'
 import IconoFlechaAbajoFiltro from '../../../../Assets/Imagenes/Iconos/Comunes/flechaAbajoFiltro.png'
+import IconoFiltro from '../../../../Assets/Imagenes/Iconos/Comunes/filtro.png'
 
 const FiltroTablaIluminado = (props) => {
     const dispatch = useDispatch();
     const [txtBuscar, setTxtBuscar] = useState("")
     const [mostrarFiltro, setMostrarFiltro] = useState(false)
     const [seleccionarTodo, setSeleccionarTodo] = useState(true)
+    const [mostrarIconoFiltro, setMostrarIconoFiltro] = useState(false)
+    const [bloquearAceptar, setBloquearAceptar] = useState(false)
 
     const data_subsidiosso_real = props.data_subsidiosso_real
     const campo = props.campo
@@ -79,17 +82,30 @@ const FiltroTablaIluminado = (props) => {
         })
 
         return (
-            nuevoA.map((nuevaData) => {
+            nuevoA.map((nuevaData, posicion) => {
+
                 return(
                     <>
                         <Checkbox
+                        style={
+                            campo == "clinombre" ?{width:'200px'}
+                            :campo == "pronombre"?{width:'350px'}:{}
+                        }
+                            className="Checkbox-Filtros-Tablas-Iluminado"
                             checked={
                                 nuevaData.check == undefined 
                                 ? true
                                 : nuevaData.check
                             }
                             onChange={async(e) => {
-                                // setMostrarFiltro(false)
+
+                                if(bloquearAceptar == true){
+                                    if(e.target.checked == true){
+                                        setBloquearAceptar(false)
+                                    }
+                                }
+
+                                setSeleccionarTodo(false)
                                 if(pertenenciaFiltros == "SUBSO"){ //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
                                     await dispatch(CambiarCheckFiltroSoReducer(
                                         campo, nuevaData[campo], e.target.checked,
@@ -103,7 +119,33 @@ const FiltroTablaIluminado = (props) => {
                                         campo, nuevaData[campo], e.target.checked,
                                     ))
                                 }
-                                // setMostrarFiltro(true)
+
+                                if(e.target.checked == false){
+                                    setMostrarIconoFiltro(true)
+                                    let tsad = true
+                                    await nuevoA.map(dt => {
+                                        if(dt.check == true || dt.check == undefined){
+                                            tsad = false
+                                        }
+                                    })
+
+                                    if(tsad == true){
+                                        setBloquearAceptar(true)
+                                    }
+                                }else{
+                                    let tsad = true
+                                    await nuevoA.map(dt => {
+                                        if(dt.check == false){
+                                            tsad = false
+                                        }
+                                    })
+
+                                    if(tsad == true){
+                                        setMostrarIconoFiltro(false)
+                                        setSeleccionarTodo(true)
+                                    }
+
+                                }
                             }}
                         ><span className="W400-S13-H17-C004FB8">
                             {
@@ -135,29 +177,43 @@ const FiltroTablaIluminado = (props) => {
 
                     if(nuevoA.length == 0){
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
-                            nuevoA.push(data)
+                            if(data.check == undefined || data.check == true){
+                                nuevoA.push(data)
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
                         }else{
                             noseleccionados.push(data[campo])
                         }
                     }else{
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
-                            let encontro = false
-                            nuevoA.map((ndta) => {
-                                if(ndta[campo] == data[campo]){
-                                    encontro = true
+                            
+                            if(data.check == undefined || data.check == true){
+                                let encontro = false
+                                nuevoA.map((ndta) => {
+                                    if(ndta[campo] == data[campo]){
+                                        encontro = true
+                                    }
+                                })
+                                
+                                if(encontro == false){
+                                    nuevoA.push(data)
                                 }
-                            })
-        
-                            if(encontro == false){
-                                nuevoA.push(data)
+                            }else{
+                                noseleccionados.push(data[campo])
                             }
+        
                         }else{
                             noseleccionados.push(data[campo])
                         }
                     }
 
                 }else{
-                    
+                    if(data.check == undefined || data.check == true){
+                        nuevoA.push(data)
+                    }else{
+                        noseleccionados.push(data[campo])
+                    }
                 }
             })
         })
@@ -184,9 +240,97 @@ const FiltroTablaIluminado = (props) => {
                 )
             )
         }
-
+        setTxtBuscar("")
         setMostrarFiltro(false)
+        console.log(nuevoA)
+        console.log(noseleccionados)
     }
+
+    const funSeleccionarTodo = async (e) => {
+        if(e == true){
+            setMostrarIconoFiltro(false)
+            setBloquearAceptar(false)
+        }else{
+            setBloquearAceptar(true)
+        }
+        setSeleccionarTodo(e)
+        let nuevoA = []
+        let noseleccionados = []
+
+        await data_subsidiosso_real.map((zona) => {
+            zona.data.map((data, pos) => {
+                if(txtBuscar.length > 0){
+
+                    if(nuevoA.length == 0){
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            if(e == true){
+                                nuevoA.push(data)
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
+                        }else{
+                            noseleccionados.push(data[campo])
+                        }
+                    }else{
+                        if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                            if(e == true){
+                                
+                                let encontro = false
+                                nuevoA.map((ndta) => {
+                                    if(ndta[campo] == data[campo]){
+                                        encontro = true
+                                    }
+                                })
+            
+                                if(encontro == false){
+                                    nuevoA.push(data)
+                                }
+
+                            }else{
+                                noseleccionados.push(data[campo])    
+                            }
+                        }else{
+                            noseleccionados.push(data[campo])
+                        }
+                    }
+
+                }else{
+                    
+                    if(e == true){
+                        nuevoA.push(data)
+                    }else{
+                        noseleccionados.push(data[campo])
+                    }
+
+                }
+            })
+        })
+
+        if(pertenenciaFiltros == "SUBSO"){
+            dispatch(
+                CambiarCheckFiltroSoReducer(
+                    campo, "", e, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if(pertenenciaFiltros == "SUBSI"){
+            dispatch(
+                CambiarCheckFiltroSiReducer(
+                    campo, "", e, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if(pertenenciaFiltros == "SUBPENDIENTES"){
+            dispatch(
+                CambiarCheckFiltroSubPendientesReducer(
+                    campo, "", e, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }
+
+    }
+
 
     const validarTodoSeleccionado = () => {
         let todoSeleccionado = true
@@ -226,8 +370,12 @@ const FiltroTablaIluminado = (props) => {
                     </div>
                     :null
                 }
-                {props.titulo}
-                <img onClick={() => setMostrarFiltro(!mostrarFiltro)} src={IconoFlechaAbajoFiltro} className="Icono-Flecha-Filtro-Tabla-Iluminado" />
+                <div onClick={() => setMostrarFiltro(!mostrarFiltro)}>{props.titulo}</div>
+                <img 
+                    onClick={() => setMostrarFiltro(!mostrarFiltro)}
+                    src={mostrarIconoFiltro == true ?IconoFiltro :IconoFlechaAbajoFiltro} 
+                    className="Icono-Flecha-Filtro-Tabla-Iluminado" 
+                />
             </div>
 
             {
@@ -236,7 +384,7 @@ const FiltroTablaIluminado = (props) => {
                     style={{
                         marginTop:'5px',
                         width: '204px',
-                        height: '250px',
+                        height: '280px',
                         background: '#FFFFFF',
                         border: '1px solid #D7E8FF',
                         boxSizing: 'border-box',
@@ -264,14 +412,48 @@ const FiltroTablaIluminado = (props) => {
                         }}
                         className="Wnormal-S12-H16-CA2B9ED-L0015"
                     >
-                        <input 
+                        <input
                             onChange={(e) => {
                                 setTxtBuscar(e.target.value)
                                 validarTodoSeleccionado()
                             }}
-                            placeholder="Buscar" style={{border:'0'}}  
+                            value={txtBuscar}
+                            placeholder="Buscar" 
+                            style={{border:'0', color:'black'}}  
                         />
+
+
                     </div>
+
+                    <div style={{marginBottom:'5px'}}>
+
+                        <Checkbox
+                            className="Checkbox-Filtros-Tablas-Iluminado"
+                            checked={seleccionarTodo}
+                            onChange={async(e) => {
+                                funSeleccionarTodo(e.target.checked)
+                            }}
+                        ><span className="W400-S13-H17-C004FB8">
+                            {
+                                "Seleccionar todo"
+                            }
+                        </span></Checkbox><br/>
+                    </div>
+
+                    {/* <div style={{marginBottom:'5px'}}>
+
+                        <Checkbox
+                            className="Checkbox-Filtros-Tablas-Iluminado"
+                            checked={seleccionarTodo}
+                            onChange={async(e) => {
+                                funSeleccionarTodo(e.target.checked)
+                            }}
+                        ><span className="W400-S13-H17-C004FB8">
+                            {
+                                "Agregar la selección actual al filtro"
+                            }
+                        </span></Checkbox><br/>
+                    </div> */}
 
                     {/* <Checkbox
                         checked={seleccionarTodo}
@@ -287,8 +469,17 @@ const FiltroTablaIluminado = (props) => {
 
                     <div className="Contenedor-Btns-Filtro-Iluminado">
                         <div
-                            onClick={() => aplicarFiltroTxt()} 
-                            className="Btn-Aceptar-Filtro-Iluminado W600-S13-H17-CFFFFFF">
+                            onClick={() => {
+                                if(bloquearAceptar == false){
+                                    aplicarFiltroTxt()
+                                }
+                            }} 
+                            className={
+                                bloquearAceptar == true
+                                ?"Btn-Aceptar-Bloqueado-Filtro-Iluminado W600-S13-H17-CFFFFFF"
+                                :"Btn-Aceptar-Filtro-Iluminado W600-S13-H17-CFFFFFF"
+                            }
+                        >
                             Aceptar
                         </div>
                         <div

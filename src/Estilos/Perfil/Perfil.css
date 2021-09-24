@@ -1,0 +1,147 @@
+#Banner-Perfil{
+    height: 102px;
+    background: #004FB8;
+    position: relative;
+}
+
+#Contenedor-Imagen-Perfil{
+    width: 138px;
+    height: 138px;
+    background: #C4C4C4;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin-top: 30px;
+    position: relative;
+
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center;
+    background-size:cover
+}
+
+#Contenedor-Principal-Informacion-Basica-Perfil{
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 120px;
+}
+
+#Contenedor-Informacion-Basica-Perfil{
+    width: 590px;
+}
+
+#Card-Informacion-Basica-Perfil{
+    width: 100%;
+    margin-top: 20px;
+    background: #FFFFFF;
+    border: 1px solid #D7E8FF;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px #D8DFE9;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.Fila-Tabla-Perfil{
+    height: 40px;
+    border-bottom: 1px solid #D7E8FF;
+    align-content: center;
+    padding-right: 10px;
+}
+
+.Fila-Tabla-Editar-Perfil{
+    /* height: 40px; */
+    border-bottom: 1px solid #D7E8FF;
+    align-content: center;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.Iconos-Perfil{
+    width: 30px;
+}
+
+.Iconos-Editar-Perfil{
+    width: 25px;
+    cursor: pointer;
+}
+
+.Input-Editar-Perfil{
+    width: 100%;
+    border: none;
+    background: #EDF0FA;
+    height: 25px;
+    padding-left: 10px;
+
+    color: black;
+    margin-bottom: 10px;
+}
+
+#Btn-Guardar-Editar-Perfil{
+    background: #EDF0FA;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    width: 64px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Btn-Cancelar-Editar-Perfil{
+    background: #EDF0FA;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    width: 64px;
+    height: 24px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Contenedor-Camara-Imagen-Perfil{
+    width: 30px;
+    height: 31px;
+    /* background: red; */
+    border-radius: 100px;
+    
+    position: absolute;
+    top: 90px;
+    right: 5px;
+}
+
+#Icono-Camara-Perfil{
+    width: 35px;
+    cursor: pointer;
+    /* height: 31px; */
+}
+
+#Contenedor-Imagen-Cambiar-Pefil{
+    width: 150px;
+    height: 150px;
+    background: #E7F3FF;
+}
+
+#Btn-Subir-Foto-Editar-Perfil{
+    background: #E7F3FF;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#Icono-Foto-Editar-Perfil{
+    width: 150px;
+}

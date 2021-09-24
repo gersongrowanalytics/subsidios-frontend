@@ -10,7 +10,8 @@ import config from "../../config"
 import '../../Estilos/Login/LoginLight.css'
 import {
     EyeOutlined,
-    EyeInvisibleOutlined
+    EyeInvisibleOutlined,
+    ArrowRightOutlined
 } from '@ant-design/icons';
 
 const LoginLight = () => {
@@ -118,22 +119,38 @@ const LoginLight = () => {
                                         className="Wnormal-S14-H19-CFF8023-Underline">¿Olvidaste o bloqueaste tu contraseña?</div>
 
                                 </Link>
-                                <Button 
-                                    htmlType="submit"
-                                    loading={cargandoLogin}
+                                <div
                                     style={{
-                                        height: "47px",
-                                        background: "#FF8023",
-                                        borderRadius: "26px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        cursor:'pointer',
                                         width:'100%',
-                                        marginTop:'30px'
+                                        display: "flex",
+                                        justifyContent: "center"
                                     }}
-                                    className="Btn-Iniciar-sesion-login-light"
-                                ><span className="Wbold-S18-H24-CFFFFFF">Iniciar Sesión</span></Button>
+                                >
+                                    <Button 
+                                        htmlType="submit"
+                                        loading={cargandoLogin}
+                                        style={{
+                                            height: "47px",
+                                            background: "#FF8023",
+                                            borderRadius: "26px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            cursor:'pointer',
+                                            // width:'80%',
+                                            marginTop:'30px'
+                                        }}
+                                        className="Btn-Iniciar-sesion-login-light butt butt--orange anchor"
+                                    >
+                                        <span className="Wbold-S18-H24-CFFFFFF">Iniciar Sesión</span>
+                                        <ArrowRightOutlined 
+                                            style={{
+                                                fontSize:'25px',
+                                                color:'white'
+                                            }}
+                                        />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </Form>

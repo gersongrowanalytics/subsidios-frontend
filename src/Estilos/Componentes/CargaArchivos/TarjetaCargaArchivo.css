@@ -97,22 +97,50 @@
     bottom: 0px;
     position: absolute;
     width: 90px;
+    height: 27px;
     padding-top: 5px;
     padding-bottom: 5px;
     place-content: center;
-
 
     background: #EDF0FA;
     border: 1px solid #004FB8;
     box-sizing: border-box;
     border-radius: 14px;
     
-    
-
     display: flex;
     align-items: center;
     cursor: pointer;
 }
+
+.Btn-Tarjeta-CargaArchivos-Hover-Light{
+    margin-bottom: 20px;
+    bottom: 0px;
+    position: absolute;
+    /* width: 90px; */
+    width: 0px;
+    height: 27px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    place-content: center;
+
+    background: #004FB8;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    animation-name: animacion-hover-btn-tarjeta;
+    animation-duration: 4s;
+}
+
+@keyframes animacion-hover-btn-tarjeta {
+    from {width: 0px;}
+    to {width: 90px;}
+}
+
 
 #Gif-PrimeraParte-TarjetaCargaArchivo{
     border-radius: 100px;
@@ -194,4 +222,5 @@
     height: 27px;
     margin-top: 20px;
     cursor: pointer;
+    position: relative;
 }

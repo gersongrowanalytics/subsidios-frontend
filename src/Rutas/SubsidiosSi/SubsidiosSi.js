@@ -394,7 +394,7 @@ const SubsidiosSi = () => {
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
-                                }>Fecha de Reconocimiento</th>
+                                }>Fecha de Factura</th>
                                     <th className={
                                         ComunesTipoDisenio == "Light"
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"

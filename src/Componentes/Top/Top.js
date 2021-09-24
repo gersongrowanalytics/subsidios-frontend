@@ -29,6 +29,7 @@ import {Link} from "react-router-dom";
 const Top = () => {
 
     const dispatch = useDispatch();
+    const ImagenUsuario = useSelector(({login}) => login.LoginUsuario.usuimagen)
     const NombreCompleto = useSelector(({login}) => login.LoginUsuario.pernombre)
     const Nombre = useSelector(({login}) => login.LoginUsuario.pernombre)
     const NombreComp = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
@@ -199,12 +200,26 @@ const Top = () => {
 
 
                                 <span id="Top-Nombre-Usuario" className={ComunesTipoDisenio == "Light" ? "CEDF0FA Wbold-S14-H19-C004FB8" :"C3A3B3C"}>
-                                    <img 
-                                        src={
+                                    <div 
+
+                                        // src={
+                                        //     ComunesTipoDisenio == "Light"
+                                        //     ?ImagenUsuario
+                                        //         ?ImagenUsuario
+                                        //         :IconoUsuarioLight
+                                        //     :IconoUsuario
+                                        // } 
+                                        id="Top-Img-Usuario" 
+                                        style={
                                             ComunesTipoDisenio == "Light"
-                                            ?IconoUsuarioLight
-                                            :IconoUsuario
-                                        } id="Top-Img-Usuario" /> {NombreCompleto}
+                                            ?ImagenUsuario
+                                                ?{backgroundImage:'url("'+ImagenUsuario+'")'}
+                                                :{backgroundImage:'url("'+IconoUsuarioLight+'")'}
+                                            :{backgroundImage:'url("'+IconoUsuario+'")'}
+                                        }
+                                    ></div>
+
+                                    <div style={{paddingTop:'3px'}}>{NombreCompleto}</div>
                                 </span>
 
                                 <img 
