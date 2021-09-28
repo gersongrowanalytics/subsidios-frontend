@@ -372,6 +372,8 @@ const TbSubPendientes = (props) => {
                                     const valorizados = dato.facturas.map(x => x.sfsvalorizado ? parseFloat(x.sfsvalorizado) : 0)
                                     const sumaValorizado = sumaValores(valorizados)
 
+                                    let objetivoSubsidiar = dato.sdemontoareconocerreal
+
                                     return (
                                         mostrar == true
                                         ?<>
@@ -561,8 +563,14 @@ const TbSubPendientes = (props) => {
                                             </tr>
 
                                             {
+
+                                                
+
                                                 dato.desplegado == true
                                                 ?dato.facturas.map((factura, posicionFacturaAsignada) => {
+
+                                                    objetivoSubsidiar = objetivoSubsidiar - factura.sfsvalorizado
+
                                                     return (
                                                         <tr
                                                             {...row.getRowProps()}
@@ -658,7 +666,8 @@ const TbSubPendientes = (props) => {
                                                                             ? "W600-S12-H16-C706C64"
                                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                         }>
-                                                                            S/{<NumberFormat value={funFomratoDecimal(factura.sfsdiferenciaobjetivo, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                                            {/* S/{<NumberFormat value={funFomratoDecimal(factura.sfsdiferenciaobjetivo, 2)} displayType={'text'} thousandSeparator={true} />} */}
+                                                                            S/{<NumberFormat value={funFomratoDecimal(objetivoSubsidiar, 2)} displayType={'text'} thousandSeparator={true} />}
                                                                     </td>
                                                                     :cell.column.id == "facturaimpactar"
                                                                     ?<td>
