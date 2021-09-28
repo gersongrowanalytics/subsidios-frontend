@@ -55,12 +55,12 @@ export const COLUMNS_SUBSI = [
     accessor: 'sdemontoareconocerreal',
     cabeceraAgrupacion: 'metricas'
   },
-  // {
-  //   Header: <>Liquidación S/<br/>(APP))</>,
-  //   Homologado: <>Liquidación S/(APP))</>,
-  //   accessor: 'sumsfsvalorizado',
-  //   cabeceraAgrupacion: 'metricas'
-  // },
+  {
+    Header: <>Liquidación S/<br/>(APP))</>,
+    Homologado: <>Liquidación S/(APP))</>,
+    accessor: 'sumsfsvalorizado',
+    cabeceraAgrupacion: 'metricas'
+  },
   {
     Header: <>Factura<br/>Impactar</>,
     Homologado: <>Factura Impactar</>,
