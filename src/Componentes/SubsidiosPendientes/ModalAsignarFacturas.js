@@ -195,7 +195,9 @@ const ModalAsignarFacturas = (props) => {
 
                                     :props.facturas.map((factura, posicionFactura) => {
                                         return (
-                                            <tr
+                                            factura.fdssaldo == 0
+                                            ?null
+                                            :<tr
                                                 style={
                                                     ComunesTipoDisenio == "Light"
                                                     ?{borderBottom: '1px solid #D7E8FF'}
