@@ -2,7 +2,11 @@ import {
     OBTENER_SUBSIDIOS_SI,
     CARGANDO_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
     OBTENER_NOTAS_CREDITO_FACTURA_SI_SUBSIDIOS_SI,
-    CARGANDO_DATA_SUBSIDIOS_SI
+    CARGANDO_DATA_SUBSIDIOS_SI,
+    CARGANDO_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
+    OBTENER_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
+    CARGANDO_DESCARGA_SUBSIDIOS_SI,
+    OBTENER_DESCARGA_SUBSIDIOS_SI
 } from "../../../Constantes/SubsidiosSi/SubsidiosSi";
 
 const INIT_STATE = {
@@ -50,7 +54,12 @@ const INIT_STATE = {
           seleccionado: true,
           cabeceraAgrupacion: "metricas"
         },
-    ]
+    ],
+
+    cargando_facturas_asignadas : false,
+    obtener_facturas_asignadas  : [],
+
+    cargando_descarga : false
 };
 
 
@@ -102,6 +111,33 @@ export default (state = INIT_STATE, action) => {
         return{
             ...state,
             AgrupacionesColumnas_Subsidios_SI : action.payload
+        }
+    }
+
+    case CARGANDO_FACTURAS_ASIGNADAS_SUBSIDIOS_SI:{
+        return {
+            ...state,
+            cargando_facturas_asignadas : action.payload
+        }
+    }
+    case OBTENER_FACTURAS_ASIGNADAS_SUBSIDIOS_SI: {
+        return {
+            ...state,
+            obtener_facturas_asignadas : action.payload
+        }
+    }
+
+    case CARGANDO_DESCARGA_SUBSIDIOS_SI: {
+        return {
+            ...state,
+            cargando_descarga : action.payload
+        }
+    }
+
+    case OBTENER_DESCARGA_SUBSIDIOS_SI: {
+        return {
+            ...state,
+            data_descarga_subsidiossi : action.payload
         }
     }
 
