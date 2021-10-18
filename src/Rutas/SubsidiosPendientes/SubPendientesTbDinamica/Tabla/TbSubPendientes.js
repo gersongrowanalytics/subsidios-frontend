@@ -634,7 +634,7 @@ const TbSubPendientes = (props) => {
                                                                             ? "W600-S12-H16-C706C64"
                                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                         }>
-                                                                            {dato.sdesector}
+                                                                            {factura.coscodigo + " "+ factura.cosnombre}
                                                                     </td>
                                                                     :cell.column.id == "prosku"
                                                                     ?<td 
@@ -643,7 +643,7 @@ const TbSubPendientes = (props) => {
                                                                             ? "W600-S12-H16-C706C64"
                                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                         }>
-                                                                            {dato.prosku}
+                                                                            {factura.fdsmaterial}
                                                                     </td>
                                                                     :cell.column.id == "pronombre"
                                                                     ?<td 
@@ -652,7 +652,7 @@ const TbSubPendientes = (props) => {
                                                                             ? "W600-S12-H16-C706C64"
                                                                             : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                                         }>
-                                                                            {dato.pronombre}
+                                                                            {factura.pronombre}
                                                                     </td>
                                                                     :cell.column.id == "reconocimientosacapp"
                                                                     ?<td 
