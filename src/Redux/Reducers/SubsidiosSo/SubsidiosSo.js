@@ -6,7 +6,8 @@ import {
     SELECCIONAR_CATEGORIA_FILTRO_SUBSIDIOS_SO,
     SELECCIONAR_TERRITORIO_FILTRO_SUBSIDIOS_SO,
     SELECCIONAR_ZONA_FILTRO_SUBSIDIOS_SO,
-    CARGANDO_DATA_SUBSIDIOS_SO
+    CARGANDO_DATA_SUBSIDIOS_SO,
+    CARGANDO_ARCHIVO_EXCEPCIONES_SO
 } from "../../../Constantes/SubsidiosSo/SubsidiosSo";
 
 const INIT_STATE = {
@@ -60,7 +61,9 @@ const INIT_STATE = {
           seleccionado: true,
           cabeceraAgrupacion: "metricas"
         },
-    ]
+    ],
+
+    cargando_archivo_excepciones : false
 
 };
 
@@ -137,6 +140,12 @@ export default (state = INIT_STATE, action) => {
         return{
             ...state,
             AgrupacionesColumnas_Subsidios_SO : action.payload
+        }
+    }
+    case CARGANDO_ARCHIVO_EXCEPCIONES_SO: {
+        return{
+            ...state,
+            cargando_archivo_excepciones : action.payload
         }
     }
     default:

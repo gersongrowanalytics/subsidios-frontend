@@ -70,11 +70,30 @@
     cursor: pointer;
 }
 
+#Btn-Flotante-Cargar-Subsidios-So-Light{
+    background: #1EC0ED;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 105px;
+    right: 30px;
+    cursor: pointer;
+}
+
 #Icono-Flotante-Descargar-Subsidios-So{
     width: 50px;
     margin-top: 5px;
     margin-left: 5px;
 }
+
+#Icono-Flotante-Cargar-Subsidios-So{
+    width: 50px;
+    margin-top: 5px;
+    margin-left: 6px;
+}
+
 
 thead tr th { 
     position: sticky;
@@ -174,4 +193,35 @@ thead tr th {
     display: flex;
     align-items: center;
     padding-left: 5px;
+}
+
+.Btn-Aceptar-Modal-Excepciones{
+    width: 84px;
+    height: 24px;
+    background: #004FB8;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 1px;
+}
+
+.Btn-Cancelar-Modal-Excepciones{
+    width: 80px;
+    height: 24px;
+    background: #EDF0FA;
+    border: 1px solid #004FB8;
+    box-sizing: border-box;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 1px;
+}
+
+.Contenedor-Btn-Aceptar-Excepciones{
+    width: 84px;
+    height: 24px;
 }

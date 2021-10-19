@@ -2,9 +2,13 @@ import config from '../../../config'
 import {
     OBTENER_SUBSIDIOS_SO,
     OBTENER_FILTROS_SUBSIDIOS_SO,
-    CARGANDO_DATA_SUBSIDIOS_SO
+    CARGANDO_DATA_SUBSIDIOS_SO,
+    CARGANDO_ARCHIVO_EXCEPCIONES_SO,
+    
 } from '../../../Constantes/SubsidiosSo/SubsidiosSo'
 import { estadoRequestReducer } from "../EstadoRequest"
+import {message} from "antd";
+import axios from 'axios'
 
 export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
 
@@ -360,4 +364,59 @@ export const CambiarCheckVariosFiltroReducer = (campo, valor) => (dispatch, getS
     // }
 
     // dispatch(AplicarFiltrosSubsidiosSoReducer())
+}
+
+export const CargarArchivoExcepcionesReducer = (archivo) => async (dispatch, getState) => {
+    
+    let respuesta = true
+
+    const formData = new FormData();
+    formData.append('file', archivo)
+
+    dispatch({
+        type: CARGANDO_ARCHIVO_EXCEPCIONES_SO,
+        payload : true
+    })
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await axios.post(config.api+'modulo/subsidiosSo/cargar/excepciones', formData,{
+        mode:'cors',
+        headers: headerFetch
+    })
+    .then(rpta => {
+        let datos = rpta.data
+        if(datos.respuesta == true){
+            message.success(datos.mensaje);
+        }else{
+            message.error(datos.mensaje);
+            respuesta = false
+        }
+        
+
+    })
+    .catch((error)=> {
+        console.log(error)
+    });
+
+    
+
+    dispatch({
+        type: CARGANDO_ARCHIVO_EXCEPCIONES_SO,
+        payload : false
+    })
+
+    return respuesta
 }

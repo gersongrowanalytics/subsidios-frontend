@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import '../../Estilos/Rutas/SubsidiosSo/SubsidiosSo.css'
 import {
     ObtenerSubsidiosSoReducer,
     ObtenerFiltrosReducer,
-    AplicarFiltrosSubsidiosSoReducer
+    AplicarFiltrosSubsidiosSoReducer,
+    CargarArchivoExcepcionesReducer
 } from '../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import {
     DesplegarSubsidiosSoReducer,
@@ -12,10 +13,11 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
 import IconoDescargarLight from '../../Assets/Imagenes/Iconos/DescargarLight.svg'
+import IconoCargarLight from '../../Assets/Imagenes/Iconos/SubsidiosSo/cargarSo.svg'
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas';
-import { Row, Col, Modal, Checkbox } from 'antd'
+import { Row, Col, Modal, Spin } from 'antd'
 import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
@@ -25,9 +27,11 @@ import IconoDesplegarAbajo from '../../Assets/Imagenes/Iconos/desplegar_abajo.sv
 import IconoDesplegarDerecha from '../../Assets/Imagenes/Iconos/flecha-derecha.svg'
 import FiltroTablaIluminado from '../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
 import { Table } from './Tabla/Tabla';
+import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
 import data_mock from './Tabla/MOCK_DATA.json'
 import IconoFiltroTablaSapBlanco from '../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png'
 import { Player } from '@lottiefiles/react-lottie-player';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -53,7 +57,8 @@ const Prueba = () => {
         categoriaseleccionado,
         territorioseleccionado,
         zonaseleccionado,
-        AgrupacionesColumnas_Subsidios_SO
+        AgrupacionesColumnas_Subsidios_SO,
+        cargando_archivo_excepciones
     } = useSelector(({subsidiosSo}) => subsidiosSo);
 
     const {
@@ -80,13 +85,7 @@ const Prueba = () => {
         return acumulado
     }
 
-    // let sumaValorizadoCantidadBultosTotal = 0
-    // let sumaValorizadoBultosAcordadosTotal = 0
-
-    // if(data_subsidiosso.length > 0){
-    //     valorizadosCantidadBultos    = zona.data.map(x => parseFloat(x.sdecantidadbultosreal))
-    //     sumaValorizadoCantidadBultos = sumaValores(valorizadosCantidadBultos)
-    // }
+    let inputFileRef = useRef(null);
 
     const [aplicarFiltrosAutomaticoValidado, setAplicarFiltrosAutomaticoValidado] = useState(false)
     const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
@@ -290,6 +289,37 @@ const Prueba = () => {
     const sumaValorizadoCantidadBultosTotalDT = sumaValores(valorizadosCantidadBultosTotalDT)
 
     const [mostrarModalFiltrosColumnas , setMostrarModalFiltrosColumnas] = useState(false)
+
+
+    const [archivosExcepciones, setArchivosExcepciones] = useState(null)
+    const [mostrarModalConfirmacionExcepciones, setMostrarModalConfirmacionExcepciones] = useState(false)
+
+    function seleccionarArchivoCargar() {
+        // setArchivosExcepciones(null)
+        inputFileRef.current.click();
+    }
+
+    async function cambioInputFile(event){
+        
+        console.log(event)
+
+        if(event.target.files.length > 0){
+            setMostrarModalConfirmacionExcepciones(!mostrarModalConfirmacionExcepciones)
+
+            event.stopPropagation();
+            event.preventDefault();
+
+            setArchivosExcepciones(event.target.files[0])
+        }
+
+    }
+
+    async function EnviarArchivoExcepciones(){
+        let rpta = await dispatch(CargarArchivoExcepcionesReducer(archivosExcepciones))
+        
+        setMostrarModalConfirmacionExcepciones(false)
+        dispatch(ObtenerSubsidiosSoReducer())
+    }
 
     return (
         <div style={{paddingBottom:'100px'}}>
@@ -713,6 +743,7 @@ const Prueba = () => {
 
                 {
                     data_subsidiosso.length > 0
+                    ?cargando_data_subsidiosso == false
                     ?<Table 
                         // MOCK_DATA = {data_mock}
                         MOCK_DATA = {data_subsidiosso}
@@ -738,6 +769,7 @@ const Prueba = () => {
                         setMostrarModalFiltrosColumnas = {(s) => setMostrarModalFiltrosColumnas(s)}
                         AgrupacionesColumnas_Subsidios_SO = {AgrupacionesColumnas_Subsidios_SO}
                     />
+                    :<IconoCargandoSITb />
                     :<IconoCargandoSITb />
                 }
                 
@@ -767,7 +799,84 @@ const Prueba = () => {
                     name="Subsidios So"
                 />
             </ExcelFile>
-        
+
+
+            <div 
+                id={
+                    ComunesTipoDisenio == "Light"
+                    ?"Btn-Flotante-Cargar-Subsidios-So-Light"
+                    :"Btn-Flotante-Cargar-Subsidios-So"
+                }
+                onClick={() => seleccionarArchivoCargar()}
+            >
+                <img src={
+                    ComunesTipoDisenio == "Light"
+                    ?IconoCargarLight
+                    :IconoCargarLight
+                } id="Icono-Flotante-Cargar-Subsidios-So" />
+            </div>
+            
+
+            <input 
+                onChange={(e) => cambioInputFile(e)}
+                ref={inputFileRef}
+                type={"file"} style={{display:'none'}}  />
+
+
+            <Modal
+                footer={null}
+                title={null}
+                onOk={() => {setMostrarModalConfirmacionExcepciones(false)}} 
+                onCancel={() => {setMostrarModalConfirmacionExcepciones(false)}}
+                visible={mostrarModalConfirmacionExcepciones}
+                centered={true}
+                closeIcon={<img src={IconoCerrar} width='27px'/>}
+            >
+                <Row>
+                    <Col 
+                        xl={24}
+                        style={{
+                            paddingBottom:'20px'
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center"
+                            }} 
+                            className="Wbold-S15-H20-C004FB8" >¿Está seguro que desea subir el archivo?</div>
+                    </Col>
+                    <Col 
+                        xl={12}
+                        style={{
+                            paddingRight:'15px',
+                            textAlign: "-webkit-right",
+                        }}
+                    >
+                        <div className="Contenedor-Btn-Aceptar-Excepciones">
+                            <Spin
+                                indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} 
+                                spinning={cargando_archivo_excepciones}
+                            >
+                                <div 
+                                    className="Btn-Aceptar-Modal-Excepciones W600-S13-H17-CFFFFFF"
+                                    onClick={() => EnviarArchivoExcepciones()}
+                                >
+                                    Aceptar
+                                </div>
+                            </Spin >
+                        </div>
+                    </Col>
+
+                    <Col xl={12}>
+                        <div className="Btn-Cancelar-Modal-Excepciones W600-S13-H17-C004FB8">
+                            Cancelar
+                        </div>
+                    </Col>
+
+                </Row>
+            </Modal>
+
         </div>
     )
 }
