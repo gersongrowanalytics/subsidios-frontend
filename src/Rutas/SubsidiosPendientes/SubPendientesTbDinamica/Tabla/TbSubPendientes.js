@@ -196,6 +196,9 @@ const TbSubPendientes = (props) => {
                                         ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
+                                    style={{
+                                        textAlignLast: "center"
+                                    }}
                                 > {column.render("Header")}</th>
                             ))}
                         </tr>

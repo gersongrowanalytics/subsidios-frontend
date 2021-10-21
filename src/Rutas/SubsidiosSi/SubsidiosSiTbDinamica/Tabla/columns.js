@@ -50,13 +50,13 @@ export const COLUMNS_SUBSI = [
     cabeceraAgrupacion: 'Materiales'
   },
   {
-    Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
+    Header: <>Monto<br/>(S/IGV Softys)</>,
     Homologado: <>Reconocimiento S/(SAC/APP))</>,
     accessor: 'sdemontoareconocerreal',
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Liquidación S/<br/>(APP))</>,
+    Header: <>Liquidación<br/>(S/IGV Softys)</>,
     Homologado: <>Liquidación S/(APP))</>,
     accessor: 'sumsfsvalorizado',
     cabeceraAgrupacion: 'metricas'

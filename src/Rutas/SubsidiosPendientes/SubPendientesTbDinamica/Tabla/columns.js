@@ -58,7 +58,7 @@ export const COLUMNS_SUBPENDIENTES = [
     cabeceraAgrupacion: 'Materiales'
   },
   {
-    Header: <>Reconocimiento S/<br/>(SAC/APP))</>,
+    Header: <>Monto<br/>(S/IGV Softys)</>,
     Homologado: <>Reconocimiento S/(SAC/APP))</>,
     accessor: 'reconocimientosacapp',
     cabeceraAgrupacion: 'metricas'
@@ -76,7 +76,7 @@ export const COLUMNS_SUBPENDIENTES = [
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Liquidación S/<br/>(APP))</>,
+    Header: <>Liquidación<br/>(S/IGV Softys)</>,
     Homologado: <>Liquidación S/(APP))</>,
     accessor: 'valorizadosubsidiado',
     cabeceraAgrupacion: 'metricas'

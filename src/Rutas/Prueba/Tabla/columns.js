@@ -67,19 +67,19 @@ export const COLUMNS_SUBSO = [
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Bultos<br/>(SAC/APP)</>,
+    Header: <>Bultos<br/>(Softys)</>,
     Homologado: <>Bultos (SAC/APP)</>,
     accessor: 'sdecantidadbultosreal',
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Reconocimiento<br/>S/(Distribuidor)</>,
+    Header: <>Monto<br/>(S/IGV DT)</>,
     Homologado: <>Reconocimiento S/(Distribuidor)</>,
     accessor: 'sdemontoareconocer',
     cabeceraAgrupacion: 'metricas'
   },
   {
-    Header: <>Reconocimiento<br/>S/(SAC/APP)</>,
+    Header: <>Monto<br/>(S/IGV Softys)</>,
     Homologado: <>Reconocimiento S/(SAC/APP)</>,
     accessor: 'sdemontoareconocerreal',
     cabeceraAgrupacion: 'metricas'
