@@ -193,7 +193,7 @@ const TbSubPendientes = (props) => {
                                     {...column.getHeaderProps()}
                                     className={
                                         ComunesTipoDisenio == "Light"
-                                        ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                        ?"Th-Tabla-Subsidios-So Wbold-S10-H20-CFFFFFF C004FB8"
                                         :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                     }
                                     style={{
@@ -259,6 +259,11 @@ const TbSubPendientes = (props) => {
                                                     className={ComunesTipoDisenio == "Light" ? "Wbold-S13-H17-C004FB8" : "Wbold-S11-H20-Ce4e6eb"}>
                                                         S/{<NumberFormat value={funFomratoDecimal(sumaValorizadosSubsidiadoTotal, 0)} displayType={'text'} thousandSeparator={true} />}
                                                 </td>
+                                                :cell.column.id == "liquidacionpendiente"
+                                                ?<td 
+                                                    className={ComunesTipoDisenio == "Light" ? "Wbold-S13-H17-C004FB8" : "Wbold-S11-H20-Ce4e6eb"}>
+                                                        S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal - sumaValorizadosSubsidiadoTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                                </td>
                                                 :<td></td>
                                             )
                                         })}
@@ -315,6 +320,26 @@ const TbSubPendientes = (props) => {
                                             >
                                                 S/<NumberFormat value={funFomratoDecimal(sumaValorizadoSubsidiado, 0)} displayType={'text'} thousandSeparator={true} />
                                             </td>
+                                            :cell.column.id == "liquidacionpendiente"
+                                            ?<td
+                                                style={
+                                                    data_subsidiossipendientes[posicion]
+                                                    ?data_subsidiossipendientes[posicion]['desplegado']
+                                                    ? ComunesTipoDisenio == "Light"
+                                                        ?{background:'white'}
+                                                        :{background:'#565656'}
+                                                    :{}
+                                                    :{}
+                                                }
+                                                className={
+                                                    ComunesTipoDisenio == "Light"
+                                                    ?"CFFFFFF Wbold-S13-H17-C004FB8"
+                                                    :"Zona-Cuerpo-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
+                                                }
+                                            >
+                                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadoObjetivo - sumaValorizadoSubsidiado, 0)} displayType={'text'} thousandSeparator={true} />
+                                            </td>
+                                            
                                             :<td 
                                                 style={
                                                     data_subsidiossipendientes[posicion]
@@ -529,7 +554,36 @@ const TbSubPendientes = (props) => {
                                                                     </>
                                                                 }
                                                         </td>
-
+                                                        :cell.column.id == "liquidacionpendiente"
+                                                        ?<td 
+                                                            className={
+                                                                ComunesTipoDisenio == "Light"
+                                                                ? "Wbold-S13-H17-C004FB8"
+                                                                : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                            }>
+                                                                {
+                                                                    dato.facturas.length > 0 
+                                                                    ?<>
+                                                                        S/{<NumberFormat 
+                                                                            value={
+                                                                                funFomratoDecimal(dato.sdemontoareconocerreal - sumaValorizado, 0)
+                                                                            } 
+                                                                            displayType={'text'} 
+                                                                            thousandSeparator={true} 
+                                                                        />}
+                                                                    </> 
+                                                                    :<>
+                                                                        S/{<NumberFormat 
+                                                                                value={
+                                                                                    funFomratoDecimal(dato.sdemontoareconocerreal, 0)
+                                                                                } 
+                                                                                displayType={'text'} 
+                                                                                thousandSeparator={true} 
+                                                                            />}
+                                                                    </>
+                                                                }
+                                                        </td>
+        
                                                         :cell.column.id == "estadoSubPendientes"
                                                         ?<td>
                                                             {/* <div style={{width:'20px', height:'20px', background:'green', cursor:'pointer'}}></div> */}
@@ -688,6 +742,12 @@ const TbSubPendientes = (props) => {
                                                                     ?<td>
                                                                         <div className="Input-Azul-Tabla-Campo W600-S12-H16-C706C64">
                                                                             S/{<NumberFormat value={funFomratoDecimal(factura.sfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                                        </div>
+                                                                    </td>
+                                                                    :cell.column.id == "liquidacionpendiente"
+                                                                    ?<td>
+                                                                        <div className="Input-Azul-Tabla-Campo W600-S12-H16-C706C64">
+                                                                            S/{<NumberFormat value={funFomratoDecimal(objetivoSubsidiar - factura.sfsvalorizado, 2)} displayType={'text'} thousandSeparator={true} />}
                                                                         </div>
                                                                     </td>
                                                                     :cell.column.id == "estadoSubPendientes"

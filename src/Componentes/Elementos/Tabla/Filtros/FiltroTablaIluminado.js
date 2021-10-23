@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react'
 import { Checkbox, Switch  } from 'antd';
 import {CambiarCheckFiltroSoReducer} from '../../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import {CambiarCheckFiltroSiReducer} from '../../../../Redux/Actions/SubsidiosSi/SubsidiosSiFront'
-import {CambiarCheckFiltroSubPendientesReducer} from '../../../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientesFront'
+import {
+    CambiarCheckFiltroSubPendientesReducer,
+    CambiarCheckFiltroSubPendientesFacturasReducer
+} from '../../../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientesFront'
 import {useDispatch, useSelector} from "react-redux";
 import '../../../../Estilos/Elementos/Tabla/FiltroTablaIluminado.css'
 import IconoFlechaAbajoFiltro from '../../../../Assets/Imagenes/Iconos/Comunes/flechaAbajoFiltro.png'
@@ -24,6 +27,7 @@ const FiltroTablaIluminado = (props) => {
     const accionSwitch = props.accionSwitch
 
     const pertenenciaFiltros = props.pertenenciaFiltros
+    const datalimpia = props.datalimpia
     
     // const campo = props.campo
 
@@ -39,10 +43,11 @@ const FiltroTablaIluminado = (props) => {
         
         let nuevoA = []
 
-        data_subsidiosso_real.map((zona) => {
-            zona.data.map((data) => {
-                if(txtBuscar.length > 0){
+        if(datalimpia == true){
 
+            data_subsidiosso_real.map((data) => {
+                if(txtBuscar.length > 0){
+    
                     if(nuevoA.length == 0){
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
                             nuevoA.push(data)
@@ -79,7 +84,50 @@ const FiltroTablaIluminado = (props) => {
                     }
                 }
             })
-        })
+
+        }else{
+            data_subsidiosso_real.map((zona) => {
+                zona.data.map((data) => {
+                    if(txtBuscar.length > 0){
+    
+                        if(nuevoA.length == 0){
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                nuevoA.push(data)
+                            }
+                        }else{
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                let encontro = false
+                                nuevoA.map((ndta) => {
+                                    if(ndta[campo] == data[campo]){
+                                        encontro = true
+                                    }
+                                })
+            
+                                if(encontro == false){
+                                    nuevoA.push(data)
+                                }
+                            }
+                        }
+    
+                    }else{
+                        if(nuevoA.length == 0){
+                            nuevoA.push(data)
+                        }else{
+                            let encontro = false
+                            nuevoA.map((ndta) => {
+                                if(ndta[campo] == data[campo]){
+                                    encontro = true
+                                }
+                            })
+        
+                            if(encontro == false){
+                                nuevoA.push(data)
+                            }
+                        }
+                    }
+                })
+            })
+        }
 
         return (
             nuevoA.map((nuevaData, posicion) => {
@@ -116,6 +164,10 @@ const FiltroTablaIluminado = (props) => {
                                     ))
                                 }else if(pertenenciaFiltros == "SUBPENDIENTES"){
                                     await dispatch(CambiarCheckFiltroSubPendientesReducer(
+                                        campo, nuevaData[campo], e.target.checked,
+                                    ))
+                                }else if(pertenenciaFiltros == "SUBPENDIENTESFACTURAS"){
+                                    await dispatch(CambiarCheckFiltroSubPendientesFacturasReducer(
                                         campo, nuevaData[campo], e.target.checked,
                                     ))
                                 }
@@ -239,7 +291,15 @@ const FiltroTablaIluminado = (props) => {
                     pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
                 )
             )
+        }else if(pertenenciaFiltros == "SUBPENDIENTESFACTURAS"){
+            dispatch(
+                CambiarCheckFiltroSubPendientesFacturasReducer(
+                    campo, "", true, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
         }
+        
         setTxtBuscar("")
         setMostrarFiltro(false)
         console.log(nuevoA)
@@ -323,6 +383,13 @@ const FiltroTablaIluminado = (props) => {
         }else if(pertenenciaFiltros == "SUBPENDIENTES"){
             dispatch(
                 CambiarCheckFiltroSubPendientesReducer(
+                    campo, "", e, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if(pertenenciaFiltros == "SUBPENDIENTESFACTURAS"){
+            dispatch(
+                CambiarCheckFiltroSubPendientesFacturasReducer(
                     campo, "", e, true, noseleccionados,
                     pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
                 )

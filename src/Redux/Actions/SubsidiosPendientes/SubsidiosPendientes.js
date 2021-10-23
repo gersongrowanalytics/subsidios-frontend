@@ -5,7 +5,8 @@ import {
     CARGANDO_ASIGNAR_FACTURAS_SUBSIDIOS_PENDIENTES,
     CARGANDO_ELIMINAR_FACTURA_SUBSIDIOS_PENDIENTES,
     CARGANDO_TABLA_SUBSIDIOS_PENDIENTES,
-    CARGANDO_TABLA_FACTURAS_ASIGNAR
+    CARGANDO_TABLA_FACTURAS_ASIGNAR,
+    ASIGNAR_POSICION_PRIMARIO_SECUNDARIA_SUB_PENDIENTES
 } from '../../../Constantes/SubsidiosPendientes/SubsidiosPendientes'
 import { estadoRequestReducer } from "../EstadoRequest"
 import { message } from 'antd';
@@ -149,11 +150,27 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
 
+            
+
             data_subsidiossipendientes[posicion]['data'][posicionData]['facturasasignar'] = data.datos
 
             dispatch({
+                type: "ASIGNAR_POSICION_PRIMARIO_SECUNDARIA_SUB_PENDIENTES",
+                payload:{
+                    posicion : posicion,
+                    posicionData : posicionData,
+                }
+            })
+
+
+            let nuevaData = {...data_subsidiossipendientes}
+            
+            dispatch({
                 type: OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
-                payload : data_subsidiossipendientes
+                payload : {
+                    data: data_subsidiossipendientes,
+                    datareal: nuevaData
+                }
             })
 			
 		}else{
@@ -309,3 +326,4 @@ export const EliminarFacturaAsignadaReducer = (dataFacturaEliminar) => async (di
     return respuesta
 
 }
+

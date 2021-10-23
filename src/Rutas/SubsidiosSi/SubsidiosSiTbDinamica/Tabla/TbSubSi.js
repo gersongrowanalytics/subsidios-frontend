@@ -80,10 +80,10 @@ const TbSubSi = (props) => {
                                         {...column.getHeaderProps()}
                                         className={
                                             ComunesTipoDisenio == "Light"
-                                            ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                            ?"Th-Tabla-Subsidios-So Wbold-S10-H20-CFFFFFF C004FB8"
                                             :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                         }
-                                        style={posicion == 0?{}:{textAlignLast: "center", zIndex:'1'}}
+                                        style={posicion == 0?{textAlignLast: "center"}:{textAlignLast: "center", zIndex:'1'}}
                                     >
                                         {column.render("Header")}
                                     </th>
@@ -263,6 +263,10 @@ const TbSubSi = (props) => {
                                                     ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                                         S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizadoTotal, 0)} displayType={'text'} thousandSeparator={true} />
                                                     </td>
+                                                    :cell.column.id == "liquidacionpendiente"
+                                                    ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                                        S/<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal - sumaValorizadosValorizadoTotal, 0)} displayType={'text'} thousandSeparator={true} />
+                                                    </td>
                                                     :<td></td>
                                                 )
                                             })}
@@ -293,6 +297,10 @@ const TbSubSi = (props) => {
                                                 ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
                                                     S/<NumberFormat value={funFomratoDecimal(sumaValorizadosValorizado, 0)} displayType={'text'} thousandSeparator={true} />
                                                 </td>
+                                                :cell.column.id == "liquidacionpendiente"
+                                                ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
+                                                    S/<NumberFormat value={funFomratoDecimal(sumaValorizadoObjetivo - sumaValorizadosValorizado, 0)} displayType={'text'} thousandSeparator={true} />
+                                                </td>
                                                 :<td 
                                                     style={
                                                         data_subsidiossi[posicion]
@@ -316,7 +324,7 @@ const TbSubSi = (props) => {
                                                             {
                                                                 data_subsidiossi[posicion]
                                                                 ?data_subsidiossi[posicion]['desplegado']
-                                                                    ?<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarAbajo} className="Icono-Flecha-Tabla-Subsidios-So" />
+                                                                    ?<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion, true))} src={IconoDesplegarAbajo} className="Icono-Flecha-Tabla-Subsidios-So" />
                                                                     :<img onClick={() => dispatch(DesplegarSubsidiosSoReducer(posicion))} src={IconoDesplegarDerecha} className="Icono-Flecha-Tabla-Subsidios-So" />
                                                                 :null
                                                             }
@@ -414,7 +422,11 @@ const TbSubSi = (props) => {
                                                         ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                                             S/{<NumberFormat value={dato.sumsfsvalorizado ?funFomratoDecimal(dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                                         </td>
-
+                                                        
+                                                        :cell.column.id == "liquidacionpendiente"
+                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                                                            S/{<NumberFormat value={dato.sdemontoareconocerreal - dato.sumsfsvalorizado ?funFomratoDecimal(dato.sdemontoareconocerreal - dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                                        </td>
                                                         :cell.column.id == "facturas"
                                                         ?<td 
                                                             className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C1EC0ED": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}
@@ -596,5 +608,26 @@ const TbSubSi = (props) => {
         </>
     )
 }
+
+
+class ContenidoFila extends React.Component {
+ 
+    componentDidMount() {
+        setInterval(() => {
+            this.setState(() => {
+                console.log('setting state');
+                return { unseen: "does not display" }
+            });
+        }, 1000);
+    }
+ 
+    render() {
+        console.log('render called');
+        return (
+            <div>...</div>
+        )
+    }
+}
+
 
 export default TbSubSi

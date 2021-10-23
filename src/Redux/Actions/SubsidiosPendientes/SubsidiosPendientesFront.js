@@ -264,3 +264,170 @@ export const AplicarFiltrosSubsidiosPendientesReducer = () => async(dispatch, ge
         payload: nuevoarray
     })
 }
+
+
+export const CambiarCheckFiltroSubPendientesFacturasReducer = (
+    campo, valor, check, borrarTodo = false, noseleccionados = []
+) => async(dispatch, getState) => {
+
+    const filtrosTablaSubsidiosPendientes = await getState().subsidiosPendientes.filtrosTablaFacturasPendientes
+    let data_subsidiossipendientes_real =  {...await getState().subsidiosPendientes.data_subsidiossipendientes_real}
+    const posicionPrincipalSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionPrincipalSubPendienteSeleccionado
+    const posicionSecundarioSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionSecundarioSubPendienteSeleccionado
+
+    if(data_subsidiossipendientes_real.length > 0){
+
+        if(data_subsidiossipendientes_real[posicionPrincipalSubPendienteSeleccionado]['data'].length > 0){
+            data_subsidiossipendientes_real = data_subsidiossipendientes_real[posicionPrincipalSubPendienteSeleccionado]['data'][posicionSecundarioSubPendienteSeleccionado]['facturasasignar']
+
+            if(borrarTodo == true){
+                filtrosTablaSubsidiosPendientes[campo] = []
+                await data_subsidiossipendientes_real.map((data) => {
+
+                    data["check"] = true
+            
+                })
+
+                await data_subsidiossipendientes_real.map((zona) => {
+
+                    noseleccionados.map((noselect) => {
+                        if(zona[campo] == noselect){
+                            zona["check"] = false
+                        }
+                    })
+            
+                })
+
+                filtrosTablaSubsidiosPendientes[campo] = noseleccionados
+
+            }else{
+                await data_subsidiossipendientes_real.map((zona) => {
+
+                    if(zona[campo] == valor){
+                        zona["check"] = check
+                    }
+            
+                })
+                
+                if(check == true){
+                    filtrosTablaSubsidiosPendientes[campo].map((val, pos) => {
+                        if(val == valor ){
+                            filtrosTablaSubsidiosPendientes[campo].splice(pos,1)
+                        }
+                    })
+                }else{
+                    filtrosTablaSubsidiosPendientes[campo].push(valor)
+                }
+            }
+        }
+    }
+
+    dispatch(AplicarFiltrosSubsidiosPendientesFacturasReducer())
+}
+
+
+export const AplicarFiltrosSubsidiosPendientesFacturasReducer = () => async(dispatch, getState) => {
+
+    const data_subsidiossipendientes_real = getState().subsidiosPendientes.data_subsidiossipendientes_real
+    const posicionPrincipalSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionPrincipalSubPendienteSeleccionado
+    const posicionSecundarioSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionSecundarioSubPendienteSeleccionado
+    const fecfechaFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fecfecha
+    const fsifacturaFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsifactura
+    const fdsmaterialFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fdsmaterial
+    const pronombreFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.pronombre
+    const proskuFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.prosku
+    const fsidestinatarioFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsidestinatario
+    const fsisolicitanteFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsisolicitante
+    
+    let datasubsidiosreal = await {  ...data_subsidiossipendientes_real }
+    let nuevoarray = []
+    
+    console.log(data_subsidiossipendientes_real)
+
+    await data_subsidiossipendientes_real.map(async(zona, pos) => {
+        
+        nuevoarray[pos] = { ...zona }
+        // nuevoarray[pos]['data'] = []
+        let arrZon = []
+        await zona.data.map((data, posZon) => {
+
+            
+
+            if(posZon == posicionSecundarioSubPendienteSeleccionado){
+                
+                let arrFac = []
+
+                data.facturasasignar.map((factura) => {
+
+                    let agregar = true
+
+                    fecfechaFiltrados.map((territorio) => {
+                        if(factura.fecfecha == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    fsifacturaFiltrados.map((territorio) => {
+                        if(factura.fsifactura == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    fdsmaterialFiltrados.map((territorio) => {
+                        if(factura.fdsmaterial == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    pronombreFiltrados.map((territorio) => {
+                        if(factura.pronombre == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    proskuFiltrados.map((territorio) => {
+                        if(factura.prosku == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    fsidestinatarioFiltrados.map((territorio) => {
+                        if(factura.fsidestinatario == territorio ){
+                            agregar = false
+                        }
+                    })
+        
+                    fsisolicitanteFiltrados.map((territorio) => {
+                        if(factura.fsisolicitante == territorio ){
+                            agregar = false
+                        }
+                    })
+
+                    
+
+                    if(agregar == true){
+
+                        arrFac.push({...factura})
+
+                    }
+
+                })
+                data[posZon]['facturasasignar'] = arrFac
+                arrZon.push({...data})
+
+            }else{
+                arrZon.push({...data})
+            }
+
+        })
+        // console.log(arrZon)
+        nuevoarray[pos]['desplegado'] = false
+        nuevoarray[pos]['data'] = arrZon
+    })
+    
+    // console.log(nuevoarray)
+    dispatch({
+        type: "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA",
+        payload: nuevoarray
+    })
+}

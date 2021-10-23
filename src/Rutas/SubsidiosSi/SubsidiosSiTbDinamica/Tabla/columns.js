@@ -61,6 +61,14 @@ export const COLUMNS_SUBSI = [
     accessor: 'sumsfsvalorizado',
     cabeceraAgrupacion: 'metricas'
   },
+
+  {
+    Header: <>Liquidación<br/>Pendiente</>,
+    Homologado: <>Liquidación Pendiente</>,
+    accessor: 'liquidacionpendiente',
+    cabeceraAgrupacion: 'metricas'
+  },
+
   {
     Header: <>Factura<br/>Impactar</>,
     Homologado: <>Factura Impactar</>,

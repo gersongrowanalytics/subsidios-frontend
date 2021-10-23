@@ -37,6 +37,16 @@ const INIT_STATE = {
         "pronombre" : []
     },
 
+    filtrosTablaFacturasPendientes : {
+        "fecfecha"       : [],
+        "fsifactura"  : [],
+        "fdsmaterial" : [],
+        "pronombre"   : [],
+        "prosku"      : [],
+        "fsidestinatario" : [],
+        "fsisolicitante"  : []
+    },
+
     AgrupacionesColumnas_Subsidios_Pendientes: [
         {
           agrupacion: "Cliente Sell In",
@@ -53,7 +63,10 @@ const INIT_STATE = {
           seleccionado: true,
           cabeceraAgrupacion: "metricas"
         },
-    ]
+    ],
+
+    posicionPrincipalSubPendienteSeleccionado : 0,
+    posicionSecundarioSubPendienteSeleccionado : 0,
 
 };
 
@@ -78,7 +91,8 @@ export default (state = INIT_STATE, action) => {
     case OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES: {
         return {
             ...state,
-            data_subsidiossipendientes : action.payload
+            data_subsidiossipendientes : action.payload.data,
+            data_subsidiossipendientes_real : action.payload.datareal
         }
     }
     case CARGANDO_ASIGNAR_FACTURAS_SUBSIDIOS_PENDIENTES:{
@@ -111,6 +125,14 @@ export default (state = INIT_STATE, action) => {
         return{
             ...state,
             AgrupacionesColumnas_Subsidios_Pendientes : action.payload
+        }
+    }
+
+    case "ASIGNAR_POSICION_PRIMARIO_SECUNDARIA_SUB_PENDIENTES": {
+        return {
+            ...state,
+            posicionPrincipalSubPendienteSeleccionado : action.payload.posicion,
+            posicionSecundarioSubPendienteSeleccionado : action.payload.posicionData
         }
     }
 

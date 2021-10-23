@@ -64,6 +64,18 @@ export const COLUMNS_SUBPENDIENTES = [
     cabeceraAgrupacion: 'metricas'
   },
   {
+    Header: <>Liquidación<br/>(S/IGV Softys)</>,
+    Homologado: <>Liquidación S/(APP))</>,
+    accessor: 'valorizadosubsidiado',
+    cabeceraAgrupacion: 'metricas'
+  },
+  {
+    Header: <>Liquidación<br/>Pendiente</>,
+    Homologado: <>Liquidación Pendiente</>,
+    accessor: 'liquidacionpendiente',
+    cabeceraAgrupacion: 'metricas'
+  },
+  {
     Header: <>Factura<br/>Impactar</>,
     Homologado: <>Factura Impactar</>,
     accessor: 'facturaimpactar',
@@ -75,12 +87,12 @@ export const COLUMNS_SUBPENDIENTES = [
     accessor: 'fechafactura',
     cabeceraAgrupacion: 'metricas'
   },
-  {
-    Header: <>Liquidación<br/>(S/IGV Softys)</>,
-    Homologado: <>Liquidación S/(APP))</>,
-    accessor: 'valorizadosubsidiado',
-    cabeceraAgrupacion: 'metricas'
-  },
+  // {
+  //   Header: <>Liquidación<br/>(S/IGV Softys)</>,
+  //   Homologado: <>Liquidación S/(APP))</>,
+  //   accessor: 'valorizadosubsidiado',
+  //   cabeceraAgrupacion: 'metricas'
+  // },
   {
     Header: <>Estado</>,
     Homologado: <>Estado</>,

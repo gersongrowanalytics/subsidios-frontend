@@ -201,10 +201,10 @@ export const Table = (props) => {
                                         {...column.getHeaderProps()}
                                         className={
                                             ComunesTipoDisenio == "Light"
-                                            ?"Th-Tabla-Subsidios-So Wbold-S13-H20-CFFFFFF C004FB8"
+                                            ?"Th-Tabla-Subsidios-So Wbold-S10-H20-CFFFFFF C004FB8"
                                             :"Th-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                         }
-                                        style={posicion == 0?{}:{textAlignLast: "center", zIndex:'1'}}
+                                        style={posicion == 0?{textAlignLast: "center",}:{textAlignLast: "center", zIndex:'1'}}
                                     >
                                         {column.render("Header")}
                                         {/* <div className="fields_filter">{column.canFilter ? column.render('Filter') : null}</div> */}
