@@ -223,10 +223,11 @@ const FiltroTablaIluminado = (props) => {
         let nuevoA = []
         let noseleccionados = []
 
-        await data_subsidiosso_real.map((zona) => {
-            zona.data.map((data, pos) => {
+        if(datalimpia == true){
+            await data_subsidiosso_real.map((data) => {
+            
                 if(txtBuscar.length > 0){
-
+    
                     if(nuevoA.length == 0){
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
                             if(data.check == undefined || data.check == true){
@@ -267,8 +268,57 @@ const FiltroTablaIluminado = (props) => {
                         noseleccionados.push(data[campo])
                     }
                 }
+                
             })
-        })
+        }else{
+            await data_subsidiosso_real.map((zona) => {
+            
+                zona.data.map((data, pos) => {
+                    if(txtBuscar.length > 0){
+    
+                        if(nuevoA.length == 0){
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                if(data.check == undefined || data.check == true){
+                                    nuevoA.push(data)
+                                }else{
+                                    noseleccionados.push(data[campo])
+                                }
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
+                        }else{
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                
+                                if(data.check == undefined || data.check == true){
+                                    let encontro = false
+                                    nuevoA.map((ndta) => {
+                                        if(ndta[campo] == data[campo]){
+                                            encontro = true
+                                        }
+                                    })
+                                    
+                                    if(encontro == false){
+                                        nuevoA.push(data)
+                                    }
+                                }else{
+                                    noseleccionados.push(data[campo])
+                                }
+            
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
+                        }
+    
+                    }else{
+                        if(data.check == undefined || data.check == true){
+                            nuevoA.push(data)
+                        }else{
+                            noseleccionados.push(data[campo])
+                        }
+                    }
+                })
+            })
+        }
 
         if(pertenenciaFiltros == "SUBSO"){
             dispatch(
@@ -317,10 +367,11 @@ const FiltroTablaIluminado = (props) => {
         let nuevoA = []
         let noseleccionados = []
 
-        await data_subsidiosso_real.map((zona) => {
-            zona.data.map((data, pos) => {
-                if(txtBuscar.length > 0){
+        if(datalimpia == true){
 
+            await data_subsidiosso_real.map((data) => {
+                if(txtBuscar.length > 0){
+    
                     if(nuevoA.length == 0){
                         if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
                             if(e == true){
@@ -364,7 +415,59 @@ const FiltroTablaIluminado = (props) => {
 
                 }
             })
-        })
+
+        }else{
+
+            await data_subsidiosso_real.map((zona) => {
+                zona.data.map((data, pos) => {
+                    if(txtBuscar.length > 0){
+    
+                        if(nuevoA.length == 0){
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                if(e == true){
+                                    nuevoA.push(data)
+                                }else{
+                                    noseleccionados.push(data[campo])
+                                }
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
+                        }else{
+                            if(data[campo].includes(txtBuscar.toUpperCase()) || data[campo].includes(txtBuscar.toLowerCase())){
+                                if(e == true){
+                                    
+                                    let encontro = false
+                                    nuevoA.map((ndta) => {
+                                        if(ndta[campo] == data[campo]){
+                                            encontro = true
+                                        }
+                                    })
+                
+                                    if(encontro == false){
+                                        nuevoA.push(data)
+                                    }
+    
+                                }else{
+                                    noseleccionados.push(data[campo])    
+                                }
+                            }else{
+                                noseleccionados.push(data[campo])
+                            }
+                        }
+    
+                    }else{
+                        
+                        if(e == true){
+                            nuevoA.push(data)
+                        }else{
+                            noseleccionados.push(data[campo])
+                        }
+    
+                    }
+                })
+            })
+
+        }
 
         if(pertenenciaFiltros == "SUBSO"){
             dispatch(
@@ -401,13 +504,23 @@ const FiltroTablaIluminado = (props) => {
 
     const validarTodoSeleccionado = () => {
         let todoSeleccionado = true
-        data_subsidiosso_real.map((zona) => {
-            zona.data.map((data) => {
+
+        if(datalimpia == true){
+            data_subsidiosso_real.map((data) => {
                 if(data.check == false){
                     todoSeleccionado = false
                 }
             })
-        })
+        }else{
+            data_subsidiosso_real.map((zona) => {
+                zona.data.map((data) => {
+                    if(data.check == false){
+                        todoSeleccionado = false
+                    }
+                })
+            })
+        }
+
         setSeleccionarTodo(todoSeleccionado)
     }
 

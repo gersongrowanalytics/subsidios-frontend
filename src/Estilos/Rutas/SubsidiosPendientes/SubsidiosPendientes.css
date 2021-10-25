@@ -8,3 +8,9 @@
     color: #6E7A9D;
     margin-bottom: 20px;
 }
+
+.Contenedor-Paginacion-Facturas-Pendientes{
+    position: absolute;
+    top: 90px;
+    right: 0;
+}

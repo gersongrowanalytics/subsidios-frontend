@@ -270,55 +270,46 @@ export const CambiarCheckFiltroSubPendientesFacturasReducer = (
     campo, valor, check, borrarTodo = false, noseleccionados = []
 ) => async(dispatch, getState) => {
 
-    const filtrosTablaSubsidiosPendientes = await getState().subsidiosPendientes.filtrosTablaFacturasPendientes
-    let data_subsidiossipendientes_real =  {...await getState().subsidiosPendientes.data_subsidiossipendientes_real}
-    const posicionPrincipalSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionPrincipalSubPendienteSeleccionado
-    const posicionSecundarioSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionSecundarioSubPendienteSeleccionado
+    const filtrosTablaFacturasPendientes = await getState().subsidiosPendientes.filtrosTablaFacturasPendientes
+    const data_facturas_asignar_subpendientes_real =  await getState().subsidiosPendientes.data_facturas_asignar_subpendientes_real
 
-    if(data_subsidiossipendientes_real.length > 0){
+    if(borrarTodo == true){
+        filtrosTablaFacturasPendientes[campo] = []
+        await data_facturas_asignar_subpendientes_real.map((data) => {
 
-        if(data_subsidiossipendientes_real[posicionPrincipalSubPendienteSeleccionado]['data'].length > 0){
-            data_subsidiossipendientes_real = data_subsidiossipendientes_real[posicionPrincipalSubPendienteSeleccionado]['data'][posicionSecundarioSubPendienteSeleccionado]['facturasasignar']
+            data["check"] = true
+    
+        })
 
-            if(borrarTodo == true){
-                filtrosTablaSubsidiosPendientes[campo] = []
-                await data_subsidiossipendientes_real.map((data) => {
+        await data_facturas_asignar_subpendientes_real.map((data) => {
 
-                    data["check"] = true
-            
-                })
-
-                await data_subsidiossipendientes_real.map((zona) => {
-
-                    noseleccionados.map((noselect) => {
-                        if(zona[campo] == noselect){
-                            zona["check"] = false
-                        }
-                    })
-            
-                })
-
-                filtrosTablaSubsidiosPendientes[campo] = noseleccionados
-
-            }else{
-                await data_subsidiossipendientes_real.map((zona) => {
-
-                    if(zona[campo] == valor){
-                        zona["check"] = check
-                    }
-            
-                })
-                
-                if(check == true){
-                    filtrosTablaSubsidiosPendientes[campo].map((val, pos) => {
-                        if(val == valor ){
-                            filtrosTablaSubsidiosPendientes[campo].splice(pos,1)
-                        }
-                    })
-                }else{
-                    filtrosTablaSubsidiosPendientes[campo].push(valor)
+            noseleccionados.map((noselect) => {
+                if(data[campo] == noselect){
+                    data["check"] = false
                 }
+            })
+    
+        })
+
+        filtrosTablaFacturasPendientes[campo] = noseleccionados
+
+    }else{
+        await data_facturas_asignar_subpendientes_real.map((data) => {
+
+            if(data[campo] == valor){
+                data["check"] = check
             }
+    
+        })
+        
+        if(check == true){
+            filtrosTablaFacturasPendientes[campo].map((val, pos) => {
+                if(val == valor ){
+                    filtrosTablaFacturasPendientes[campo].splice(pos,1)
+                }
+            })
+        }else{
+            filtrosTablaFacturasPendientes[campo].push(valor)
         }
     }
 
@@ -328,106 +319,74 @@ export const CambiarCheckFiltroSubPendientesFacturasReducer = (
 
 export const AplicarFiltrosSubsidiosPendientesFacturasReducer = () => async(dispatch, getState) => {
 
-    const data_subsidiossipendientes_real = getState().subsidiosPendientes.data_subsidiossipendientes_real
-    const posicionPrincipalSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionPrincipalSubPendienteSeleccionado
-    const posicionSecundarioSubPendienteSeleccionado =  await getState().subsidiosPendientes.posicionSecundarioSubPendienteSeleccionado
-    const fecfechaFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fecfecha
-    const fsifacturaFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsifactura
-    const fdsmaterialFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fdsmaterial
-    const pronombreFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.pronombre
-    const proskuFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.prosku
-    const fsidestinatarioFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsidestinatario
-    const fsisolicitanteFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsisolicitante
+    const data_facturas_asignar_subpendientes_real = getState().subsidiosPendientes.data_facturas_asignar_subpendientes_real
+    const fecfechaFiltrados     = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fecfecha
+    const fsifacturaFiltrados   = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsifactura
+    const fdsmaterialFiltrados  = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fdsmaterial
+    const pronombreFiltrados    = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.pronombre
+    const proskuFiltrados       = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.prosku
+    const fsidestinatarioFiltrados  = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsidestinatario
+    const fsisolicitanteFiltrados   = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsisolicitante
     
-    let datasubsidiosreal = await {  ...data_subsidiossipendientes_real }
+    
+    let datasubsidiosreal = await {  ...data_facturas_asignar_subpendientes_real }
     let nuevoarray = []
     
-    console.log(data_subsidiossipendientes_real)
-
-    await data_subsidiossipendientes_real.map(async(zona, pos) => {
+    await data_facturas_asignar_subpendientes_real.map(async(data, pos) => {
         
-        nuevoarray[pos] = { ...zona }
-        // nuevoarray[pos]['data'] = []
-        let arrZon = []
-        await zona.data.map((data, posZon) => {
+        let agregar = true
 
-            
-
-            if(posZon == posicionSecundarioSubPendienteSeleccionado){
-                
-                let arrFac = []
-
-                data.facturasasignar.map((factura) => {
-
-                    let agregar = true
-
-                    fecfechaFiltrados.map((territorio) => {
-                        if(factura.fecfecha == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    fsifacturaFiltrados.map((territorio) => {
-                        if(factura.fsifactura == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    fdsmaterialFiltrados.map((territorio) => {
-                        if(factura.fdsmaterial == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    pronombreFiltrados.map((territorio) => {
-                        if(factura.pronombre == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    proskuFiltrados.map((territorio) => {
-                        if(factura.prosku == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    fsidestinatarioFiltrados.map((territorio) => {
-                        if(factura.fsidestinatario == territorio ){
-                            agregar = false
-                        }
-                    })
-        
-                    fsisolicitanteFiltrados.map((territorio) => {
-                        if(factura.fsisolicitante == territorio ){
-                            agregar = false
-                        }
-                    })
-
-                    
-
-                    if(agregar == true){
-
-                        arrFac.push({...factura})
-
-                    }
-
-                })
-                data[posZon]['facturasasignar'] = arrFac
-                arrZon.push({...data})
-
-            }else{
-                arrZon.push({...data})
+        fecfechaFiltrados.map((dat) => {
+            if(data.fecfecha == dat ){
+                agregar = false
             }
-
         })
-        // console.log(arrZon)
-        nuevoarray[pos]['desplegado'] = false
-        nuevoarray[pos]['data'] = arrZon
+
+        fsifacturaFiltrados.map((dat) => {
+            if(data.fsifactura == dat ){
+                agregar = false
+            }
+        })
+
+        fdsmaterialFiltrados.map((dat) => {
+            if(data.fdsmaterial == dat ){
+                agregar = false
+            }
+        })
+
+        pronombreFiltrados.map((dat) => {
+            if(data.pronombre == dat ){
+                agregar = false
+            }
+        })
+
+        proskuFiltrados.map((dat) => {
+            if(data.prosku == dat ){
+                agregar = false
+            }
+        })
+
+        fsidestinatarioFiltrados.map((dat) => {
+            if(data.fsidestinatario == dat ){
+                agregar = false
+            }
+        })
+
+        fsisolicitanteFiltrados.map((dat) => {
+            if(data.fsisolicitante == dat ){
+                agregar = false
+            }
+        })
+
+        if(agregar == true){
+            nuevoarray.push({...data})
+        }
+        
     })
     
     // console.log(nuevoarray)
     dispatch({
-        type: "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA",
+        type: "OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES_ONLY_DATA",
         payload: nuevoarray
     })
 }

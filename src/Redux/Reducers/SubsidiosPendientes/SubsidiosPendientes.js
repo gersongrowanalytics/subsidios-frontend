@@ -68,6 +68,9 @@ const INIT_STATE = {
     posicionPrincipalSubPendienteSeleccionado : 0,
     posicionSecundarioSubPendienteSeleccionado : 0,
 
+    data_facturas_asignar_subpendientes : [],
+    data_facturas_asignar_subpendientes_real : [],
+
 };
 
 
@@ -113,26 +116,36 @@ export default (state = INIT_STATE, action) => {
             cargando_tabla_facturas_asignar_subsidiospendientes : action.payload
         }
     }
-
     case "OBTENER_SUBSIDIOS_PENDIENTES_ONLY_DATA":{
         return {
             ...state,
             data_subsidiossipendientes : action.payload
         }
     }
-
     case "OBTENER_FILTRO_COLUMNA_SUBSIDIOS_PENDIENTES":{
         return{
             ...state,
             AgrupacionesColumnas_Subsidios_Pendientes : action.payload
         }
     }
-
     case "ASIGNAR_POSICION_PRIMARIO_SECUNDARIA_SUB_PENDIENTES": {
         return {
             ...state,
             posicionPrincipalSubPendienteSeleccionado : action.payload.posicion,
             posicionSecundarioSubPendienteSeleccionado : action.payload.posicionData
+        }
+    }
+    case "OBTENER_FACTURAS_ASIGNAR_SUBSIDIOS_PENDIENTES" : {
+        return {
+            ...state,
+            data_facturas_asignar_subpendientes_real : action.payload.datareal,
+            data_facturas_asignar_subpendientes : action.payload.data,
+        }
+    }
+    case "OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES_ONLY_DATA":{
+        return {
+            ...state,
+            data_facturas_asignar_subpendientes : action.payload
         }
     }
 

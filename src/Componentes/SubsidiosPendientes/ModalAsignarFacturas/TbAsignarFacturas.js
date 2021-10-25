@@ -5,8 +5,14 @@ import funFomratoDecimal from '../../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import {COLUMNAS_FACTURAS_ASIGNAR_SUBSIDIOS_PENDIENTES } from "./Columnas";
 import FiltroTablaIluminado from '../../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
+import {useSelector} from "react-redux";
 
 const TbAsignarFacturas = (props) => {
+
+    const {
+        data_facturas_asignar_subpendientes_real,
+        data_facturas_asignar_subpendientes
+    } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
     const ComunesTipoDisenio = props.ComunesTipoDisenio
     
@@ -80,9 +86,41 @@ const TbAsignarFacturas = (props) => {
                         }}
                     >
                         <FiltroTablaIluminado 
-                            data_subsidiosso_real = {facturas}
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
                             campo = {"fecfecha"}
                             titulo = {"Fecha"}
+                            pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
+                            datalimpia = {true}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={3} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
+                            campo = {"fsisolicitante"}
+                            titulo = {"Cod. Solicitante"}
+                            pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
+                            datalimpia = {true}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={3} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
+                            campo = {"fdsmaterial"}
+                            titulo = {"Cod. Producto"}
                             pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
                             datalimpia = {true}
                         />
@@ -167,7 +205,7 @@ const TbAsignarFacturas = (props) => {
                                         </td>
                                     </tr>
 
-                                    :facturas.map((factura, posicionFactura) => {
+                                    :data_facturas_asignar_subpendientes.map((factura, posicionFactura) => {
 
                                         return (
                                             factura.fdssaldo == 0
@@ -269,7 +307,7 @@ const TbAsignarFacturas = (props) => {
                                                                 ? "W600-S12-H16-C706C64"
                                                                 : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                             }>
-                                                                S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                                S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo + 1, 2)} displayType={'text'} thousandSeparator={true} />}
                                                         </td>
                                                         :cell.column.id == "impacto"
                                                         ?<td>

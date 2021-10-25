@@ -165,11 +165,25 @@ export const ObtenerFacturasSubsidioPendienteReducer = (posicion, posicionData, 
 
             let nuevaData = {...data_subsidiossipendientes}
             
+            
             dispatch({
                 type: OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
                 payload : {
                     data: data_subsidiossipendientes,
                     datareal: nuevaData
+                }
+            })
+
+
+
+            // 
+            let nuevaDataFacturas = {...data}
+
+            dispatch({
+                type: "OBTENER_FACTURAS_ASIGNAR_SUBSIDIOS_PENDIENTES",
+                payload:{
+                    data: data.datos,
+                    datareal: nuevaDataFacturas.datos
                 }
             })
 			
