@@ -76,7 +76,7 @@ const TbAsignarFacturas = (props) => {
         <>
 
             <div id="Contenedor-Filtros-Tabla-Subsidios-So" style={{paddingLeft:'40px', paddingRight:'40px'}}>
-                <Row style={{width:'100%'}}>
+                <Row style={{width:'100%', marginLeft:'-40px', paddingLeft:'-40px'}}>
 
                     <Col 
                         xl={2} 
@@ -89,6 +89,22 @@ const TbAsignarFacturas = (props) => {
                             data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
                             campo = {"fecfecha"}
                             titulo = {"Fecha"}
+                            pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
+                            datalimpia = {true}
+                        />
+                    </Col>
+                    
+                    <Col 
+                        xl={4} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
+                            campo = {"fsidestinatario"}
+                            titulo = {"Cod. Destinatario"}
                             pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
                             datalimpia = {true}
                         />
@@ -307,7 +323,7 @@ const TbAsignarFacturas = (props) => {
                                                                 ? "W600-S12-H16-C706C64"
                                                                 : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                             }>
-                                                                S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo + 1, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                                S/{<NumberFormat value={funFomratoDecimal(factura.fdssaldo, 2)} displayType={'text'} thousandSeparator={true} />}
                                                         </td>
                                                         :cell.column.id == "impacto"
                                                         ?<td>
