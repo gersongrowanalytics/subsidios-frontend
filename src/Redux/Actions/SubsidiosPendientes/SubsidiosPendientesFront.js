@@ -78,6 +78,41 @@ export const CambiarImpactoFacturaAsignadaReducer = (
     return true
 }
 
+export const CambiarImpactoFacturaAsignadaListaFacturasReducer = (
+    posicionZona, 
+    posicionSubsidio, 
+    posicionFactura,
+    impacto,
+) => async (dispatch, getState) => {
+
+    
+    // console.log(posicionZona)
+    // console.log(posicionSubsidio)
+    // console.log(posicionFactura)
+    // console.log(impacto)
+
+    let {
+        data_facturas_asignar_subpendientes, 
+    } = getState().subsidiosPendientes
+
+
+    data_facturas_asignar_subpendientes[posicionFactura]['impacto'] = impacto
+
+    if(impacto.length > 0){
+        data_facturas_asignar_subpendientes[posicionFactura]['seleccionado'] = true
+    }else{
+        data_facturas_asignar_subpendientes[posicionFactura]['seleccionado'] = false
+    }
+
+    await dispatch({
+        type: "OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES_ONLY_DATA",
+        payload : data_facturas_asignar_subpendientes
+    })
+
+    return true
+}
+
+
 export const DesplegarFiltroColumnaReducer = (posicion) => (dispatch, getState) => {
     
     let {AgrupacionesColumnas_Subsidios_Pendientes} = getState().subsidiosPendientes

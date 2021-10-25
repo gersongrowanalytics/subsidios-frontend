@@ -11,7 +11,8 @@ import {
     DesplegarSubsidiosPendientesReducer,
     DesplegarSubsidioPendienteReducer,
     CambiarImpactoFacturaAsignadaReducer,
-    DesplegarFiltroColumnaReducer
+    DesplegarFiltroColumnaReducer,
+    CambiarImpactoFacturaAsignadaListaFacturasReducer
 } from '../../../../Redux/Actions/SubsidiosPendientes/SubsidiosPendientesFront'
 import IconoDesplegarAbajo from '../../../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
 import IconoDesplegarDerecha from '../../../../Assets/Imagenes/Iconos/flecha-derecha.svg'
@@ -600,7 +601,8 @@ const TbSubPendientes = (props) => {
                                                                 facturas = {dato.facturasasignar?dato.facturasasignar :[] }
 
                                                                 CambiarImpactoFacturaAsignada = {
-                                                                    (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaReducer(posicion, posicionData, posicionFactura, impacto))
+                                                                    // (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaReducer(posicion, posicionData, posicionFactura, impacto))
+                                                                    (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto))
                                                                 }
 
                                                                 objetivo = {parseFloat(dato.sdemontoareconocerreal) - parseFloat(sumaValorizado)}
