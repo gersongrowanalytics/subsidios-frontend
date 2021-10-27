@@ -30,12 +30,12 @@ export const COLUMNS_SUBSO = [
     accessor: 'clisuchml',
     cabeceraAgrupacion: 'ClienteSI'
   },
-  // {
-  //   Header: 'Sub Cliente',
-  //   Homologado: 'Sub Cliente',
-  //   accessor: 'sdesubcliente',
-  //   cabeceraAgrupacion: 'ClienteSI'
-  // },
+  {
+    Header: 'Sub Cliente',
+    Homologado: 'Sub Cliente',
+    accessor: 'sdesubcliente',
+    cabeceraAgrupacion: 'ClienteSI'
+  },
   {
     Header: 'Sector',
     Homologado: 'Sector',
