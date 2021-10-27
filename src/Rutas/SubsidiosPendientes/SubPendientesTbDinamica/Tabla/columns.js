@@ -25,19 +25,19 @@ export const COLUMNS_SUBPENDIENTES = [
     accessor: 'clisuchml',
     cabeceraAgrupacion: 'ClienteSI'
   },
-  {
-    Header: 'Sub Cliente',
-    Homologado: 'Sub Cliente',
-    accessor: 'sdesubcliente',
-    cabeceraAgrupacion: 'ClienteSI'
-  },
+  // {
+  //   Header: 'Sub Cliente',
+  //   Homologado: 'Sub Cliente',
+  //   accessor: 'sdesubcliente',
+  //   cabeceraAgrupacion: 'ClienteSI'
+  // },
 
-  {
-    Header: 'RUC Sub Cliente',
-    Homologado: 'RUC Sub Cliente',
-    accessor: '',
-    cabeceraAgrupacion: 'ClienteSI'
-  },
+  // {
+  //   Header: 'RUC Sub Cliente',
+  //   Homologado: 'RUC Sub Cliente',
+  //   accessor: '',
+  //   cabeceraAgrupacion: 'ClienteSI'
+  // },
 
   {
     Header: 'Sector',

@@ -389,77 +389,12 @@ const TbSubSi = (props) => {
 
                                         return (
                                             mostrar == true
-                                            ?<tr
-                                                {...row.getRowProps()}
-                                                style={
-                                                    ComunesTipoDisenio == "Light"
-                                                    ?{borderBottom: '1px solid #D7E8FF'}
-                                                    :{borderBottom: '1px solid #1c1e21'}
-                                                }
-                                            >
-                                                
-                                                {row.cells.map((cell, pos) => {
-                                                    return (
-                                                        cell.column.id == "sdeterritorio"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdeterritorio}</td>
-                                                        :cell.column.id == "clinombre"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.clinombre}</td>
-                                                        :cell.column.id == "clisuchml"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.clisuchml}</td>
-                                                        :cell.column.id == "sdesubcliente"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdesubcliente}</td>
-                                                        :cell.column.id == "sdesector"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdesector}</td>
-                                                        :cell.column.id == "prosku"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.prosku}</td>
-                                                        :cell.column.id == "pronombre"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.pronombre}</td>
-                                                        :cell.column.id == "sdemontoareconocerreal"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                            S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
-                                                        </td>
-                                                        :cell.column.id == "sumsfsvalorizado"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                            S/{<NumberFormat value={dato.sumsfsvalorizado ?funFomratoDecimal(dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
-                                                        </td>
-                                                        
-                                                        :cell.column.id == "liquidacionpendiente"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                            S/{<NumberFormat value={dato.sdemontoareconocerreal - dato.sumsfsvalorizado ?funFomratoDecimal(dato.sdemontoareconocerreal - dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
-                                                        </td>
-                                                        :cell.column.id == "facturas"
-                                                        ?<td 
-                                                            className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C1EC0ED": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}
-                                                            style={{cursor:'pointer'}} 
-                                                            onClick={() => {
-                                                                // console.log(dato)
-                                                                props.seleccionarFacturas(dato)
-                                                            }}>
-
-                                                            <u>Facturas</u>
-                                                        </td>
-
-                                                        :cell.column.id == "fecfecha"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.fecfecha}</td>
-                                                        
-                                                        :cell.column.id == "sdependiente"
-                                                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{display:'flex'}}>
-                                                            {dato.facturas.length > 0 ?dato.sdependiente == 1? "Irregular" : "Regular  ": "Regulár"}
-                                                            
-                                                            <div style={{
-                                                                background: dato.facturas.length > 0 ?dato.sdependiente == 1?"#FFCD1B":"#1EEC41" :"#1EEC41", 
-                                                                borderRadius: "14px", 
-                                                                width: "21px", 
-                                                                height: "10px",
-                                                                marginTop: "5px",
-                                                                marginLeft: dato.facturas.length > 0?dato.sdependiente == 1?"10px":"13px":"13px"
-                                                            }}></div>
-                        
-                                                        </td>
-                                                        :<td></td>
-                                                    )
-                                                })}
-                                            </tr>
+                                            ?<ContenidoFila 
+                                                row = {row}
+                                                ComunesTipoDisenio = {ComunesTipoDisenio}
+                                                dato = {dato}
+                                                seleccionarFacturas = {props.seleccionarFacturas}
+                                            />
                                             :null
                                         )
                                     })
@@ -611,7 +546,11 @@ const TbSubSi = (props) => {
 
 
 class ContenidoFila extends React.Component {
- 
+    
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         setInterval(() => {
             this.setState(() => {
@@ -622,9 +561,83 @@ class ContenidoFila extends React.Component {
     }
  
     render() {
-        console.log('render called');
+        
+        const row = this.props.row
+        const ComunesTipoDisenio = this.props.ComunesTipoDisenio
+        const dato = this.props.dato
+
         return (
-            <div>...</div>
+            <tr
+                {...row.getRowProps()}
+                style={
+                    ComunesTipoDisenio == "Light"
+                    ?{borderBottom: '1px solid #D7E8FF'}
+                    :{borderBottom: '1px solid #1c1e21'}
+                }
+            >
+                
+                {row.cells.map((cell, pos) => {
+                    return (
+                        cell.column.id == "sdeterritorio"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdeterritorio}</td>
+                        :cell.column.id == "clinombre"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.clinombre}</td>
+                        :cell.column.id == "clisuchml"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.clisuchml}</td>
+                        :cell.column.id == "sdesubcliente"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdesubcliente}</td>
+                        :cell.column.id == "sdesector"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.sdesector}</td>
+                        :cell.column.id == "prosku"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.prosku}</td>
+                        :cell.column.id == "pronombre"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.pronombre}</td>
+                        :cell.column.id == "sdemontoareconocerreal"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                            S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                        </td>
+                        :cell.column.id == "sumsfsvalorizado"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                            S/{<NumberFormat value={dato.sumsfsvalorizado ?funFomratoDecimal(dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                        </td>
+                        
+                        :cell.column.id == "liquidacionpendiente"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
+                            S/{<NumberFormat value={dato.sdemontoareconocerreal - dato.sumsfsvalorizado ?funFomratoDecimal(dato.sdemontoareconocerreal - dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                        </td>
+                        :cell.column.id == "facturas"
+                        ?<td 
+                            className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C1EC0ED": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}
+                            style={{cursor:'pointer'}} 
+                            onClick={() => {
+                                // console.log(dato)
+                                this.props.seleccionarFacturas(dato)
+                            }}>
+
+                            <u>Facturas</u>
+                        </td>
+
+                        :cell.column.id == "fecfecha"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.fecfecha}</td>
+                        
+                        :cell.column.id == "sdependiente"
+                        ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{display:'flex'}}>
+                            {dato.facturas.length > 0 ?dato.sdependiente == 1? "Irregular" : "Regular  ": "Regulár"}
+                            
+                            <div style={{
+                                background: dato.facturas.length > 0 ?dato.sdependiente == 1?"#FFCD1B":"#1EEC41" :"#1EEC41", 
+                                borderRadius: "14px", 
+                                width: "21px", 
+                                height: "10px",
+                                marginTop: "5px",
+                                marginLeft: dato.facturas.length > 0?dato.sdependiente == 1?"10px":"13px":"13px"
+                            }}></div>
+
+                        </td>
+                        :<td></td>
+                    )
+                })}
+            </tr>
         )
     }
 }
