@@ -529,7 +529,9 @@ const Home = () => {
                             estado_pendiente.seleccionado == true
                             ?estado_pendiente.ares.map((area, posicion) => {
                                 return (
-                                    area.areporcentaje == "9090" || area.arenombre == "SAC ADM" || area.arenombre == "SAC NC"
+                                    area.length == 0
+                                    ?null
+                                    :area.areporcentaje == "9090" || area.arenombre == "SAC ADM" || area.arenombre == "SAC NC"
                                     ?null
                                     :<Col 
                                         xl={8} 
@@ -614,7 +616,9 @@ const Home = () => {
                                     estado_pendiente.seleccionado == true
                                     ?estado_pendiente.ares.map((area, posicion) => {
                                         return (
-                                            area.arenombre != "SAC Sell Out Detalle"
+                                            area.length == 0
+                                            ?null
+                                            :area.arenombre != "SAC Sell Out Detalle"
                                             ?<tr 
                                                 style={
                                                     ComunesTipoDisenio == "Light"

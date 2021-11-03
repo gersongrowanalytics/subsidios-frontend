@@ -76,6 +76,7 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
                         usuario : data.datos,
                         subpendientes : data.subsidiospendientes,
                         fechaActualizacion : data.fechaActualizacion,
+                        mesespendientes : data.mesespendientes,
                     }
 				});
 
@@ -283,4 +284,15 @@ export const CambiarContraseniaReducer = (usuario) => async (dispatch, getState)
         mensaje : mensaje,
         correo : correo
     }
+}
+
+export const CerrarSubsidiosPendientes = () => async (dispatch, getState) => {
+
+    const subpendientes = getState().login.subpendientes
+
+    dispatch({
+        type: "CERRAR_SUBSIDIOS_PENDIENTES_LOGIN",
+        payload: !subpendientes
+    })
+
 }

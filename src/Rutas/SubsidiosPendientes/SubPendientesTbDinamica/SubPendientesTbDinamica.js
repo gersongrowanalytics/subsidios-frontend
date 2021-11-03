@@ -95,7 +95,8 @@ const SubPendientesTbDinamica = () => {
                 style={{
                     width: '100%',
                     textAlign: "-webkit-right",
-                    paddingRight:'40px'
+                    paddingRight:'40px',
+                    paddingTop: '10px'
                 }}
             >
                 <div 
@@ -136,7 +137,7 @@ const SubPendientesTbDinamica = () => {
                     </Col>
 
                     <Col 
-                        xl={2} 
+                        xl={3} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
                             position:'relative'
@@ -179,7 +180,7 @@ const SubPendientesTbDinamica = () => {
                     </Col>
 
                     <Col 
-                        xl={2} 
+                        xl={3} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
                             position:'relative'
@@ -253,7 +254,7 @@ const SubPendientesTbDinamica = () => {
                         }
                     </Col>
 
-                    <Col 
+                    {/* <Col 
                         xl={2} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
@@ -267,7 +268,7 @@ const SubPendientesTbDinamica = () => {
                             esValidacion = {true}
                             pertenenciaFiltros = {"SUBPENDIENTES"}
                         />
-                    </Col>
+                    </Col> */}
 
                     <Col 
                         xl={3} 

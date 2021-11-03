@@ -220,7 +220,7 @@ const SubsidiosSiTb = () => {
                     </Col>
 
                     <Col 
-                        xl={2} 
+                        xl={3} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
                             position:'relative'
@@ -263,7 +263,7 @@ const SubsidiosSiTb = () => {
                     </Col>
 
                     <Col 
-                        xl={2} 
+                        xl={3} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
                             position:'relative'
@@ -337,7 +337,7 @@ const SubsidiosSiTb = () => {
                         }
                     </Col>
 
-                    <Col 
+                    {/* <Col 
                         xl={2} 
                         style={{
                             paddingLeft:'5px', paddingRight:'5px',
@@ -351,7 +351,7 @@ const SubsidiosSiTb = () => {
                             esValidacion = {true}
                             pertenenciaFiltros = {"SUBSI"}
                         />
-                    </Col>
+                    </Col> */}
 
                     <Col 
                         xl={3} 

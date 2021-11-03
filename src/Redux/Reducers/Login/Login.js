@@ -9,7 +9,8 @@ const INIT_STATE = {
     LoginUsuid   : localStorage.getItem('usuid'),
     LoginUsuario : {},
     subpendientes : false,
-    fechaActualizacion : "20 Agosto 2021"
+    fechaActualizacion : "20 Noviembre 2021",
+    mesespendientes : [{anio:"2021", mes:"Agosto"}],
 };
 
 
@@ -28,6 +29,13 @@ export default (state = INIT_STATE, action) => {
             LoginUsuario : action.payload.usuario,
             subpendientes: action.payload.subpendientes,
             fechaActualizacion: action.payload.fechaActualizacion,
+            mesespendientes: action.payload.mesespendientes,
+        }
+    }
+    case "CERRAR_SUBSIDIOS_PENDIENTES_LOGIN": {
+        return{
+            ...state,
+            subpendientes : action.payload
         }
     }
     default:

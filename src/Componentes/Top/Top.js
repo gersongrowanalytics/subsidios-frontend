@@ -2,7 +2,10 @@ import React, {useState} from 'react'
 import {Row, Col} from 'antd'
 import {useDispatch, useSelector} from "react-redux";
 import {MostrarMenuReducer, CambiarDisenioReducer} from '../../Redux/Actions/Comunes/Comunes'
-import {CerrarSesionReducer} from '../../Redux/Actions/Login/Login'
+import {
+    CerrarSesionReducer,
+    CerrarSubsidiosPendientes
+} from '../../Redux/Actions/Login/Login'
 import IconoMenu from '../../Assets/Imagenes/Iconos/menu.svg'
 import IconoMenuLight from '../../Assets/Imagenes/Iconos/menuLight.svg'
 import LogoGrowColor from '../../Assets/Imagenes/Logos/LogoGrowBlancoNegro.png'
@@ -34,6 +37,7 @@ const Top = () => {
     const Nombre = useSelector(({login}) => login.LoginUsuario.pernombre)
     const NombreComp = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
     const subpendientes = useSelector(({login}) => login.subpendientes)
+    const mesespendientes = useSelector(({login}) => login.mesespendientes)
 
 
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
@@ -62,16 +66,30 @@ const Top = () => {
                         id="Contenedor-Alerta-Subsidios-Pendientes-Top"
                     >
 
-                        <Row style={{width:'100%', height: "92px"}}>
+                        <Row style={{width:'100%', }}>
                             <Col xl={7} style={{paddingLeft:'10px', alignSelf: "center"}} >
                                 <img src={IconoNotificacionAlerta} width="80px" />
                             </Col>
-                            <Col xl={17} style={{height:'100%', display: "flex", alignItems: "center"}} >
-                                <div className="Wbold-S13-H17-CFFFFFF">Se encontraron Subsidios<br/>pendientes</div>
+                            <Col xl={17} style={{height:'100%', display: "flex", paddingTop:'8px'}} >
+                                <div className="Wbold-S13-H17-CFFFFFF">
+                                    Se encontraron Subsidios<br/>pendientes en los siguientes<br/>periodos:<br/>
+                                    <div style={{paddingTop:'5px'}}>
+                                        {
+                                            mesespendientes.map((mes) => {
+                                                return(
+                                                    <>
+                                                        {mes.anio}/{mes.mes}<br/>
+                                                    </>
+                                                )
+                                            })
+                                        }                                        
+                                    </div>
+                                </div>
+                                
                                 <div
                                     style={{
                                         position: "absolute",
-                                        bottom: "10px",
+                                        bottom: "0px",
                                         right: "10px"
                                     }}
                                 >
@@ -84,7 +102,8 @@ const Top = () => {
                                 </div>
                             </Col>
                             <img 
-                                onClick={() => setOcultarNotificacionAlerta(!ocultarNotificacionAlerta)}
+                                // onClick={() => setOcultarNotificacionAlerta(!ocultarNotificacionAlerta)}
+                                onClick={() => dispatch(CerrarSubsidiosPendientes(!ocultarNotificacionAlerta))}
                                 src={IconoCerrarRojo} width={"35px"}
                                 style={{
                                     position:'absolute',
