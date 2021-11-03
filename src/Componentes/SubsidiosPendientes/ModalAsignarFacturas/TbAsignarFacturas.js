@@ -87,6 +87,38 @@ const TbAsignarFacturas = (props) => {
                     >
                         <FiltroTablaIluminado 
                             data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
+                            campo = {"fecanionumero"}
+                            titulo = {"Año"}
+                            pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
+                            datalimpia = {true}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
+                            campo = {"fecmesabreviacion"}
+                            titulo = {"Mes"}
+                            pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}
+                            datalimpia = {true}
+                        />
+                    </Col>
+
+                    <Col 
+                        xl={2} 
+                        style={{
+                            paddingLeft:'5px', paddingRight:'5px',
+                            position:'relative'
+                        }}
+                    >
+                        <FiltroTablaIluminado 
+                            data_subsidiosso_real = {data_facturas_asignar_subpendientes_real}
                             campo = {"fecfecha"}
                             titulo = {"Fecha"}
                             pertenenciaFiltros = {"SUBPENDIENTESFACTURAS"}

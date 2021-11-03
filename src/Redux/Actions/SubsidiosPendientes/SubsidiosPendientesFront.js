@@ -360,8 +360,10 @@ export const AplicarFiltrosSubsidiosPendientesFacturasReducer = () => async(disp
     const fdsmaterialFiltrados  = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fdsmaterial
     const pronombreFiltrados    = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.pronombre
     const proskuFiltrados       = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.prosku
-    const fsidestinatarioFiltrados  = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsidestinatario
-    const fsisolicitanteFiltrados   = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsisolicitante
+    const fsidestinatarioFiltrados   = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsidestinatario
+    const fsisolicitanteFiltrados    = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fsisolicitante
+    const fecanionumeroFiltrados     = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fecanionumero
+    const fecmesabreviacionFiltrados = getState().subsidiosPendientes.filtrosTablaFacturasPendientes.fecmesabreviacion
     
     
     let datasubsidiosreal = await {  ...data_facturas_asignar_subpendientes_real }
@@ -409,6 +411,18 @@ export const AplicarFiltrosSubsidiosPendientesFacturasReducer = () => async(disp
 
         fsisolicitanteFiltrados.map((dat) => {
             if(data.fsisolicitante == dat ){
+                agregar = false
+            }
+        })
+
+        fecanionumeroFiltrados.map((dat) => {
+            if(data.fecanionumero == dat ){
+                agregar = false
+            }
+        })
+
+        fecmesabreviacionFiltrados.map((dat) => {
+            if(data.fecmesabreviacion == dat ){
                 agregar = false
             }
         })

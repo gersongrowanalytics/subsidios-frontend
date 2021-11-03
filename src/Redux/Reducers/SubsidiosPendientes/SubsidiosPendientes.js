@@ -44,7 +44,9 @@ const INIT_STATE = {
         "pronombre"   : [],
         "prosku"      : [],
         "fsidestinatario" : [],
-        "fsisolicitante"  : []
+        "fsisolicitante"  : [],
+        "fecanionumero" : [],
+        "fecmesabreviacion" : []
     },
 
     AgrupacionesColumnas_Subsidios_Pendientes: [
