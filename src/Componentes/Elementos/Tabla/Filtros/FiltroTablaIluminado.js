@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Checkbox, Switch  } from 'antd';
 import {CambiarCheckFiltroSoReducer} from '../../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import {CambiarCheckFiltroSiReducer} from '../../../../Redux/Actions/SubsidiosSi/SubsidiosSiFront'
+import {CambiarCheckFiltroRegularizacionPendientesSoReducer} from '../../../../Redux/Actions/RegularzacionPagosSO/RegularzacionPagosSOFront'
 import {
     CambiarCheckFiltroSubPendientesReducer,
     CambiarCheckFiltroSubPendientesFacturasReducer
@@ -168,6 +169,10 @@ const FiltroTablaIluminado = (props) => {
                                     ))
                                 }else if(pertenenciaFiltros == "SUBPENDIENTESFACTURAS"){
                                     await dispatch(CambiarCheckFiltroSubPendientesFacturasReducer(
+                                        campo, nuevaData[campo], e.target.checked,
+                                    ))
+                                }else if( pertenenciaFiltros == "REGULARIZACIONPENDIENTESSO"){
+                                    await dispatch(CambiarCheckFiltroRegularizacionPendientesSoReducer(
                                         campo, nuevaData[campo], e.target.checked,
                                     ))
                                 }
@@ -348,6 +353,13 @@ const FiltroTablaIluminado = (props) => {
                     pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
                 )
             )
+        }else if( pertenenciaFiltros == "REGULARIZACIONPENDIENTESSO"){
+            dispatch(
+                CambiarCheckFiltroRegularizacionPendientesSoReducer(
+                    campo, "", true, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
         }
         
         setTxtBuscar("")
@@ -493,6 +505,13 @@ const FiltroTablaIluminado = (props) => {
         }else if(pertenenciaFiltros == "SUBPENDIENTESFACTURAS"){
             dispatch(
                 CambiarCheckFiltroSubPendientesFacturasReducer(
+                    campo, "", e, true, noseleccionados,
+                    pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
+                )
+            )
+        }else if( pertenenciaFiltros == "REGULARIZACIONPENDIENTESSO"){
+            dispatch(
+                CambiarCheckFiltroRegularizacionPendientesSoReducer(
                     campo, "", e, true, noseleccionados,
                     pertenenciaFiltros //IDENTIFICAR SI LOS FILTROS SE APLICAN A SUB SO O SUB SI O CUALQUIER OTRO
                 )

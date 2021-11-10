@@ -69,6 +69,16 @@ const Menu = () => {
                     {
                         funPermisosObtenidos(
                             LoginUsuario.permisos,
+                            "MENU.MODULO.REGULARIZACION.PAGOS.SELL.OUT",
+                            <Link to="/regularizacion-pagos-sell-out" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF-SinFondo">REGULARIZACIÓN DE PAGOS SELL OUT</p>
+                            </Link>
+                        )
+                    }
+
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
                             "MENU.MODULO.SUBSIDIOS.SELL.IN",
                             <Link to="/subsidios-si" onClick={() => dispatch(MostrarMenuReducer(false))}>
                                 <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Subsidio (Sell In)</p>
@@ -91,7 +101,7 @@ const Menu = () => {
                             LoginUsuario.permisos,
                             "MENU.MODULO.HISTORIA.FACTURAS.SELL.IN",
                             <Link to="/facturas" onClick={() => dispatch(MostrarMenuReducer(false))}>
-                                <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Historia de Facturas (Sell In)</p>
+                                <p className="Wbold-S27-H36-CFFFFFF-SinFondo">BIG DATA DE FACTURAS</p>
                             </Link>
                         )
                     }

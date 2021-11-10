@@ -17,11 +17,11 @@ const FiltroFechas = (props) => {
 
     return (
         <Row style={{ width:'100%'}}>
-            <Col xl={4} xs={24} className={ComunesTipoDisenio == "Light" ?"Wbold-S20-H27-C004FB8" :"Wbold-S20-H27-Ce4e6eb"}>
+            <Col xl={10} xs={24} className={ComunesTipoDisenio == "Light" ?"Wbold-S20-H27-C004FB8" :"Wbold-S20-H27-Ce4e6eb"}>
                 {props.titulo}
             </Col>
 
-            <Col xl={20} 
+            <Col xl={14} 
                 className="W600-S13-H17-C1EC0ED"
                 style={{
                     textAlign: "-webkit-right",
@@ -32,38 +32,6 @@ const FiltroFechas = (props) => {
                 <img src={IconoActualizacion} width={"15px"} style={{marginRight:'5px'}}/>
                 última actualización {fechaActualizacion}
             </Col>
-            {/* {
-                ComunesFechaInicio != null
-                ?<Col xl={5} xs={24} style={{display:'flex'}}>
-
-                    <div className="Fecha-Incio-Seleccionada-Contenedor-Comunes Wbold-S14-H19-C1876F2">
-                        {ComunesAnioTxtIncio}
-                        <img onClick={() => dispatch(EliminarFechaReducer())} src={CerrarAzul} className="Icono-Cerrar-Filtros-Fechas-Comunes" />
-                    </div>
-
-                    <div className="Fecha-Incio-Seleccionada-Contenedor-Comunes Wbold-S14-H19-C1876F2">
-                        {ComunesMesTxtInicio}
-                        <img onClick={() => dispatch(EliminarFechaReducer())} src={CerrarAzul} className="Icono-Cerrar-Filtros-Fechas-Comunes" />
-                    </div>
-
-                </Col>
-                :null
-            } */}
-            {/* {
-                ComunesFechaFinal != null
-                ?<Col xl={5} xs={24} style={{display:'flex'}}>
-                    <div className="Fecha-Final-Seleccionada-Contenedor-Comunes Wbold-S14-H19-EEB328">
-                        {ComunesAnioTxtFinal}
-                        <img onClick={() => dispatch(EliminarFechaReducer())} src={cerrarNaranja} className="Icono-Cerrar-Filtros-Fechas-Comunes" />
-                    </div>
-
-                    <div className="Fecha-Final-Seleccionada-Contenedor-Comunes Wbold-S14-H19-EEB328">
-                        {ComunesMesTxtFinal}
-                        <img onClick={() => dispatch(EliminarFechaReducer())} src={cerrarNaranja} className="Icono-Cerrar-Filtros-Fechas-Comunes" />
-                    </div>
-                </Col>
-                :null
-            } */}
         </Row>
     )
 }

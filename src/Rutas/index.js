@@ -23,6 +23,7 @@ import Menu from '../Componentes/Menu/Menu'
 import '../Estilos/Rutas/Rutas.css'
 import '../Estilos/Comunes/Comunes.css'
 import '../Estilos/Elementos/Tabla/Campo.css'
+import RegularzacionPagosSO from './RegularzacionPagosSO/RegularzacionPagosSO'
 
 const App = () => {
 
@@ -80,6 +81,10 @@ const App = () => {
                     <Route exact path='/subsidios-so' >
                         {/* <SubsidiosSo/> */}
                         <Prueba/>
+                    </Route>
+
+                    <Route exact path='/regularizacion-pagos-sell-out' >
+                        <RegularzacionPagosSO/>
                     </Route>
 
                     <Route exact path='/subsidios-si' >

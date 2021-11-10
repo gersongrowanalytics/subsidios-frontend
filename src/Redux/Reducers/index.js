@@ -15,6 +15,7 @@ import TiposUsuarios from './Administrador/TiposUsuarios/TiposUsuarios'
 import Usuarios from './Administrador/Usuarios/Usuarios'
 import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
 import Perfil from './Perfil/Perfil'
+import RegularzacionPagosSO from './RegularzacionPagosSO/RegularzacionPagosSO'
 
 const createRootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -33,6 +34,7 @@ const createRootReducer = (history) => combineReducers({
   usuarios : Usuarios,
   perfil : Perfil,
   controlArchivos : ControlArchivos,
+  regularzacionPagosSO : RegularzacionPagosSO,
 });
 
 export default createRootReducer

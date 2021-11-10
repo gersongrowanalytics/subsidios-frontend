@@ -15,3 +15,4 @@ export * from './Administrador/TiposUsuarios/TiposUsuarios';
 export * from './Administrador/Usuarios/Usuarios';
 export * from './Administrador/ControlArchivos/ControlArchivos';
 export * from './Perfil/Perfil';
+export * from './RegularzacionPagosSO/RegularzacionPagosSO';
