@@ -210,8 +210,8 @@ const TbRegularizacionPagosSO = (props) => {
 
                         const valorizadoObjetivo = data_regularizacion_pagos_so[posicion]['data'].map(
                             y => 
-                                y.sdemontoareconocerreal
-                                ?parseFloat(y.sdemontoareconocerreal) 
+                                y.sdemontoacido
+                                ?parseFloat(y.sdemontoacido) 
                                 :0
                         )
 
@@ -439,7 +439,7 @@ const TbRegularizacionPagosSO = (props) => {
                                     const valorizados = dato.facturas.map(x => x.sfsvalorizado ? parseFloat(x.sfsvalorizado) : 0)
                                     const sumaValorizado = sumaValores(valorizados)
 
-                                    let objetivoSubsidiar = dato.sdemontoareconocerreal
+                                    let objetivoSubsidiar = dato.sdemontoacido
 
                                     return (
                                         mostrar == true
@@ -573,7 +573,7 @@ const TbRegularizacionPagosSO = (props) => {
                                                                 S/{<NumberFormat 
                                                                     value={
                                                                         funFomratoDecimal(
-                                                                            dato.sdemontoareconocerreal, 0
+                                                                            dato.sdemontoacido, 0
                                                                         )
                                                                     }
                                                                     displayType={'text'} 
@@ -622,7 +622,7 @@ const TbRegularizacionPagosSO = (props) => {
                                                                     ?<>
                                                                         S/{<NumberFormat 
                                                                             value={
-                                                                                funFomratoDecimal(dato.sdemontoareconocerreal - sumaValorizado, 0)
+                                                                                funFomratoDecimal(dato.sdemontoacido - sumaValorizado, 0)
                                                                             } 
                                                                             displayType={'text'} 
                                                                             thousandSeparator={true} 
@@ -631,7 +631,7 @@ const TbRegularizacionPagosSO = (props) => {
                                                                     :<>
                                                                         S/{<NumberFormat 
                                                                                 value={
-                                                                                    funFomratoDecimal(dato.sdemontoareconocerreal, 0)
+                                                                                    funFomratoDecimal(dato.sdemontoacido, 0)
                                                                                 } 
                                                                                 displayType={'text'} 
                                                                                 thousandSeparator={true} 
@@ -660,11 +660,11 @@ const TbRegularizacionPagosSO = (props) => {
                                                                     (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto))
                                                                 }
 
-                                                                objetivo = {parseFloat(dato.sdemontoareconocerreal) - parseFloat(sumaValorizado)}
+                                                                objetivo = {parseFloat(dato.sdemontoacido) - parseFloat(sumaValorizado)}
 
                                                                 asignarFacturas = {
                                                                     () => {
-                                                                        dispatch(AsignarFacturasRegularizacionReducer(dato.sdeid, dato.sdemontoareconocerreal, dato.facturasasignar))
+                                                                        dispatch(AsignarFacturasRegularizacionReducer(dato.sdeid, dato.sdemontoacido, dato.facturasasignar))
                                                                     }
                                                                 }
 

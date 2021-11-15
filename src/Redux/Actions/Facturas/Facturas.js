@@ -3,7 +3,13 @@ import {
     OBTENER_FACTURAS_SI,
     CARGANDO_FACTURAS_SI,
     CARGANDO_RECONOCIMIENTOS_FACTURA_SI_FACTURAS_SI,
-    OBTENER_RECONOCIMIENTOS_FACTURA_SI_FACTURAS_SI
+    OBTENER_RECONOCIMIENTOS_FACTURA_SI_FACTURAS_SI,
+
+    OBTENER_FACTURAS_SI_BIGDATA,
+    OBTENER_FACTURAS_SO_BIGDATA,
+    OBTENER_MATERIALES_BIGDATA,
+    OBTENER_CLIENTES_BIGDATA,
+    CARGANDO_OBTENER_BIGDATA
 } from '../../../Constantes/Facturas/Facturas'
 import { estadoRequestReducer } from "../EstadoRequest"
 import {ObtenerFiltrosFacturasReducer} from "./FacturasFront"
@@ -163,4 +169,109 @@ export const ObtenerReconocimientosFacturasSiReducer = (fdsid) => async (dispatc
         payload : false
     })
 
+}
+
+export const ObtenerDataBigDataReducer = (url, tipodata) => async (dispatch, getState) => {
+
+    dispatch({
+        type: CARGANDO_OBTENER_BIGDATA,
+        payload: true
+    })
+
+    const {
+        ComunesFechaUnico,
+        ComunesAnioTxtUnico,
+        ComunesMesTxtUnico
+    } = getState().comunes
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+url,
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({
+                fecha : ComunesFechaUnico,
+                anio : ComunesAnioTxtUnico,
+                mes  : ComunesMesTxtUnico,
+            }),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(async data => {
+
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+
+            if(data.respuesta == true){
+
+                let descargableBigData = []
+                descargableBigData = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargable)
+
+                if(tipodata == "FACTURASSI"){
+                    dispatch({
+                        type: OBTENER_FACTURAS_SI_BIGDATA,
+                        payload: {
+                            data: data.data,
+                            descargable: descargableBigData
+                        }
+                    })
+                }else if(tipodata == "FACTURASSO"){
+                    dispatch({
+                        type: OBTENER_FACTURAS_SO_BIGDATA,
+                        payload: {
+                            data: data.data,
+                            descargable: descargableBigData
+                        }
+                    })
+                }else if(tipodata == "MAESTRAMATERIALES"){
+                    dispatch({
+                        type: OBTENER_MATERIALES_BIGDATA,
+                        payload: {
+                            data: data.data,
+                            descargable: descargableBigData
+                        }
+                    })
+                }else if(tipodata == "MAESTRACLIENTES"){
+                    dispatch({
+                        type: OBTENER_CLIENTES_BIGDATA,
+                        payload: {
+                            data: data.data,
+                            descargable: descargableBigData
+                        }
+                    })
+                }
+
+            }else{
+
+            }
+
+		}else{
+            
+        }
+
+    }).catch((error)=> {
+        console.log(error)
+    });
+
+    dispatch({
+        type: CARGANDO_OBTENER_BIGDATA,
+        payload: false
+    })
 }

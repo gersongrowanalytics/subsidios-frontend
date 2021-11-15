@@ -58,7 +58,8 @@ const Prueba = () => {
         territorioseleccionado,
         zonaseleccionado,
         AgrupacionesColumnas_Subsidios_SO,
-        cargando_archivo_excepciones
+        cargando_archivo_excepciones,
+        cargando_descargable_subsidiosso
     } = useSelector(({subsidiosSo}) => subsidiosSo);
 
     const {
@@ -97,28 +98,28 @@ const Prueba = () => {
     const valorizadosCantidadBultosTotal = data_subsidiosso.map(x => {
         const cantidadBultos = x.data.map(
             y => 
-                y.sdecantidadbultosreal
+                y.sdebultosacido
                 ?aplicarFiltrosAutomaticoValidado == true
                     ?mostrarValidados == true
                         ?y.sdestatus != null
                             ? mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    ?parseFloat(y.sdebultosacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    ?parseFloat(y.sdebultosacido) 
                                     :0
                             :0
                         :y.sdestatus != null
                             ?0
                             :mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    ?parseFloat(y.sdebultosacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdecantidadbultosreal) 
+                                    ?parseFloat(y.sdebultosacido) 
                                     :0
-                    :parseFloat(y.sdecantidadbultosreal) 
+                    :parseFloat(y.sdebultosacido) 
                 :0
         )
         return sumaValores(cantidadBultos)
@@ -162,28 +163,28 @@ const Prueba = () => {
     const valorizadosMontoReconcerTotal = data_subsidiosso.map(x => {
         const montosReconocer = x.data.map(
             y => 
-                y.sdemontoareconocerreal
+                y.sdemontoacido
                 ?aplicarFiltrosAutomaticoValidado == true
                     ?mostrarValidados == true
                         ?y.sdestatus != null
                             ? mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoacido) 
                                     :0
                             :0
                         :y.sdestatus != null
                             ?0
                             :mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoacido) 
                                     :0
-                    :parseFloat(y.sdemontoareconocerreal) 
+                    :parseFloat(y.sdemontoacido) 
                 :0
         )
         return sumaValores(montosReconocer)
@@ -194,28 +195,28 @@ const Prueba = () => {
     const valorizadosDiferenciasAhorrosSoles = data_subsidiosso.map(x => {
         const montosReconocer = x.data.map(
             y => 
-                y.sdemontoareconocerreal
+                y.sdemontoacido
                 ?aplicarFiltrosAutomaticoValidado == true
                     ?mostrarValidados == true
                         ?y.sdestatus != null
                             ? mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoacido) 
                                     :0
                             :0
                         :y.sdestatus != null
                             ?0
                             :mostrarAutomaticos == true
                                 ?y.sdesac == 0
-                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal) 
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoacido) 
                                     :0
                                 :y.sdesac == 1
-                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                    ?parseFloat(y.sdemontoareconocer - y.sdemontoacido)
                                     :0
-                    :parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                    :parseFloat(y.sdemontoareconocer - y.sdemontoacido)
                 :0
         )
         return sumaValores(montosReconocer)
@@ -787,11 +788,23 @@ const Prueba = () => {
                         }
 
                     >
-                        <img src={
-                            ComunesTipoDisenio == "Light"
-                            ?IconoDescargarLight
-                            :IconoDescargar
-                        } id="Icono-Flotante-Descargar-Subsidios-So" />
+                        <Spin 
+                            spinning={cargando_descargable_subsidiosso}
+                            indicator={<LoadingOutlined />}
+                            style={
+                                cargando_descargable_subsidiosso == true
+                                ?{width:'100%',
+                                height:'100%',
+                                cursor: 'not-allowed'}
+                                :{}
+                            }
+                        >
+                            <img src={
+                                ComunesTipoDisenio == "Light"
+                                ?IconoDescargarLight
+                                :IconoDescargar
+                            } id="Icono-Flotante-Descargar-Subsidios-So" />
+                        </Spin>
                     </div>
                 }>
                 <ExcelSheet 

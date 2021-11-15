@@ -106,8 +106,8 @@ const SubsidiosSiTb = () => {
     const valorizadosMontoReconcerTotal = data_subsidiossi.map(x => {
         const montosReconocer = x.data.map(
             y => 
-                y.sdemontoareconocerreal
-                ?parseFloat(y.sdemontoareconocerreal) 
+                y.sdemontoacido
+                ?parseFloat(y.sdemontoacido) 
                 :0
         )
         return sumaValores(montosReconocer)

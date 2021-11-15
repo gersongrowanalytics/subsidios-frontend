@@ -75,3 +75,38 @@ export const DesplegarFiltroColumnaReducer = (posicion) => (dispatch, getState) 
         payload: AgrupacionesColumnas_Subsidios_SO
     })
 }
+
+export const HabilitarEdicionBultosReducer = (posicionZona, posicionData, estado) => (dispatch, getState) => {
+
+    let {data_subsidiosso} = getState().subsidiosSo
+
+    data_subsidiosso[posicionZona]['data'][posicionData]['editarbulto'] = estado
+
+    if(estado == false){
+        data_subsidiosso[posicionZona]['data'][posicionData]['sdebultosacido'] = data_subsidiosso[posicionZona]['data'][posicionData]['sdebultoguardado']
+        data_subsidiosso[posicionZona]['data'][posicionData]['sdemontoacido'] = data_subsidiosso[posicionZona]['data'][posicionData]['sdebultoguardado'] * parseFloat(data_subsidiosso[posicionZona]['data'][posicionData]['sdedsctodos'])
+    }else{
+        data_subsidiosso[posicionZona]['data'][posicionData]['sdebultoguardado'] = data_subsidiosso[posicionZona]['data'][posicionData]['sdebultosacido']
+    }
+
+    dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
+    })
+}
+
+export const CambiarBultosReducer = (posicionZona, posicionData, txtnumero) => (dispatch, getState) => {
+
+    let {data_subsidiosso} = getState().subsidiosSo
+
+    let nuevoTxtNumero = txtnumero.replace(/^(0+)/g, '');
+
+    data_subsidiosso[posicionZona]['data'][posicionData]['sdebultosacido'] = nuevoTxtNumero
+    data_subsidiosso[posicionZona]['data'][posicionData]['sdemontoacido'] = nuevoTxtNumero * parseFloat(data_subsidiosso[posicionZona]['data'][posicionData]['sdedsctodos'])
+
+    dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
+    })
+
+}

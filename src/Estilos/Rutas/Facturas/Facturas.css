@@ -23,3 +23,45 @@
 .Tabla-Detalle-Factura-Historico-Facturas tbody th {
     position: sticky;
 }
+
+
+.Btn-Descargar-BigData{
+    display: flex;
+}
+
+.Contenedor-Loading-Cargando-BtnDescargar-BigData{
+    background-color: #69B7FF;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: not-allowed;
+    color: white;
+}
+
+.Contenedor-Loading-BtnDescargar-BigData{
+    background-color: #004FB8;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.Contenedor-Cuerpo-BtnDescargar-BigData{
+    background-color: #1890FF;
+    padding: 10px;
+}
+
+.Contenedor-Descargar-BtnDescargar-BigData{
+    background-color: #004FB8;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+    color: white;
+}
+
+.Contenedor-Descargar-Bloqueado-BtnDescargar-BigData{
+    background-color: gray;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: not-allowed;
+    color: white;
+}

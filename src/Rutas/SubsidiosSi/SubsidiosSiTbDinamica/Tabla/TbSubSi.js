@@ -217,8 +217,8 @@ const TbSubSi = (props) => {
 
                             const valorizadoObjetivo = data_subsidiossi[posicion]['data'].map(
                                 y => 
-                                    y.sdemontoareconocerreal
-                                    ?parseFloat(y.sdemontoareconocerreal) 
+                                    y.sdemontoacido
+                                    ?parseFloat(y.sdemontoacido) 
                                     :0
                             )
 
@@ -594,7 +594,7 @@ class ContenidoFila extends React.Component {
                         ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"}>{dato.pronombre}</td>
                         :cell.column.id == "sdemontoareconocerreal"
                         ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                            S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                            S/{<NumberFormat value={dato.sdemontoacido ?funFomratoDecimal(dato.sdemontoacido, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                         </td>
                         :cell.column.id == "sumsfsvalorizado"
                         ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
@@ -603,7 +603,7 @@ class ContenidoFila extends React.Component {
                         
                         :cell.column.id == "liquidacionpendiente"
                         ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                            S/{<NumberFormat value={dato.sdemontoareconocerreal - dato.sumsfsvalorizado ?funFomratoDecimal(dato.sdemontoareconocerreal - dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                            S/{<NumberFormat value={dato.sdemontoacido - dato.sumsfsvalorizado ?funFomratoDecimal(dato.sdemontoacido - dato.sumsfsvalorizado, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                         </td>
                         :cell.column.id == "facturas"
                         ?<td 

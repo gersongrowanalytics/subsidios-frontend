@@ -4,7 +4,8 @@ import {
     OBTENER_FILTROS_SUBSIDIOS_SO,
     CARGANDO_DATA_SUBSIDIOS_SO,
     CARGANDO_ARCHIVO_EXCEPCIONES_SO,
-    
+    CARGANDO_DESCARGABLE_SUBSIDIOS_SO,
+    OBTEMER_DESCARGABLE_SUBSIDIOS_SO
 } from '../../../Constantes/SubsidiosSo/SubsidiosSo'
 import { estadoRequestReducer } from "../EstadoRequest"
 import {message} from "antd";
@@ -58,7 +59,7 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
 		if(estadoRequest === true){
             let descargassubsidiosso = []
             let nuevaData = {...data}
-            descargassubsidiosso = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargarSde)
+            // descargassubsidiosso = await LimpiarArrayDescargaSubsidiosSoReducer(data.descargarSde)
 
             dispatch({
                 type: OBTENER_SUBSIDIOS_SO,
@@ -69,6 +70,8 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
                     sumSde : data.sumSde
                 }
             })
+
+            dispatch(ObtenerDescargableSubsidiosSoReducer())
 			
 		}else{
             
@@ -84,6 +87,75 @@ export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
     })
 
 }
+
+export const ObtenerDescargableSubsidiosSoReducer = () => async (dispatch, getState) => {
+
+    dispatch({
+        type: CARGANDO_DESCARGABLE_SUBSIDIOS_SO,
+        payload : true
+    })
+
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal
+    } = getState().comunes
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+'modulo/subsidiosSo/mostrar-subsidios-descarga',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({
+                fechaInicio : ComunesFechaInicio,
+                fechaFinal  : ComunesFechaFinal,
+            }),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(async data => {
+
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            let descargassubsidiosso = []
+            descargassubsidiosso = await LimpiarArrayDescargaSubsidiosSoReducer(data.datos)
+
+            dispatch({
+                type: OBTEMER_DESCARGABLE_SUBSIDIOS_SO,
+                payload : descargassubsidiosso
+            })
+			
+		}else{
+            
+        }
+
+    }).catch((error)=> {
+        console.log(error)
+    });
+
+    dispatch({
+        type: CARGANDO_DESCARGABLE_SUBSIDIOS_SO,
+        payload : false
+    })
+
+}
+
 
 export const LimpiarArrayDescargaSubsidiosSoReducer = async (subsidiosso) => {
 
@@ -420,3 +492,74 @@ export const CargarArchivoExcepcionesReducer = (archivo) => async (dispatch, get
 
     return respuesta
 }
+
+export const AceptarCambioBultosReducer = (posicionZona, posicionData) => async (dispatch, getState) => {
+
+    let {data_subsidiosso} = getState().subsidiosSo
+
+    data_subsidiosso[posicionZona]['data'][posicionData]['editandobulto'] = true 
+    
+    await dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
+    })
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+'modulo/subsidiosSo/editar-bultos',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({
+                sdeid: data_subsidiosso[posicionZona]['data'][posicionData]['sdeid'],
+                nuevacantidadbultos: data_subsidiosso[posicionZona]['data'][posicionData]['sdebultosacido'],
+            }),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(async data => {
+
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            
+            if(data.respuesta == true){
+                data_subsidiosso[posicionZona]['data'][posicionData]['editarbulto'] = false
+                message.success(data.mensaje);
+            }else{
+                message.error(data.mensaje)
+            }
+
+		}else{
+            
+        }
+
+    }).catch((error)=> {
+        console.log(error)
+    });
+
+    // data_subsidiosso[posicionZona]['data'][posicionData]['editandobulto'] = false 
+
+    dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
+    })
+
+}
+
+const delay = ms => new Promise(res => setTimeout(res, ms));

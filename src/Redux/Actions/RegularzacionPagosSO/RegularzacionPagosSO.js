@@ -208,7 +208,7 @@ export const AsignarFacturasRegularizacionReducer = (sdeid, sdemontoareconocerre
         }
     }
 
-    await fetch(config.api+'modulo/SubsidiosPendientes/asignar-facturas',
+    await fetch(config.api+'modulo/regularizacion-so/asignar-facturas',
 		{
 			mode:'cors',
 			method: 'POST',

@@ -70,8 +70,8 @@ const TbSubPendientes = (props) => {
     const valorizadosMontoReconcerTotal = data_subsidiossipendientes.map(x => {
         const montosReconocer = x.data.map(
             y => 
-                y.sdemontoareconocerreal
-                ?parseFloat(y.sdemontoareconocerreal) 
+                y.sdemontoacido
+                ?parseFloat(y.sdemontoacido) 
                 :0
         )
         return sumaValores(montosReconocer)
@@ -213,8 +213,8 @@ const TbSubPendientes = (props) => {
 
                         const valorizadoObjetivo = data_subsidiossipendientes[posicion]['data'].map(
                             y => 
-                                y.sdemontoareconocerreal
-                                ?parseFloat(y.sdemontoareconocerreal) 
+                                y.sdemontoacido
+                                ?parseFloat(y.sdemontoacido) 
                                 :0
                         )
 
@@ -401,7 +401,7 @@ const TbSubPendientes = (props) => {
                                     const valorizados = dato.facturas.map(x => x.sfsvalorizado ? parseFloat(x.sfsvalorizado) : 0)
                                     const sumaValorizado = sumaValores(valorizados)
 
-                                    let objetivoSubsidiar = dato.sdemontoareconocerreal
+                                    let objetivoSubsidiar = dato.sdemontoacido
 
                                     return (
                                         mostrar == true
@@ -518,7 +518,7 @@ const TbSubPendientes = (props) => {
                                                                 S/{<NumberFormat 
                                                                     value={
                                                                         funFomratoDecimal(
-                                                                            dato.sdemontoareconocerreal, 0
+                                                                            dato.sdemontoacido, 0
                                                                         )
                                                                     }
                                                                     displayType={'text'} 
@@ -567,7 +567,7 @@ const TbSubPendientes = (props) => {
                                                                     ?<>
                                                                         S/{<NumberFormat 
                                                                             value={
-                                                                                funFomratoDecimal(dato.sdemontoareconocerreal - sumaValorizado, 0)
+                                                                                funFomratoDecimal(dato.sdemontoacido - sumaValorizado, 0)
                                                                             } 
                                                                             displayType={'text'} 
                                                                             thousandSeparator={true} 
@@ -576,7 +576,7 @@ const TbSubPendientes = (props) => {
                                                                     :<>
                                                                         S/{<NumberFormat 
                                                                                 value={
-                                                                                    funFomratoDecimal(dato.sdemontoareconocerreal, 0)
+                                                                                    funFomratoDecimal(dato.sdemontoacido, 0)
                                                                                 } 
                                                                                 displayType={'text'} 
                                                                                 thousandSeparator={true} 
@@ -605,11 +605,11 @@ const TbSubPendientes = (props) => {
                                                                     (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto))
                                                                 }
 
-                                                                objetivo = {parseFloat(dato.sdemontoareconocerreal) - parseFloat(sumaValorizado)}
+                                                                objetivo = {parseFloat(dato.sdemontoacido) - parseFloat(sumaValorizado)}
 
                                                                 asignarFacturas = {
                                                                     () => {
-                                                                        dispatch(AsignarFacturasSubsidioReducer(dato.sdeid, dato.sdemontoareconocerreal, dato.facturasasignar))
+                                                                        dispatch(AsignarFacturasSubsidioReducer(dato.sdeid, dato.sdemontoacido, dato.facturasasignar))
                                                                     }
                                                                 }
 

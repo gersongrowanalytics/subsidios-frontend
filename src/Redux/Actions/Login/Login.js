@@ -4,7 +4,7 @@ import {
 } from "../../../Constantes/Login/Login";
 import config from '../../../config'
 import { estadoRequestReducer } from "../EstadoRequest"
-import { CargandoPaginaReducer, CargandoPaginaInicioReducer } from "../Comunes/Comunes"
+import { CargandoPaginaReducer, CargandoPaginaInicioReducer, CambiarFechaUnicoReducer } from "../Comunes/Comunes"
 
 import {CambiarFechaReducer} from '../Comunes/Comunes'
 
@@ -68,6 +68,7 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
                 var Xmas95 = new Date(fecha[0], fecha[1]-1, fecha[2])
 
                 dispatch(CambiarFechaReducer(Xmas95, null))
+                dispatch(CambiarFechaUnicoReducer(Xmas95, null))
 
 				dispatch({
 					type: OBTENER_LOGIN,

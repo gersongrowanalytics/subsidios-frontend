@@ -225,3 +225,10 @@ thead tr th {
     width: 84px;
     height: 24px;
 }
+
+.Input-Editar-Bultos-Subsidios-So{
+    border-radius: 20px;
+    padding-left: 5px;
+    width: 70px;
+    font-size: 10px;
+}

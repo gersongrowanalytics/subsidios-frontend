@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import { useTable, usePagination, useFilters, useExpanded, useGroupBy, useSortBy} from "react-table";
+import { useTable, usePagination, useFilters} from "react-table";
 import { Row, Col, Spin, Checkbox } from 'antd'
 import funFomratoDecimal from '../../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
@@ -46,30 +46,27 @@ const TbAsignarFacturas = (props) => {
         getTableBodyProps,
         headerGroups,
         page,
-        nextPage,
-        previousPage,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
+        // nextPage,
+        // previousPage,
+        // canPreviousPage,
+        // canNextPage,
+        // pageOptions,
         state,
-        gotoPage,
-        pageCount,
-        setPageSize,
+        // gotoPage,
+        // pageCount,
+        // setPageSize,
         prepareRow,
         allColumns,
-        setAllFilters,
-        getToggleHideAllColumnsProps
-    } = useTable(
+        // getToggleHideAllColumnsProps,
+      } = useTable(
         {
-            columns,
-            data,
-            initialState: { pageIndex: 0 }
+          columns,
+          data,
+          initialState: { pageIndex: 0 }
         },
         useFilters,
-        useGroupBy,
-        useSortBy,
-        useExpanded,
-        usePagination
+        usePagination,
+        
     );
 
     return (
@@ -239,7 +236,9 @@ const TbAsignarFacturas = (props) => {
                             return(
                                 <>
                                 {
-                                    cargandoTabla == true
+                                    posicion != 0
+                                    ?null
+                                    :cargandoTabla == true
                                     ?<tr 
                                         // style={{width:'100%'}}
                                         style={

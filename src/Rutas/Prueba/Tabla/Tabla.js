@@ -13,14 +13,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     DesplegarSubsidiosSoReducer,
     SeleccionarSolicitanteReducer,
-    DesplegarFiltroColumnaReducer
+    DesplegarFiltroColumnaReducer,
+    HabilitarEdicionBultosReducer,
+    CambiarBultosReducer
 } from '../../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
+import {
+    AceptarCambioBultosReducer
+} from '../../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import IconoDesplegarAbajo from '../../../Assets/Imagenes/Iconos/desplegar_abajo.svg'
 import IconoDesplegarDerecha from '../../../Assets/Imagenes/Iconos/flecha-derecha.svg'
-import { Row, Col, Modal, Checkbox } from 'antd'
+import { Row, Col, Modal, Checkbox, Spin } from 'antd'
 import {
     CaretDownOutlined,
-    CaretRightOutlined
+    CaretRightOutlined,
+    CheckCircleTwoTone,
+    CloseCircleTwoTone,
+    LoadingOutlined
 } from '@ant-design/icons'
 
 export const Table = (props) => {
@@ -238,28 +246,28 @@ export const Table = (props) => {
 
                                 const valorizadosCantidadBultos = data_subsidiosso[posicion]['data'].map(
                                     x => 
-                                        x.sdecantidadbultosreal
+                                        x.sdebultosacido
                                         ?aplicarFiltrosAutomaticoValidado == true
                                             ?mostrarValidados == true
                                                 ?x.sdestatus != null
                                                     ? mostrarAutomaticos == true
                                                         ?x.sdesac == 0
-                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            ?parseFloat(x.sdebultosacido) 
                                                             :0
                                                         :x.sdesac == 1
-                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            ?parseFloat(x.sdebultosacido) 
                                                             :0
                                                     :0
                                                 :x.sdestatus != null
                                                     ?0
                                                     :mostrarAutomaticos == true
                                                         ?x.sdesac == 0
-                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            ?parseFloat(x.sdebultosacido) 
                                                             :0
                                                         :x.sdesac == 1
-                                                            ?parseFloat(x.sdecantidadbultosreal) 
+                                                            ?parseFloat(x.sdebultosacido) 
                                                             :0
-                                            :parseFloat(x.sdecantidadbultosreal) 
+                                            :parseFloat(x.sdebultosacido) 
                                         :0
                                     
                                 )
@@ -293,55 +301,55 @@ export const Table = (props) => {
 
                                 const valorizadoMontosReconocer = data_subsidiosso[posicion]['data'].map(
                                     y => 
-                                        y.sdemontoareconocerreal
+                                        y.sdemontoacido
                                         ?aplicarFiltrosAutomaticoValidado == true
                                             ?mostrarValidados == true
                                                 ?y.sdestatus != null
                                                     ? mostrarAutomaticos == true
                                                         ?y.sdesac == 0
-                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            ?parseFloat(y.sdemontoacido) 
                                                             :0
                                                         :y.sdesac == 1
-                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            ?parseFloat(y.sdemontoacido) 
                                                             :0
                                                     :0
                                                 :y.sdestatus != null
                                                     ?0
                                                     :mostrarAutomaticos == true
                                                         ?y.sdesac == 0
-                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            ?parseFloat(y.sdemontoacido) 
                                                             :0
                                                         :y.sdesac == 1
-                                                            ?parseFloat(y.sdemontoareconocerreal) 
+                                                            ?parseFloat(y.sdemontoacido) 
                                                             :0
-                                            :parseFloat(y.sdemontoareconocerreal) 
+                                            :parseFloat(y.sdemontoacido) 
                                         :0
                                 )
 
                                 const valorizadoDiferenciaAhorroSoles = data_subsidiosso[posicion]['data'].map(
                                     y => 
-                                        y.sdemontoareconocerreal
+                                        y.sdemontoacido
                                         ?aplicarFiltrosAutomaticoValidado == true
                                             ?mostrarValidados == true
                                                 ?y.sdestatus != null
                                                     ? mostrarAutomaticos == true
                                                         ?y.sdesac == 0
-                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoareconocerreal ) 
+                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoacido ) 
                                                             :0
                                                         :y.sdesac == 1
-                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoareconocerreal ) 
+                                                            ?parseFloat( y.sdemontoareconocer - y.sdemontoacido ) 
                                                             :0
                                                     :0
                                                 :y.sdestatus != null
                                                     ?0
                                                     :mostrarAutomaticos == true
                                                         ?y.sdesac == 0
-                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoacido)
                                                             :0
                                                         :y.sdesac == 1
-                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                                            ?parseFloat(y.sdemontoareconocer - y.sdemontoacido)
                                                             :0
-                                            :parseFloat(y.sdemontoareconocer - y.sdemontoareconocerreal)
+                                            :parseFloat(y.sdemontoareconocer - y.sdemontoacido)
                                         :0
                                 )
 
@@ -545,48 +553,48 @@ export const Table = (props) => {
                                         data_subsidiosso[posicion]
                                         ?data_subsidiosso[posicion]['desplegado'] == true
                                         ?
-                                        data_subsidiosso[posicion]['data'].map((dato) => {
-                                            let mostrar = false
+                                        data_subsidiosso[posicion]['data'].map((dato, posicionData) => {
+                                            let mostrar = true
 
-                                            if(clienteseleccionado != 0){
-                                                if(clienteseleccionado == dato.cliid){
-                                                    mostrar = true
-                                                }
-                                            }else{
-                                                mostrar = true
-                                            }
+                                            // if(clienteseleccionado != 0){
+                                            //     if(clienteseleccionado == dato.cliid){
+                                            //         mostrar = true
+                                            //     }
+                                            // }else{
+                                            //     mostrar = true
+                                            // }
 
-                                            if(mostrarValidados == true){
+                                            // if(mostrarValidados == true){
                                                 
-                                                if(dato.sdestatus != null){
-                                                    mostrar = true
-                                                }else{
-                                                    mostrar = false
-                                                }
+                                            //     if(dato.sdestatus != null){
+                                            //         mostrar = true
+                                            //     }else{
+                                            //         mostrar = false
+                                            //     }
                                                 
-                                            }else{
-                                                if(dato.sdestatus != null){
-                                                    mostrar = false
-                                                }else{
-                                                    mostrar = true
-                                                }
-                                            }
+                                            // }else{
+                                            //     if(dato.sdestatus != null){
+                                            //         mostrar = false
+                                            //     }else{
+                                            //         mostrar = true
+                                            //     }
+                                            // }
 
-                                            if(mostrar == true){
-                                                if(mostrarAutomaticos == true){
-                                                    if(dato.sdesac == 0){
-                                                        mostrar = true
-                                                    }else{
-                                                        mostrar = false
-                                                    }
-                                                }else{
-                                                    if(dato.sdesac == 1){
-                                                        mostrar = true
-                                                    }else{
-                                                        mostrar = false
-                                                    }
-                                                }
-                                            }
+                                            // if(mostrar == true){
+                                            //     if(mostrarAutomaticos == true){
+                                            //         if(dato.sdesac == 0){
+                                            //             mostrar = true
+                                            //         }else{
+                                            //             mostrar = false
+                                            //         }
+                                            //     }else{
+                                            //         if(dato.sdesac == 1){
+                                            //             mostrar = true
+                                            //         }else{
+                                            //             mostrar = false
+                                            //         }
+                                            //     }
+                                            // }
                                             return (
                                                 mostrar == true
                                                 ?<tr
@@ -616,7 +624,11 @@ export const Table = (props) => {
                                                             :cell.column.id == "clisuchml"
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.clisuchml}</td>
                                                             :cell.column.id == "sdesubcliente"
-                                                            ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesubcliente}</td>
+                                                            ?<td
+                                                                style={{
+                                                                    textAlignLast: "center"
+                                                                }}
+                                                                className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesubcliente}</td>
                                                             :cell.column.id == "sdesector"
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} >{dato.sdesector}</td>
                                                             :cell.column.id == "prosku"
@@ -631,21 +643,88 @@ export const Table = (props) => {
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
                                                                 {<NumberFormat value={dato.sdecantidadbultos ?funFomratoDecimal(dato.sdecantidadbultos, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                                             </td>
+                                                            
+                                                            
                                                             :cell.column.id == "sdecantidadbultosreal"
-                                                            ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                                {<NumberFormat value={dato.sdecantidadbultosreal ?funFomratoDecimal(dato.sdecantidadbultosreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                                            ?<td 
+                                                                className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} 
+                                                                style={
+                                                                    dato.editarbulto == true
+                                                                    ?{textAlign: "-webkit-right"}
+                                                                    :{
+                                                                        textAlign: "-webkit-right",
+                                                                        cursor:'pointer'
+                                                                    }
+                                                                }
+                                                                onDoubleClick={() => dispatch(HabilitarEdicionBultosReducer(posicion, posicionData, true)) }
+                                                                title={
+                                                                    dato.editarbulto == true
+                                                                    ?""
+                                                                    :"Editar"
+                                                                }
+                                                            >
+                                                                <Spin
+                                                                    spinning={data.editandobulto ? data.editandobulto : false}
+                                                                    indicator={
+                                                                        <LoadingOutlined style={{ fontSize: 24 }} spin />
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        dato.editarbulto == true
+                                                                        ?<>
+                                                                            <input 
+                                                                                className="Input-Editar-Bultos-Subsidios-So"
+                                                                                type="number"
+                                                                                value={
+                                                                                    dato.sdebultosacido ?dato.sdebultosacido : 0
+                                                                                }
+                                                                                onChange={(e) => dispatch(CambiarBultosReducer(posicion, posicionData, e.target.value))}
+                                                                            />
+
+                                                                                <CheckCircleTwoTone 
+                                                                                    size={10}
+                                                                                    twoToneColor="#52c41a" 
+                                                                                    style={{fontSize:'20px', marginLeft:'5px', cursor:'pointer'}}
+                                                                                    title="Aceptar"
+                                                                                    onClick={() => dispatch(AceptarCambioBultosReducer(posicion, posicionData))}
+                                                                                />
+
+                                                                                <CloseCircleTwoTone 
+                                                                                    size={10}
+                                                                                    twoToneColor="#D14527" 
+                                                                                    style={{fontSize:'20px', marginLeft:'5px', cursor:'pointer'}}
+                                                                                    onClick={() => dispatch(HabilitarEdicionBultosReducer(posicion, posicionData, false))}
+                                                                                    title="Cancelar"
+                                                                                />
+
+                                                                        </>
+                                                                        :<>
+                                                                        {<NumberFormat value={dato.sdebultosacido ?funFomratoDecimal(dato.sdebultosacido, 2) : 0} displayType={'text'} thousandSeparator={true} />} 
+                                                                        </>
+                                                                    }
+                                                                </Spin>
+
                                                             </td>
+
+
                                                             :cell.column.id == "sdemontoareconocer"
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                                {<NumberFormat value={dato.sdemontoareconocer ?funFomratoDecimal(dato.sdemontoareconocer, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                                                S/{<NumberFormat value={dato.sdemontoareconocer ?funFomratoDecimal(dato.sdemontoareconocer, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                                             </td>
+
+
                                                             :cell.column.id == "sdemontoareconocerreal"
-                                                            ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                                S/{<NumberFormat value={dato.sdemontoareconocerreal ?funFomratoDecimal(dato.sdemontoareconocerreal, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                                            ?<td 
+                                                                className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} 
+                                                                style={{textAlign: "-webkit-right"}}
+                                                            >
+                                                                S/{<NumberFormat value={dato.sdemontoacido ?funFomratoDecimal(dato.sdemontoacido, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                                             </td>
+
+
                                                             :cell.column.id == "diferencia"
                                                             ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                                S/{<NumberFormat value={funFomratoDecimal(dato.sdemontoareconocer - dato.sdemontoareconocerreal, 2)} displayType={'text'} thousandSeparator={true} />}
+                                                                S/{<NumberFormat value={funFomratoDecimal(dato.sdemontoareconocer - dato.sdemontoacido, 2)} displayType={'text'} thousandSeparator={true} />}
                                                             </td>
                                                             :<td></td>
                                                         )

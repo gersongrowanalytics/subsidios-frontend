@@ -18,6 +18,7 @@ import TiposUsuarios from './Administrador/TiposUsuarios/TiposUsuarios'
 import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
 import Prueba from "./Prueba/Prueba"
 import Facturas from "./Facturas/Facturas"
+import BigData from "./Facturas/BigData/BigData"
 import Top from '../Componentes/Top/Top'
 import Menu from '../Componentes/Menu/Menu'
 import '../Estilos/Rutas/Rutas.css'
@@ -71,7 +72,7 @@ const App = () => {
                     </Route>
 
                     <Route exact path='/facturas' >
-                        <Facturas/>
+                        <BigData/>
                     </Route>
 
                     <Route exact path='/subsidios' >

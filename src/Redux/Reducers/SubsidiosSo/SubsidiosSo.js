@@ -7,7 +7,9 @@ import {
     SELECCIONAR_TERRITORIO_FILTRO_SUBSIDIOS_SO,
     SELECCIONAR_ZONA_FILTRO_SUBSIDIOS_SO,
     CARGANDO_DATA_SUBSIDIOS_SO,
-    CARGANDO_ARCHIVO_EXCEPCIONES_SO
+    CARGANDO_ARCHIVO_EXCEPCIONES_SO,
+    CARGANDO_DESCARGABLE_SUBSIDIOS_SO,
+    OBTEMER_DESCARGABLE_SUBSIDIOS_SO
 } from "../../../Constantes/SubsidiosSo/SubsidiosSo";
 
 const INIT_STATE = {
@@ -16,6 +18,7 @@ const INIT_STATE = {
     data_descarga_subsidiosso : [],
     total_soles_subsidiosso : "0",
     cargando_data_subsidiosso : false,
+    cargando_descargable_subsidiosso : false,
 
     solicitantes_filtro_subsidiosso : [],
     productos_filtro_subsidiosso    : [],
@@ -77,6 +80,12 @@ export default (state = INIT_STATE, action) => {
             data_subsidiosso : action.payload.data,
             data_descarga_subsidiosso : action.payload.descarga,
             total_soles_subsidiosso : action.payload.sumSde
+        }
+    }
+    case OBTEMER_DESCARGABLE_SUBSIDIOS_SO: {
+        return {
+            ...state,
+            data_descarga_subsidiosso : action.payload,
         }
     }
     case "CAMBIAR_DATA_SUBSIDIOS_SO":{
@@ -146,6 +155,12 @@ export default (state = INIT_STATE, action) => {
         return{
             ...state,
             cargando_archivo_excepciones : action.payload
+        }
+    }
+    case CARGANDO_DESCARGABLE_SUBSIDIOS_SO: {
+        return {
+            ...state,
+            cargando_descargable_subsidiosso : action.payload
         }
     }
     default:
