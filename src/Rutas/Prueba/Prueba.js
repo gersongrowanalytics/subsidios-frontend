@@ -195,7 +195,7 @@ const Prueba = () => {
     const valorizadosDiferenciasAhorrosSoles = data_subsidiosso.map(x => {
         const montosReconocer = x.data.map(
             y => 
-                y.sdemontoacido
+                y.sdemontoareconocer
                 ?aplicarFiltrosAutomaticoValidado == true
                     ?mostrarValidados == true
                         ?y.sdestatus != null

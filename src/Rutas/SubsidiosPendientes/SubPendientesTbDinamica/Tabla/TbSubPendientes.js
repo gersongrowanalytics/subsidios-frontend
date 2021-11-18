@@ -442,7 +442,7 @@ const TbSubPendientes = (props) => {
                                                                 ? "Wbold-S13-H17-C004FB8"
                                                                 : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
                                                             }>
-                                                                {dato.sdeterritorio}
+                                                                {dato.sdeterritorio + " - "+dato.sdeid}
                                                         </td>
                                                         :cell.column.id == "clinombre"
                                                         ?<td 

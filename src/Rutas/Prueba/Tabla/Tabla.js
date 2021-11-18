@@ -328,7 +328,7 @@ export const Table = (props) => {
 
                                 const valorizadoDiferenciaAhorroSoles = data_subsidiosso[posicion]['data'].map(
                                     y => 
-                                        y.sdemontoacido
+                                        y.sdemontoareconocer
                                         ?aplicarFiltrosAutomaticoValidado == true
                                             ?mostrarValidados == true
                                                 ?y.sdestatus != null
@@ -453,7 +453,7 @@ export const Table = (props) => {
                                                         </td>
                                                         :cell.column.id == "sdemontoareconocer"
                                                         ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                                            {<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                                                            S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotalDT, 0)} displayType={'text'} thousandSeparator={true} />}
                                                         </td>
                                                         :cell.column.id == "sdemontoareconocerreal"
                                                         ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
@@ -494,7 +494,7 @@ export const Table = (props) => {
                                                     </td>
                                                     :cell.column.id == "sdemontoareconocer"
                                                     ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
-                                                        {<NumberFormat value={funFomratoDecimal(sumaValorizadoReconocimientoDT, 0)} displayType={'text'} thousandSeparator={true} />}
+                                                        S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoReconocimientoDT, 0)} displayType={'text'} thousandSeparator={true} />}
                                                     </td>
                                                     :cell.column.id == "sdemontoareconocerreal"
                                                     ?<td className="Wbold-S13-H17-C004FB8" style={{textAlign: "-webkit-right"}}>
