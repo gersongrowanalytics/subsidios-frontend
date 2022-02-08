@@ -75,6 +75,24 @@
     color: #004FB8;
 }
 
+.Wnormal-S13-H17-Crgba07918405{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    color: rgba(0, 79, 184, 0.5);
+}
+
+.Wnormal-S12-H17-Crgba04513507{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    color: rgba(0, 45, 135, 0.7);
+}
+
 .Wnormal-S12-H17-C004FB8{
     font-family: Segoe UI;
     font-style: normal;
@@ -313,6 +331,16 @@
     color: #004FB8;
 }
 
+.Wbold-S12-H16-C002D87{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #002D87;
+}
+
+
 .Wbold-S12-H16-CFFFFFF{
     font-family: Segoe UI;
     font-style: normal;
@@ -376,6 +404,16 @@
     line-height: 16px;
     text-decoration-line: underline;
     color: #1EC0ED;
+}
+
+.W600-S12-H16-C004FB8{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #004FB8;
 }
 
 .W600-S11-H15-C706C64{
@@ -457,6 +495,15 @@
     font-size: 14px;
     line-height: 19px;
     color: #FF8023;
+}
+
+.Wnormal-S14-H19-CFFFFFF{
+    font-family: Segoe UI !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 19px !important;
+    color: #FFFFFF !important;
 }
 
 .Wnormal-S14-H19-CFF8023-Underline{
@@ -627,4 +674,24 @@
     font-size: 13px;
     line-height: 17px;
     color: #1876F2;
+}
+
+.W600-S13-H17-CFF8023-Italic{
+    font-family: Segoe UI;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 17px;
+    color: #FF8023;
+}
+
+
+.Wbold-S12-H16-C002D87{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #002D87;
 }

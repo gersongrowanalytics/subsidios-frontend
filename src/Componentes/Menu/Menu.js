@@ -99,6 +99,16 @@ const Menu = () => {
                     {
                         funPermisosObtenidos(
                             LoginUsuario.permisos,
+                            "MENU.MODULO.NOTA.CREDITO",
+                            <Link to="/nota-credito" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Nota de Crédito</p>
+                            </Link>
+                        )
+                    }
+
+                    {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
                             "MENU.MODULO.HISTORIA.FACTURAS.SELL.IN",
                             <Link to="/facturas" onClick={() => dispatch(MostrarMenuReducer(false))}>
                                 <p className="Wbold-S27-H36-CFFFFFF-SinFondo">BIG DATA DE FACTURAS</p>
@@ -106,15 +116,13 @@ const Menu = () => {
                         )
                     }
                     
-                    {
+                    {/* {
                         funPermisosObtenidos(
                             LoginUsuario.permisos,
                             "MENU.MODULO.DASHBOARD",
-                            // {/* <Link to="/dashboard" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
                             <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Dashboard</p>
-                            // {/* </Link> */}
                         )
-                    }
+                    } */}
                     {/* <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Facturas</p> */}
                     
                     {

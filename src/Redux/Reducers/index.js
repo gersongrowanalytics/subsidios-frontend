@@ -16,6 +16,8 @@ import Usuarios from './Administrador/Usuarios/Usuarios'
 import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
 import Perfil from './Perfil/Perfil'
 import RegularzacionPagosSO from './RegularzacionPagosSO/RegularzacionPagosSO'
+import NotaCredito from './NotaCredito/NotaCedito'
+import Settings from './Settings'
 
 const createRootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -35,6 +37,8 @@ const createRootReducer = (history) => combineReducers({
   perfil : Perfil,
   controlArchivos : ControlArchivos,
   regularzacionPagosSO : RegularzacionPagosSO,
+  notaCredito : NotaCredito,
+  settings : Settings
 });
 
 export default createRootReducer

@@ -73,6 +73,8 @@ const INIT_STATE = {
     data_facturas_asignar_subpendientes : [],
     data_facturas_asignar_subpendientes_real : [],
 
+    facturas_asignadas_enviar_subpendientes : []
+
 };
 
 
@@ -148,6 +150,13 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             data_facturas_asignar_subpendientes : action.payload
+        }
+    }
+
+    case "SELECCIONAR_FACTURAS_ENVIAR_SUBSIDIOS_PENDIENTES": {
+        return {
+            ...state,
+            facturas_asignadas_enviar_subpendientes : action.payload
         }
     }
 

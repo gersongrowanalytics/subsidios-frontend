@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Switch, Redirect} from "react-router-dom";
+import {Route, Switch, Redirect, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import Home from "./Home/Home"
 import Perfil from "./Perfil/Perfil";
@@ -19,21 +19,90 @@ import ControlArchivos from './Administrador/ControlArchivos/ControlArchivos'
 import Prueba from "./Prueba/Prueba"
 import Facturas from "./Facturas/Facturas"
 import BigData from "./Facturas/BigData/BigData"
+import NotaCredito from "./NotaCredito/NotaCredito"
 import Top from '../Componentes/Top/Top'
 import Menu from '../Componentes/Menu/Menu'
 import '../Estilos/Rutas/Rutas.css'
 import '../Estilos/Comunes/Comunes.css'
 import '../Estilos/Elementos/Tabla/Campo.css'
 import RegularzacionPagosSO from './RegularzacionPagosSO/RegularzacionPagosSO'
+import Terminos from './Terminos/Terminos'
+import config from '../config'
 
 const App = () => {
 
     // const ComunesMostrarMenu = useSelector(({comunes}) => comunes.ComunesMostrarMenu)
     const {ComunesMostrarMenu, ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
+    const { 
+        cookiesaceptadas,
+        leyendopoliticas
+    } = useSelector(({settings}) => settings);
+
+
     return (
         <div >
             
+            {
+                config.activarpoliticas == true
+                ?<>
+                    {
+                        cookiesaceptadas == true
+                        ?null
+                        :localStorage.getItem('cookiesaceptadas') == "ACEPTADO"
+                        ?null
+                        :window.location.href.includes('/terminos-condiciones')
+                        ?null
+                        :<div className="Contenedor-Cookies" >
+                            <div className="Mensaje-Cookies">
+                                <div 
+                                    style={{
+                                        // textAlignLast: "center",
+                                        // fontSize: "15px",
+                                        // fontWeight: "bold",
+                                        // marginBottom:'5px'
+
+                                        fontSize: "14px",
+                                        fontWeight: "600",
+                                        color: "black",
+                                        marginBottom:'5px'
+                                    }}
+                                >
+                                    TERMINOS Y CONDICIONES DE USO
+                                </div>
+
+                                {/* <br/> */}
+                                {/* Uso responsable de sus datos<br/>
+                                Nosotros y nuestros socios tratamos sus datos personales, por ejemplo, su número de IP, utilizando tecnología como cookies para almacenar y acceder a información en su dispositivo con el fin de ofrecer anuncios y contenidos personalizados, medición de anuncios y contenidos, información sobre el público y desarrollo de productos. Usted puede elegir quién utiliza sus datos y con qué fines.<br/> */}
+                                El usuario del sitio Web y/o App se compromete a leer detenidamente los términos y condiciones, antes de utilizar los portales y servicios Web ofrecidos. Ello implica que usted acepta expresamente los términos y condiciones. En caso de no aceptarlos, se le solicita que no haga uso, ni acceda, ni manipule la información de los servicios ofrecidos por el sitio Web; ya que usted (usuario) está haciendo un uso inadecuado de éste.<br/>Para continuar con el uso de la platforma ir y aceptar al siguiente link:   
+                                <Link 
+                                    to="/terminos-condiciones"
+                                >
+                                    <span
+                                        style={{color:'blue', cursor:'pointer', textDecoration:'underline'}}>{" Terminos y Condiciones"}</span>
+                                </Link>
+
+                                {/* <div className="Btn-Configuracion-Politicas">
+                                    CONFIGURACIÓN
+                                </div> */}
+
+                                {/* <div className="Btn-Aceptar-Politicas">
+                                    ACEPTAR TERMINOS Y CONDICIONES
+                                </div> */}
+
+                                {/* Nuestros registros de su aceptación de esta Política de Privacidad, la fecha y todas las enmiendas futuras a esta Política se considerarán como evidencia concluyente y por escrito de su consentimiento. */}
+                                {/* <div className="Contenedor-Botones-Cookies">
+                                    <div className="Boton-Aceptar-Cookies" onClick={() => dispatch(AceptarCookiesReducer())}>
+                                        Acepto Todas las Condiciones
+                                    </div>
+                                </div> */}
+                            </div>    
+                        </div>
+                    }
+                </>
+                :null
+            }
+
             <div id="Contenedor-Principal" className={ComunesTipoDisenio == "Light" ?"CFFFFFF" :"C1c1e21"} >
                 <Switch>
 
@@ -75,6 +144,10 @@ const App = () => {
                         <BigData/>
                     </Route>
 
+                    <Route exact path='/nota-credito' >
+                        <NotaCredito/>
+                    </Route>
+
                     <Route exact path='/subsidios' >
                         <Subsidios/>
                     </Route>
@@ -95,6 +168,10 @@ const App = () => {
 
                     <Route exact path='/subsidios-si-tb' >
                         <SubsidiosSiTb/>
+                    </Route>
+
+                    <Route exact path='/terminos-condiciones' >
+                        <Terminos/>
                     </Route>
 
                     <Route exact path='/subsidios-pendientes-tb' >

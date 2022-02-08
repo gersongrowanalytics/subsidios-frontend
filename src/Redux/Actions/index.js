@@ -16,3 +16,4 @@ export * from './Administrador/Usuarios/Usuarios';
 export * from './Administrador/ControlArchivos/ControlArchivos';
 export * from './Perfil/Perfil';
 export * from './RegularzacionPagosSO/RegularzacionPagosSO';
+export * from './NotaCredito/NotaCredito';

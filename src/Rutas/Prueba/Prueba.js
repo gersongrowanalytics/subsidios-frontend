@@ -8,7 +8,10 @@ import {
 } from '../../Redux/Actions/SubsidiosSo/SubsidiosSo'
 import {
     DesplegarSubsidiosSoReducer,
-    SeleccionarSolicitanteReducer
+    SeleccionarSolicitanteReducer,
+    DesplegarFiltroColumnaReducer,
+    SeleccionarColumnasDescargarReducer,
+    VolverArmarExcelSubSoReducer
 } from '../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {useDispatch, useSelector} from "react-redux";
 import IconoDescargar from '../../Assets/Imagenes/Iconos/descargar.svg'
@@ -17,7 +20,7 @@ import IconoCargarLight from '../../Assets/Imagenes/Iconos/SubsidiosSo/cargarSo.
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import FiltroFechas from '../../Componentes/Subsidios/FiltroFechas';
-import { Row, Col, Modal, Spin } from 'antd'
+import { Row, Col, Modal, Spin, Checkbox } from 'antd'
 import IconoCargando from '../../Assets/Imagenes/Iconos/Comunes/cargando.svg'
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
@@ -31,7 +34,13 @@ import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
 import data_mock from './Tabla/MOCK_DATA.json'
 import IconoFiltroTablaSapBlanco from '../../Assets/Imagenes/Iconos/Comunes/FiltroTablaSapBlanco.png'
 import { Player } from '@lottiefiles/react-lottie-player';
-import { LoadingOutlined } from '@ant-design/icons';
+import { 
+    LoadingOutlined,
+    CaretDownOutlined,
+    CaretRightOutlined,
+    CheckCircleTwoTone,
+    CloseCircleTwoTone
+} from '@ant-design/icons';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -59,8 +68,12 @@ const Prueba = () => {
         zonaseleccionado,
         AgrupacionesColumnas_Subsidios_SO,
         cargando_archivo_excepciones,
-        cargando_descargable_subsidiosso
+        cargando_descargable_subsidiosso,
+        columnas_descargable_subsidios_so,
+        armar_descargable_sub_so
     } = useSelector(({subsidiosSo}) => subsidiosSo);
+
+    const [mostrarModalFiltroColumnasDescargable, setMostrarModalFiltroColumnasDescargable] = useState(false)
 
     const {
         ComunesFechaInicio,
@@ -362,100 +375,13 @@ const Prueba = () => {
                                 texto = {"Fecha Fin"}
                             />
                         </Col>
-                        <Col xl={6}></Col>
-
-                        {/* <Col
-                            style={{display:'flex', alignItems: "center", }}
-                            className="Wbold-S13-H17-C004FB8" 
-                            xl={6}
-                        >
-                            <div style={{marginRight:'10px'}}>Conexión</div>
-                            <div 
-                                onClick={() => {
-                                    setMostrarAutomaticos(!mostrarAutomaticos)   
-                                    if(contadorEstadoAutomaticoManual == 0){
-                                        setAplicarFiltrosAutomaticoValidado(true)
-                                        setContadorEstadoAutomaticoManual(1)
-                                    }else if(contadorEstadoAutomaticoManual == 1){
-                                        setContadorEstadoAutomaticoManual(2)
-                                    }else if(contadorEstadoAutomaticoManual == 2){
-                                        setContadorEstadoAutomaticoManual(0)
-                                        setAplicarFiltrosAutomaticoValidado(false)
-                                    }
-                                }}
-                                style={{marginRight:'10px'}}
-                                className={
-                                    aplicarFiltrosAutomaticoValidado == false
-                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :mostrarAutomaticos == true
-                                        ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                        :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
-                                }
-                            >
-                                <span 
-                                    className={
-                                        aplicarFiltrosAutomaticoValidado == false
-                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :mostrarAutomaticos == true
-                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :"Wbold-S13-H19-C004FB8-L0015"
-                                    }
-                                >
-                                    {
-                                        aplicarFiltrosAutomaticoValidado == false
-                                        ?"Estado"
-                                        :mostrarAutomaticos == true
-                                            ?"Automaticos"
-                                            :"Manuales"
-                                    }
-                                </span>
+                        <Col xl={6}>
+                            <div className="W600-S13-H17-CFF8023-Italic" style={{
+                                    textAlignLast: "center"
+                            }}>
+                                Para editar hacer doble click en Bultos
                             </div>
-
-                            <div 
-                                onClick={() => {
-                                    setMostrarValidados(!mostrarValidados)
-                                    // setAplicarFiltrosAutomaticoValidado(true)
-                                    if(contadorEstadoAutomaticoManual == 0){
-                                        setAplicarFiltrosAutomaticoValidado(true)
-                                        setContadorEstadoAutomaticoManual(1)
-                                    }else if(contadorEstadoAutomaticoManual == 1){
-                                        setContadorEstadoAutomaticoManual(2)
-                                    }else if(contadorEstadoAutomaticoManual == 2){
-                                        setContadorEstadoAutomaticoManual(0)
-                                        setAplicarFiltrosAutomaticoValidado(false)
-                                    }
-                                }}
-                                className={
-                                    aplicarFiltrosAutomaticoValidado == false
-                                    ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                    :mostrarValidados == true
-                                        ?"Contenedor-Filtro-Light-Tabla-Elementos CFF8023"
-                                        :"Contenedor-Filtro-Light-Tabla-Elementos CFFFFFF"
-                                }
-                            >
-                                <span 
-                                    className={
-                                        aplicarFiltrosAutomaticoValidado == false
-                                        ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                        :mostrarValidados == true
-                                            ?"Wbold-S13-H19-CFFFFFF-L0015"
-                                            :"Wbold-S13-H19-C004FB8-L0015"
-                                    }
-                                >
-                                    {
-                                        aplicarFiltrosAutomaticoValidado == false
-                                        ?"Estado"
-                                        :mostrarValidados == true
-                                        ?"Validados"
-                                        :"No Validados"
-                                    }
-                                </span>
-                            </div>
-
-                            
-                            
-
-                        </Col> */}
+                        </Col>
 
                         <Col 
                             xl={10}
@@ -777,44 +703,36 @@ const Prueba = () => {
             </div>
 
 
-            <ExcelFile 
-                filename="Subsidios So"
-                element={
-                    <div 
-                        id={
-                            ComunesTipoDisenio == "Light"
-                            ?"Btn-Flotante-Descargar-Subsidios-So-Light"
-                            :"Btn-Flotante-Descargar-Subsidios-So"
-                        }
-
-                    >
-                        <Spin 
-                            spinning={cargando_descargable_subsidiosso}
-                            indicator={<LoadingOutlined />}
-                            style={
-                                cargando_descargable_subsidiosso == true
-                                ?{width:'100%',
-                                height:'100%',
-                                cursor: 'not-allowed'}
-                                :{}
-                            }
-                        >
-                            <img src={
-                                ComunesTipoDisenio == "Light"
-                                ?IconoDescargarLight
-                                :IconoDescargar
-                            } id="Icono-Flotante-Descargar-Subsidios-So" />
-                        </Spin>
-                    </div>
-                }>
-                <ExcelSheet 
-                    dataSet={data_descarga_subsidiosso} 
-                    name="Subsidios So"
-                />
-            </ExcelFile>
-
-
             <div 
+                id={
+                    ComunesTipoDisenio == "Light"
+                    ?"Btn-Flotante-Descargar-Subsidios-So-Light"
+                    :"Btn-Flotante-Descargar-Subsidios-So"
+                }
+            >
+                <Spin 
+                    spinning={cargando_descargable_subsidiosso}
+                    indicator={<LoadingOutlined />}
+                    style={
+                        cargando_descargable_subsidiosso == true
+                        ?{width:'100%',
+                        height:'100%',
+                        cursor: 'not-allowed'}
+                        :{}
+                    }
+                >
+                    <img src={
+                        ComunesTipoDisenio == "Light"
+                        ?IconoDescargarLight
+                        :IconoDescargar
+                    } id="Icono-Flotante-Descargar-Subsidios-So" 
+                    onClick={() => setMostrarModalFiltroColumnasDescargable(true) }
+                    />
+                </Spin>
+            </div>
+
+
+            {/* <div 
                 id={
                     ComunesTipoDisenio == "Light"
                     ?"Btn-Flotante-Cargar-Subsidios-So-Light"
@@ -827,7 +745,7 @@ const Prueba = () => {
                     ?IconoCargarLight
                     :IconoCargarLight
                 } id="Icono-Flotante-Cargar-Subsidios-So" />
-            </div>
+            </div> */}
             
 
             <input 
@@ -889,6 +807,273 @@ const Prueba = () => {
 
                 </Row>
             </Modal>
+
+
+        
+            
+
+            <Modal 
+                title={null} 
+                visible={mostrarModalFiltroColumnasDescargable} 
+                footer={null}
+                centered
+                width="620px"
+                height= "407px"
+                bodyStyle={{
+                    borderRadius: "8px"
+                }}
+                closeIcon={<img onClick={() =>setMostrarModalFiltroColumnasDescargable(!mostrarModalFiltroColumnasDescargable) } src={null}/>}
+                onCancel={() =>setMostrarModalFiltroColumnasDescargable(!mostrarModalFiltroColumnasDescargable) }
+            >
+                <div
+                    className="Wbold-S16-H19-C004FB8-L0015" 
+                    style={{textAlign: "-webkit-center", marginBottom:'20px'}}>Filtros de Columnas a Descargar</div>
+
+                <Row>
+                    <Col xl={11}>
+                        <div
+                            className="Columnas-Mostradas-Filtro-Columnas"
+                        >
+                            <div className="Cabecera-Columnas-Mostradas-Filtro-Columnas">
+                                <div className="Wbold-S14-H19-C004FB8-L0015">Columnas</div>
+                                <div className="Wnormal-S11-H15-C706C64-L0015">Lista de columnas ocultas</div>
+                            </div>
+                            <div style={{overflow:'auto', width:'100%', height:'215px', marginTop:'10px'}}>
+                                {
+                                    AgrupacionesColumnas_Subsidios_SO.map((agrupacion, posicion) => {
+                                        return(
+                                            <>
+                                                <div className="Etiqueta-Filtro-Columnas W600-S11-H15-CFFFFFF" style={{marginBottom:'2px'}}>
+                                                    {
+                                                        agrupacion.seleccionado == true
+                                                        ?<CaretDownOutlined 
+                                                            onClick={() => dispatch(DesplegarFiltroColumnaReducer(posicion))}
+                                                            style={{paddingRight:'5px', cursor:'pointer'}} /> 
+                                                        :<CaretRightOutlined 
+                                                            onClick={() => dispatch(DesplegarFiltroColumnaReducer(posicion))}
+                                                            style={{paddingRight:'5px', cursor:'pointer'}} /> 
+                                                    }
+                                                    {agrupacion.agrupacion}
+                                                </div>
+                                                {
+                                                    agrupacion.seleccionado == true
+                                                    ?columnas_descargable_subsidios_so.map((columna, pos) => {
+                                                        return(
+                                                            columna.seleccionado == false && columna.cabeceraAgrupacion == agrupacion.cabeceraAgrupacion 
+                                                            ?<div key={columna.columna} style={{paddingLeft:'10px'}}>
+                                                                <Checkbox 
+                                                                    onChange={(e) => dispatch(SeleccionarColumnasDescargarReducer(pos, true))}
+                                                                    checked={false}
+                                                                >
+                                                                    <span className="W600-S13-H17-C004FB8">{columna.columna}</span>
+                                                                </Checkbox>
+                                                            </div>
+                                                            :null
+                                                        )
+                                                    })
+                                                    // ?allColumns.map((column, posicion) => (
+                                                    //     column.isVisible == false && column.cabeceraAgrupacion == agrupacion.cabeceraAgrupacion
+                                                    //     ?<div key={column.id} style={{paddingLeft:'10px'}}>
+                                                    //         <Checkbox  {...column.getToggleHiddenProps()}>
+                                                    //         {/* <Checkbox > */}
+                                                    //             <span className="W600-S13-H17-C004FB8">{column.Homologado}</span>
+                                                    //         </Checkbox>
+                                                    //     </div>
+                                                    //     :null
+                                                    // ))
+                                                    :null
+                                                }
+                                            </>            
+                                        )
+                                    })
+                                }
+                            </div>
+
+                        </div>
+                    </Col>
+                    <Col xl={2} 
+                        style={{
+                            alignSelf: "center",
+                            textAlign: "-webkit-center"
+                        }}
+                    >
+                        {/* <div className="Flecha-Medio-Filtro-Columnas">{">"}</div>
+                        <div className="Flecha-Medio-Filtro-Columnas">{"<"}</div> */}
+                    </Col>
+                    <Col xl={11}>
+                        <div
+                            className="Columnas-Mostradas-Filtro-Columnas"
+                        >
+                            <div className="Cabecera-Columnas-Mostradas-Filtro-Columnas">
+                                <div className="Wbold-S14-H19-C004FB8-L0015">Columnas a Descargar</div>
+                                <div className="Wnormal-S11-H15-C706C64-L0015">Seleccionar las columnas que desea descargar</div>
+                            </div>
+                            <div style={{overflow:'auto', width:'100%', height:'215px', marginTop:'10px', }}>
+                                
+                                {
+                                    AgrupacionesColumnas_Subsidios_SO.map((agrupacion, posicion) => {
+                                        return(
+                                            <>
+                                                <div className="Etiqueta-Filtro-Columnas W600-S12-H15-CFFFFFF" style={{marginBottom:'2px'}}>
+                                                    {
+                                                        agrupacion.seleccionado == true
+                                                        ?<CaretDownOutlined 
+                                                            onClick={() => dispatch(DesplegarFiltroColumnaReducer(posicion))}
+                                                            style={{paddingRight:'5px', cursor:'pointer'}} /> 
+                                                        :<CaretRightOutlined 
+                                                            onClick={() => dispatch(DesplegarFiltroColumnaReducer(posicion))}
+                                                            style={{paddingRight:'5px', cursor:'pointer'}} /> 
+                                                    }
+                                                    {agrupacion.agrupacion}
+                                                </div>
+                                                {
+                                                    agrupacion.seleccionado == true
+                                                    ?columnas_descargable_subsidios_so.map((columna, pos) => {
+                                                        return(
+                                                            columna.seleccionado == true && columna.cabeceraAgrupacion == agrupacion.cabeceraAgrupacion 
+                                                            ?<div key={columna.columna} style={{paddingLeft:'10px'}}>
+                                                                <Checkbox 
+                                                                    onChange={(e) => dispatch(SeleccionarColumnasDescargarReducer(pos, false))}
+                                                                    checked={true}
+                                                                >
+                                                                    <span className="W600-S13-H17-C004FB8">{columna.columna}</span>
+                                                                </Checkbox>
+                                                            </div>
+                                                            :null
+                                                        )
+                                                    })
+                                                    // ?allColumns.map((column, posicion) => (
+                                                    //     column.isVisible == true && column.cabeceraAgrupacion == agrupacion.cabeceraAgrupacion
+                                                    //     ?<div key={column.id} style={{paddingLeft:'10px'}}>
+                                                    //         <Checkbox  {...column.getToggleHiddenProps()}>
+                                                    //         {/* <Checkbox > */}
+                                                    //             <span className="W400-S13-H17-C004FB8">{column.Homologado}</span>
+                                                    //         </Checkbox>
+                                                    //     </div>
+                                                    //     :null
+                                                    // ))
+                                                    :null
+                                                }
+                                            </>            
+                                        )
+                                    })
+                                }
+                            </div>
+
+                        </div>
+                    </Col>
+                </Row>
+
+                <div
+                    style={{
+                        textAlign: "-webkit-center",
+                        marginTop: "20px"
+                    }}
+                >
+                    {/* <button onClick={() => dispatch(VolverArmarExcelSubSoReducer())}>armar</button> */}
+
+                    {
+                        armar_descargable_sub_so == true
+                        ?<Spin 
+                            spinning={cargando_descargable_subsidiosso}
+                            indicator={<LoadingOutlined />}
+                            style={
+                                cargando_descargable_subsidiosso == true
+                                ?{width:'100%',
+                                height:'100%',
+                                cursor: 'not-allowed'}
+                                :{}
+                            }
+                        >
+
+                            <div
+                                style={{
+                                    width: "126px",
+                                    height: "24px",
+                                    background: "#EDF0FA",
+                                    border: "1px solid #004FB8",
+                                    boxSizing: "border-box",
+                                    borderRadius: "14px",
+                                    paddingTop:'2px',
+                                    cursor:'pointer'
+                                }}
+                                className="W600-S13-H17-C004FB8"
+                                onClick={() => {
+                                    dispatch(VolverArmarExcelSubSoReducer())
+                                }}
+                            >
+                                Armar Descargable
+                            </div>
+
+                        </Spin>
+                        :<ExcelFile 
+                            filename="Subsidios So"
+                            element={
+                                <Spin 
+                                    spinning={cargando_descargable_subsidiosso}
+                                    indicator={<LoadingOutlined />}
+                                    style={
+                                        cargando_descargable_subsidiosso == true
+                                        ?{width:'100%',
+                                        height:'100%',
+                                        cursor: 'not-allowed'}
+                                        :{}
+                                    }
+                                >
+
+                                    <div
+                                        style={{
+                                            width: "66px",
+                                            height: "24px",
+                                            background: "#EDF0FA",
+                                            border: "1px solid #004FB8",
+                                            boxSizing: "border-box",
+                                            borderRadius: "14px",
+                                            paddingTop:'2px',
+                                            cursor:'pointer'
+                                        }}
+                                        className="W600-S13-H17-C004FB8"
+                                        onClick={() => {
+                                            setMostrarModalFiltroColumnasDescargable(!mostrarModalFiltroColumnasDescargable)
+                                        }}
+                                    >
+                                        Descargar
+                                    </div>
+
+                                </Spin>
+                            }>
+                            <ExcelSheet 
+                                dataSet={data_descarga_subsidiosso} 
+                                name="Subsidios So"
+                            />
+                        </ExcelFile>
+                    }
+                    
+
+                    
+                </div>
+
+            </Modal>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
     )

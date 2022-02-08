@@ -1,0 +1,157 @@
+.Icono-Flecha-Siguiente-FiltroXmesXanio{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.Icono-Flecha-Siguiente-FiltroXmesXanio:hover{
+
+    background: #EDF0FA;
+    border-radius: 27px;
+    
+    padding: 5px;
+}
+
+.Contenedor-Anio-FiltroFechaXmesXanio{
+
+    width: 212px;
+    height: 210px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+    position: absolute;
+    z-index: 1;
+
+    top: 30px;
+    left: 0;
+}
+
+.anio-texto-filtrofechaxmesxanio{
+    width: 36px;
+    height: 36px;
+    
+
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    
+    cursor: pointer;
+
+}
+
+.anio-texto-filtrofechaxmesxanio:hover{
+    width: 36px;
+    height: 36px;
+    background: #EDF0FA;
+    border-radius: 27px;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #002D87;
+
+}
+
+.anio-seleccionado-texto-filtrofechaxmesxanio{
+    width: 36px;
+    height: 36px;
+    background: #EDF0FA;
+    border-radius: 27px;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.015em;
+    color: #002D87;
+
+}
+
+.Contenedor-Filtro-Fecha-Nota-Credito{
+    border: 1px solid #FF8023;
+    box-sizing: border-box;
+    border-radius: 15px;
+
+    width: 106px;
+    height: 25px;
+
+    text-align: -webkit-center;
+    padding-top: 2px;
+
+    cursor: pointer;
+}
+
+
+.Contenedor-Mes-FiltroFechaXmesXanio{
+
+    position: absolute;
+    z-index: 1;
+
+    top: 30px;
+    left: 150px;
+
+    width: 167px;
+    height: 233px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.mes-texto-filtrofechaxmesxanio{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.mes-seleccionado-texto-filtrofechaxmesxanio{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #EDF0FA;
+}
+
+.mes-texto-filtrofechaxmesxanio:hover{
+    
+    background: #EDF0FA;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+
+}
+
+.Cuerpo-Mes-FiltroFechaXmesXanio{
+    height: 180px;
+    overflow-x: auto;
+}
+
+.Contenedor-Icono-Calendario-FiltroFechaXmesXanio{
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.Icono-Calendario-FiltroFechaXmesXanio{
+    width: 25px;
+}

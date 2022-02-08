@@ -46,7 +46,7 @@ const LoginLight = () => {
             <Row style={{width:'100%', height:'100%',}}>
                 <Col xl={16} style={{width:'100%', height:'100%', }}>
                     <div style={{width:'100%', height:'100%'}}>
-                        <video width="100%" height="100%" autoPlay loop  style={{objectFit: "fill"}}>
+                        <video width="100%" height="100%" autoPlay loop muted style={{objectFit: "fill"}}>
                             <source src={VideoIniciarSesion} type="video/webm"/>
                             Your browser does not support the video tag.
                         </video>

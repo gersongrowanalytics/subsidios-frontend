@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import '../../../Estilos/Rutas/SubsidiosSo/SubsidiosSo.css'
 import {
     ObtenerSubsidiosSoReducer,
@@ -8,12 +8,16 @@ import {
     SeleccionarSolicitanteReducer
 } from '../../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {
-    ObtenerSubsidiosSiReducer
+    ObtenerSubsidiosSiReducer,
+    ObtenerLinksSubsidiosSiVentas
 } from '../../../Redux/Actions/SubsidiosSi/SubsidiosSi'
 import { LoadingOutlined } from '@ant-design/icons'
 import {useDispatch, useSelector} from "react-redux";
 import IconoDescargar from '../../../Assets/Imagenes/Iconos/descargar.svg'
 import IconoDescargarLight from '../../../Assets/Imagenes/Iconos/DescargarLight.svg'
+
+import IconoSubsidiosSiVentas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/subsidiosventassi.png'
+
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../../Componentes/SubsidiosSo/BtnFiltroSubSo';
 import { Row, Col, Spin } from 'antd'
@@ -30,6 +34,8 @@ import IconoFiltroTablaSapBlanco from "../../../Assets/Imagenes/Iconos/Comunes/F
 import FiltroTablaIluminado from '../../../Componentes/Elementos/Tabla/Filtros/FiltroTablaIluminado';
 import { Player } from '@lottiefiles/react-lottie-player';
 import ModalFacturasAsignadas from './ModalFacturasAsignadas'
+import config from '../../../config'
+import {funPermisosObtenidos} from '../../../Funciones/funPermiso'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -63,7 +69,8 @@ const SubsidiosSiTb = () => {
         cargando_data_subsidiossi,
         AgrupacionesColumnas_Subsidios_SI,
         data_subsidiossi_real,
-        cargando_descarga
+        cargando_descarga,
+        cargando_subsidiossi_ventas
     } = useSelector(({subsidiosSi}) => subsidiosSi);
 
     const {
@@ -71,6 +78,8 @@ const SubsidiosSiTb = () => {
         ComunesFechaInicio,
         ComunesFechaFinal,
     } = useSelector(({comunes}) => comunes);
+
+    const {LoginUsuario} = useSelector(({login}) => login);
 
     useEffect(() => {
         // dispatch(ObtenerSubsidiosSoReducer())
@@ -92,6 +101,7 @@ const SubsidiosSiTb = () => {
 
     const [mostrarAutomaticos, setMostrarAutomaticos] = useState(true)
     const [mostrarValidados, setMostrarValidados] = useState(true)
+    const [linkDescargarSubVentas, setLinkDescargarSubVentas] = useState(true)
 
     const sumaValores = (ns) => {
         let acumulado = 0
@@ -131,6 +141,8 @@ const SubsidiosSiTb = () => {
 
     const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
     const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
+
+    const inputDescargaLinkSubsidiosVentas = useRef(null);
 
     return (
         <div style={{paddingBottom:'100px'}}>
@@ -429,6 +441,68 @@ const SubsidiosSiTb = () => {
                     :<h1>No hay data</h1>
                 :<IconoCargandoSITb />
             }
+
+
+            <a 
+                href={config.api+linkDescargarSubVentas}
+                download
+                ref={inputDescargaLinkSubsidiosVentas}
+                style={{
+                    display:'none'
+                }}
+            >click</a>
+
+            {
+                funPermisosObtenidos(
+                    LoginUsuario.permisos,
+                    "MENU.MODULO.SUBSIDIOSSI.DESCARGAR.SUBSIDIOSI.FORMATO.VENTAS",
+                    <div 
+                        className='Btn-Flotante-Descargar-Subsidios-Si-Ventas-Light'
+                        onClick={ async() => {
+                            let linkDescargar = await dispatch(ObtenerLinksSubsidiosSiVentas())
+                            
+                            let links = linkDescargar.links
+
+                            await links.map(async(link) => {
+                                await setTimeout( async () => {  
+                                    await setLinkDescargarSubVentas(link)
+                                    inputDescargaLinkSubsidiosVentas.current.click()
+                                }, 2000);
+                            })
+                            
+                            // setLinkDescargarSubVentas(linkDescargar['link'])
+                            // inputDescargaLinkSubsidiosVentas.current.click()
+                        }}
+
+                    >
+                        <Spin 
+                            spinning={cargando_subsidiossi_ventas}
+                            indicator={<LoadingOutlined />}
+                            style={
+                                cargando_subsidiossi_ventas == true
+                                ?{width:'100%',
+                                height:'100%',
+                                cursor: 'not-allowed'}
+                                :{}
+                            }
+                        >
+                                <img 
+                                    style={{
+                                        width: "52px",
+                                        marginTop: "6px",
+                                        marginLeft: "5px"
+                                    }}
+                                src={
+                                    ComunesTipoDisenio == "Light"
+                                    ?IconoSubsidiosSiVentas
+                                    :IconoSubsidiosSiVentas
+                                } id="Icono-Flotante-Descargar-Subsidios-So" />
+                            
+                        </Spin>
+                    </div>
+                )
+            }
+                
 
             <ExcelFile 
                 filename="Subsidios Si"

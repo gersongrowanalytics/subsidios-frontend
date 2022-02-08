@@ -34,6 +34,8 @@ import {
 
 const TbSubPendientes = (props) => {
 
+    const facturas_asignadas_enviar_subpendientes = props.facturas_asignadas_enviar_subpendientes
+
     const columns = useMemo(() => COLUMNS_SUBPENDIENTES, []);
     const data = useMemo(() => props.MOCK_DATA, []);
 
@@ -263,7 +265,7 @@ const TbSubPendientes = (props) => {
                                                 :cell.column.id == "liquidacionpendiente"
                                                 ?<td 
                                                     className={ComunesTipoDisenio == "Light" ? "Wbold-S13-H17-C004FB8" : "Wbold-S11-H20-Ce4e6eb"}>
-                                                        S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal - sumaValorizadosSubsidiadoTotal, 0)} displayType={'text'} thousandSeparator={true} />}
+                                                        S/{<NumberFormat value={funFomratoDecimal(sumaValorizadoMontosReonocerTotal - sumaValorizadosSubsidiadoTotal, 4)} displayType={'text'} thousandSeparator={true} />}
                                                 </td>
                                                 :<td></td>
                                             )
@@ -338,7 +340,7 @@ const TbSubPendientes = (props) => {
                                                     :"Zona-Cuerpo-Tabla-Subsidios-So Wbold-S11-H20-Ce4e6eb"
                                                 }
                                             >
-                                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadoObjetivo - sumaValorizadoSubsidiado, 0)} displayType={'text'} thousandSeparator={true} />
+                                                S/<NumberFormat value={funFomratoDecimal(sumaValorizadoObjetivo - sumaValorizadoSubsidiado, 4)} displayType={'text'} thousandSeparator={true} />
                                             </td>
                                             
                                             :<td 
@@ -567,7 +569,7 @@ const TbSubPendientes = (props) => {
                                                                     ?<>
                                                                         S/{<NumberFormat 
                                                                             value={
-                                                                                funFomratoDecimal(dato.sdemontoacido - sumaValorizado, 0)
+                                                                                funFomratoDecimal(dato.sdemontoacido - sumaValorizado, 4)
                                                                             } 
                                                                             displayType={'text'} 
                                                                             thousandSeparator={true} 
@@ -576,7 +578,7 @@ const TbSubPendientes = (props) => {
                                                                     :<>
                                                                         S/{<NumberFormat 
                                                                                 value={
-                                                                                    funFomratoDecimal(dato.sdemontoacido, 0)
+                                                                                    funFomratoDecimal(dato.sdemontoacido, 4)
                                                                                 } 
                                                                                 displayType={'text'} 
                                                                                 thousandSeparator={true} 
@@ -602,7 +604,7 @@ const TbSubPendientes = (props) => {
 
                                                                 CambiarImpactoFacturaAsignada = {
                                                                     // (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaReducer(posicion, posicionData, posicionFactura, impacto))
-                                                                    (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto))
+                                                                    (posicionFactura, impacto, fdsid, fsiid) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto, fdsid, fsiid))
                                                                 }
 
                                                                 objetivo = {parseFloat(dato.sdemontoacido) - parseFloat(sumaValorizado)}
@@ -614,6 +616,8 @@ const TbSubPendientes = (props) => {
                                                                 }
 
                                                                 cargando_asignar_facturas_subsidiossipendientes = {cargando_asignar_facturas_subsidiossipendientes}
+
+                                                                facturas_asignadas_enviar_subpendientes = {facturas_asignadas_enviar_subpendientes}
                                                             />
                                                         </td>
                                                         :<td></td>

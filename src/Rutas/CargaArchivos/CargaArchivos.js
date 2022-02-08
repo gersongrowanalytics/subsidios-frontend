@@ -176,7 +176,7 @@ const CargaArchivos = () => {
                                 "CARGA.ARCHIVOS.TARJETA.MAESTRA.PRODUCTOS",
                                 <Col xl={6} md={6} sm={12} xs={24}>
                                     <TarjetaCargaArchivo
-                                        titulo = {'Maestra de Productos'}
+                                        titulo = {'Master de Productos'}
                                         url    = {'modulo/cargaArchivos/productos'}
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -193,7 +193,7 @@ const CargaArchivos = () => {
                                 "CARGA.ARCHIVOS.TARJETA.MAESTRA.CLIENTES",
                                 <Col xl={6} md={6} sm={12} xs={24}>
                                     <TarjetaCargaArchivo
-                                        titulo = {'Maestra de Clientes'}
+                                        titulo = {'Master de Clientes'}
                                         url    = {'modulo/cargaArchivos/clientes'}
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
@@ -204,7 +204,7 @@ const CargaArchivos = () => {
                             )
                         }
 
-                        {
+                        {/* {
                             funPermisosObtenidos(
                                 LoginUsuario.permisos,
                                 "CARGA.ARCHIVOS.TARJETA.MAESTRA.FECHAS",
@@ -219,9 +219,83 @@ const CargaArchivos = () => {
                                     />
                                 </Col>                                
                             )
-                        }
+                        } */}
+
+                        {/* {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.FECHAS",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Maestra de Clientes'}
+                                        subtitulo = {"(Clientes Bloqueados)"}
+                                        url    = {'modulo/cargaArchivos/clientes-bloqueados'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
+                                    />
+                                </Col>                                
+                            )
+                        } */}
                         
-                        <Col xl={3}></Col>
+
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.CLIENTES.SO",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Master Clientes SO'}
+                                        subtitulo = {""}
+                                        url    = {'modulo/cargaArchivos/clientes-so'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
+                                    />
+                                </Col>                                
+                            )
+                        }
+
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.TIPO.CAMBIO",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Tipo de Cambio'}
+                                        subtitulo = {""}
+                                        url    = {'modulo/cargaArchivos/tipo-cambio'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
+                                    />
+                                </Col>
+                            )
+                        }
+
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.MAESTRA.COSTO.X.BULTO",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Costos de Productos'}
+                                        subtitulo = {""}
+                                        url    = {'modulo/cargaArchivos/costo-x-bulto'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
+                                    />
+                                </Col>
+                            )
+                        }
+
+
+                        {/* <Col xl={3}></Col> */}
                         
                         
                         {/* <Col xl={6} md={6} sm={12} xs={24}> */}

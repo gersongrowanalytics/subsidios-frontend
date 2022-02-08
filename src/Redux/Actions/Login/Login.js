@@ -130,13 +130,18 @@ export const CerrarSesionReducer = () => async (dispatch, getState) => {
     localStorage.removeItem('usuusuario')
     localStorage.removeItem('pernombre')
     localStorage.removeItem('tpuprivilegio')
-    dispatch ({
+
+    localStorage.removeItem('cookiesaceptadas')
+
+    await dispatch ({
         type: OBTENER_LOGIN,
         payload: {
             usuid   : null,
             usuario : {}
         }
     })
+
+    window.location.reload(); 
 
 }
 

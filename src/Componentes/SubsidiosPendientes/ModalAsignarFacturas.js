@@ -7,6 +7,7 @@ import ModalReconocimientos from '../../Componentes/Facturas/ModalReconocimiento
 import TbAsignarFacturas from './ModalAsignarFacturas/TbAsignarFacturas';
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
+import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
 
 const ModalAsignarFacturas = (props) => {
 
@@ -123,9 +124,10 @@ const ModalAsignarFacturas = (props) => {
                 onOk={() => setMostrarModal(!mostrarModal)}
                 onCancel={() => setMostrarModal(!mostrarModal)}
                 width={"100%"}
+                closeIcon={<img onClick={() => setMostrarModal(!mostrarModal) } src={IconoCerrar} width='27px'/>}
             >
                 <div>
-                    <div className="Wbold-S20-H27-C004FB8">Facturas Disponibles</div>
+                    <div className="Wbold-S20-H27-C004FB8">Facturas Disponibles sss</div>
 
                     <div 
                         className="Wbold-S13-H17-C004FB8" 
@@ -146,7 +148,7 @@ const ModalAsignarFacturas = (props) => {
                                 marginLeft:'15px'
                             }}
                         >
-                            S/{<NumberFormat value={funFomratoDecimal(objetivo, 2)} displayType={'text'} thousandSeparator={true} />}
+                            S/{<NumberFormat value={funFomratoDecimal(objetivo, 4)} displayType={'text'} thousandSeparator={true} />}
                         </div>
                     </div><br />
                             
@@ -192,7 +194,10 @@ const ModalAsignarFacturas = (props) => {
                             marginTop:'10px',
                             cursor:'pointer'
                         }}
-                        onClick={() => setMostrarModalConfirmacion(!mostrarModalConfirmacion)}
+                        onClick={() => {
+                            console.log(props.facturas_asignadas_enviar_subpendientes)
+                            setMostrarModalConfirmacion(!mostrarModalConfirmacion)}
+                        }
                     >
                         Seleccionar
                     </div>

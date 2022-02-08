@@ -657,7 +657,7 @@ const TbRegularizacionPagosSO = (props) => {
 
                                                                 CambiarImpactoFacturaAsignada = {
                                                                     // (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaReducer(posicion, posicionData, posicionFactura, impacto))
-                                                                    (posicionFactura, impacto) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto))
+                                                                    (posicionFactura, impacto, fdsid, fsiid) => dispatch(CambiarImpactoFacturaAsignadaListaFacturasReducer(posicion, posicionData, posicionFactura, impacto, fdsid, fsiid))
                                                                 }
 
                                                                 objetivo = {parseFloat(dato.sdemontoacido) - parseFloat(sumaValorizado)}

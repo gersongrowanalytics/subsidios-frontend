@@ -85,11 +85,12 @@
     box-shadow: 0px 0px 18px #D8DFE9;
     border-radius: 8px;
     width: 240px;
-    height: 131px;
+    /* height: 131px; */
 
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .dropdown-content a {

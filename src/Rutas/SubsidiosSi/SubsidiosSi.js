@@ -8,7 +8,8 @@ import {
     SeleccionarSolicitanteReducer
 } from '../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {
-    ObtenerSubsidiosSiReducer
+    ObtenerSubsidiosSiReducer,
+    ObtenerLinksSubsidiosSiVentas
 } from '../../Redux/Actions/SubsidiosSi/SubsidiosSi'
 
 import {useDispatch, useSelector} from "react-redux";
@@ -777,6 +778,16 @@ const SubsidiosSi = () => {
                 </table>
             </div>
 
+            <div 
+                className='Btn-Flotante-Descargar-Subsidios-Si-Ventas-Light'
+                onClick={() => dispatch(ObtenerLinksSubsidiosSiVentas())}
+            >
+                <img src={
+                    ComunesTipoDisenio == "Light"
+                    ?IconoDescargarLight
+                    :IconoDescargar
+                } id="Icono-Flotante-Descargar-Subsidios-So" />
+            </div>
 
             <ExcelFile 
                 filename="Subsidios Si"

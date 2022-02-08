@@ -7,7 +7,8 @@ import {
     CARGANDO_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
     OBTENER_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
     CARGANDO_DESCARGA_SUBSIDIOS_SI,
-    OBTENER_DESCARGA_SUBSIDIOS_SI
+    OBTENER_DESCARGA_SUBSIDIOS_SI,
+    CARGANDO_DATA_SUBSIDIOS_SI_VENTAS
 } from '../../../Constantes/SubsidiosSi/SubsidiosSi'
 import { estadoRequestReducer } from "../EstadoRequest"
 
@@ -311,4 +312,78 @@ export const ObtenerFacturasAsignadasReducer = (sdeid) => async (dispatch, getSt
 
 
 
+}
+
+export const ObtenerLinksSubsidiosSiVentas = () => async (dispatch, getState) => {
+
+    dispatch({
+        type : CARGANDO_DATA_SUBSIDIOS_SI_VENTAS,
+        payload : true
+    })
+
+    let linkDescargar = [""]
+
+    const {
+        ComunesFechaInicio,
+        ComunesFechaFinal
+    } = getState().comunes
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+
+    await fetch(config.api+'modulo/SubsidiosSi/mostrar-subsidios-si-ventas',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({
+                fechaInicio : ComunesFechaInicio,
+                fechaFinal  : ComunesFechaFinal,
+            }),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(async data => {
+
+        // console.log(data)
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            
+            console.log(data)
+            if(data.links.length > 0){
+                linkDescargar = data.links
+            }
+			
+		}else{
+            
+        }
+    }).catch((error)=> {
+        console.log(error)
+    });
+
+    dispatch({
+        type : CARGANDO_DATA_SUBSIDIOS_SI_VENTAS,
+        payload : false
+    })
+
+    return {
+        respuesta : true,
+        // link : linkDescargar[0]
+        links : linkDescargar
+    }
 }

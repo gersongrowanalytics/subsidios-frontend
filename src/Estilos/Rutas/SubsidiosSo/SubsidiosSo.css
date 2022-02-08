@@ -232,3 +232,15 @@ thead tr th {
     width: 70px;
     font-size: 10px;
 }
+
+.Btn-Flotante-Descargar-Subsidios-Si-Ventas-Light{
+    background: #1EC0ED;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    cursor: pointer;
+}

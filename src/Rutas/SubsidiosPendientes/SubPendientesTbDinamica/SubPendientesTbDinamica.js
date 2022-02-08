@@ -31,7 +31,8 @@ const SubPendientesTbDinamica = () => {
         cargando_asignar_facturas_subsidiossipendientes,
         cargando_tabla_subsidiospendientes,
         cargando_tabla_facturas_asignar_subsidiospendientes,
-        AgrupacionesColumnas_Subsidios_Pendientes
+        AgrupacionesColumnas_Subsidios_Pendientes,
+        facturas_asignadas_enviar_subpendientes
     } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
     const [mostrarNombreCliente, setMostrarNombreCliente] = useState(true)
@@ -311,6 +312,7 @@ const SubPendientesTbDinamica = () => {
                                 mostrarModalFiltrosColumnas = {mostrarModalFiltrosColumnas}
                                 setMostrarModalFiltrosColumnas = {(s) => setMostrarModalFiltrosColumnas(s)}
                                 AgrupacionesColumnas_Subsidios_Pendientes = {AgrupacionesColumnas_Subsidios_Pendientes}
+                                facturas_asignadas_enviar_subpendientes = {facturas_asignadas_enviar_subpendientes}
                             />
                             :null
                         }

@@ -136,9 +136,15 @@ export const ObtenerDescargableSubsidiosSoReducer = () => async (dispatch, getSt
             let descargassubsidiosso = []
             descargassubsidiosso = await LimpiarArrayDescargaSubsidiosSoReducer(data.datos)
 
+            let descargarsubsidiosso = { ...descargassubsidiosso }
+
             dispatch({
                 type: OBTEMER_DESCARGABLE_SUBSIDIOS_SO,
-                payload : descargassubsidiosso
+                payload : {
+                    descarga_subsidios_so_real : descargassubsidiosso,
+                    descarga_subsidios_so      : descargarsubsidiosso,
+                    data_descarga_liquido : data.dataReal
+                }
             })
 			
 		}else{

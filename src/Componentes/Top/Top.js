@@ -28,6 +28,7 @@ import IconoTopCalendario from '../../Assets/Imagenes/Iconos/Top/calendario_azul
 import IconoTopCalendarioGris from '../../Assets/Imagenes/Iconos/Top/calendario_gris.svg'
 import FiltroFechaTop from './FiltroFechaTop';
 import {Link} from "react-router-dom";
+import config from '../../config'
 
 const Top = () => {
 
@@ -38,7 +39,10 @@ const Top = () => {
     const NombreComp = useSelector(({login}) => login.LoginUsuario.pernombrecompleto)
     const subpendientes = useSelector(({login}) => login.subpendientes)
     const mesespendientes = useSelector(({login}) => login.mesespendientes)
-
+    const { 
+        cookiesaceptadas,
+        leyendopoliticas
+    } = useSelector(({settings}) => settings);
 
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
@@ -129,13 +133,37 @@ const Top = () => {
                                 }}
                             >
                                 <img 
-                                    onClick={() => dispatch(MostrarMenuReducer(true))} 
+                                    onClick={() => {
+
+                                        if(config.activarpoliticas == true){
+                                            if(cookiesaceptadas == true){
+                                                dispatch(MostrarMenuReducer(true))
+                                            }else{
+                                                if(localStorage.getItem('cookiesaceptadas') == "ACEPTADO"){
+                                                    dispatch(MostrarMenuReducer(true))
+                                                }
+                                            }
+                                        }else{
+                                            dispatch(MostrarMenuReducer(true))                                            
+                                        }
+
+                                    }} 
+                                    
                                     src={
                                         ComunesTipoDisenio == "Light"
                                         ?IconoMenuLight
                                         :IconoMenu
                                     }
                                     id={ComunesTipoDisenio == "Light" ?"Icono-Menu-Top-Luminoso" :"Icono-Menu-Top"}
+                                    style={
+                                        config.activarpoliticas == true
+                                        ?cookiesaceptadas == true
+                                        ?{}
+                                        :localStorage.getItem('cookiesaceptadas') == "ACEPTADO"
+                                            ?{}
+                                            :{cursor: "not-allowed"}
+                                        :{}
+                                    }
                                 />
                                 {/* <div id="Icono-Menu-Top">
                                     <svg focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
@@ -277,32 +305,90 @@ const Top = () => {
                                     {
                                         mostrarCerrarSesion == true
                                         ?<div className="dropdown-content">
-                                            <div className="dropdown-content-Usuario">
-                                                <div
-                                                    style={{
-                                                        alignSelf: "center",
-                                                        paddingLeft:'10px'
-                                                    }}
-                                                >
-                                                    <img 
-                                                        src={
-                                                            ComunesTipoDisenio == "Light"
-                                                            ?IconoUsuarioLight
-                                                            :IconoUsuario
-                                                        } width={"57px"} 
-                                                    />
-                                                </div>
+                                            {
+                                                config.activarpoliticas == true
+                                                ?cookiesaceptadas == true
+                                                    ?<div className="dropdown-content-Usuario">
+                                                        <div
+                                                            style={{
+                                                                alignSelf: "center",
+                                                                paddingLeft:'10px'
+                                                            }}
+                                                        >
+                                                            <img 
+                                                                src={
+                                                                    ComunesTipoDisenio == "Light"
+                                                                    ?IconoUsuarioLight
+                                                                    :IconoUsuario
+                                                                } width={"57px"} 
+                                                            />
+                                                        </div>
 
-                                                <div
-                                                    style={{
-                                                        alignSelf: "center",
-                                                        paddingLeft:'10px'
-                                                    }}
-                                                >
-                                                    <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
-                                                    <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
-                                                </div>
-                                            </div>
+                                                        <div
+                                                            style={{
+                                                                alignSelf: "center",
+                                                                paddingLeft:'10px'
+                                                            }}
+                                                        >
+                                                            <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
+                                                            <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
+                                                        </div>
+                                                    </div>
+                                                    :localStorage.getItem('cookiesaceptadas') == "ACEPTADO"
+                                                        ?<div className="dropdown-content-Usuario">
+                                                            <div
+                                                                style={{
+                                                                    alignSelf: "center",
+                                                                    paddingLeft:'10px'
+                                                                }}
+                                                            >
+                                                                <img 
+                                                                    src={
+                                                                        ComunesTipoDisenio == "Light"
+                                                                        ?IconoUsuarioLight
+                                                                        :IconoUsuario
+                                                                    } width={"57px"} 
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                style={{
+                                                                    alignSelf: "center",
+                                                                    paddingLeft:'10px'
+                                                                }}
+                                                            >
+                                                                <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
+                                                                <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
+                                                            </div>
+                                                        </div>
+                                                        :null
+                                                    :<div className="dropdown-content-Usuario">
+                                                        <div
+                                                            style={{
+                                                                alignSelf: "center",
+                                                                paddingLeft:'10px'
+                                                            }}
+                                                        >
+                                                            <img 
+                                                                src={
+                                                                    ComunesTipoDisenio == "Light"
+                                                                    ?IconoUsuarioLight
+                                                                    :IconoUsuario
+                                                                } width={"57px"} 
+                                                            />
+                                                        </div>
+
+                                                        <div
+                                                            style={{
+                                                                alignSelf: "center",
+                                                                paddingLeft:'10px'
+                                                            }}
+                                                        >
+                                                            <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
+                                                            <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
+                                                        </div>
+                                                    </div>
+                                            }
                                             
                                             <div 
                                                 className="dropdown-content-Cerrar" style={{cursor:'pointer'}}

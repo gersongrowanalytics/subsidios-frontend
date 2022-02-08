@@ -58,6 +58,11 @@ export const ObtenerSubsidiosPendientesReducer = () => async (dispatch, getState
 		const estadoRequest = getState().estadoRequest.init_request
 		if(estadoRequest === true){
             
+            await dispatch({
+                type: "SELECCIONAR_FACTURAS_ENVIAR_SUBSIDIOS_PENDIENTES",
+                payload : []
+            })
+
             let nuevaData = {...data}
             let descargassubsidiossipendientes = []
             // descargassubsidiossipendientes = await LimpiarArrayDescargaSubsidiosPendientesReducer(data.descargarSde)
@@ -210,6 +215,11 @@ export const AsignarFacturasSubsidioReducer = (sdeid, sdemontoareconocerreal, fa
         payload : true
     })
 
+    let {
+        data_subsidiossipendientes, 
+        facturas_asignadas_enviar_subpendientes
+    } = getState().subsidiosPendientes
+
     // console.log(sdeid)
     // console.log(sdemontoareconocerreal)
     // console.log(facturas)
@@ -235,7 +245,8 @@ export const AsignarFacturasSubsidioReducer = (sdeid, sdemontoareconocerreal, fa
 			body: JSON.stringify({
                 "sdeid" : sdeid,
                 "sdemontoareconocerreal" : sdemontoareconocerreal,
-                "facturas" : facturas
+                // "facturas" : facturas
+                "facturas" : facturas_asignadas_enviar_subpendientes
             }),
 			headers: headerFetch
       	}

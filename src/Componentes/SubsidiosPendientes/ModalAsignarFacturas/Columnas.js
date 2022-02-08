@@ -12,6 +12,16 @@ export const COLUMNAS_FACTURAS_ASIGNAR_SUBSIDIOS_PENDIENTES = [
     accessor: 'fecfecha'
   },
   {
+    Header: 'Grupo',
+    Homologado: 'Grupo',
+    accessor: 'cliclientegrupo'
+  },
+  {
+    Header: 'Dest',
+    Homologado: 'Dest',
+    accessor: 'clicodigoshipto'
+  },
+  {
     Header: 'Factura SI',
     Homologado: 'Factura SI',
     accessor: 'fsifactura'

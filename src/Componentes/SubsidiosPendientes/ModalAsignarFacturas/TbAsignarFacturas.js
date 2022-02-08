@@ -284,6 +284,24 @@ const TbAsignarFacturas = (props) => {
                                                             }>
                                                                 {factura.fecfecha}
                                                         </td>
+                                                        :cell.column.id == "cliclientegrupo"
+                                                        ?<td 
+                                                            className={
+                                                                ComunesTipoDisenio == "Light"
+                                                                ? "W600-S12-H16-C706C64"
+                                                                : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                            }>
+                                                                {factura.cliclientegrupo}
+                                                        </td>
+                                                        :cell.column.id == "clicodigoshipto"
+                                                        ?<td 
+                                                            className={
+                                                                ComunesTipoDisenio == "Light"
+                                                                ? "W600-S12-H16-C706C64"
+                                                                : "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"
+                                                            }>
+                                                                {factura.clicodigoshipto}
+                                                        </td>
                                                         :cell.column.id == "fsifactura"
                                                         ?<td 
                                                             className={
@@ -311,8 +329,8 @@ const TbAsignarFacturas = (props) => {
                                                             }
                                                             {...cell.getCellProps()}
                                                         >
-                                                                {/* {factura.pronombre} */}
-                                                                {cell.render("Cell")}
+                                                                {factura.pronombre}
+                                                                {/* {cell.render("Cell")} */}
                                                                 {/* {factura.pronombre} */}
                                                         </td>
                                                         :cell.column.id == "fdsvalorneto"
@@ -376,7 +394,10 @@ const TbAsignarFacturas = (props) => {
                                                                     onChange={
                                                                         async (e) => {
                                                                             // setObjetivo(objetivo - e.target.value)
-                                                                            await CambiarImpactoFacturaAsignada(posicionFactura, e.target.value)
+                                                                            // console.log(posicionFactura)
+                                                                            // console.log(e.target.value)
+                                                                            // console.log(factura.fdsid)
+                                                                            await CambiarImpactoFacturaAsignada(posicionFactura, e.target.value, factura.fdsid, factura.fsiid)
                                                                             calcularNuevoObjetivo()
                                                                         }
                                                                     }

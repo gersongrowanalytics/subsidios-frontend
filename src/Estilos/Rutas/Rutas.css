@@ -18,3 +18,137 @@
     color: #4D4D4D;
 
 }
+
+
+
+.Contenedor-Cookies{
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 140%;
+    position: absolute;
+    z-index: 10;
+    top: -40px;
+}
+
+.Mensaje-Cookies{
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 155px;
+    top: 0;
+    position: absolute;
+    opacity: 1.0;
+
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-right: 320px;
+    
+    color: black;
+    font-size: 12px;
+
+}
+
+.Btn-Configuracion-Politicas{
+    position: absolute;
+    /* background-color: blue; */
+    width: 135px;
+    height: 70px;
+    right: 190px;
+    top: 60px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.Btn-Aceptar-Politicas{
+    position: absolute;
+    /* background-color: red; */
+    width: 150px;
+    height: 70px;
+    right: 90px;
+    top: 60px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: -webkit-center;
+    cursor: pointer;
+}
+
+.Btn-Configuracion-Politicas:hover{
+    background: white;
+}
+
+.Btn-Aceptar-Politicas:hover{
+    background: white;
+}
+
+.Contenedor-Botones-Cookies{
+    width: 100%;
+    height: 100px;
+    /* background: red; */
+    bottom: 0;
+    left: 0;
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Boton-Aceptar-Cookies{
+    width: 210px;
+    height: 40px;
+    background: white;
+    color: black;
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+}
+
+.Contenedor-Tarjeta-Terminos{
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top: 1px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    text-align: justify;
+}
+
+.Btn-Aceptar-Terminos-Condiciones{
+    margin-top: 20px;
+    width: 160px;
+    height: 60px;
+    border: 2px solid #1876F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.Btn-Aceptar-Terminos-Condiciones:hover{
+    color: white !important;
+    background: #1876F2;
+    border: 1px solid #1876F2;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.Txt-Aceptado-Leido-Terminos{
+    margin-top: 20px;
+    color: #1876F2 !important;
+    font-weight: bold;
+}

@@ -6,7 +6,8 @@ import {
     CARGANDO_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
     OBTENER_FACTURAS_ASIGNADAS_SUBSIDIOS_SI,
     CARGANDO_DESCARGA_SUBSIDIOS_SI,
-    OBTENER_DESCARGA_SUBSIDIOS_SI
+    OBTENER_DESCARGA_SUBSIDIOS_SI,
+    CARGANDO_DATA_SUBSIDIOS_SI_VENTAS
 } from "../../../Constantes/SubsidiosSi/SubsidiosSi";
 
 const INIT_STATE = {
@@ -59,7 +60,9 @@ const INIT_STATE = {
     cargando_facturas_asignadas : false,
     obtener_facturas_asignadas  : [],
 
-    cargando_descarga : false
+    cargando_descarga : false,
+
+    cargando_subsidiossi_ventas : false
 };
 
 
@@ -141,6 +144,12 @@ export default (state = INIT_STATE, action) => {
         }
     }
 
+    case CARGANDO_DATA_SUBSIDIOS_SI_VENTAS: {
+        return {
+            ...state,
+            cargando_subsidiossi_ventas : action.payload
+        }
+    }
     default:
       return state;
   }

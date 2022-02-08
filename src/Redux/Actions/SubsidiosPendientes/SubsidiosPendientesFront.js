@@ -49,30 +49,67 @@ export const CambiarImpactoFacturaAsignadaReducer = (
     posicionSubsidio, 
     posicionFactura,
     impacto,
+    fdsid
 ) => async (dispatch, getState) => {
 
     
-    // console.log(posicionZona)
-    // console.log(posicionSubsidio)
-    // console.log(posicionFactura)
-    // console.log(impacto)
+    console.log(posicionZona)
+    console.log(posicionSubsidio)
+    console.log(posicionFactura)
+    console.log(impacto)
+    console.log(fdsid)
 
     let {
         data_subsidiossipendientes, 
+        facturas_asignadas_enviar_subpendientes
     } = getState().subsidiosPendientes
 
+    let facturasSeleccionado = {...facturas_asignadas_enviar_subpendientes}
 
     data_subsidiossipendientes[posicionZona]['data'][posicionSubsidio]["facturasasignar"][posicionFactura]['impacto'] = impacto
 
     if(impacto.length > 0){
         data_subsidiossipendientes[posicionZona]['data'][posicionSubsidio]["facturasasignar"][posicionFactura]['seleccionado'] = true
+
+        let encontro = false
+        
+        facturasSeleccionado.map((factura, posicion) => {
+            if(factura.fdsid == fdsid){
+                encontro = true
+                facturasSeleccionado[posicion]['seleccionado'] = true
+                facturasSeleccionado[posicion]['impacto'] = impacto
+            }
+        })
+
+        if(encontro == false){
+            facturasSeleccionado.push({
+                "fdsid" : fdsid,
+                "seleccionado": true,
+                "impacto": impacto
+            })
+        }
+
     }else{
         data_subsidiossipendientes[posicionZona]['data'][posicionSubsidio]["facturasasignar"][posicionFactura]['seleccionado'] = false
+
+        facturasSeleccionado.map((factura, posicion) => {
+            if(factura.fdsid == fdsid){
+                facturasSeleccionado[posicion]['seleccionado'] = false
+            }
+        })
     }
 
     await dispatch({
         type: OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES,
         payload : data_subsidiossipendientes
+    })
+
+    console.log("facturas_asignadas_enviar_subpendientes: ")
+    console.log(facturasSeleccionado)
+
+    await dispatch({
+        type: "SELECCIONAR_FACTURAS_ENVIAR_SUBSIDIOS_PENDIENTES",
+        payload : facturasSeleccionado
     })
 
     return true
@@ -83,6 +120,8 @@ export const CambiarImpactoFacturaAsignadaListaFacturasReducer = (
     posicionSubsidio, 
     posicionFactura,
     impacto,
+    fdsid,
+    fsiid
 ) => async (dispatch, getState) => {
 
     
@@ -93,20 +132,58 @@ export const CambiarImpactoFacturaAsignadaListaFacturasReducer = (
 
     let {
         data_facturas_asignar_subpendientes, 
+        facturas_asignadas_enviar_subpendientes
     } = getState().subsidiosPendientes
 
+    let facturasSeleccionado = facturas_asignadas_enviar_subpendientes
 
     data_facturas_asignar_subpendientes[posicionFactura]['impacto'] = impacto
 
     if(impacto.length > 0){
         data_facturas_asignar_subpendientes[posicionFactura]['seleccionado'] = true
+
+        let encontro = false
+        
+        await facturasSeleccionado.map((factura, posicion) => {
+            if(factura.fdsid == fdsid){
+                encontro = true
+                facturasSeleccionado[posicion]['seleccionado'] = true
+                facturasSeleccionado[posicion]['impacto'] = impacto
+            }
+        })
+
+        if(encontro == false){
+            facturasSeleccionado.push({
+                "fdsid" : fdsid,
+                "seleccionado": true,
+                "impacto": impacto,
+                "fsiid" : fsiid
+           
+            })
+        }
+
     }else{
         data_facturas_asignar_subpendientes[posicionFactura]['seleccionado'] = false
+
+        facturasSeleccionado.map((factura, posicion) => {
+            if(factura.fdsid == fdsid){
+                facturasSeleccionado[posicion]['seleccionado'] = false
+            }
+        })
+
     }
 
     await dispatch({
         type: "OBTENER_FACTURAS_SUBSIDIOS_PENDIENTES_ONLY_DATA",
         payload : data_facturas_asignar_subpendientes
+    })
+
+    console.log("facturas_asignadas_enviar_subpendientes: ")
+    console.log(facturasSeleccionado)
+
+    await dispatch({
+        type: "SELECCIONAR_FACTURAS_ENVIAR_SUBSIDIOS_PENDIENTES",
+        payload : facturasSeleccionado
     })
 
     return true

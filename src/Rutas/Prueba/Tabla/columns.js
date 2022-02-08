@@ -56,31 +56,31 @@ export const COLUMNS_SUBSO = [
   },
   {
     Header: <>Bultos<br/>(Acordados)</>,
-    Homologado: <>Bultos (Acordados)</>,
+    Homologado: "Bultos (Acordados)",
     accessor: 'sdebultosacordados',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Bultos<br/>(Distribuidor)</>,
-    Homologado: <>Bultos (Distribuidor)</>,
+    Homologado: "Bultos (Distribuidor)",
     accessor: 'sdecantidadbultos',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Bultos<br/>(Softys)</>,
-    Homologado: <>Bultos (SAC/APP)</>,
+    Homologado: "Bultos (Softys)",
     accessor: 'sdecantidadbultosreal',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Monto<br/>(S/IGV DT)</>,
-    Homologado: <>Reconocimiento S/(Distribuidor)</>,
+    Homologado: "Monto (S/IGV DT)",
     accessor: 'sdemontoareconocer',
     cabeceraAgrupacion: 'metricas'
   },
   {
     Header: <>Monto<br/>(S/IGV Softys)</>,
-    Homologado: <>Reconocimiento S/(SAC/APP)</>,
+    Homologado: "Monto (S/IGV Softys)",
     accessor: 'sdemontoareconocerreal',
     cabeceraAgrupacion: 'metricas'
   },

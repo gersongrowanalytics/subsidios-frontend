@@ -66,6 +66,11 @@ export const ObtenerRegularizacionPagosSoReducer = () => async (dispatch, getSta
                     datareal : data.datos,
                 }
             })
+
+            await dispatch({
+                type: "SELECCIONAR_FACTURAS_ENVIAR_SUBSIDIOS_PENDIENTES",
+                payload : []
+            })
 			
 		}else{
             
@@ -194,6 +199,13 @@ export const AsignarFacturasRegularizacionReducer = (sdeid, sdemontoareconocerre
         payload : true
     })
 
+    let {
+        data_subsidiossipendientes, 
+        facturas_asignadas_enviar_subpendientes
+    } = getState().subsidiosPendientes
+
+    console.log(facturas_asignadas_enviar_subpendientes)
+
     let headerFetch = {
         'Accept' : 'application/json',
         'content-type': 'application/json',
@@ -215,7 +227,7 @@ export const AsignarFacturasRegularizacionReducer = (sdeid, sdemontoareconocerre
 			body: JSON.stringify({
                 "sdeid" : sdeid,
                 "sdemontoareconocerreal" : sdemontoareconocerreal,
-                "facturas" : facturas
+                "facturas" : facturas_asignadas_enviar_subpendientes
             }),
 			headers: headerFetch
       	}
