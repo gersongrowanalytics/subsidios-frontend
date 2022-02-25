@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.157b3408.chunk.css",
-    "main.js": "/static/js/main.2fe7f942.chunk.js",
-    "main.js.map": "/static/js/main.2fe7f942.chunk.js.map",
+    "main.css": "/static/css/main.00c63a80.chunk.css",
+    "main.js": "/static/js/main.1e82d5d9.chunk.js",
+    "main.js.map": "/static/js/main.1e82d5d9.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.52b03495.js",
     "runtime-main.js.map": "/static/js/runtime-main.52b03495.js.map",
     "static/css/2.cd4e3f59.chunk.css": "/static/css/2.cd4e3f59.chunk.css",
@@ -16,7 +16,7 @@
     "service-worker.js": "/service-worker.js",
     "service-worker.js.map": "/service-worker.js.map",
     "static/css/2.cd4e3f59.chunk.css.map": "/static/css/2.cd4e3f59.chunk.css.map",
-    "static/css/main.157b3408.chunk.css.map": "/static/css/main.157b3408.chunk.css.map",
+    "static/css/main.00c63a80.chunk.css.map": "/static/css/main.00c63a80.chunk.css.map",
     "static/js/2.d84e340a.chunk.js.LICENSE.txt": "/static/js/2.d84e340a.chunk.js.LICENSE.txt",
     "static/media/BtnPlus.f4e9ff36.PNG": "/static/media/BtnPlus.f4e9ff36.PNG",
     "static/media/Cobertura.abec9efa.webm": "/static/media/Cobertura.abec9efa.webm",
@@ -71,7 +71,7 @@
     "static/js/runtime-main.52b03495.js",
     "static/css/2.cd4e3f59.chunk.css",
     "static/js/2.d84e340a.chunk.js",
-    "static/css/main.157b3408.chunk.css",
-    "static/js/main.2fe7f942.chunk.js"
+    "static/css/main.00c63a80.chunk.css",
+    "static/js/main.1e82d5d9.chunk.js"
   ]
 }
