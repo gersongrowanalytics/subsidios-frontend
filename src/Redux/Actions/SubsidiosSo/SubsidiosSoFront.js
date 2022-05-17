@@ -115,6 +115,22 @@ export const CambiarBultosReducer = (posicionZona, posicionData, txtnumero) => (
 
 }
 
+export const CambiarBultosDTReducer = (posicionZona, posicionData, txtnumero) => (dispatch, getState) => {
+
+    let {data_subsidiosso} = getState().subsidiosSo
+
+    let nuevoTxtNumero = txtnumero.replace(/^(0+)/g, '');
+
+    data_subsidiosso[posicionZona]['data'][posicionData]['sdecantidadbultos'] = nuevoTxtNumero
+    data_subsidiosso[posicionZona]['data'][posicionData]['sdemontoareconocer'] = nuevoTxtNumero * parseFloat(data_subsidiosso[posicionZona]['data'][posicionData]['sdedsctodos'])
+
+    dispatch({
+        type: "CAMBIAR_DATA_SUBSIDIOS_SO",
+        payload: data_subsidiosso
+    })
+
+}
+
 export const SeleccionarColumnasDescargarReducer = (posicion, valor) => async (dispatch, getState) => {
 
     // dispatch(VolverArmarExcelSubSoReducer())

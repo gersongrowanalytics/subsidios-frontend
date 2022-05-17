@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Checkbox, Row, Col, Button } from 'antd';
+import { Modal, notification, Row, Col, Button } from 'antd';
 import '../../Estilos/Componentes/SubsidiosPendientes/ModalAsignarFacturas.css'
 import IconoAgregarNaranja from '../../Assets/Imagenes/Iconos/iconoAgregarNaranja.png'
 import ModalNotasCredito from '../../Componentes/Subsidios/ModalNotasCredito'
@@ -8,6 +8,7 @@ import TbAsignarFacturas from './ModalAsignarFacturas/TbAsignarFacturas';
 import funFomratoDecimal from '../../Funciones/funFormatoDecimal'
 import NumberFormat from 'react-number-format';
 import IconoCerrar from '../../Assets/Imagenes/Iconos/iconoCerrar.png'
+import {useSelector} from "react-redux";
 
 const ModalAsignarFacturas = (props) => {
 
@@ -24,6 +25,10 @@ const ModalAsignarFacturas = (props) => {
 
     const ComunesTipoDisenio = props.ComunesTipoDisenio
     const cargandoTabla = props.cargando_tabla_facturas_asignar_subsidiospendientes
+
+    const {
+        data_facturas_asignar_subpendientes
+    } = useSelector(({subsidiosPendientes}) => subsidiosPendientes);
 
     useEffect(() => {
 
@@ -49,7 +54,7 @@ const ModalAsignarFacturas = (props) => {
     }
 
     const calcularNuevoObjetivo = async () => {
-        const impactos = props.facturas.map(x => x.impacto?parseFloat(x.impacto) :0)
+        const impactos = data_facturas_asignar_subpendientes.map(x => x.impacto?parseFloat(x.impacto) :0)
 
         const acumulado = await sumaValores(impactos)
 
@@ -127,7 +132,7 @@ const ModalAsignarFacturas = (props) => {
                 closeIcon={<img onClick={() => setMostrarModal(!mostrarModal) } src={IconoCerrar} width='27px'/>}
             >
                 <div>
-                    <div className="Wbold-S20-H27-C004FB8">Facturas Disponibles sss</div>
+                    <div className="Wbold-S20-H27-C004FB8">Facturas Disponibles</div>
 
                     <div 
                         className="Wbold-S13-H17-C004FB8" 
@@ -194,10 +199,32 @@ const ModalAsignarFacturas = (props) => {
                             marginTop:'10px',
                             cursor:'pointer'
                         }}
-                        onClick={() => {
-                            console.log(props.facturas_asignadas_enviar_subpendientes)
-                            setMostrarModalConfirmacion(!mostrarModalConfirmacion)}
-                        }
+                        onClick={ async () => {
+                            // console.log(props.facturas_asignadas_enviar_subpendientes)
+                            
+                            let existenCamposExcedientes = false
+
+                            await data_facturas_asignar_subpendientes.map((factura) => {
+                                if(parseFloat(factura.fdssaldo) < parseFloat(factura.impacto)){
+                                    existenCamposExcedientes = true
+                                }
+                            })
+
+                            if(existenCamposExcedientes == true){
+
+                                notification.error({
+                                    message: 'Notificación',
+                                    description: 'Lo sentimos, encontramos algunas facturas que exceden el 30% del saldo disponible',
+                                    placement : 'topRight',
+                                    duration:'10'
+                                });
+
+                            }else{
+                                setMostrarModalConfirmacion(!mostrarModalConfirmacion)
+                            }
+
+
+                        }}
                     >
                         Seleccionar
                     </div>

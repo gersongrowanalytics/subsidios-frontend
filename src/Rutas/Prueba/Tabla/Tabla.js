@@ -15,7 +15,8 @@ import {
     SeleccionarSolicitanteReducer,
     DesplegarFiltroColumnaReducer,
     HabilitarEdicionBultosReducer,
-    CambiarBultosReducer
+    CambiarBultosReducer,
+    CambiarBultosDTReducer
 } from '../../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {
     AceptarCambioBultosReducer
@@ -30,10 +31,15 @@ import {
     CloseCircleTwoTone,
     LoadingOutlined
 } from '@ant-design/icons'
+import {
+    funPermisosObtenidos
+} from '../../../Funciones/funPermiso'
 
 export const Table = (props) => {
     const columns = useMemo(() => COLUMNS_SUBSO, []);
     const data = useMemo(() => props.MOCK_DATA, []);
+
+    const {LoginUsuario} = useSelector(({login}) => login);
 
     const dispatch = useDispatch();
     const ComunesTipoDisenio = props.ComunesTipoDisenio
@@ -547,8 +553,77 @@ export const Table = (props) => {
                                                                 {<NumberFormat value={dato.sdebultosacordados ?funFomratoDecimal(dato.sdebultosacordados, 2) : 0} displayType={'text'} thousandSeparator={true} />}
                                                             </td>
                                                             :cell.column.id == "sdecantidadbultos"
-                                                            ?<td className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} style={{textAlign: "-webkit-right"}}>
-                                                                {<NumberFormat value={dato.sdecantidadbultos ?funFomratoDecimal(dato.sdecantidadbultos, 2) : 0} displayType={'text'} thousandSeparator={true} />}
+                                                            ?<td
+                                                                className={ComunesTipoDisenio == "Light"? "W600-S12-H16-C706C64": "Celda-td-Tabla-Subsidios-So W500-S12-H16-Cacafb7"} 
+                                                                style={
+                                                                    dato.editarbulto == true
+                                                                    ?{textAlign: "-webkit-right"}
+                                                                    :{
+                                                                        textAlign: "-webkit-right",
+                                                                        cursor:'pointer'
+                                                                    }
+                                                                }
+                                                                onDoubleClick={() => dispatch(HabilitarEdicionBultosReducer(posicion, posicionData, true)) }
+                                                                title={
+                                                                    dato.editarbulto == true
+                                                                    ?""
+                                                                    :"Editar"
+                                                                }
+                                                            >
+                                                                {/* {<NumberFormat value={dato.sdecantidadbultos ?funFomratoDecimal(dato.sdecantidadbultos, 2) : 0} displayType={'text'} thousandSeparator={true} />} */}
+
+                                                                {
+                                                                    
+                                                                    <Spin
+                                                                        spinning={dato.editandobulto ? dato.editandobulto : false}
+                                                                        indicator={
+                                                                            <LoadingOutlined style={{ fontSize: 24 }} spin />
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            dato.editarbulto == true
+                                                                            ?<>
+
+                                                                                {
+                                                                                    funPermisosObtenidos(
+                                                                                        LoginUsuario.permisos,
+                                                                                        "MODULO.SUBSIDIOS.SO.EDITAR.CANTIDAD.BULTOS.DT",
+                                                                                        <input 
+                                                                                            className="Input-Editar-Bultos-Subsidios-So"
+                                                                                            type="number"
+                                                                                            value={
+                                                                                                dato.sdecantidadbultos ?dato.sdecantidadbultos : 0
+                                                                                            }
+                                                                                            onChange={(e) => dispatch(CambiarBultosDTReducer(posicion, posicionData, e.target.value))}
+                                                                                        />
+                                                                                    )
+                                                                                }
+
+                                                                                
+
+                                                                                {/* <CheckCircleTwoTone 
+                                                                                    size={10}
+                                                                                    twoToneColor="#52c41a" 
+                                                                                    style={{fontSize:'20px', marginLeft:'5px', cursor:'pointer'}}
+                                                                                    title="Aceptar"
+                                                                                    onClick={() => dispatch(AceptarCambioBultosReducer(posicion, posicionData))}
+                                                                                />
+
+                                                                                <CloseCircleTwoTone 
+                                                                                    size={10}
+                                                                                    twoToneColor="#D14527" 
+                                                                                    style={{fontSize:'20px', marginLeft:'5px', cursor:'pointer'}}
+                                                                                    onClick={() => dispatch(HabilitarEdicionBultosReducer(posicion, posicionData, false))}
+                                                                                    title="Cancelar"
+                                                                                /> */}
+
+                                                                            </>
+                                                                            :<>
+                                                                            {<NumberFormat value={dato.sdecantidadbultos ?funFomratoDecimal(dato.sdecantidadbultos, 2) : 0} displayType={'text'} thousandSeparator={true} />} 
+                                                                            </>
+                                                                        }
+                                                                    </Spin>
+                                                                }
                                                             </td>
                                                             
                                                             
@@ -571,7 +646,7 @@ export const Table = (props) => {
                                                                 }
                                                             >
                                                                 <Spin
-                                                                    spinning={data.editandobulto ? data.editandobulto : false}
+                                                                    spinning={dato.editandobulto ? dato.editandobulto : false}
                                                                     indicator={
                                                                         <LoadingOutlined style={{ fontSize: 24 }} spin />
                                                                     }

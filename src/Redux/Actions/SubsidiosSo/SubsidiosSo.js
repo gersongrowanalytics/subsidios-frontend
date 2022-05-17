@@ -8,7 +8,7 @@ import {
     OBTEMER_DESCARGABLE_SUBSIDIOS_SO
 } from '../../../Constantes/SubsidiosSo/SubsidiosSo'
 import { estadoRequestReducer } from "../EstadoRequest"
-import {message} from "antd";
+import {message, notification} from "antd";
 import axios from 'axios'
 
 export const ObtenerSubsidiosSoReducer = () => async (dispatch, getState) => {
@@ -531,6 +531,7 @@ export const AceptarCambioBultosReducer = (posicionZona, posicionData) => async 
 			body: JSON.stringify({
                 sdeid: data_subsidiosso[posicionZona]['data'][posicionData]['sdeid'],
                 nuevacantidadbultos: data_subsidiosso[posicionZona]['data'][posicionData]['sdebultosacido'],
+                nuevacantidadbultosDT: data_subsidiosso[posicionZona]['data'][posicionData]['sdecantidadbultos'],
             }),
 			headers: headerFetch
       	}
@@ -546,7 +547,16 @@ export const AceptarCambioBultosReducer = (posicionZona, posicionData) => async 
             
             if(data.respuesta == true){
                 data_subsidiosso[posicionZona]['data'][posicionData]['editarbulto'] = false
-                message.success(data.mensaje);
+                // message.success(data.mensaje);
+                data_subsidiosso[posicionZona]['data'][posicionData]['editandobulto'] = false
+                
+                notification.success({
+                    message: 'Notificación',
+                    description: data.mensaje,
+                    placement : 'topRight',
+                    duration:'10'
+                });
+
             }else{
                 message.error(data.mensaje)
             }

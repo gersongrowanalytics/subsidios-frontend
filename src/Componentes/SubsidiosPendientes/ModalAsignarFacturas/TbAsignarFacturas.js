@@ -194,7 +194,7 @@ const TbAsignarFacturas = (props) => {
                                 {headerGroup.headers.map((column, posicion) => (
                                    <th 
                                         {...column.getHeaderProps()}
-                                        style={{borderRadius: "23px 0px 0px 23px"}}
+                                        // style={{borderRadius: "23px 0px 0px 23px"}}
                                         className="Th-Tabla-Subsidios-So Wbold-S10-H20-CFFFFFF C004FB8" 
                                         style={{zIndex:'1'}} 
                                     >
@@ -264,6 +264,7 @@ const TbAsignarFacturas = (props) => {
                                                     ?{borderBottom: '1px solid #D7E8FF'}
                                                     :{borderBottom: '1px solid #1c1e21'}
                                                 }
+                                                key={factura.fdsid}
                                             >
                                                 {row.cells.map((cell, pos) => {
                                                     return (
@@ -397,6 +398,7 @@ const TbAsignarFacturas = (props) => {
                                                                             // console.log(posicionFactura)
                                                                             // console.log(e.target.value)
                                                                             // console.log(factura.fdsid)
+                                                                            // console.log(factura.fsiid)
                                                                             await CambiarImpactoFacturaAsignada(posicionFactura, e.target.value, factura.fdsid, factura.fsiid)
                                                                             calcularNuevoObjetivo()
                                                                         }
