@@ -65,7 +65,7 @@
     width: 60px;
     height: 60px;
     position: fixed;
-    bottom: 30px;
+    bottom: 110px;
     right: 30px;
     cursor: pointer;
 }
@@ -240,7 +240,38 @@ thead tr th {
     width: 60px;
     height: 60px;
     position: fixed;
-    bottom: 100px;
+    bottom: 180px;
     right: 30px;
     cursor: pointer;
+}
+
+.Icono-Fondo-Subsidios-Ventas-Formato{
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    left: -5px;
+}
+
+.Icono-Flecha-Subsidios-Ventas-Formato{
+    position: absolute;
+    width: 35px;
+    left: 14px;
+    top: 16px;
+}
+
+.Icono-Linea-Subsidios-Ventas-Formato{
+    position: absolute;
+}
+
+.Spinner-Ventas-Subsidios{
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0;
+    background: black;
+    border-radius: 50px;
+    width: 61px;
+    height: 61px;
+    opacity: 0.5;
+    display: flex;
 }

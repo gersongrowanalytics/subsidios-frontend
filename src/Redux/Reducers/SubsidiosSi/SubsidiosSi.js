@@ -62,7 +62,9 @@ const INIT_STATE = {
 
     cargando_descarga : false,
 
-    cargando_subsidiossi_ventas : false
+    cargando_subsidiossi_ventas : false,
+
+    data_subsidiossi_formato_ventas_excel : []
 };
 
 
@@ -148,6 +150,12 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             cargando_subsidiossi_ventas : action.payload
+        }
+    }
+    case "OBTENER_DATA_SUBSIDIOS_SI_FORMATO_VENTAS_EXCEL":{
+        return {
+            ...state,
+            data_subsidiossi_formato_ventas_excel : action.payload
         }
     }
     default:

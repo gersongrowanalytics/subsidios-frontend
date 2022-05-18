@@ -15,8 +15,8 @@ export default class TimeLogout extends Component {
       <div>
         <IdleTimer
           ref={ref => { this.idleTimer = ref }}
-          // timeout={5000}
-          timeout={60000}
+          timeout={this.props.tiempo}
+          // 60000
           onActive={this.handleOnActive}
           onIdle={this.handleOnIdle}
           onAction={this.handleOnAction}
@@ -37,7 +37,7 @@ export default class TimeLogout extends Component {
   }
 
   handleOnIdle (event) {
-    // this.props.CerrarSesionReducer()
+    this.props.CerrarSesionReducer()
     // dispatch(CerrarSesionReducer())
     // console.log('user is idle', event)
     // console.log('last active', this.idleTimer.getLastActiveTime())

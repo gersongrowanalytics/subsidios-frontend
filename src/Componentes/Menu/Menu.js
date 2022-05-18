@@ -128,12 +128,20 @@ const Menu = () => {
                     {
                         funPermisosObtenidos(
                             LoginUsuario.permisos,
-                            "MENU.MODULO.ADMINISTRADOR",
-                            // {/* <Link to="/administrador" onClick={() => dispatch(MostrarMenuReducer(false))}> */}
-                            <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Administrador</p>
-                            // {/* </Link> */}
+                            "MENU.MODULO.SUBSIDIOS.VENTAS",
+                            <Link to="/subsidios-ventas" onClick={() => dispatch(MostrarMenuReducer(false))}>
+                                <p className="Wbold-S27-H36-CFFFFFF-SinFondo">HISTÓRICO DE SUBSIDIOS</p>
+                            </Link>
                         )
                     }
+
+                    {/* {
+                        funPermisosObtenidos(
+                            LoginUsuario.permisos,
+                            "MENU.MODULO.ADMINISTRADOR",
+                            <p className="Wbold-S27-H36-CFFFFFF-SinFondo">Administrador</p>
+                        )
+                    } */}
 
                 </div>
             </div>

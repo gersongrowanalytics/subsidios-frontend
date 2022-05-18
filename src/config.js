@@ -1,6 +1,6 @@
 export default {
     // api: 'http://192.168.100.5:8000/',
-    // api: 'http://192.168.100.89:8000/',
+    api: 'http://192.168.100.24:8000/',
     // api: 'https://comosea.dir.tips/',
     // api: 'https://subsidios-thanos-backend.softys-leadcorporate.com/',
     api: 'http://192.168.137.102:8000/',
@@ -13,5 +13,5 @@ export default {
     nombreSistemaHo : 'Subsidios',
     nombreCliente : 'Softys Perú',
 
-    activarpoliticas : false
+    activarpoliticas : true
 };

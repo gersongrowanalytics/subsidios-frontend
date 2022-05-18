@@ -52,6 +52,10 @@ const Top = () => {
 
     const [mostrarCerrarSesion, setMostrarCerrarSesion] = useState(false);
 
+    const { 
+        datosUsuarioLogeado,
+        mostrar_terminos_condiciones_login
+    } = useSelector(({login}) => login);
 
     return (
         <div>
@@ -155,48 +159,27 @@ const Top = () => {
                                         :IconoMenu
                                     }
                                     id={ComunesTipoDisenio == "Light" ?"Icono-Menu-Top-Luminoso" :"Icono-Menu-Top"}
+                                    // style={
+                                    //     config.activarpoliticas == true
+                                    //     ?cookiesaceptadas == true
+                                    //     ?{}
+                                    //     :localStorage.getItem('cookiesaceptadas') == "ACEPTADO"
+                                    //         ?{}
+                                    //         :{cursor: "not-allowed"}
+                                    //     :{}
+                                    // }
+
                                     style={
-                                        config.activarpoliticas == true
-                                        ?cookiesaceptadas == true
-                                        ?{}
-                                        :localStorage.getItem('cookiesaceptadas') == "ACEPTADO"
-                                            ?{}
-                                            :{cursor: "not-allowed"}
-                                        :{}
+                                        datosUsuarioLogeado.usuaceptoterminos
+                                        ?mostrar_terminos_condiciones_login == true
+                                            ?{cursor: "not-allowed"}
+                                            :{}
+                                        :{cursor: "not-allowed"}
                                     }
+
+
                                 />
-                                {/* <div id="Icono-Menu-Top">
-                                    <svg focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
-                                </div> */}
-
-                                {/* <div id="hamburger "  className="hamburglar is-closed">
-
-                                    <div className="burger-icon">
-                                        <div className="burger-container">
-                                            <span className="burger-bun-top"></span>
-                                            <span className="burger-filling"></span>
-                                            <span className="burger-bun-bot"></span>
-                                        </div>
-                                    </div>
-
-                                    <div className="burger-ring">
-                                        <svg className="svg-ring">
-                                            <path className="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
-                                        </svg>
-                                    </div>
-
-                                    <svg width="0" height="0">
-                                        <mask id="mask">
-                                            <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
-                                        </mask>
-                                    </svg>
-                                    <div className="path-burger">
-                                        <div className="animate-path">
-                                            <div className="path-rotation"></div>
-                                        </div>
-                                    </div>
                                 
-                                </div> */}
 
                                 <img src={LogoGrowColor} id="Top-Logo"/>
                             </div>
@@ -305,7 +288,7 @@ const Top = () => {
                                     {
                                         mostrarCerrarSesion == true
                                         ?<div className="dropdown-content">
-                                            {
+                                            {/* {
                                                 config.activarpoliticas == true
                                                 ?cookiesaceptadas == true
                                                     ?<div className="dropdown-content-Usuario">
@@ -388,11 +371,48 @@ const Top = () => {
                                                             <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
                                                         </div>
                                                     </div>
+                                            } */}
+
+
+
+                                            {
+                                                datosUsuarioLogeado.usuaceptoterminos
+                                                ?mostrar_terminos_condiciones_login == true
+                                                  ?null
+                                                  :<div className="dropdown-content-Usuario">
+                                                    <div
+                                                        style={{
+                                                            alignSelf: "center",
+                                                            paddingLeft:'10px'
+                                                        }}
+                                                    >
+                                                        <img 
+                                                            src={
+                                                                ComunesTipoDisenio == "Light"
+                                                                ?IconoUsuarioLight
+                                                                :IconoUsuario
+                                                            } width={"57px"} 
+                                                        />
+                                                    </div>
+
+                                                    <div
+                                                        style={{
+                                                            alignSelf: "center",
+                                                            paddingLeft:'10px'
+                                                        }}
+                                                    >
+                                                        <div className="Wbold-S14-H19-C004FB8">{NombreComp}</div>
+                                                        <div className="Wnormal-S12-H16-C1EC0ED">Ver perfil</div>
+                                                    </div>
+                                                </div>
+                                                :null
                                             }
                                             
                                             <div 
                                                 className="dropdown-content-Cerrar" style={{cursor:'pointer'}}
-                                                onClick={() => dispatch(CerrarSesionReducer())} 
+                                                onClick={() => {
+                                                    dispatch(CerrarSesionReducer())
+                                                }} 
                                             >
                                                 <img src={IconoCerrarSesion} width={"31px"} style={{marginRight:'10px'}} />
                                                 <span

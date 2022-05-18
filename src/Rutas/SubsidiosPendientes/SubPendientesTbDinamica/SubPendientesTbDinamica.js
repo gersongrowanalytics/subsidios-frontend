@@ -48,7 +48,7 @@ const SubPendientesTbDinamica = () => {
     }, [ComunesFechaInicio, ComunesFechaFinal]);
 
     return (
-        <Row>
+        <Row style={{marginBottom:'150px'}}>
             <Col 
                 xl={24} className="CEDF0FA" style={{paddingTop:'10px', paddingBottom:'10px'}}
             >

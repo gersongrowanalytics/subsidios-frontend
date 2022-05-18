@@ -14,7 +14,7 @@ const SubsidiosPendientes = () => {
     const {ComunesTipoDisenio} = useSelector(({comunes}) => comunes)
 
     return (
-        <Row>
+        <Row >
             <Col 
                 xl={24} className="CEDF0FA" style={{paddingTop:'10px', paddingBottom:'10px'}}
             >

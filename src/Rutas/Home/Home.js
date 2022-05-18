@@ -58,6 +58,8 @@ const Home = () => {
             style={{
                 paddingLeft:'60px',
                 paddingRight:'60px',
+                paddingBottom:'60px',
+                marginBottom:'60px'
             }}
         >
 

@@ -28,6 +28,11 @@ const BigData = () => {
         cargando_bigdata
     } = useSelector(({facturas}) => facturas);  
 
+    const {
+        data_subsidiossi_formato_ventas_excel,
+        cargando_subsidiossi_ventas
+    } = useSelector(({subsidiosSi}) => subsidiosSi);
+
     return (
         <div style={{paddingBottom:'100px'}}>
             
@@ -65,6 +70,17 @@ const BigData = () => {
                     >
                         <FiltroFechaMes
                             texto = {"Fecha"}
+                        />
+                    </Col>
+
+                    <Col xl={5} style={{marginRight:'20px'}}>
+                        <BtnDescargar
+                            titulo      = {"Subsidios SI Formato Ventas"}
+                            data        = {data_subsidiossi_formato_ventas_excel}
+                            descargable = {data_subsidiossi_formato_ventas_excel}
+                            cargando    = {cargando_subsidiossi_ventas}
+                            url         = {"modulo/SubsidiosSi/mostrar-subsidios-si-ventas"}
+                            tipodata    = {"SUBSIDIOSIFORMATOVENTAS"}
                         />
                     </Col>
 

@@ -1,6 +1,7 @@
 import {
     MOSTRAR_FORMULARIO_LOGIN,
-    OBTENER_LOGIN
+    OBTENER_LOGIN,
+    MOSTRAR_TERMINOS_CONDICIONES_DATA_LOGIN
 } from "../../../Constantes/Login/Login";
 import config from '../../../config'
 import { estadoRequestReducer } from "../EstadoRequest"
@@ -81,6 +82,16 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
                     }
 				});
 
+                dispatch({
+                    type: MOSTRAR_TERMINOS_CONDICIONES_DATA_LOGIN,
+                    payload: data.mostrarterminos
+                })
+
+                dispatch({
+                    type: "ACTUALIZAR_DATOS_USUARIO_LOGEADO",
+                    payload : data.datos
+                })
+
 			}else{
 				dispatch({
 					type: OBTENER_LOGIN,
@@ -123,6 +134,47 @@ export const LoginReducer = (usuario) => async (dispatch, getState) => {
 }
 
 export const CerrarSesionReducer = () => async (dispatch, getState) => {
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+    await fetch(config.api+'cerrar-session',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({}),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(data => {
+		
+        const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+            
+			
+		}else{
+            
+        }
+
+    }).catch((error)=> {
+        console.log(error)
+    });
+
     localStorage.removeItem('usuario')
     localStorage.removeItem('contrasenia')
     localStorage.removeItem('usuid')
@@ -301,4 +353,13 @@ export const CerrarSubsidiosPendientes = () => async (dispatch, getState) => {
         payload: !subpendientes
     })
 
+}
+
+export const LoginUsaurioCambiar = () => (dispatch, getState) => {
+    dispatch({
+        type: "ACTUALIZAR_DATOS_USUARIO_LOGEADO",
+        payload: {
+            usuaceptoterminos : true
+        }
+    })
 }

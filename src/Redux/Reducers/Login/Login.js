@@ -1,6 +1,7 @@
 import {
     MOSTRAR_FORMULARIO_LOGIN,
-    OBTENER_LOGIN
+    OBTENER_LOGIN,
+    MOSTRAR_TERMINOS_CONDICIONES_DATA_LOGIN
 } from "../../../Constantes/Login/Login";
 
 const INIT_STATE = {
@@ -8,9 +9,12 @@ const INIT_STATE = {
     cargando     : false,
     LoginUsuid   : localStorage.getItem('usuid'),
     LoginUsuario : {},
+    datosUsuarioLogeado : {},
     subpendientes : false,
     fechaActualizacion : "20 Noviembre 2021",
     mesespendientes : [{anio:"2021", mes:"Agosto"}],
+
+    mostrar_terminos_condiciones_login : false,
 };
 
 
@@ -36,6 +40,18 @@ export default (state = INIT_STATE, action) => {
         return{
             ...state,
             subpendientes : action.payload
+        }
+    }
+    case "ACTUALIZAR_DATOS_USUARIO_LOGEADO": {
+        return{
+            ...state,
+            datosUsuarioLogeado : action.payload
+        }
+    }
+    case MOSTRAR_TERMINOS_CONDICIONES_DATA_LOGIN: {
+        return {
+            ...state,
+            mostrar_terminos_condiciones_login : action.payload
         }
     }
     default:

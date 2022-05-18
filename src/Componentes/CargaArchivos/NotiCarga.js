@@ -171,6 +171,26 @@ const NotiCarga = (props) => {
                                                         :null
                                                         :null
                                                     }
+
+                                                    {/* CLIENTES_SO_NO_ENCONTRADOS */}
+                                                    {
+                                                        not.CLIENTES_SO_NO_ENCONTRADOS
+                                                        ?not.CLIENTES_SO_NO_ENCONTRADOS.length > 0
+                                                        ?<>
+                                                            <b>{"Clientes SO no encontrados: "}</b><br/>
+                                                            {
+                                                                not.CLIENTES_SO_NO_ENCONTRADOS.map((subsidio) => {
+                                                                    return (
+                                                                        <>
+                                                                            <li>{subsidio.codigo+" en la linea: "+subsidio.linea}</li>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </>
+                                                        :null
+                                                        :null
+                                                    }
                                                 </>
                                                 :null
                                             }
