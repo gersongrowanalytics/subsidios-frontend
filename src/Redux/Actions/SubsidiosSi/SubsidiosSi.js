@@ -322,8 +322,12 @@ export const ObtenerLinksSubsidiosSiVentas = () => async (dispatch, getState) =>
     })
 
     let linkDescargar = [""]
+    let dataRpta = []
 
     const {
+        ComunesFechaUnico,
+        ComunesAnioTxtUnico,
+        ComunesMesTxtUnico,
         ComunesFechaInicio,
         ComunesFechaFinal
     } = getState().comunes
@@ -348,8 +352,11 @@ export const ObtenerLinksSubsidiosSiVentas = () => async (dispatch, getState) =>
 			mode:'cors',
 			method: 'POST',
 			body: JSON.stringify({
-                fechaInicio : ComunesFechaInicio,
-                fechaFinal  : ComunesFechaFinal,
+                fechaInicio : ComunesFechaUnico,
+                fechaFinal  : ComunesFechaUnico,
+                ComunesFechaUnico : ComunesFechaUnico,
+                ComunesAnioTxtUnico : ComunesAnioTxtUnico,
+                ComunesMesTxtUnico : ComunesMesTxtUnico,
             }),
 			headers: headerFetch
       	}
@@ -368,6 +375,18 @@ export const ObtenerLinksSubsidiosSiVentas = () => async (dispatch, getState) =>
             if(data.links.length > 0){
                 linkDescargar = data.links
             }
+            dataRpta = data
+
+            if(data.descargarHistorico == false){
+
+                let descargarsubsidiossiventas = []
+                descargarsubsidiossiventas = await LimpiarArrayDescargaSubsidiosSoReducer(data.data)
+
+                dispatch({
+                    type: "OBTENER_DATA_SUBSIDIOS_SI_FORMATO_VENTAS_EXCEL",
+                    payload: descargarsubsidiossiventas
+                })
+            }
 			
 		}else{
             
@@ -384,6 +403,67 @@ export const ObtenerLinksSubsidiosSiVentas = () => async (dispatch, getState) =>
     return {
         respuesta : true,
         // link : linkDescargar[0]
-        links : linkDescargar
+        links : linkDescargar,
+        dataRpta : dataRpta
     }
+}
+
+export const ObtenerLinkHistoricoSubsidiosSIVentas = () => async (dispatch, getState) => {
+
+    dispatch({
+        type : CARGANDO_DATA_SUBSIDIOS_SI_VENTAS,
+        payload : true
+    })
+
+    let linkHistorico = ""
+
+    let headerFetch = {
+        'Accept' : 'application/json',
+        'content-type': 'application/json',
+    }
+
+    if(config.produccion == true){
+        headerFetch = {
+            'Accept' : 'application/json',
+            'content-type': 'application/json',
+            'api_token': localStorage.getItem('usutoken'),
+            'api-token': localStorage.getItem('usutoken'),
+        }
+    }
+
+
+    await fetch(config.api+'modulo/SubsidiosSi/mostrar-link-subsidios-si-formato-ventas',
+		{
+			mode:'cors',
+			method: 'POST',
+			body: JSON.stringify({
+                
+            }),
+			headers: headerFetch
+      	}
+    )
+    .then( async res => {
+		await dispatch(estadoRequestReducer(res.status))
+		return res.json()
+    })
+    .then(async data => {
+
+		const estadoRequest = getState().estadoRequest.init_request
+		if(estadoRequest === true){
+        
+            linkHistorico = data.link
+
+		}else{
+            
+        }
+    }).catch((error)=> {
+        console.log(error)
+    });
+
+    dispatch({
+        type : CARGANDO_DATA_SUBSIDIOS_SI_VENTAS,
+        payload : false
+    })
+
+    return linkHistorico
 }

@@ -1,0 +1,13 @@
+
+
+.Swtich-Terminos .ant-switch-handle::before{
+    background-color: white !important;
+}
+
+.Btn-Aceptar-Terminos-Condiciones{
+    border-radius: 500px;
+    width: 190px !important;
+    height: 49px !important;
+    font-size: 13px !important;
+    font-weight: bold;
+}

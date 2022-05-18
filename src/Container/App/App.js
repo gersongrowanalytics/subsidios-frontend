@@ -29,14 +29,32 @@ function App() {
         // console.log(window.location.href.split(config.urlFrontend)[1])
     }, [LoginUsuid]);
 
-
+    const { 
+        datosUsuarioLogeado,
+        mostrar_terminos_condiciones_login
+    } = useSelector(({login}) => login);
 
     return (
         <div style={{position:'relative', width:'100%', height:'100%'}}>
-            <TimeLogout 
-                CerrarSesionReducer = {() => dispatch(CerrarSesionReducer())}
-                // CerrarSesionReducer = {() => alert('logout')}
-            />
+            {/* <TimeLogout 
+                CerrarSesionReducer = {async() => {
+                    await dispatch(CerrarSesionReducer())
+                    window.location.reload(); 
+                }}
+                tiempo = {900000}
+            /> */}
+            
+            {/* <TimeLogout 
+                CerrarSesionReducer = {async () => {
+                    if(!localStorage.getItem('usutoken')){
+                        await dispatch(CerrarSesionReducer())
+                        window.location.reload(); 
+                    }
+                }}
+                tiempo = {500}
+            /> */}
+        
+
             {/* <ToastProvider> */}
                 <div style={{position:'absolute', width:'100%', height:'100vh'}}>
                     <div style={{position:'relative', width:'100%', height:'100%'}}>
@@ -60,7 +78,10 @@ function App() {
                         {
                             LoginUsuid != null
                             ?window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia') || window.location.href.split(config.urlFrontend)[1] == "/"
-                                ?<Redirect to="/sistema" />
+                                ?datosUsuarioLogeado.tpuid == 3
+                                    ?<Redirect to="/subsidios-ventas" />
+                                    :<Redirect to="/sistema" />
+                                
                                 :null
                             :window.location.href.split(config.urlFrontend)[1].includes('/recuperar-contrasenia') || window.location.href.split(config.urlFrontend)[1].includes('/cambiar-contrasenia') || window.location.href.split(config.urlFrontend).length == 1
                                 ?null 

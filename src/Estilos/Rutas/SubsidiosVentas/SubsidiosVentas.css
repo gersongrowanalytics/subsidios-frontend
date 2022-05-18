@@ -1,0 +1,22 @@
+.Btn-Descargar-Subsidios-Ventas{
+    background-color: #004FB8 !important;
+    
+    width: 135px !important;
+    height: 42px !important;
+
+    border-radius: 36px !important;
+    cursor: pointer !important;
+}
+
+.Btn-Descargar-Subsidios-Ventas:hover{
+    background: #1876F2 !important;
+}
+
+.Icono-Subsidios-Ventas{
+    width: 110px;
+    margin-bottom: 10px;
+}
+
+.Txt-Subsidios-Ventas{
+    
+}

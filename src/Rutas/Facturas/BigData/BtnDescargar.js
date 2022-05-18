@@ -9,6 +9,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     ObtenerDataBigDataReducer
 } from '../../../Redux/Actions/Facturas/Facturas'
+import {
+    ObtenerLinksSubsidiosSiVentas
+} from '../../../Redux/Actions/SubsidiosSi/SubsidiosSi'
 import ReactExport from 'react-data-export';
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -47,9 +50,15 @@ const BtnDescargar = (props) => {
                 }
                 onClick={() => {
                     if(cargando == false){
-                        dispatch(
-                            ObtenerDataBigDataReducer(url, tipodata)
-                        )
+                        if(tipodata == "SUBSIDIOSIFORMATOVENTAS"){
+                            dispatch(
+                                ObtenerLinksSubsidiosSiVentas()
+                            )
+                        }else{
+                            dispatch(
+                                ObtenerDataBigDataReducer(url, tipodata)
+                            )
+                        }
                     }
                 }}
             >

@@ -1,0 +1,46 @@
+.Contenedor-Bottom{
+    background-color: white !important;
+    height: 90px;
+    width: 100%;
+    box-shadow: rgb(216 223 233) 0px 0px 15px;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+}
+
+.Contenedor-Footer-Fila{
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgb(77, 77, 77) !important;
+    cursor: pointer;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.Contenedor-Footer-Fila:hover{
+    background: #E7F3FF;
+    color: #1876F2;
+}
+
+.Contenedor-Footer-Fila-Seleccionado{
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    cursor: pointer;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    /* background: #E7F3FF; */
+    color: #1876F2;
+    text-decoration: underline;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -61,7 +61,7 @@ const FormularioLogin = () => {
                 >
                     <p className="Wbold-S36-H48-Cwhite">Iniciar sesión</p>
                         
-                    <Input name="usuario" className="W600-S16-H21-C4d4d4d" />
+                    <Input name="usuario" id="email" className="W600-S16-H21-C4d4d4d" />
 
                     <InputPassword name="contrasenia" className="W600-S16-H21-C4d4d4d" />
 

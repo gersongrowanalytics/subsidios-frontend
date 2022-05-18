@@ -85,7 +85,7 @@ const LoginLight = () => {
                                         name={"usuario"}
                                         style={{height:"0px", marginTop:'-10px'}}
                                     >
-                                        <input style={{border:'0'}} autoComplete={"off"}/>
+                                        <input style={{border:'0'}} id="email"/>
                                     </Form.Item>  
                                     
                                 </div>

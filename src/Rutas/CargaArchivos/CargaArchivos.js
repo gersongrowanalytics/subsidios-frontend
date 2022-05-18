@@ -21,7 +21,7 @@ const CargaArchivos = () => {
     }
 
     return (
-        <div>
+        <div style={{marginBottom:'200px'}}>
             <Row>
                 <Col xl={24}>
                     <div 
@@ -75,7 +75,7 @@ const CargaArchivos = () => {
                     <Row
                         style={{
                             display: 'flex',
-                            placeContent: 'center',
+                            // placeContent: 'center',
                             marginLeft:'20px'
                         }}
                     >
@@ -285,6 +285,24 @@ const CargaArchivos = () => {
                                         titulo = {'Costos de Productos'}
                                         subtitulo = {""}
                                         url    = {'modulo/cargaArchivos/costo-x-bulto'}
+                                        CargarArchivo = {(url, data) => CargarArchivo(url, data)}
+                                        notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
+                                        ComunesTipoDisenio = {ComunesTipoDisenio}
+                                        descargarPlantilla = ""
+                                    />
+                                </Col>
+                            )
+                        }
+
+                        {
+                            funPermisosObtenidos(
+                                LoginUsuario.permisos,
+                                "CARGA.ARCHIVOS.TARJETA.SUBSIDIOS.SI.FORMATO.VENTAS",
+                                <Col xl={6} md={6} sm={12} xs={24}>
+                                    <TarjetaCargaArchivo
+                                        titulo = {'Historico Subsidios SI'}
+                                        subtitulo = {"(Ventas)"}
+                                        url    = {'modulo/cargaArchivos/subsidios-si-formato-ventas'}
                                         CargarArchivo = {(url, data) => CargarArchivo(url, data)}
                                         notificaciones_cargaarchivos = {notificaciones_cargaarchivos}
                                         ComunesTipoDisenio = {ComunesTipoDisenio}

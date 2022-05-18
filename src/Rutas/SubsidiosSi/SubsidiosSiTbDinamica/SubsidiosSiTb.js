@@ -9,7 +9,8 @@ import {
 } from '../../../Redux/Actions/SubsidiosSo/SubsidiosSoFront'
 import {
     ObtenerSubsidiosSiReducer,
-    ObtenerLinksSubsidiosSiVentas
+    ObtenerLinksSubsidiosSiVentas,
+    ObtenerLinkHistoricoSubsidiosSIVentas
 } from '../../../Redux/Actions/SubsidiosSi/SubsidiosSi'
 import { LoadingOutlined } from '@ant-design/icons'
 import {useDispatch, useSelector} from "react-redux";
@@ -18,9 +19,19 @@ import IconoDescargarLight from '../../../Assets/Imagenes/Iconos/DescargarLight.
 
 import IconoSubsidiosSiVentas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/subsidiosventassi.png'
 
+import IconoFondoSubsidiosVentas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/fondosubsidiosventas.png'
+import IconoFlechaSubsidiosVentas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/flechasubisiosventa.png'
+import IconoLineaSubsidiosVentas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/lineasubsidiosventas.png'
+
+import Iconoflechacompletasubsidiosventas from '../../../Assets/Imagenes/Iconos/SubsidiosSo/flechacompletasubsidiosventas.PNG'
+import Iconoflechacompletasubsidiossi from '../../../Assets/Imagenes/Iconos/SubsidiosSo/flechacompletasubsidiossi.PNG'
+
+import IconoFondoSubsidiosSI from '../../../Assets/Imagenes/Iconos/SubsidiosSo/fondosubsidiossi.png'
+
+
 import ReactExport from 'react-data-export';
 import BtnFiltroSubSo from '../../../Componentes/SubsidiosSo/BtnFiltroSubSo';
-import { Row, Col, Spin } from 'antd'
+import { Row, Col, Spin, Tooltip } from 'antd'
 import FiltroFechas from '../../../Componentes/Subsidios/FiltroFechas'
 import ModalNotasCredito from '../../../Componentes/Subsidios/ModalNotasCredito'
 import FiltroFechaTop from '../../../Componentes/Top/FiltroFechaTop'
@@ -70,7 +81,8 @@ const SubsidiosSiTb = () => {
         AgrupacionesColumnas_Subsidios_SI,
         data_subsidiossi_real,
         cargando_descarga,
-        cargando_subsidiossi_ventas
+        cargando_subsidiossi_ventas,
+        data_subsidiossi_formato_ventas_excel
     } = useSelector(({subsidiosSi}) => subsidiosSi);
 
     const {
@@ -143,6 +155,7 @@ const SubsidiosSiTb = () => {
     const [mostrarCodigoProducto, setMostrarCodigoProducto] = useState(true)
 
     const inputDescargaLinkSubsidiosVentas = useRef(null);
+    const buttonDescargaSubsidiosVentas = useRef(null);
 
     return (
         <div style={{paddingBottom:'100px'}}>
@@ -444,7 +457,7 @@ const SubsidiosSiTb = () => {
 
 
             <a 
-                href={config.api+linkDescargarSubVentas}
+                href={linkDescargarSubVentas}
                 download
                 ref={inputDescargaLinkSubsidiosVentas}
                 style={{
@@ -456,57 +469,137 @@ const SubsidiosSiTb = () => {
                 funPermisosObtenidos(
                     LoginUsuario.permisos,
                     "MENU.MODULO.SUBSIDIOSSI.DESCARGAR.SUBSIDIOSI.FORMATO.VENTAS",
+                    <Tooltip placement="left" title={"Descarga Venta"}>
                     <div 
                         className='Btn-Flotante-Descargar-Subsidios-Si-Ventas-Light'
                         onClick={ async() => {
-                            let linkDescargar = await dispatch(ObtenerLinksSubsidiosSiVentas())
+                            // let linkDescargar = await dispatch(ObtenerLinksSubsidiosSiVentas())
                             
-                            let links = linkDescargar.links
+                            // if(linkDescargar.dataRpta.descargarHistorico == true){
+                            //     let links = linkDescargar.links
 
-                            await links.map(async(link) => {
-                                await setTimeout( async () => {  
-                                    await setLinkDescargarSubVentas(link)
-                                    inputDescargaLinkSubsidiosVentas.current.click()
-                                }, 2000);
-                            })
+                            //     await links.map(async(link) => {
+                            //         await setTimeout( async () => {  
+                            //             await setLinkDescargarSubVentas(link)
+                            //             inputDescargaLinkSubsidiosVentas.current.click()
+                            //         }, 2000);
+                            //     })
+                            // }else{
+                            //     await setTimeout( async () => {  
+                            //         buttonDescargaSubsidiosVentas.current.click()
+                            //     }, 1000);
+                            // }
                             
-                            // setLinkDescargarSubVentas(linkDescargar['link'])
-                            // inputDescargaLinkSubsidiosVentas.current.click()
+                            let linkDescargar = await dispatch(ObtenerLinkHistoricoSubsidiosSIVentas())
+                            await setTimeout( async () => {  
+                                await setLinkDescargarSubVentas(linkDescargar)
+                                inputDescargaLinkSubsidiosVentas.current.click()
+                            }, 1000);
+
                         }}
 
                     >
-                        <Spin 
-                            spinning={cargando_subsidiossi_ventas}
-                            indicator={<LoadingOutlined />}
-                            style={
-                                cargando_subsidiossi_ventas == true
-                                ?{width:'100%',
-                                height:'100%',
-                                cursor: 'not-allowed'}
-                                :{}
-                            }
-                        >
-                                <img 
+                        {
+                            cargando_subsidiossi_ventas == true
+                            ?<div 
+                                className={cargando_subsidiossi_ventas == true ?'Spinner-Ventas-Subsidios': ''}
+                            >
+                                <Spin 
+                                    spinning={cargando_subsidiossi_ventas}
+                                    // spinning={true}
+                                    indicator={<LoadingOutlined />}
+                                    style={
+                                        true == true
+                                        ?{width:'100%',
+                                        height:'100%',
+                                        cursor: 'not-allowed',
+                                        position: "absolute",
+                                        top: "19px"
+                                        }
+                                        :{}
+                                    }
+                                ></Spin>
+                            </div>
+                            :null
+                        }
+                                <div 
                                     style={{
-                                        width: "52px",
-                                        marginTop: "6px",
-                                        marginLeft: "5px"
+                                        position:'relative',
+                                        background: "linear-gradient(140.75deg, #1876F2 17.49%, #1EC0ED 91.77%)",
+                                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                                        borderRadius: "20.5px"
                                     }}
-                                src={
-                                    ComunesTipoDisenio == "Light"
-                                    ?IconoSubsidiosSiVentas
-                                    :IconoSubsidiosSiVentas
-                                } id="Icono-Flotante-Descargar-Subsidios-So" />
+                                >
+                                    {/* <img 
+                                        style={{
+                                            width: "52px",
+                                            marginTop: "6px",
+                                            marginLeft: "5px"
+                                        }}
+                                    src={
+                                        ComunesTipoDisenio == "Light"
+                                        ?IconoSubsidiosSiVentas
+                                        :IconoSubsidiosSiVentas
+                                    } id="Icono-Flotante-Descargar-Subsidios-So" /> */}
+
+                                    <img 
+                                        className='Icono-Fondo-Subsidios-Ventas-Formato'
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?IconoFondoSubsidiosVentas
+                                            :IconoFondoSubsidiosVentas
+                                        }
+                                    />
+
+                                    <img 
+                                        className='Icono-Flecha-Subsidios-Ventas-Formato'
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?Iconoflechacompletasubsidiosventas
+                                            :Iconoflechacompletasubsidiosventas
+                                        }
+                                    />
+
+                                    {/* <img 
+                                        className='Icono-Linea-Subsidios-Ventas-Formato'
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?IconoLineaSubsidiosVentas
+                                            :IconoLineaSubsidiosVentas
+                                        } id="Icono-Flotante-Descargar-Subsidios-So" 
+                                    /> */}
+                                </div>
                             
-                        </Spin>
+                        {/* </Spin> */}
                     </div>
+                    </Tooltip>
                 )
             }
-                
 
+            <ExcelFile 
+                filename="Subsidios SI Ventas"
+                element={
+                    <div style={{display:'none'}}>
+                        <button
+                            ref={buttonDescargaSubsidiosVentas}
+                        >
+
+                        </button>
+                    </div>
+                }>
+                <ExcelSheet 
+                    dataSet={data_subsidiossi_formato_ventas_excel} 
+                    name="Subsidios SI Ventas"
+                />
+            </ExcelFile>
+                
+            {/* <Tooltip placement="left" title={text}>
+                <Button>Left</Button>
+            </Tooltip> */}
             <ExcelFile 
                 filename="Subsidios Si"
                 element={
+                    <Tooltip placement="left" title={"Descarga SAC"}>
                     <div 
                         id={
                             ComunesTipoDisenio == "Light"
@@ -514,25 +607,62 @@ const SubsidiosSiTb = () => {
                             :"Btn-Flotante-Descargar-Subsidios-So"
                         }
                     >
-                        <Spin 
-                            spinning={cargando_descarga}
-                            indicator={<LoadingOutlined />}
-                            style={
-                                cargando_descarga == true
-                                ?{width:'100%',
-                                height:'100%',
-                                cursor: 'not-allowed'}
-                                :{}
-                            }
-                        >
-                                <img src={
+                        {
+                            cargando_descarga == true
+                            ?<div className={cargando_descarga == true ?'Spinner-Ventas-Subsidios': ''}>
+                                <Spin 
+                                
+                                    spinning={cargando_descarga}
+                                    indicator={<LoadingOutlined />}
+                                    style={
+                                        cargando_descarga == true
+                                        ?{width:'100%',
+                                        height:'100%',
+                                        cursor: 'not-allowed',
+                                        position: "absolute",
+                                        top: "19px"}
+                                        :{}
+                                    }
+                                ></Spin>
+                            </div>
+                            :null
+                        }
+                                {/* <img src={
                                     ComunesTipoDisenio == "Light"
                                     ?IconoDescargarLight
                                     :IconoDescargar
-                                } id="Icono-Flotante-Descargar-Subsidios-So" />
+                                } id="Icono-Flotante-Descargar-Subsidios-So" /> */}
+
+                                {/* <div
+                                    style={{
+                                        position:'relative',
+                                        background: "linear-gradient(142.74deg, #FF8023 14.47%, #FFC700 92.1%)",
+                                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                                        borderRadius: "20.5px"
+                                    }}
+                                > */}
+                                    <img 
+                                        className='Icono-Fondo-Subsidios-Ventas-Formato'
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?IconoFondoSubsidiosSI
+                                            :IconoFondoSubsidiosSI
+                                        }
+                                    />
+
+                                    <img 
+                                        className='Icono-Flecha-Subsidios-Ventas-Formato'
+                                        src={
+                                            ComunesTipoDisenio == "Light"
+                                            ?Iconoflechacompletasubsidiossi
+                                            :Iconoflechacompletasubsidiossi
+                                        }
+                                    />
+                                {/* </div> */}
                             
-                        </Spin>
+                        {/* </Spin> */}
                     </div>
+                    </Tooltip>
                 }>
                 <ExcelSheet 
                     dataSet={data_descarga_subsidiossi} 

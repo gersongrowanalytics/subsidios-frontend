@@ -196,6 +196,15 @@
     color: #FFFFFF;
 }
 
+.Wbold-S14-H19-CFFFFFF{
+    font-family: Segoe UI !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    line-height: 19px !important;
+    color: #FFFFFF !important;
+}
+
 .Wbold-S13-H19-CFFFFFF-L0015{
     font-family: Segoe UI;
     font-style: normal;
@@ -385,6 +394,15 @@
     font-size: 14px;
     line-height: 19px;
     color: #004FB8;
+}
+
+.Wnormal-S14-H19-C000000{
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #000000;
 }
 
 .Wnormal-S13-H17-C706C64{
